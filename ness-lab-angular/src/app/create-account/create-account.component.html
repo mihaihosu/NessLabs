@@ -1,6 +1,23 @@
-<p class="text">Login</p>
+<p class="text">Create Account</p>
 
 <form [formGroup]="form" (ngSubmit)="submitForm()">
+  <div class="form-group was-validated">
+    <img src="../assets/images/user.png" class="img-user" alt="user" />
+    <label class="form-label" for="username">Email</label>
+    <input
+      class="form-control"
+      type="email"
+      id="email"
+      formControlName="email"
+      required
+    />
+    <div
+      class="invalid-feedback"
+      *ngIf="isFormSubmitted && form.get('email')?.invalid"
+    >
+      Incorrect Email.
+    </div>
+  </div>
   <div class="form-group was-validated">
     <img src="../assets/images/user.png" class="img-user" alt="user" />
     <label class="form-label" for="username">Username</label>
@@ -37,13 +54,11 @@
   </div>
 
   <button type="submit" class="btn-login btn btn-primary btn-rounded">
-    LOGIN
+    CREATE ACCOUNT
   </button>
   <p class="new-here">
     New here?
-    <a routerLink="/create-account" style="text-decoration: none"
-      >Create account.</a
-    >
+    <a href="#" style="text-decoration: none">Create account.</a>
   </p>
   <img src="../assets/images/ness.png" alt="ness" class="img-ness" />
 </form>
