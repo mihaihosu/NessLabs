@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login-admin',
@@ -8,13 +8,19 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class LoginAdminComponent {
   form = new FormGroup({
-    name: new FormControl(),
-    email: new FormControl(),
+    password: new FormControl('', Validators.required),
+    email: new FormControl('', [Validators.required, Validators.email]),
   });
 
   isFormSubmitted: boolean = false;
 
   submitForm() {
     this.isFormSubmitted = true;
+
+    if (this.form.valid) {
+      console.log('Valid');
+    } else {
+      console.log('Invalid');
+    }
   }
 }

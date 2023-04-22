@@ -24,8 +24,17 @@
         <div class="form-group was-validated">
           <img src="../assets/images/user.png" class="img-user" alt="user" />
           <label class="form-label" for="username">Username</label>
-          <input class="form-control" type="email" id="email" required />
-          <div class="invalid-feedback" *ngIf="isFormSubmitted">
+          <input
+            class="form-control"
+            type="email"
+            id="email"
+            formControlName="email"
+            required
+          />
+          <div
+            class="invalid-feedback"
+            *ngIf="isFormSubmitted && form.get('email')?.invalid"
+          >
             Incorrect username.
           </div>
         </div>
@@ -36,8 +45,17 @@
             alt="pwd"
           />
           <label class="form-label" for="password"> Password</label>
-          <input class="form-control" type="password" id="password" required />
-          <div class="invalid-feedback" *ngIf="isFormSubmitted">
+          <input
+            class="form-control"
+            type="password"
+            id="password"
+            formControlName="password"
+            required
+          />
+          <div
+            class="invalid-feedback"
+            *ngIf="isFormSubmitted && form.get('password')?.invalid"
+          >
             Incorrect password.
           </div>
         </div>
