@@ -6,14 +6,10 @@ import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginAdminComponent } from './login-admin/login-admin.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { AuthenticationPageComponent } from './authentication-page/authentication-page.component';
-import { CreateAccountComponent } from './create-account/create-account.component';
 @NgModule({
   declarations: [
     AppComponent,
-    LoginAdminComponent,
-    AuthenticationPageComponent,
-    CreateAccountComponent
+    LoginAdminComponent
   ],
   imports: [
     BrowserModule,
