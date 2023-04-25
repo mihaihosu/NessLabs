@@ -4,13 +4,14 @@
   <div class="form-group was-validated">
     <img src="../assets/images/user.png" class="img-user" alt="user" />
     <label class="form-label" for="username">Username</label>
-    <input
+    <!-- <input
       class="form-control"
       type="email"
       id="email"
       formControlName="email"
       required
-    />
+    /> -->
+    <app-input [inputValue]="parentInput"></app-input>
     <div
       class="invalid-feedback"
       *ngIf="isFormSubmitted && form.get('email')?.invalid"

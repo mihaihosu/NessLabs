@@ -8,12 +8,14 @@ import { LoginAdminComponent } from './login-admin/login-admin.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { AuthenticationPageComponent } from './authentication-page/authentication-page.component';
 import { CreateAccountComponent } from './create-account/create-account.component';
+import { InputComponent } from './generic/input/input.component';
 @NgModule({
   declarations: [
     AppComponent,
     LoginAdminComponent,
     AuthenticationPageComponent,
-    CreateAccountComponent
+    CreateAccountComponent,
+    InputComponent
   ],
   imports: [
     BrowserModule,

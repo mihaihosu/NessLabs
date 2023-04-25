@@ -7,6 +7,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./login-admin.component.scss'],
 })
 export class LoginAdminComponent {
+  parentInput = 'Initial Value';
+  
   form = new FormGroup({
     password: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
