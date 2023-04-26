@@ -1,0 +1,9 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <section *ngFor="let field of formFields" class="form-row">
+      <app-input
+        [field]="field"
+        [form]="form"
+      ></app-input>
+    </section>
+  </form>
+  

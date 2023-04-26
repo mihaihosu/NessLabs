@@ -1,0 +1,14 @@
+<div>
+  <h2>Create Account</h2>
+  <app-form [formFields]="myForm"> </app-form>
+  <app-button
+    (btnClick)="clickHandler()"
+    text="Create Account"
+    [isDisabled]="false"
+  ></app-button>
+  <p class="have-acc">
+    Already have an account?
+    <a routerLink="/login" style="text-decoration: none">Login.</a>
+  </p>
+  <img src="../../../assets/img/logo-ness.png" alt="ness" class="img-ness" />
+</div>
