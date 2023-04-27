@@ -1,5 +1,6 @@
 package com.nesslabs.nesslabspring.controller;
 
+import com.nesslabs.nesslabspring.dto.PasswordResetRequest;
 import com.nesslabs.nesslabspring.dto.RegistrationRequest;
 import com.nesslabs.nesslabspring.exception.InvalidCredentialException;
 import com.nesslabs.nesslabspring.service.RegistrationService;
