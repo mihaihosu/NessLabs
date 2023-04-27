@@ -1,4 +1,4 @@
-package com.nesslabs.nesslabspring.registration.models;
+package com.nesslabs.nesslabspring.dto;
 
 
 import lombok.AllArgsConstructor;
@@ -14,4 +14,5 @@ public class RegistrationRequest {
     private final  String email;
     private final String username;
     private final String password;
+    private final boolean is_admin;
 }

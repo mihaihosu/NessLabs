@@ -1,5 +1,6 @@
 package com.nesslabs.nesslabspring.config;
 
+import com.nesslabs.nesslabspring.security.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,11 +25,8 @@ public class SecurityConfiguration {
                 .csrf()
                 .disable()
                 .authorizeHttpRequests()
-                .requestMatchers("**")
-                //.requestMatchers("/api/v1/auth/**")
-//                .permitAll()
-//                .requestMatchers("/api/v1/auth/authenticate")
-                .permitAll()
+//                .requestMatchers("**").permitAll()
+                .requestMatchers("/api/v1/auth/**").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
@@ -37,7 +35,9 @@ public class SecurityConfiguration {
                 .and()
                 .authenticationProvider(authenticationProvider)
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
-                .headers().frameOptions().disable();
+                .formLogin();
+//                .headers().frameOptions().disable();
+
 
         return http.build();
     }

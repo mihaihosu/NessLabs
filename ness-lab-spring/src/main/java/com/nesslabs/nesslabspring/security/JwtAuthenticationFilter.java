@@ -1,4 +1,4 @@
-package com.nesslabs.nesslabspring.config;
+package com.nesslabs.nesslabspring.security;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

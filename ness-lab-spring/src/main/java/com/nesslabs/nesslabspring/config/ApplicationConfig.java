@@ -1,6 +1,6 @@
 package com.nesslabs.nesslabspring.config;
 
-import com.nesslabs.nesslabspring.user.repositories.UserRepository;
+import com.nesslabs.nesslabspring.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

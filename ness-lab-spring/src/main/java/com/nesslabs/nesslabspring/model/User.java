@@ -1,4 +1,4 @@
-package com.nesslabs.nesslabspring.user.models;
+package com.nesslabs.nesslabspring.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -27,7 +27,7 @@ public class User implements UserDetails {
     private String username;
     private String password;
     boolean is_admin;
-    boolean is_confirmed;
+    boolean is_confirmed = false;
 
     public User(String email, String username, String password, boolean is_admin) {
         this.email = email;

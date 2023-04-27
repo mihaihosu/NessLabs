@@ -1,7 +1,7 @@
-package com.nesslabs.nesslabspring.registration.controller;
+package com.nesslabs.nesslabspring.controller;
 
-import com.nesslabs.nesslabspring.registration.models.RegistrationRequest;
-import com.nesslabs.nesslabspring.registration.services.RegistrationService;
+import com.nesslabs.nesslabspring.dto.RegistrationRequest;
+import com.nesslabs.nesslabspring.service.RegistrationService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
