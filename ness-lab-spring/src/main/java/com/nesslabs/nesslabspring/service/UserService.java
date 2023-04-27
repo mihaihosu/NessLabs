@@ -67,4 +67,11 @@ public class UserService implements UserDetailsService {
                 .anyMatch(User::is_confirmed);
     }
 
+    public String changeUserPassword(User user, String password) {
+        String encodedPassword = bCryptPasswordEncoder.encode(password);
+        user.setPassword(encodedPassword);
+        userRepository.save(user);
+        return "password reset works";
+    }
+
 }
