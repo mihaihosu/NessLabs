@@ -5,6 +5,7 @@ export class FormInputBase<T> {
   key: string;
   label: string;
   required: boolean;
+  iconSrc:string;
   order: number;
   controlType: string;
   type: string;
@@ -18,6 +19,7 @@ export class FormInputBase<T> {
       value?: T;
       key?: string;
       label?: string;
+      iconSrc?:string;
       required?: boolean;
       order?: number;
       controlType?: string;
@@ -32,6 +34,7 @@ export class FormInputBase<T> {
     this.key = options.key || '';
     this.label = options.label || '';
     this.required = !!options.required;
+    this.iconSrc = options.iconSrc || '';
     this.order = options.order === undefined ? 1 : options.order;
     this.controlType = options.controlType || '';
     this.type = options.type || '';

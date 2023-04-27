@@ -1,5 +1,9 @@
 <section [formGroup]="form">
-    <label [attr.for]="field.key">{{ field.label }}</label>
+   <div class="lbl">
+    
+    <label [attr.for]="field.key"><img [src]="field.iconSrc">{{ field.label }}</label>
+   </div>
+   
   
     <section [ngSwitch]="field.controlType">
       <input
@@ -28,8 +32,9 @@
       />
     </section>
   
-    <section class="errorMessage" *ngIf="hasFieldError()">
-      {{ field.label }} is required
-    </section>
+     <div class="errorMessage">
+      <a  *ngIf="hasFieldError()">{{ field.label }} is required</a>
+     </div>
+  
   </section>
   
