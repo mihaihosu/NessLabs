@@ -1,9 +1,6 @@
 package com.nesslabs.nesslabspring.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,7 +8,6 @@ import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
 
 import java.util.Collection;
 import java.util.Collections;
@@ -21,26 +17,29 @@ import java.util.Collections;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "user")
+@Table(name = "_user")
 public class User implements UserDetails {
 
     @Id
-    @GeneratedValue
-    private Integer id;
-
-    private String username;
-
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String email;
-
+    private String username;
     private String password;
 
-    private Boolean isAdmin;
+    private Boolean is_admin;
+    boolean is_confirmed = false;
 
-    private Boolean isConfirmed;
+    public User(String email, String username, String password, boolean is_admin) {
+        this.email = email;
+        this.username = username;
+        this.password = password;
+        this.is_admin = is_admin;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        String roleName = isAdmin ? "ADMIN" : "USER";
+        String roleName = is_admin ? "ADMIN" : "USER";
         SimpleGrantedAuthority authority = new SimpleGrantedAuthority(roleName);
         return Collections.singletonList(authority);
     }
@@ -52,7 +51,7 @@ public class User implements UserDetails {
 
     @Override
     public boolean isAccountNonLocked() {
-        return !isConfirmed;
+        return !is_confirmed;
     }
 
     @Override
@@ -62,17 +61,6 @@ public class User implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return isConfirmed;
+        return is_confirmed;
     }
-
-    @Override
-    public String getUsername() {
-        return username;
-    }
-
-    @Override
-    public String getPassword() {
-        return password;
-    }
-
 }

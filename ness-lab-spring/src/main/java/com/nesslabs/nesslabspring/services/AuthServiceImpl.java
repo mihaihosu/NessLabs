@@ -48,7 +48,7 @@ public class AuthServiceImpl implements AuthService{
         if (userEntity != null && passwordEncoder.matches(loginRequestDto.getPassword(),userEntity.getPassword())) {
             AuthResponseDto responseDto = new AuthResponseDto();
             responseDto.setEmail(userEntity.getEmail());
-            responseDto.setIsAdmin(userEntity.getIsAdmin());
+            responseDto.setIsAdmin(userEntity.getIs_admin());
             return responseDto;
         }
         return null;

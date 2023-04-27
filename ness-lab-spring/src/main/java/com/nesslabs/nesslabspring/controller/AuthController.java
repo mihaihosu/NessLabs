@@ -23,12 +23,6 @@ public class AuthController {
 
     private final JwtService jwtTokenService;
 
-    /*@PostMapping("/authenticate")
-    public ResponseEntity<AuthResponseDto> authenticate(
-            @RequestBody AuthRequestDto request
-    ){
-        return ResponseEntity.ok(authService.authenticate(request));
-    }*/
     @PostMapping("/login")
     private ResponseEntity<TokenDto> loginUser(@RequestBody AuthRequestDto loginRequestDto) {
         AuthResponseDto loginResponseDto = authService.checkUserCredentials(loginRequestDto);
