@@ -46,17 +46,17 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         isAdmin =jwtService.extractIsAdmin(jwt);
 
 
-        if(username != null && SecurityContextHolder.getContext().getAuthentication() == null){
+        if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
-            if(jwtService.isTokenValid(jwt, userDetails)){
+
+            if (jwtService.isTokenValid(jwt, userDetails) && isAdmin) {
+                //Only load if its Admin
                 UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
                         userDetails,
                         null,
                         userDetails.getAuthorities()
                 );
-                authToken.setDetails(
-                        new WebAuthenticationDetailsSource().buildDetails(request)
-                );
+                authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                 SecurityContextHolder.getContext().setAuthentication(authToken);
             }
         }

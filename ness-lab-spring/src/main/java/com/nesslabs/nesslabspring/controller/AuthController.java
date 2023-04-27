@@ -1,4 +1,4 @@
-package com.nesslabs.nesslabspring.controllers;
+package com.nesslabs.nesslabspring.controller;
 
 
 import com.nesslabs.nesslabspring.dto.AuthRequestDto;

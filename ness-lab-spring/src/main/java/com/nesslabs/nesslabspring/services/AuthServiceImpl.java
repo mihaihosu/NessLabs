@@ -25,20 +25,20 @@ public class AuthServiceImpl implements AuthService{
     public AuthResponseDto authenticate(AuthRequestDto request){
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
-                        request.getUsername(),
+                        request.getEmail(),
                         request.getPassword()
                 )
         );
-        var user = userRepository.findByUsername(request.getUsername())
+        var user = userRepository.findByUsername(request.getEmail())
                 .orElseThrow();
-        //var jwtToken = jwtService.generateToken(user); //error
-        //TO-DO need to handle isAdmin Parameter thing
+        boolean isAdmin = user.getIsAdmin();
+        var jwtToken = jwtService.generateToken(isAdmin, user);
 
-        /*return AuthResponseDto.builder()
+        return AuthResponseDto.builder()
                 .token(jwtToken)
                 .build();
-            */
-        return null;
+
+
     }
 
 
