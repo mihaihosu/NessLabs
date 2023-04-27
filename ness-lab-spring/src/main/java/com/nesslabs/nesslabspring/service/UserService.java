@@ -9,6 +9,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 
 @Service
 @AllArgsConstructor
@@ -17,6 +19,7 @@ public class UserService implements UserDetailsService {
     private static final String USER_NOT_FOUND_MSG = "user with email %s not found";
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final PasswordResetService passwordResetService;
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
@@ -47,4 +50,23 @@ public class UserService implements UserDetailsService {
         return "password reset works";
     }
 
+    public Optional<User> findByEmail(String email) {
+        return Optional.empty();
+    }
+
+    public void createPasswordResetTokenForUser(User user, String passwordToken) {
+        passwordResetService.createPasswordResetTokenForUser(user,passwordToken);
+    }
+
+    public String validatePasswordResetToken(String passwordResetToken) {
+        return passwordResetService.validatePasswordResetToken(passwordResetToken);
+    }
+
+    public User findUserByPasswordToken(String passwordResetToken) {
+        return passwordResetService.findUserByPasswordToken(passwordResetToken).get();
+    }
+
+    public void resetUserPassword(User user, String newPassword) {
+
+    }
 }
