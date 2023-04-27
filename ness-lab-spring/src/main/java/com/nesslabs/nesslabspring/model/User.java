@@ -1,4 +1,4 @@
-package com.nesslabs.nesslabspring.entity;
+package com.nesslabs.nesslabspring.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

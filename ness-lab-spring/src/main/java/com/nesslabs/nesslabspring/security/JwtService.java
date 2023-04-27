@@ -1,19 +1,23 @@
 package com.nesslabs.nesslabspring.security;
 
+import com.nesslabs.nesslabspring.utils.exception.JwtAuthenticationException;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
 import java.security.Key;
 import java.time.Duration;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Function;
 
 @Service
@@ -23,8 +27,35 @@ public class JwtService {
 
     private static final long EXPIRATIONTIME = Duration.ofDays(3).toMillis();
 
+    private final UserDetailsService userDetailsService;
+
     @Value("hellokittyrunstheworld")
     private String secret;
+
+    public JwtService(UserDetailsService userDetailsService) {
+        this.userDetailsService = userDetailsService;
+    }
+
+
+    public Authentication getAuthentication(String token) throws JwtAuthenticationException {
+        String username = extractUsername(token);
+        boolean isAdmin = extractIsAdmin(token);
+
+        UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+
+        if (isTokenValid(token, userDetails)) {
+            List<GrantedAuthority> authorities = new ArrayList<>();
+            if (isAdmin) {
+                authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+            } else {
+                authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+            }
+            return new UsernamePasswordAuthenticationToken(userDetails, null, authorities);
+        } else {
+            throw new JwtAuthenticationException("Invalid token");
+        }
+    }
+
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
 
@@ -41,20 +72,23 @@ public class JwtService {
     }
 
     public String generateToken(
-            boolean isAdmin,
-            UserDetails userDetails
-    ){
-        Map<String, Object> extraClaims = new HashMap<>();
-        extraClaims.put("isAdmin",isAdmin);
 
-        return Jwts
-                .builder()
-                .setClaims(extraClaims)
-                .setSubject(userDetails.getUsername())
+            String userEmail,
+            boolean isAdmin
+    ){
+
+        String jwtToken;
+
+        jwtToken = Jwts.builder()
+                .setSubject(userEmail)
+                .claim("isAdmin", isAdmin)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis()+ EXPIRATIONTIME))
                 .signWith(getSignInKey(), SignatureAlgorithm.HS512)
                 .compact();
+
+
+        return jwtToken;
     }
 
 

@@ -10,5 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AuthResponseDto {
-    private String token;
+    //private String token;
+    private String email;
+    private Boolean isAdmin;
 }
