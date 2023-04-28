@@ -12,6 +12,8 @@ import { FormCheckbox } from '../../model/form-checkbox.model';
   template: `styles: ['button {color:white;}']`,
 })
 export class LoginComponent {
+  buttonEnabled: boolean = false;
+
   myForm: FormInputBase<string | boolean>[] = [
     new FormTextbox({
       key: 'username',
@@ -29,6 +31,10 @@ export class LoginComponent {
       required: true,
     }),
   ];
+
+  setButtonEnabled($event) {
+    this.buttonEnabled = $event;
+  }
 
   clickHandler() {}
 }

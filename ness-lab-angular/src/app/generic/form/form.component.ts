@@ -13,7 +13,7 @@ export class FormComponent implements OnInit {
   form: FormGroup;
   buttonEnabled: boolean = false;
 
-  @Output() w = new EventEmitter<boolean>();
+  @Output() sendButtonEnabledStatus = new EventEmitter<boolean>();
 
   ngOnInit(): void {
     this.toFormGroup();
@@ -56,6 +56,6 @@ export class FormComponent implements OnInit {
       }
     });
 
-    this.w.emit(this.buttonEnabled);
+    this.sendButtonEnabledStatus.emit(this.buttonEnabled);
   }
 }

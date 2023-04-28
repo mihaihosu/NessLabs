@@ -24,11 +24,16 @@
       <p class="text">Login</p>
 
       <form class="needs-validation">
-        <app-form class="form-group" [formFields]="myForm"> </app-form>
+        <app-form
+          class="form-group"
+          [formFields]="myForm"
+          (sendButtonEnabledStatus)="setButtonEnabled($event)"
+        >
+        </app-form>
         <app-button
           (btnClick)="clickHandler()"
           text="Login"
-          [isDisabled]="false"
+          [isDisabled]="!buttonEnabled"
         >
         </app-button>
         <p class="new-here">

@@ -37,7 +37,7 @@ export class CreateAccountComponent {
     }),
   ];
 
-  idk($event) {
+  setButtonEnabled($event) {
     this.buttonEnabled = $event;
   }
 

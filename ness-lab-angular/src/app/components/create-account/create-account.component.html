@@ -24,7 +24,11 @@
       <p class="text">Create Account</p>
 
       <form class="needs-validation">
-        <app-form class="form-group" [formFields]="myForm" (w)="idk($event)">
+        <app-form
+          class="form-group"
+          [formFields]="myForm"
+          (sendButtonEnabledStatus)="setButtonEnabled($event)"
+        >
         </app-form>
         <app-button
           (btnClick)="clickHandler()"
