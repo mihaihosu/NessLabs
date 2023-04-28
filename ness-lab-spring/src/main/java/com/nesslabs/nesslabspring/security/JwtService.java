@@ -29,7 +29,7 @@ public class JwtService {
 
     private final UserDetailsService userDetailsService;
 
-    @Value("hellokittyrunstheworld")
+    @Value("${secret}")
     private String secret;
 
     public JwtService(UserDetailsService userDetailsService) {
