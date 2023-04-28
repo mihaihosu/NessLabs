@@ -9,31 +9,26 @@ import { FormCheckbox } from '../../model/form-checkbox.model';
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  template:`styles: ['button {color:white;}']`
+  template: `styles: ['button {color:white;}']`,
 })
 export class LoginComponent {
   myForm: FormInputBase<string | boolean>[] = [
     new FormTextbox({
       key: 'username',
-      iconSrc:'../assets/img/user.svg',
+      iconSrc: '../assets/icons/user.svg',
       label: 'Username',
       type: 'text',
       required: true,
-      
     }),
 
     new FormTextbox({
       key: 'password',
-      iconSrc:'../assets/img/locker password.svg',
+      iconSrc: '../assets/icons/locker password.svg',
       label: 'Password',
       type: 'password',
       required: true,
     }),
   ];
-  
 
   clickHandler() {}
-
-  
-  
 }

@@ -1,14 +1,47 @@
-<div>
-  <h2>Create Account</h2>
-  <app-form [formFields]="myForm"> </app-form>
-  <app-button
-    (btnClick)="clickHandler()"
-    text="Create Account"
-    [isDisabled]="false"
-  ></app-button>
-  <p class="have-acc">
-    Already have an account?
-    <a routerLink="/login" style="text-decoration: none">Login.</a>
-  </p>
-  <img src="../../../assets/img/logo-ness.png" alt="ness" class="img-ness" />
-</div>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+  </head>
+  <body
+    style="
+      background-size: cover;
+      background-image: url('../assets/img/background_login.jpg');
+    "
+  >
+    <div class="create-account">
+      <img
+        src="../assets/img/logo-timisoara-2023.png"
+        class="img-capitala-europeana"
+        alt="capitala-europeana"
+      />
+      <p class="text">Create Account</p>
+
+      <form class="needs-validation">
+        <app-form class="form-group" [formFields]="myForm" (w)="idk($event)">
+        </app-form>
+        <app-button
+          (btnClick)="clickHandler()"
+          text="Create Account"
+          [isDisabled]="!buttonEnabled"
+        >
+        </app-button>
+        <p class="new-here">
+          Already have an account?
+          <a routerLink="/login" style="text-decoration: none">Login.</a>
+        </p>
+        <img
+          src="../../../assets/img/logo-ness.png"
+          alt="ness"
+          class="img-ness"
+        />
+      </form>
+    </div>
+  </body>
+</html>

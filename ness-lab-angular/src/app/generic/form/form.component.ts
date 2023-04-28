@@ -1,16 +1,19 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { FormInputBase } from '../../model/form-input-base.model';
 
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
-  styleUrls: ['./form.component.scss']
+  styleUrls: ['./form.component.scss'],
 })
 export class FormComponent implements OnInit {
   @Input() formFields: FormInputBase<string | boolean>[] | null = [];
 
   form: FormGroup;
+  buttonEnabled: boolean = false;
+
+  @Output() w = new EventEmitter<boolean>();
 
   ngOnInit(): void {
     this.toFormGroup();
@@ -42,7 +45,26 @@ export class FormComponent implements OnInit {
     this.form = new FormGroup(group);
   }
 
-  
+  inputModified() {
+    this.formFields.forEach((f) => {
+      const control = this.form.get(f.key);
+
+      this.buttonEnabled = true;
+      console.log(control);
+      if (!control || !control.value) {
+        this.buttonEnabled = false;
+        this.w.emit(this.buttonEnabled);
+        return;
+      }
+      //this.w.emit(this.buttonEnabled);
+    });
+
+    if (this.buttonEnabled) {
+      console.log('All form fields have a value');
+    } else {
+      console.log('Not all form fields have a value');
+    }
+
+    this.w.emit(this.buttonEnabled);
+  }
 }
-
-
