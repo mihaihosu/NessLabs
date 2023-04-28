@@ -46,24 +46,15 @@ export class FormComponent implements OnInit {
   }
 
   inputModified() {
+    this.buttonEnabled = true;
+
     this.formFields.forEach((f) => {
       const control = this.form.get(f.key);
 
-      this.buttonEnabled = true;
-      console.log(control);
       if (!control || !control.value) {
         this.buttonEnabled = false;
-        this.w.emit(this.buttonEnabled);
-        return;
       }
-      //this.w.emit(this.buttonEnabled);
     });
-
-    if (this.buttonEnabled) {
-      console.log('All form fields have a value');
-    } else {
-      console.log('Not all form fields have a value');
-    }
 
     this.w.emit(this.buttonEnabled);
   }
