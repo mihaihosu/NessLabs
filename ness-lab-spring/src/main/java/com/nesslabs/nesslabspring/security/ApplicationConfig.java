@@ -1,5 +1,6 @@
 package com.nesslabs.nesslabspring.security;
 
+import com.nesslabs.nesslabspring.model.User;
 import com.nesslabs.nesslabspring.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -22,8 +23,14 @@ public class ApplicationConfig {
 
     @Bean
     public UserDetailsService userDetailsService() {
-        return username -> userRepository.findByUsername(username)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+        return email -> {
+            User user = userRepository.findByEmail(email);
+            if (user != null) {
+                return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), user.getAuthorities());
+            } else {
+                throw new UsernameNotFoundException("User not found");
+            }
+        };
     }
 
     @Bean
