@@ -9,13 +9,11 @@ import com.nesslabs.nesslabspring.services.AuthServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/auth")
+@CrossOrigin
+@RequestMapping(path = "api/v1")
 @RequiredArgsConstructor
 public class AuthController {
 
@@ -23,7 +21,7 @@ public class AuthController {
 
     private final JwtService jwtTokenService;
 
-    @PostMapping("/login")
+    @PostMapping("/auth/login")
     private ResponseEntity<TokenDto> loginUser(@RequestBody AuthRequestDto loginRequestDto) {
         AuthResponseDto loginResponseDto = authService.checkUserCredentials(loginRequestDto);
 
