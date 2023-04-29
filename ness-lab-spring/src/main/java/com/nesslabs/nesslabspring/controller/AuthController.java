@@ -5,10 +5,9 @@ import com.nesslabs.nesslabspring.dto.AuthRequestDto;
 import com.nesslabs.nesslabspring.dto.AuthResponseDto;
 import com.nesslabs.nesslabspring.dto.TokenDto;
 import com.nesslabs.nesslabspring.security.JwtService;
-import com.nesslabs.nesslabspring.services.AuthServiceImpl;
+import com.nesslabs.nesslabspring.service.AuthServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

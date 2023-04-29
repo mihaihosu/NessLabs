@@ -1,4 +1,4 @@
-package com.nesslabs.nesslabspring.services;
+package com.nesslabs.nesslabspring.service;
 
 import com.nesslabs.nesslabspring.dto.AuthRequestDto;
 import com.nesslabs.nesslabspring.dto.AuthResponseDto;
