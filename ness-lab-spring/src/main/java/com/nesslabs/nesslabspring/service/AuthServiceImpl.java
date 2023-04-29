@@ -10,6 +10,9 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class AuthServiceImpl implements AuthService{
@@ -41,8 +44,15 @@ public class AuthServiceImpl implements AuthService{
 
     }*/
 
+    // add a hardcoded test user
+    private final List<User> users = Arrays.asList(
+            new User("alexiaoaida@gmail.com", "alexiaoaida", "pisica", true));
 
-    public AuthResponseDto checkUserCredentials(AuthRequestDto loginRequestDto) {
+
+
+    //WHEN I HAVE USERS IN DB
+
+    /*public AuthResponseDto checkUserCredentials(AuthRequestDto loginRequestDto) {
         User userEntity = userRepository.findByEmail(loginRequestDto.getEmail());
 
         if (userEntity != null && passwordEncoder.matches(loginRequestDto.getPassword(),userEntity.getPassword())) {
@@ -52,7 +62,22 @@ public class AuthServiceImpl implements AuthService{
             return responseDto;
         }
         return null;
+    }*/
+
+    //TEST WITH LIST
+    public AuthResponseDto checkUserCredentials(AuthRequestDto loginRequestDto) {
+        for (User user : users) {
+            if (user.getEmail().equals(loginRequestDto.getEmail()) &&
+                    user.getPassword().equals(loginRequestDto.getPassword())) {
+                AuthResponseDto responseDto = new AuthResponseDto();
+                responseDto.setEmail(user.getEmail());
+                responseDto.setIsAdmin(user.getIs_admin());
+                return responseDto;
+            }
+        }
+        return null;
     }
+
 
 
 

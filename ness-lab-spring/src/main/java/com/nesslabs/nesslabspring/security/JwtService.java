@@ -117,6 +117,6 @@ public class JwtService {
 
     private Key getSignInKey() {
         byte[] keyBytes = Decoders.BASE64.decode(secret);
-        return Keys.hmacShaKeyFor(keyBytes);
+        return Keys.secretKeyFor(SignatureAlgorithm.HS512);
     }
 }
