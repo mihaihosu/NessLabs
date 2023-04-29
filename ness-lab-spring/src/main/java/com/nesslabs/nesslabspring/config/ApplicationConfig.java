@@ -1,4 +1,4 @@
-package com.nesslabs.nesslabspring.security;
+package com.nesslabs.nesslabspring.config;
 
 import com.nesslabs.nesslabspring.model.User;
 import com.nesslabs.nesslabspring.repositories.UserRepository;

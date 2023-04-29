@@ -1,5 +1,6 @@
-package com.nesslabs.nesslabspring.security;
+package com.nesslabs.nesslabspring.config;
 
+import com.nesslabs.nesslabspring.security.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
