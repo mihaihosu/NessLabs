@@ -3,7 +3,7 @@ package com.nesslabs.nesslabspring.services;
 import com.nesslabs.nesslabspring.dto.AuthRequestDto;
 import com.nesslabs.nesslabspring.dto.AuthResponseDto;
 import com.nesslabs.nesslabspring.model.User;
-import com.nesslabs.nesslabspring.repositories.UserRepository;
+import com.nesslabs.nesslabspring.repository.UserRepository;
 import com.nesslabs.nesslabspring.security.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
