@@ -15,6 +15,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
+import javax.crypto.spec.SecretKeySpec;
+import java.nio.charset.StandardCharsets;
 import java.security.Key;
 import java.time.Duration;
 import java.util.*;
@@ -99,7 +101,7 @@ public class JwtService {
         return (username.equals(userDetails.getUsername())) && !isTokenExpired(token);
     }
 
-    private boolean isTokenExpired(String token) {
+    boolean isTokenExpired(String token) {
         return extractExpiration(token).before(new Date());
     }
 
@@ -120,6 +122,9 @@ public class JwtService {
     private Key getSignInKey() {
         return Keys.secretKeyFor(SignatureAlgorithm.HS512);
 
-
+        //byte[] secretBytes = secret.getBytes(StandardCharsets.UTF_8);
+        //return new SecretKeySpec(secretBytes, SignatureAlgorithm.HS512.getJcaName());
     }
+
+
 }
