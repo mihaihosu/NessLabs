@@ -6,6 +6,7 @@ import com.nesslabs.nesslabspring.model.User;
 import com.nesslabs.nesslabspring.repository.UserRepository;
 import com.nesslabs.nesslabspring.security.JwtService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AuthServiceImpl implements AuthService{
 
+    @Autowired
     private final UserRepository userRepository;
 
     private final PasswordEncoder passwordEncoder;
@@ -25,34 +27,17 @@ public class AuthServiceImpl implements AuthService{
 
     private final AuthenticationManager authenticationManager;
 
-    /*public AuthResponseDto authenticate(AuthRequestDto request){
-        authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        request.getEmail(),
-                        request.getPassword()
-                )
-        );
-        var user = userRepository.findByUsername(request.getEmail())
-                .orElseThrow();
-        boolean isAdmin = user.getIsAdmin();
-        var jwtToken = jwtService.generateToken(isAdmin, user);
 
-        return AuthResponseDto.builder()
-                .token(jwtToken)
-                .build();
-
-
-    }*/
-
-    // add a hardcoded test user
-    private final List<User> users = Arrays.asList(
-            new User("alexiaoaida@gmail.com", "alexiaoaida", "pisica", true));
+    //FOR DB
+    @Override
+    public User getUserByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
 
 
 
     //WHEN I HAVE USERS IN DB
-
-    /*public AuthResponseDto checkUserCredentials(AuthRequestDto loginRequestDto) {
+    public AuthResponseDto checkUserCredentials(AuthRequestDto loginRequestDto) {
         User userEntity = userRepository.findByEmail(loginRequestDto.getEmail());
 
         if (userEntity != null && passwordEncoder.matches(loginRequestDto.getPassword(),userEntity.getPassword())) {
@@ -62,7 +47,24 @@ public class AuthServiceImpl implements AuthService{
             return responseDto;
         }
         return null;
-    }*/
+    }
+
+
+   /*
+    //FOR HARDCODED LIST
+    @Override
+    public User getUserByEmail(String email) {
+        for (User user : users) {
+            if (user.getEmail().equals(email)) {
+                return user;
+            }
+        }
+        return null; // user not found, return null
+    }
+
+    // add a hardcoded test user
+    private final List<User> users = Arrays.asList(
+            new User("alexiaoaida@gmail.com", "alexiaoaida", "pisica", true, true));
 
     //TEST WITH LIST
     public AuthResponseDto checkUserCredentials(AuthRequestDto loginRequestDto) {
@@ -77,8 +79,7 @@ public class AuthServiceImpl implements AuthService{
         }
         return null;
     }
-
-
+*/
 
 
 }

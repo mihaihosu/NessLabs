@@ -80,6 +80,8 @@ public class JwtService {
         String jwtToken;
 
         jwtToken = Jwts.builder()
+                .setHeaderParam("alg", "HS512")
+                .setHeaderParam("typ", "JWT")
                 .setSubject(userEmail)
                 .claim("isAdmin", isAdmin)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
@@ -116,7 +118,8 @@ public class JwtService {
     }
 
     private Key getSignInKey() {
-        byte[] keyBytes = Decoders.BASE64.decode(secret);
         return Keys.secretKeyFor(SignatureAlgorithm.HS512);
+
+
     }
 }

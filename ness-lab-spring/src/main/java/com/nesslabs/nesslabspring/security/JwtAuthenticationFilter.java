@@ -28,9 +28,9 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(
-                @NotNull HttpServletRequest request,
-                @NotNull HttpServletResponse response,
-                @NotNull FilterChain filterChain
+            @NotNull HttpServletRequest request,
+            @NotNull HttpServletResponse response,
+            @NotNull FilterChain filterChain
     ) throws ServletException, IOException {
         final String authHeader = request.getHeader("Authorization");
         try {
@@ -38,11 +38,19 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 String jwt = authHeader.substring(7);
                 Authentication auth = jwtService.getAuthentication(jwt);
                 SecurityContextHolder.getContext().setAuthentication(auth);
+
+                // Add the JWT token to the response header
+               // response.addHeader("Set-Cookie", "jwt= " + jwt);
+
+                // Call filterChain.doFilter after adding the JWT token to the response header
+                filterChain.doFilter(request, response);
+            } else {
+                filterChain.doFilter(request, response);
             }
-            filterChain.doFilter(request, response);
-            } catch (final JwtAuthenticationException ex) {
-                response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Error parsing JWT Token");
-            }
+        } catch (final JwtAuthenticationException ex) {
+            response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Error parsing JWT Token");
         }
+    }
+
 }
 
