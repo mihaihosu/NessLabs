@@ -33,7 +33,7 @@ export class LoginComponent {
   ];
 
   setButtonEnabled($event) {
-    this.buttonEnabled = $event;
+    this.buttonEnabled = $event.buttonEnabled;
   }
 
   clickHandler() {}

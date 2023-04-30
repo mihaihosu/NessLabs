@@ -27,7 +27,7 @@
         <app-form
           class="form-group"
           [formFields]="myForm"
-          (sendButtonEnabledStatus)="setButtonEnabled($event)"
+          (inputEventsEmitter)="setButtonEnabled($event)"
         >
         </app-form>
         <app-button
