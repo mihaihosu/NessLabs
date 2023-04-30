@@ -2,15 +2,17 @@ package com.nesslabs.nesslabspring.services;
 
 import com.nesslabs.nesslabspring.entity.ConfirmationToken;
 import com.nesslabs.nesslabspring.entity.User;
+import com.nesslabs.nesslabspring.repositories.EmailSender;
 import com.nesslabs.nesslabspring.repositories.UserRepository;
-import com.nesslabs.nesslabspring.services.ConfirmationTokenService;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 import java.util.UUID;
 
 
@@ -20,9 +22,11 @@ public class UserService implements UserDetailsService {
     private final ConfirmationTokenService confirmationTokenService;
     private static final String USER_NOT_FOUND_MSG = "user with email %s not found";
     private final UserRepository userRepository;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final EmailSender emailSender;
 
-    public void enableUser(String email) {
-        userRepository.enableUser(email);
+    public int enableUser(String email) {
+       return userRepository.enableUser(email);
     }
 
 
@@ -34,18 +38,38 @@ public class UserService implements UserDetailsService {
 
     public String signUpUser(User user) {
 
-        String token = UUID.randomUUID().toString();
-        ConfirmationToken confirmationToken = new ConfirmationToken(
-                token,
-                LocalDateTime.now(),
-                LocalDateTime.now().plusMinutes(15),
-                user
-        );
+        boolean userExists = userRepository
+                .findByEmail(user.getEmail())
+                .isPresent();
 
-        confirmationTokenService.saveConfirmationToken(confirmationToken);
+        if (userExists) {
+            if(userRepository.findUserByDetails(user.getUsername(), user.getEmail()) == user){
+                if(userRepository.findUserByDetails(user.getUsername(), user.getEmail()).isEnabled() == true){
+                    throw new IllegalStateException("Account already exist");
+                }
+            }
 
-        //TODO: SEND EMAIL
-        return token;
+        }
+
+            String token = UUID.randomUUID().toString();
+            ConfirmationToken confirmationToken = new ConfirmationToken(
+                    token,
+                    LocalDateTime.now(),
+                    LocalDateTime.now().plusMinutes(15),
+                    user
+            );
+
+            String encodedPassword = bCryptPasswordEncoder
+                    .encode(user.getPassword());
+
+            user.setPassword(encodedPassword);
+
+            userRepository.save(user);
+
+            confirmationTokenService.saveConfirmationToken(confirmationToken);
+
+            //TODO: SEND EMAIL
+            return token;
 
     }
     

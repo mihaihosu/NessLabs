@@ -28,8 +28,8 @@ public class User implements UserDetails {
     boolean is_confirmed = false;
 
     public User(String email, String username, String password, boolean is_admin) {
-        this.email = email;
         this.username = username;
+        this.email = email;
         this.password = password;
         this.is_admin = is_admin;
     }
@@ -60,4 +60,5 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return is_confirmed;
     }
+
 }

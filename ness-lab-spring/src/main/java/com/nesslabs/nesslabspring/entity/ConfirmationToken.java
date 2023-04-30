@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 
 
 @NoArgsConstructor
@@ -17,10 +18,10 @@ public class ConfirmationToken {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    @Column()
+    @Column(nullable = false)
     private String token;
 
-    @Column()
+    @Column(nullable = false)
     private LocalDateTime createdAt;
 
     private LocalDateTime expiresAt;

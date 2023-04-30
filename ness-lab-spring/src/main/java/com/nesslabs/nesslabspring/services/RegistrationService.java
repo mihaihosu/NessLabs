@@ -32,12 +32,12 @@ public class RegistrationService {
                 true)
         );
 
-        String link = "http://localhost:8080/api/v1/registration/confirm?token=" + token;
+        String link = "http://localhost:8080/api/v1/auth/registration/confirm?token=" + token;
         emailSender.send(
                 request.getEmail(),
                 buildEmail(request.getUsername(), link));
 
-        return token;
+        return "One more step.Please verify your account to access the application";
     }
 
     @Transactional
@@ -48,7 +48,7 @@ public class RegistrationService {
                         new IllegalStateException("token not found"));
 
         if (confirmationToken.getConfirmedAt() != null) {
-            throw new IllegalStateException("email already confirmed");
+            throw new IllegalStateException("email already confirmed, please login");
         }
 
         LocalDateTime expiredAt = confirmationToken.getExpiresAt();
