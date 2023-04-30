@@ -120,10 +120,10 @@ public class JwtService {
     }
 
     private Key getSignInKey() {
-        return Keys.secretKeyFor(SignatureAlgorithm.HS512);
+        //return Keys.secretKeyFor(SignatureAlgorithm.HS512);
 
-        //byte[] secretBytes = secret.getBytes(StandardCharsets.UTF_8);
-        //return new SecretKeySpec(secretBytes, SignatureAlgorithm.HS512.getJcaName());
+        byte[] secretBytes = secret.getBytes(StandardCharsets.UTF_8);
+        return new SecretKeySpec(secretBytes, SignatureAlgorithm.HS512.getJcaName());
     }
 
 
