@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewChild, ElementRef } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { FormInputBase } from 'src/app/model/form-input-base.model';
 import { FormTextbox } from 'src/app/model/form-textbox.model';
@@ -9,7 +9,16 @@ import { FormTextbox } from 'src/app/model/form-textbox.model';
   styleUrls: ['./create-account.component.scss'],
 })
 export class CreateAccountComponent {
+  @ViewChild('passwordInput') passwordInput: ElementRef;
+
   buttonEnabled: boolean = false;
+
+  passwordRequirementBulletCheck: {} = {
+    0: ['../assets/icons/passwordRequirementsUnchecked.svg', false],
+    1: ['../assets/icons/passwordRequirementsUnchecked.svg', false],
+    2: ['../assets/icons/passwordRequirementsUnchecked.svg', false],
+    3: ['../assets/icons/passwordRequirementsUnchecked.svg', false],
+  };
 
   myForm: FormInputBase<string | boolean>[] = [
     new FormTextbox({
@@ -37,11 +46,26 @@ export class CreateAccountComponent {
     }),
   ];
 
-  setButtonEnabled($event) {
-    this.buttonEnabled = $event;
+  setInputEvents($event) {
+    for (let key in this.passwordRequirementBulletCheck) {
+      if (this.passwordRequirementBulletCheck[key][1] !== true) {
+        this.buttonEnabled = false;
+        break;
+      }
+
+      if (key === '3') {
+        this.buttonEnabled = $event.buttonEnabled;
+      }
+    }
+
+    this.passwordRequirementBulletCheck = $event.passwordRequirementBulletCheck;
   }
 
   clickHandler() {
     console.log('NICE');
+  }
+
+  onPasswordInput() {
+    console.log('WHAT');
   }
 }

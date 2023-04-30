@@ -27,9 +27,47 @@
         <app-form
           class="form-group"
           [formFields]="myForm"
-          (sendButtonEnabledStatus)="setButtonEnabled($event)"
+          (inputEventsEmitter)="setInputEvents($event)"
+          (input)="(onPasswordInput)"
         >
         </app-form>
+
+        <div class="wrapper">
+          <div class="content">
+            <p class="password-requirement-title">Password must contain:</p>
+            <ul class="requirement-list">
+              <li>
+                <img
+                  [src]="passwordRequirementBulletCheck[0][0]"
+                  alt="circle"
+                />
+                <span>At least 8 characters</span>
+              </li>
+              <li>
+                <img
+                  [src]="passwordRequirementBulletCheck[1][0]"
+                  alt="circle"
+                />
+                <span>At least one small letter</span>
+              </li>
+              <li>
+                <img
+                  [src]="passwordRequirementBulletCheck[2][0]"
+                  alt="circle"
+                />
+                <span>At least one capital letter</span>
+              </li>
+              <li>
+                <img
+                  [src]="passwordRequirementBulletCheck[3][0]"
+                  alt="circle"
+                />
+                <span>At least one number or symbol</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
         <app-button
           (btnClick)="clickHandler()"
           text="Create Account"

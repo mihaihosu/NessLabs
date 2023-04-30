@@ -2,6 +2,11 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { FormInputBase } from '../../model/form-input-base.model';
 
+interface eventsEmitted {
+  passwordRequirementBulletCheck: {};
+  buttonEnabled: boolean;
+}
+
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
@@ -10,10 +15,29 @@ import { FormInputBase } from '../../model/form-input-base.model';
 export class FormComponent implements OnInit {
   @Input() formFields: FormInputBase<string | boolean>[] | null = [];
 
+  requirements = [
+    { regex: /.{8,}/ },
+    { regex: /[a-z]/ },
+    { regex: /[A-Z]/ },
+    { regex: /[!-/:-@[-`{-~0-9]/ },
+  ];
+
+  passwordRequirementBulletCheck: {} = {
+    0: ['../assets/icons/passwordRequirementsUnchecked.svg', false],
+    1: ['../assets/icons/passwordRequirementsUnchecked.svg', false],
+    2: ['../assets/icons/passwordRequirementsUnchecked.svg', false],
+    3: ['../assets/icons/passwordRequirementsUnchecked.svg', false],
+  };
+
   form: FormGroup;
   buttonEnabled: boolean = false;
 
-  @Output() sendButtonEnabledStatus = new EventEmitter<boolean>();
+  inputEvents: eventsEmitted = {
+    buttonEnabled: this.buttonEnabled,
+    passwordRequirementBulletCheck: this.passwordRequirementBulletCheck,
+  };
+
+  @Output() inputEventsEmitter = new EventEmitter();
 
   ngOnInit(): void {
     this.toFormGroup();
@@ -45,6 +69,34 @@ export class FormComponent implements OnInit {
     this.form = new FormGroup(group);
   }
 
+  handlePasswordRequirements(control) {
+    for (let i = 0; i < this.requirements.length; i++) {
+      if (control.value.match(this.requirements[i].regex)) {
+        this.passwordRequirementBulletCheck[i][0] =
+          '../assets/icons/passwordRequirementsChecked.svg';
+
+        this.passwordRequirementBulletCheck[i][1] = true;
+
+        this.inputEvents.buttonEnabled = this.buttonEnabled;
+        this.inputEvents.passwordRequirementBulletCheck =
+          this.passwordRequirementBulletCheck;
+
+        this.inputEventsEmitter.emit(this.inputEvents);
+      } else {
+        this.passwordRequirementBulletCheck[i][0] =
+          '../assets/icons/passwordRequirementsUnchecked.svg';
+
+        this.passwordRequirementBulletCheck[i][1] = false;
+
+        this.inputEvents.buttonEnabled = this.buttonEnabled;
+        this.inputEvents.passwordRequirementBulletCheck =
+          this.passwordRequirementBulletCheck;
+
+        this.inputEventsEmitter.emit(this.inputEvents);
+      }
+    }
+  }
+
   inputModified() {
     this.buttonEnabled = true;
 
@@ -54,8 +106,14 @@ export class FormComponent implements OnInit {
       if (!control || !control.value) {
         this.buttonEnabled = false;
       }
+
+      this.handlePasswordRequirements(control);
     });
 
-    this.sendButtonEnabledStatus.emit(this.buttonEnabled);
+    this.inputEvents.buttonEnabled = this.buttonEnabled;
+    this.inputEvents.passwordRequirementBulletCheck =
+      this.passwordRequirementBulletCheck;
+
+    this.inputEventsEmitter.emit(this.inputEvents);
   }
 }
