@@ -1,0 +1,36 @@
+<div>
+  <mat-toolbar class="toolbar">
+    <div class="img-logo-timisoara-2023">
+      <img src="./assets/img/logo-timisoara-2023.png" />
+    </div>
+    <div class="home-div">
+      <img class="img-home" src="./assets/icons/home icon - selected.svg" />
+      <div class="home">Home</div>
+    </div>
+    <div>
+      <img src="./assets/icons/heart.svg" />
+      <div class="d-inline-block favorite">Favorite</div>
+    </div>
+    <div>
+      <div class="profile" (click)="clickProfile()">
+        <img class="img-profile" src="./assets/icons/user.svg" />
+        <div class="d-inline-block">
+          <div class="">Profile</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="search-div">
+      <img src="./assets/icons/search.svg" />
+      <span class="span-search"> Search for event... </span>
+    </div>
+    <div class="login-div">LOGIN</div>
+    <div>
+      <button class="btn btn-primary">REGISTER</button>
+    </div>
+  </mat-toolbar>
+</div>
+<div class="toolbar">
+  <div class="login" *ngIf="clickprofile">Login</div>
+  <div class="register" *ngIf="clickprofile">Register</div>
+</div>
