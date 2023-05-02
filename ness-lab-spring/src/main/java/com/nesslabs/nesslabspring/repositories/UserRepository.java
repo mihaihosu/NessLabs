@@ -1,4 +1,4 @@
-package com.nesslabs.nesslabspring.repository;
+package com.nesslabs.nesslabspring.repositories;
 
 import com.nesslabs.nesslabspring.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;

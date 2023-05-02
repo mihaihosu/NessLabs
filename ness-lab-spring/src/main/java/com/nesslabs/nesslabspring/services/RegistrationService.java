@@ -1,4 +1,4 @@
-package com.nesslabs.nesslabspring.service;
+package com.nesslabs.nesslabspring.services;
 
 import com.nesslabs.nesslabspring.dto.RegistrationRequest;
 import com.nesslabs.nesslabspring.model.User;

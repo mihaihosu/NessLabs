@@ -1,4 +1,4 @@
-package com.nesslabs.nesslabspring.service;
+package com.nesslabs.nesslabspring.services;
 
 import org.springframework.stereotype.Service;
 

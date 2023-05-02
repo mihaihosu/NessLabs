@@ -1,8 +1,7 @@
 package com.nesslabs.nesslabspring.controller;
 
-import com.nesslabs.nesslabspring.dto.PasswordResetRequest;
 import com.nesslabs.nesslabspring.dto.RegistrationRequest;
-import com.nesslabs.nesslabspring.service.RegistrationService;
+import com.nesslabs.nesslabspring.services.RegistrationService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

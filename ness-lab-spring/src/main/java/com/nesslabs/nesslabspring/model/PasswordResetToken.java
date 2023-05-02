@@ -18,7 +18,6 @@ public class PasswordResetToken {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long token_id;
-
     private String token;
     private Date expirationTime;
     private static final int EXPIRATION_TIME = 5;
