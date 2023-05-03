@@ -7,7 +7,6 @@ import lombok.*;
 @AllArgsConstructor
 @EqualsAndHashCode
 @ToString
-public class PasswordResetRequest {
-    private String token;
-    private String newPassword;
+public class SendPasswordResetEmailRequest {
+    private String email;
 }

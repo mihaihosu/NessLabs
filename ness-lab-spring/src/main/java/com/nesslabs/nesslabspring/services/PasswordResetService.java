@@ -1,6 +1,7 @@
 package com.nesslabs.nesslabspring.services;
 
 import com.nesslabs.nesslabspring.dto.PasswordResetRequest;
+import com.nesslabs.nesslabspring.dto.SendPasswordResetEmailRequest;
 import com.nesslabs.nesslabspring.model.PasswordResetToken;
 import com.nesslabs.nesslabspring.model.User;
 import com.nesslabs.nesslabspring.repositories.PasswordResetRepository;
@@ -11,6 +12,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Calendar;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -20,7 +22,6 @@ import java.util.UUID;
 public class PasswordResetService {
 
     private final PasswordResetRepository passwordResetRepository;
-    //private final UserService userService;
     private final UserRepository userRepository;
     private final JwtService jwtService;
     private final EmailService emailService;
@@ -46,16 +47,16 @@ public class PasswordResetService {
 //    }
 
 
-    public String sendPasswordResetRequest(String email) {
-        Optional<User> user = userRepository.findByEmail(email);
+    public String sendPasswordResetRequest(SendPasswordResetEmailRequest request) {
+        Optional<User> user = userRepository.findByEmail(request.getEmail());
         if(user.isEmpty()) {
             return "invalid email";  //just for debugging purposes, will return same message as success scenario
         }
         String token = jwtService.generateToken(user.get());
 //        String token = UUID.randomUUID().toString();
         createPasswordResetTokenForUser(user.get(),token);
-        String link = "http://localhost:8080/api/v1/reset-password?token=" + token;
-        emailService.send(email,buildEmail(user.get().getEmail(),link));
+        String link = "http://localhost:8080/api/v1/pwdres/receive?token=" + token;
+        emailService.send(request.getEmail(),buildEmail(user.get().getEmail(),link));
         return "it works";
     }
 
@@ -66,7 +67,7 @@ public class PasswordResetService {
 
     public String resetPassword(PasswordResetRequest request) {
         String token = request.getToken();
-        if(validatePasswordResetToken(token)!=null) {
+        if(!Objects.equals(validatePasswordResetToken(token), "confirmed")) {
             return validatePasswordResetToken(token);
         }
         User user = passwordResetRepository.findByToken(token).get().getUser();
@@ -85,7 +86,7 @@ public class PasswordResetService {
 
         return !isTokenFound(passToken) ? "invalidToken"
                 : isTokenExpired(passToken) ? "expired"
-                : null;
+                : "confirmed";
     }
 
     private boolean isTokenFound(Optional<PasswordResetToken> passToken) {
