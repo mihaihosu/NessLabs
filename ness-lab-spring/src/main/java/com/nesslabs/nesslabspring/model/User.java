@@ -27,7 +27,7 @@ public class User implements UserDetails {
     private String username;
     private String password;
     boolean is_admin;
-    boolean is_confirmed = false;
+    boolean is_confirmed = true;
 
     public User(String email, String username, String password, boolean is_admin) {
         this.email = email;
@@ -50,7 +50,7 @@ public class User implements UserDetails {
 
     @Override
     public boolean isAccountNonLocked() {
-        return !is_confirmed;
+        return true;
     }
 
     @Override
@@ -60,6 +60,8 @@ public class User implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return is_confirmed;
+        return true;
     }
+
+
 }

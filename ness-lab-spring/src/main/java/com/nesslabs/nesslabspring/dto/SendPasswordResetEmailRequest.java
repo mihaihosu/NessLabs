@@ -1,16 +1,12 @@
 package com.nesslabs.nesslabspring.dto;
 
-
 import lombok.*;
 
+@NoArgsConstructor
 @Getter
 @AllArgsConstructor
 @EqualsAndHashCode
 @ToString
-@NoArgsConstructor
-public class RegistrationRequest {
+public class SendPasswordResetEmailRequest {
     private String email;
-    private String username;
-    private String password;
-    private boolean is_admin;
 }

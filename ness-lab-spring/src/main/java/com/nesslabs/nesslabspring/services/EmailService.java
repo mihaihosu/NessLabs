@@ -32,7 +32,7 @@ public class EmailService implements EmailSender {
                     new MimeMessageHelper(mimeMessage, "utf-8");
             helper.setText(email, true);
             helper.setTo(to);
-            helper.setSubject("Confirm your account");
+            helper.setSubject("Reset your password");
             helper.setFrom("hello@nessApp.com");
             mailSender.send(mimeMessage);
         } catch (MessagingException e) {
