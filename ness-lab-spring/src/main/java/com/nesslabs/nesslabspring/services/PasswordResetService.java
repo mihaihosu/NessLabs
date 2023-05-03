@@ -26,26 +26,6 @@ public class PasswordResetService {
     private final JwtService jwtService;
     private final EmailService emailService;
     private final BCryptPasswordEncoder passwordEncoder;
-//
-//    public String validatePasswordResetToken(String theToken) {
-//        PasswordResetToken token = passwordResetRepository.findByToken(theToken);
-//        if(token==null) {
-//            return "Invalid verification token";
-//        }
-//
-//        User user = token.getUser();
-//        Calendar calendar = Calendar.getInstance();
-//        if((token.getExpirationTime().getTime()-calendar.getTime().getTime()) <= 0 ) {
-//            return "Verification link has expired\n"+
-//                    "Click the link below to receive a new verification link.";
-//        }
-//        return "valid";
-//    }
-//
-//    public Optional<User> findUserByPasswordToken(String passwordToken) {
-//       return Optional.ofNullable(passwordResetRepository.findByToken(passwordToken).getUser());
-//    }
-
 
     public String sendPasswordResetRequest(SendPasswordResetEmailRequest request) {
         Optional<User> user = userRepository.findByEmail(request.getEmail());
