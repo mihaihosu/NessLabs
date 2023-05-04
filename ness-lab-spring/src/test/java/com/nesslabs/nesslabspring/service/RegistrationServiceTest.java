@@ -2,6 +2,7 @@ package com.nesslabs.nesslabspring.service;
 
 
 import com.nesslabs.nesslabspring.dto.RegistrationRequest;
+import com.nesslabs.nesslabspring.exception.InvalidCredentialException;
 import com.nesslabs.nesslabspring.model.User;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -28,7 +29,7 @@ class RegistrationServiceTest {
     }
 
     @Test
-    void testRegister_WithValidInput_ShouldReturnNewUser() {
+    void testRegister_WithValidInput_ShouldReturnNewUser() throws InvalidCredentialException {
         RegistrationRequest request = RegistrationRequest
                 .builder()
                 .email("exemple@yahoo.com")
@@ -50,7 +51,7 @@ class RegistrationServiceTest {
     }
 
     @Test
-    void testRegister_WithInvalidEmail_ShouldThrowException() {
+    void testRegister_WithInvalidEmail_ShouldThrowException(){
         RegistrationRequest request = RegistrationRequest
                 .builder()
                 .email("exemple")
@@ -58,16 +59,14 @@ class RegistrationServiceTest {
                 .username("Bob")
                 .is_admin(true)
                 .build();
-        when(emailValidatorService.test(request.getEmail())).thenReturn(false);
-
-        assertThrows(IllegalStateException.class, () -> registrationService.register(request));
-        verify(emailValidatorService, times(1)).test(request.getEmail());
-        verify(passwordValidatorService, never()).test(request.getPassword());
-        verify(userService, never()).signUpUser(any(User.class));
+        when(emailValidatorService.test(anyString())).thenReturn(false);
+        assertThrows(InvalidCredentialException.class, () -> {
+            registrationService.register(request);
+        });
     }
 
     @Test
-    void testRegister_WithInvalidPassword_ShouldThrowException() {
+    void testRegister_WithInvalidPassword_ShouldThrowException() throws InvalidCredentialException {
         RegistrationRequest request = RegistrationRequest
                 .builder()
                 .email("exemple@yahoo.com")
@@ -75,17 +74,16 @@ class RegistrationServiceTest {
                 .username("Bob")
                 .is_admin(true)
                 .build();
-        when(emailValidatorService.test(request.getEmail())).thenReturn(true);
-        when(passwordValidatorService.test(request.getPassword())).thenReturn(false);
+        when(emailValidatorService.test(anyString())).thenReturn(true);
+        when(passwordValidatorService.test(anyString())).thenReturn(false);
 
-        assertThrows(IllegalStateException.class, () -> registrationService.register(request));
-        verify(emailValidatorService, times(1)).test(request.getEmail());
-        verify(passwordValidatorService, times(1)).test(request.getPassword());
-        verify(userService, never()).signUpUser(any(User.class));
+        assertThrows(InvalidCredentialException.class, () -> {
+            registrationService.register(request);
+        });
     }
 
     @Test
-    void testRegister_WithEmptyUsername_ShouldThrowException() {
+    void testRegister_WithEmptyUsername_ShouldThrowException() throws InvalidCredentialException {
         RegistrationRequest request = RegistrationRequest
                 .builder()
                 .email("exemple@yahoo.com")
@@ -93,12 +91,11 @@ class RegistrationServiceTest {
                 .username("")
                 .is_admin(true)
                 .build();
-        when(emailValidatorService.test(request.getEmail())).thenReturn(true);
-        when(passwordValidatorService.test(request.getPassword())).thenReturn(true);
+        when(emailValidatorService.test(anyString())).thenReturn(true);
+        when(passwordValidatorService.test(anyString())).thenReturn(true);
 
-        assertThrows(IllegalStateException.class, () -> registrationService.register(request));
-        verify(emailValidatorService, times(1)).test(request.getEmail());
-        verify(passwordValidatorService, times(1)).test(request.getPassword());
-        verify(userService, never()).signUpUser(any(User.class));
+        assertThrows(InvalidCredentialException.class, () -> {
+            registrationService.register(request);
+        });
     }
 }

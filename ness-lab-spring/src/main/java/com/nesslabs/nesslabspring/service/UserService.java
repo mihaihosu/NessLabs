@@ -1,5 +1,6 @@
 package com.nesslabs.nesslabspring.service;
 
+import com.nesslabs.nesslabspring.exception.InvalidCredentialException;
 import com.nesslabs.nesslabspring.model.User;
 import com.nesslabs.nesslabspring.repository.UserRepository;
 import lombok.AllArgsConstructor;
@@ -25,13 +26,13 @@ public class UserService implements UserDetailsService {
                 .orElseThrow(() -> new UsernameNotFoundException(String.format(USER_NOT_FOUND_MSG, email)));
     }
 
-    public User signUpUser(User user){
+    public User signUpUser(User user) throws InvalidCredentialException {
         boolean userExists = userRepository
                 .findByEmail(user.getEmail())
                 .isPresent();
 
         if(userExists) {
-            throw new IllegalStateException("Email already taken");
+            throw new InvalidCredentialException("Email already taken");
         }
 
         String encodedPassword = bCryptPasswordEncoder.encode(user.getPassword());

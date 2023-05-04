@@ -1,6 +1,7 @@
 package com.nesslabs.nesslabspring.controller;
 
 import com.nesslabs.nesslabspring.dto.RegistrationRequest;
+import com.nesslabs.nesslabspring.exception.InvalidCredentialException;
 import com.nesslabs.nesslabspring.service.RegistrationService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -18,7 +19,11 @@ public class RegistrationController {
 
     @PostMapping("/auth/registration")
     public ResponseEntity<String> register(@RequestBody RegistrationRequest request) {
-        registrationService.register(request);
+        try {
+            registrationService.register(request);
+        }catch (InvalidCredentialException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
         return ResponseEntity.status(HttpStatus.CREATED).body("User created");
     }
 

@@ -1,5 +1,6 @@
 package com.nesslabs.nesslabspring.service;
 
+import com.nesslabs.nesslabspring.exception.InvalidCredentialException;
 import com.nesslabs.nesslabspring.model.User;
 import com.nesslabs.nesslabspring.repository.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -34,7 +35,7 @@ class UserServiceTest {
 
 
     @Test
-    public void testSignUpUser() {
+    public void testSignUpUser() throws InvalidCredentialException {
 
         User user = User.builder()
                 .email("example@yahoo.com")

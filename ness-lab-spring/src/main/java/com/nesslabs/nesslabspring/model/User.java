@@ -17,7 +17,7 @@ import java.util.Collections;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "_user")
+@Table(name = "_users")
 public class User implements UserDetails {
 
     @Id
@@ -29,12 +29,6 @@ public class User implements UserDetails {
     boolean is_admin;
     boolean is_confirmed = false;
 
-    public User(String username, String email, String password, boolean is_admin) {
-        this.email = email;
-        this.username = username;
-        this.password = password;
-        this.is_admin = is_admin;
-    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
