@@ -1,7 +1,10 @@
 package com.nesslabs.nesslabspring.service;
 
+import org.springframework.stereotype.Service;
+
 import java.util.function.Predicate;
 
+@Service
 public class PasswordValidatorService implements Predicate<String> {
 
     private static final int MIN_LENGTH = 8;
