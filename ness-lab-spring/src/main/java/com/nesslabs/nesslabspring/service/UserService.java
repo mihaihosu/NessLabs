@@ -3,6 +3,7 @@ package com.nesslabs.nesslabspring.service;
 import com.nesslabs.nesslabspring.model.User;
 import com.nesslabs.nesslabspring.repository.UserRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -24,7 +25,7 @@ public class UserService implements UserDetailsService {
                 .orElseThrow(() -> new UsernameNotFoundException(String.format(USER_NOT_FOUND_MSG, email)));
     }
 
-    public String signUpUser(User user){
+    public User signUpUser(User user){
         boolean userExists = userRepository
                 .findByEmail(user.getEmail())
                 .isPresent();
@@ -37,7 +38,7 @@ public class UserService implements UserDetailsService {
         user.setPassword(encodedPassword);
         userRepository.save(user);
 
-        return "it works";
+        return user;
     }
 
 }

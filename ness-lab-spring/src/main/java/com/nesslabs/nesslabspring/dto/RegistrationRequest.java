@@ -1,15 +1,13 @@
 package com.nesslabs.nesslabspring.dto;
 
 
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.ToString;
+import lombok.*;
 
 @Getter
 @AllArgsConstructor
 @EqualsAndHashCode
 @ToString
+@Builder
 public class RegistrationRequest {
     private final  String email;
     private final String username;

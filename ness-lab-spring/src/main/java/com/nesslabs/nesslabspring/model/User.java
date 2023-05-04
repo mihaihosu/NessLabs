@@ -29,7 +29,7 @@ public class User implements UserDetails {
     boolean is_admin;
     boolean is_confirmed = false;
 
-    public User(String email, String username, String password, boolean is_admin) {
+    public User(String username, String email, String password, boolean is_admin) {
         this.email = email;
         this.username = username;
         this.password = password;
