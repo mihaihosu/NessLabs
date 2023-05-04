@@ -1,35 +1,30 @@
-<div>
-  <mat-toolbar class="toolbar">
-    <div class="img-logo-timisoara-2023">
-      <img src="./assets/img/logo-timisoara-2023.png" />
-    </div>
-    <div class="home-div">
-      <img class="img-home" src="./assets/icons/home icon - selected.svg" />
-      <div class="home">Home</div>
-    </div>
+<mat-toolbar class="toolbar">
+  <div class="img-logo-timisoara-2023">
+    <img src="./assets/img/logo-timisoara-2023.png" />
+  </div>
+  <div class="home-div">
+    <mat-icon class="icon-home" svgIcon="home"></mat-icon>
+    <div class="home">Home</div>
+  </div>
+  <div class="favorite-div">
+    <mat-icon svgIcon="heart"></mat-icon>
+    <div class="favorite">Favorite</div>
+  </div>
+  <div class="profile profile-div" (click)="clickProfile()">
+    <mat-icon svgIcon="user"></mat-icon>
     <div>
-      <img src="./assets/icons/heart.svg" />
-      <div class="d-inline-block favorite">Favorite</div>
+      <div class="profile-text">Profile</div>
     </div>
-    <div>
-      <div class="profile" (click)="clickProfile()">
-        <img class="img-profile" src="./assets/icons/user.svg" />
-        <div class="d-inline-block">
-          <div class="">Profile</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="search-div">
-      <img src="./assets/icons/search.svg" />
-      <span class="span-search"> Search for event... </span>
-    </div>
-    <div class="login-div">LOGIN</div>
-    <div>
-      <button class="btn btn-primary">REGISTER</button>
-    </div>
-  </mat-toolbar>
-</div>
+  </div>
+  <div class="search-div">
+    <mat-icon svgIcon="search"></mat-icon>
+    <input type="text" placeholder="Search for event..." class="input-search" />
+  </div>
+  <div class="login-div">LOGIN</div>
+  <div>
+    <button class="btn btn-primary">REGISTER</button>
+  </div>
+</mat-toolbar>
 <div class="toolbar">
   <div class="login" *ngIf="clickprofile">Login</div>
   <div class="register" *ngIf="clickprofile">Register</div>

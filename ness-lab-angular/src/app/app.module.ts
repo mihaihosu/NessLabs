@@ -6,7 +6,8 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { MaterialModule } from './shared/material.module';
 import { FormsModule } from '@angular/forms';
-
+import { IconModule } from './shared/icon/icon/icon.module';
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [AppComponent, NavbarComponent],
   imports: [
@@ -15,6 +16,8 @@ import { FormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     MaterialModule,
     FormsModule,
+    IconModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
