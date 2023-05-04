@@ -1,0 +1,18 @@
+<div class="grid-container">
+  <div *ngFor="let event of events.events">
+    <div class="grid-item1">
+      <img [src]="event.imgURL" />
+      <button class="btn btn1">
+        <img class="img-edit" src="./assets/icons/edit.svg" />
+      </button>
+      <button class="btn btn2">
+        <img class="img-edit" src="./assets/icons/trash.svg" />
+      </button>
+    </div>
+    <div class="grid-item2">
+      <p class="p1">{{ event.data + " , ORA " + event.ora }}</p>
+      <p class="p2">{{ event.titlu }}</p>
+      <p class="p3">{{ event.loc }}</p>
+    </div>
+  </div>
+</div>
