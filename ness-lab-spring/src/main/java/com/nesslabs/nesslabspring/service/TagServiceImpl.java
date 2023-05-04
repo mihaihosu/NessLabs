@@ -17,7 +17,7 @@ public class TagServiceImpl implements TagService{
     public Tag createTag(String name) {
         Tag existingTag =  tagRepository.findByName(name);
         if(existingTag != null){
-            throw new IllegalArgumentException("Tag with name" + name + "already exists");
+            throw new IllegalArgumentException("Tag with name" + name + " already exists");
         }
         Tag tag = new Tag(name);
         return tagRepository.save(tag);

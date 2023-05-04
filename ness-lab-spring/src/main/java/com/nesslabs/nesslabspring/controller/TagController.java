@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin
-@RequestMapping(path = "/tags")
+@RequestMapping(path = "/api/tags")
 @RequiredArgsConstructor
 public class TagController {
 
