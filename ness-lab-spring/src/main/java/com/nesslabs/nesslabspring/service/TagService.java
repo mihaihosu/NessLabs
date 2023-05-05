@@ -8,6 +8,4 @@ public interface TagService {
     Tag createTag(String name);
 
     List<Tag> getAllTags();
-
-    Tag getTagByName(String name);
 }

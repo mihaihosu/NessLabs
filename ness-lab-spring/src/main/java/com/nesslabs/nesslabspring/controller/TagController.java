@@ -38,16 +38,4 @@ public class TagController {
 
     }
 
-    @GetMapping("/{tagName}")
-    public ResponseEntity<TagRequestDto> getTagByName(@PathVariable String tagName) {
-
-        Tag tag = tagService.getTagByName(tagName);
-        if (tag == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        TagRequestDto tagDto = new TagRequestDto(tag.getName());
-        return new ResponseEntity<>(tagDto, HttpStatus.OK);
-    }
-
-
 }
