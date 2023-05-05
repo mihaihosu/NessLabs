@@ -25,11 +25,7 @@ public class AuthServiceImpl implements AuthService{
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtTokenService;
 
-    private final JwtService jwtService;
 
-    private final AuthenticationManager authenticationManager;
-
-/*
     //FOR DB
     @Override
     public User getUserByEmail(String email) {
@@ -50,7 +46,7 @@ public class AuthServiceImpl implements AuthService{
         }
         return null;
     }
-*/
+
         public String createToken(AuthResponseDto loginResponseDto) {
             User user = getUserByEmail(loginResponseDto.getEmail());
 
@@ -70,7 +66,7 @@ public class AuthServiceImpl implements AuthService{
             return headers;
         }
 
-
+/*
         //FOR HARDCODED LIST
         @Override
         public User getUserByEmail(String email) {
@@ -100,6 +96,6 @@ public class AuthServiceImpl implements AuthService{
             return null;
         }
 
-
+*/
 
 }
