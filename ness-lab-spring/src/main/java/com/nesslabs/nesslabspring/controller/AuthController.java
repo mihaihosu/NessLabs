@@ -26,28 +26,23 @@ public class AuthController {
     private ResponseEntity<TokenDto> loginUser(@RequestBody AuthRequestDto loginRequestDto) {
         AuthResponseDto loginResponseDto = authService.checkUserCredentials(loginRequestDto);
 
-
-
         if (loginResponseDto != null) {
+            TokenDto tokenDto = authService.createToken(loginResponseDto);
 
+            if (tokenDto != null) {
+                String token = tokenDto.getToken();
+                HttpHeaders headers = authService.createHeader(token);
+                return ResponseEntity.ok().headers(headers).body(tokenDto);
 
-            User user = authService.getUserByEmail(loginResponseDto.getEmail());
-
-            if (!user.getIs_confirmed()) {
-                return ResponseEntity.status(401).build(); // user's account is not confirmed, return 401 Unauthorized
+            } else {
+                return ResponseEntity.status(401).build();
             }
-
-            Boolean isAdmin = loginResponseDto.getIsAdmin();
-            String jwt = jwtTokenService.generateToken(loginResponseDto.getEmail(), isAdmin);
-            TokenDto token = new TokenDto();
-            token.setToken(jwt);
-            HttpHeaders headers = new HttpHeaders();
-            headers.add("Authorization","Bearer " + jwt);
-            return ResponseEntity.ok().headers(headers).body(token);
         }
-
         return ResponseEntity.status(401).build();
     }
+
+
+
 
 
 }

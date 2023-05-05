@@ -2,11 +2,14 @@ package com.nesslabs.nesslabspring.service;
 
 import com.nesslabs.nesslabspring.dto.AuthRequestDto;
 import com.nesslabs.nesslabspring.dto.AuthResponseDto;
+import com.nesslabs.nesslabspring.dto.TokenDto;
 import com.nesslabs.nesslabspring.model.User;
 import com.nesslabs.nesslabspring.repository.UserRepository;
 import com.nesslabs.nesslabspring.security.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -22,12 +25,13 @@ public class AuthServiceImpl implements AuthService{
     private final UserRepository userRepository;
 
     private final PasswordEncoder passwordEncoder;
+    private final JwtService jwtTokenService;
 
     private final JwtService jwtService;
 
     private final AuthenticationManager authenticationManager;
 
-
+/*
     //FOR DB
     @Override
     public User getUserByEmail(String email) {
@@ -48,38 +52,58 @@ public class AuthServiceImpl implements AuthService{
         }
         return null;
     }
-
-
-   /*
-    //FOR HARDCODED LIST
-    @Override
-    public User getUserByEmail(String email) {
-        for (User user : users) {
-            if (user.getEmail().equals(email)) {
-                return user;
-            }
-        }
-        return null; // user not found, return null
-    }
-
-    // add a hardcoded test user
-    private final List<User> users = Arrays.asList(
-            new User("alexiaoaida@gmail.com", "alexiaoaida", "pisica", true, true));
-
-    //TEST WITH LIST
-    public AuthResponseDto checkUserCredentials(AuthRequestDto loginRequestDto) {
-        for (User user : users) {
-            if (user.getEmail().equals(loginRequestDto.getEmail()) &&
-                    user.getPassword().equals(loginRequestDto.getPassword())) {
-                AuthResponseDto responseDto = new AuthResponseDto();
-                responseDto.setEmail(user.getEmail());
-                responseDto.setIsAdmin(user.getIs_admin());
-                return responseDto;
-            }
-        }
-        return null;
-    }
 */
+        public TokenDto createToken(AuthResponseDto loginResponseDto) {
+            User user = getUserByEmail(loginResponseDto.getEmail());
+
+            if (!user.getIs_confirmed()) {
+                return null; // user's account is not confirmed, return null
+            }
+
+            Boolean isAdmin = loginResponseDto.getIsAdmin();
+            String jwt = jwtTokenService.generateToken(loginResponseDto.getEmail(), isAdmin);
+            TokenDto token = new TokenDto();
+            token.setToken(jwt);
+            return token;
+        }
+
+
+        public HttpHeaders createHeader(String token) {
+            HttpHeaders headers = new HttpHeaders();
+            headers.set(HttpHeaders.AUTHORIZATION, "Bearer " + token);
+            return headers;
+        }
+
+
+        //FOR HARDCODED LIST
+        @Override
+        public User getUserByEmail(String email) {
+            for (User user : users) {
+                if (user.getEmail().equals(email)) {
+                    return user;
+                }
+            }
+            return null; // user not found, return null
+        }
+
+        // add a hardcoded test user
+        private final List<User> users = Arrays.asList(
+                new User("alexiaoaida@gmail.com", "alexiaoaida", "pisica", true, true));
+
+        //TEST WITH LIST
+        public AuthResponseDto checkUserCredentials(AuthRequestDto loginRequestDto) {
+            for (User user : users) {
+                if (user.getEmail().equals(loginRequestDto.getEmail()) &&
+                        user.getPassword().equals(loginRequestDto.getPassword())) {
+                    AuthResponseDto responseDto = new AuthResponseDto();
+                    responseDto.setEmail(user.getEmail());
+                    responseDto.setIsAdmin(user.getIs_admin());
+                    return responseDto;
+                }
+            }
+            return null;
+        }
+
 
 
 }
