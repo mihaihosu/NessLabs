@@ -29,13 +29,11 @@ public class TagController {
     }
 
     @GetMapping
-    public ResponseEntity<List<TagRequestDto>> getAllTags(){
-        List<Tag> tags = tagService.getAllTags();
-        List<TagRequestDto> tagDtos = tags.stream()
-                .map(tag -> new TagRequestDto(tag.getName()))
-                .collect(Collectors.toList());
+    public ResponseEntity<List<TagRequestDto>> getAllTags() {
+        List<TagRequestDto> tagDtos = tagService.getAllTags();
         return new ResponseEntity<>(tagDtos, HttpStatus.OK);
-
     }
+
+
 
 }
