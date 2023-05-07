@@ -36,6 +36,15 @@ public class AuthServiceImpl implements AuthService{
 
     //WHEN I HAVE USERS IN DB
     public AuthResponseDto checkUserCredentials(AuthRequestDto loginRequestDto) {
+
+        if (loginRequestDto.getEmail() == null || loginRequestDto.getEmail().isEmpty()) {
+            throw new IllegalArgumentException("Email field is required");
+        }
+        if (loginRequestDto.getPassword() == null || loginRequestDto.getPassword().isEmpty()) {
+            throw new IllegalArgumentException("Password field is required");
+        }
+
+
         User userEntity = userRepository.findByEmail(loginRequestDto.getEmail());
 
         if (userEntity != null && passwordEncoder.matches(loginRequestDto.getPassword(),userEntity.getPassword())) {
