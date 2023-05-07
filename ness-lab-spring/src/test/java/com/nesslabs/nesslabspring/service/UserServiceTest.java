@@ -1,24 +1,23 @@
 package com.nesslabs.nesslabspring.service;
-
 import com.nesslabs.nesslabspring.exception.InvalidCredentialException;
 import com.nesslabs.nesslabspring.model.User;
 import com.nesslabs.nesslabspring.repository.UserRepository;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.*;
-import org.mockito.junit.jupiter.MockitoExtension;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.when;
 
-
-@ExtendWith(MockitoExtension.class)
 class UserServiceTest {
 
     @Mock
@@ -30,50 +29,82 @@ class UserServiceTest {
     @InjectMocks
     private UserService userService;
 
-    @Captor
-    private ArgumentCaptor<User> userCaptor;
+    @BeforeEach
+    public void setUp() {
+        MockitoAnnotations.openMocks(this);
+    }
 
 
     @Test
-    public void testSignUpUser() throws InvalidCredentialException {
+    void testSignUpUserWithValidUser() throws InvalidCredentialException {
+        // Arrange
+        User user = new User();
+        user.setEmail("test@test.com");
+        user.setUsername("testUser");
+        user.setPassword("testPassword12@");
 
-        User user = User.builder()
-                .email("example@yahoo.com")
-                .username("example")
-                .password("Password1233")
-                .is_admin(false)
-                .build();
+        when(userRepository.findAllByEmail(user.getEmail())).thenReturn(new ArrayList<>());
+        when(userRepository.findAllByUsername(user.getUsername())).thenReturn(new ArrayList<>());
+        when(bCryptPasswordEncoder.encode(user.getPassword())).thenReturn("testEncodedPassword");
+        when(userRepository.saveAndFlush(user)).thenReturn(user);
 
-        when(userRepository.findByEmail(user.getEmail())).thenReturn(Optional.empty());
-        when(bCryptPasswordEncoder.encode(user.getPassword())).thenReturn("hashedpassword");
-
-
+        // Act
         User savedUser = userService.signUpUser(user);
 
-
-        assertNotNull(savedUser);
-        assertEquals(user.getEmail(), savedUser.getEmail());
-        assertEquals("hashedpassword", savedUser.getPassword());
-
-        verify(userRepository, times(1)).save(userCaptor.capture());
-        User capturedUser = userCaptor.getValue();
-        assertEquals(user.getEmail(), capturedUser.getEmail());
-        assertEquals("hashedpassword", capturedUser.getPassword());
+        // Assert
+        Assertions.assertEquals(user.getEmail(), savedUser.getEmail());
+        Assertions.assertEquals(user.getUsername(), savedUser.getUsername());
+        Assertions.assertEquals("testEncodedPassword", savedUser.getPassword());
     }
 
     @Test
-    public void testSignUpUserThrowsExceptionWhenUserAlreadyExists() {
-        // Arrange
-        User user = User.builder()
-                .email("example@yahoo.com")
-                .username("example")
-                .password("Password1233")
-                .is_admin(false)
-                .build();
+    void testSignUpUserWithExistingEmail() {
+        User user = new User();
+        user.setEmail("test@test.com");
+        user.setUsername("testUser");
+        user.setPassword("testPassword12@");
+        user.set_admin(false);
+        user.set_confirmed(false);
 
 
-        when(userRepository.findByEmail(user.getEmail())).thenReturn(Optional.of(user));
-        assertThrows(IllegalStateException.class, () -> userService.signUpUser(user));
+        User user2 = new User();
+        user2.setEmail("test@test.com");
+        user2.setUsername("testUser");
+        user2.setPassword("testPassword12@");
+        user2.set_confirmed(true);
+        user2.set_admin(false);
+
+        List<User> existingUsers = new ArrayList<>();
+        existingUsers.add(user2);
+
+        when(userRepository.findAllByEmail(user.getEmail())).thenReturn(existingUsers);
+
+        // Act and assert
+        Assertions.assertThrows(InvalidCredentialException.class, () -> userService.signUpUser(user));
     }
 
+    @Test
+    void testSignUpUserWithExistingUsername() {
+        User user = new User();
+        user.setEmail("test@test.com");
+        user.setUsername("testUser");
+        user.setPassword("testPassword12@");
+        user.set_admin(false);
+        user.set_confirmed(false);
+
+
+        User user2 = new User();
+        user2.setEmail("test@test.com");
+        user2.setUsername("testUser");
+        user2.setPassword("testPassword12@");
+        user2.set_confirmed(true);
+        user2.set_admin(false);
+
+        List<User> existingUsers = new ArrayList<>();
+        existingUsers.add(user2);
+
+        when(userRepository.findAllByUsername(user.getUsername())).thenReturn(existingUsers);
+
+        Assertions.assertThrows(InvalidCredentialException.class, () -> userService.signUpUser(user));
+    }
 }

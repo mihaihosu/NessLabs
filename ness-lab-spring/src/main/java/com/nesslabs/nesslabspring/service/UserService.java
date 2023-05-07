@@ -11,6 +11,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 
 @Service
 @AllArgsConstructor
@@ -27,19 +29,34 @@ public class UserService implements UserDetailsService {
     }
 
     public User signUpUser(User user) throws InvalidCredentialException {
-        boolean userExists = userRepository
-                .findByEmail(user.getEmail())
-                .isPresent();
+        boolean userExistsByEmail = isUserByEmailConfirmed(user.getEmail());
+        boolean userExistsByUsername = isUserByUsernameConfirmed(user.getUsername());
 
-        if(userExists) {
+        if(userExistsByEmail) {
             throw new InvalidCredentialException("Email already taken");
+        }
+
+        if(userExistsByUsername) {
+            throw new InvalidCredentialException("Username already taken");
         }
 
         String encodedPassword = bCryptPasswordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
-        userRepository.save(user);
+        userRepository.saveAndFlush(user);
 
         return user;
+    }
+
+    private boolean isUserByEmailConfirmed(String email) {
+        List<User> users = userRepository.findAllByEmail(email);
+        return users.stream()
+                .anyMatch(User::is_confirmed);
+    }
+
+    private boolean isUserByUsernameConfirmed(String username) {
+        List<User> users = userRepository.findAllByUsername(username);
+        return users.stream()
+                .anyMatch(User::is_confirmed);
     }
 
 }

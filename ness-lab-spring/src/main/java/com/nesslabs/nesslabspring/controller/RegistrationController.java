@@ -22,7 +22,7 @@ public class RegistrationController {
         try {
             registrationService.register(request);
         }catch (InvalidCredentialException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
         return ResponseEntity.status(HttpStatus.CREATED).body("User created");
     }

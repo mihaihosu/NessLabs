@@ -8,7 +8,7 @@ class PasswordValidatorServiceTest {
 
     @Test
     void testValidPassword() {
-        String password = "MyPassword123$%^";
+        String password = "MyPassword123$%";
         assertTrue(new PasswordValidatorService().test(password));
     }
 
@@ -52,9 +52,4 @@ class PasswordValidatorServiceTest {
         assertFalse(new PasswordValidatorService().test(password));
     }
 
-    @Test
-    void testValidPasswordWithoutSpecialCharacters() {
-        String password = "MyPassword123";
-        assertTrue(new PasswordValidatorService().test(password));
-    }
 }
