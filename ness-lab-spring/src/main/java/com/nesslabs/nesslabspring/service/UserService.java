@@ -26,10 +26,10 @@ public class UserService implements UserDetailsService {
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
 
-    //FIRST CHANGE
+
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        Optional<UserDetails> userDetailsOptional = Optional.ofNullable(userRepository.findByEmail(email)); //made this optional
+        Optional<UserDetails> userDetailsOptional = Optional.ofNullable(userRepository.findByEmail(email));
         return userDetailsOptional
                 .orElseThrow(() -> new UsernameNotFoundException(String.format(USER_NOT_FOUND_MSG, email)));
     }

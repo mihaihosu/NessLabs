@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface UserRepository extends JpaRepository<User, Long> {
-    User findByEmail(String email); //made this not optional
+    User findByEmail(String email);
 
     List<User> findAllByEmail(String email);
 

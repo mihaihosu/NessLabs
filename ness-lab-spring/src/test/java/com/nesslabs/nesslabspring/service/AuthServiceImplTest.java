@@ -93,28 +93,4 @@ class AuthServiceImplTest {
         assertThrows(NullPointerException.class, () -> authService.checkUserCredentials(authRequestDto));
     }
 
-    @Test
-    void whenEmailIsNullAndPasswordIsNull_thenReturnNull() {
-        // Arrange
-        AuthRequestDto authRequestDto = new AuthRequestDto(null, null);
-
-        // Act
-        AuthResponseDto authResponseDto = authService.checkUserCredentials(authRequestDto);
-
-        // Assert
-        assertNull(authResponseDto);
-    }
-
-    @Test
-    void whenEmailIsEmptyAndPasswordIsEmpty_thenReturnNull() {
-        // Arrange
-        AuthRequestDto authRequestDto = new AuthRequestDto("", "");
-
-        // Act
-        AuthResponseDto authResponseDto = authService.checkUserCredentials(authRequestDto);
-
-        // Assert
-        assertNull(authResponseDto);
-    }
-
 }

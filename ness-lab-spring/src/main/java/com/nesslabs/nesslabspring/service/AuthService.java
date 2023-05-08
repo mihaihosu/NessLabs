@@ -6,7 +6,5 @@ import com.nesslabs.nesslabspring.model.User;
 
 public interface AuthService {
    User getUserByEmail(String email);
-
-   // AuthResponseDto authenticate(AuthRequestDto request);
    AuthResponseDto checkUserCredentials(AuthRequestDto loginRequestDto);
 }

@@ -25,16 +25,11 @@ public class AuthServiceImpl implements AuthService{
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtTokenService;
 
-
-    //FOR DB
     @Override
     public User getUserByEmail(String email) {
         return userRepository.findByEmail(email);
     }
 
-
-
-    //WHEN I HAVE USERS IN DB
     public AuthResponseDto checkUserCredentials(AuthRequestDto loginRequestDto) {
 
         if (loginRequestDto.getEmail() == null || loginRequestDto.getEmail().isEmpty()) {
@@ -50,18 +45,18 @@ public class AuthServiceImpl implements AuthService{
         if (userEntity != null && passwordEncoder.matches(loginRequestDto.getPassword(),userEntity.getPassword())) {
             AuthResponseDto responseDto = new AuthResponseDto();
             responseDto.setEmail(userEntity.getEmail());
-            responseDto.setIsAdmin(userEntity.is_admin());   //Here also from get_isAdmin to is_admin
+            responseDto.setIsAdmin(userEntity.is_admin());
             return responseDto;
         }
         return null;
     }
 
-        //ANOTHER CHANGE FROM get_isConfirmed to is_confirmed
+
         public String createToken(AuthResponseDto loginResponseDto) {
             User user = getUserByEmail(loginResponseDto.getEmail());
 
             if (!user.is_confirmed()) {
-                return null; // user's account is not confirmed, return null
+                return null;
             }
 
             Boolean isAdmin = loginResponseDto.getIsAdmin();
@@ -75,37 +70,5 @@ public class AuthServiceImpl implements AuthService{
             headers.set(HttpHeaders.AUTHORIZATION, "Bearer " + token);
             return headers;
         }
-
-/*
-        //FOR HARDCODED LIST
-        @Override
-        public User getUserByEmail(String email) {
-            for (User user : users) {
-                if (user.getEmail().equals(email)) {
-                    return user;
-                }
-            }
-            return null; // user not found, return null
-        }
-
-        // add a hardcoded test user
-        private final List<User> users = Arrays.asList(
-                new User("alexiaoaida@gmail.com", "alexiaoaida", "pisica", true, true));
-
-        //TEST WITH LIST
-        public AuthResponseDto checkUserCredentials(AuthRequestDto loginRequestDto) {
-            for (User user : users) {
-                if (user.getEmail().equals(loginRequestDto.getEmail()) &&
-                        user.getPassword().equals(loginRequestDto.getPassword())) {
-                    AuthResponseDto responseDto = new AuthResponseDto();
-                    responseDto.setEmail(user.getEmail());
-                    responseDto.setIsAdmin(user.getIs_admin());
-                    return responseDto;
-                }
-            }
-            return null;
-        }
-
-*/
 
 }

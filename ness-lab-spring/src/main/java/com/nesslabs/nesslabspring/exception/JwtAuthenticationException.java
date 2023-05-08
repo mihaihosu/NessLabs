@@ -1,4 +1,4 @@
-package com.nesslabs.nesslabspring.utils.exception;
+package com.nesslabs.nesslabspring.exception;
 
 public class JwtAuthenticationException extends RuntimeException{
     public JwtAuthenticationException(final String ex){

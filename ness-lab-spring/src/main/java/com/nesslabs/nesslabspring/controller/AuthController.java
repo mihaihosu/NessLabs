@@ -18,8 +18,6 @@ public class AuthController {
 
     private final AuthServiceImpl authService;
 
-    private final JwtService jwtTokenService;
-
     @PostMapping("/auth/login")
     private ResponseEntity<AuthRequestDto> loginUser(@RequestBody AuthRequestDto loginRequestDto) {
         AuthResponseDto loginResponseDto = authService.checkUserCredentials(loginRequestDto);
