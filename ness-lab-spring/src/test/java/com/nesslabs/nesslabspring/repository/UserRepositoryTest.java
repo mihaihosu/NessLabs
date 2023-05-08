@@ -34,7 +34,7 @@ class UserRepositoryTest {
                 .build();
 
         User expected = underTest.save(user);
-        Optional<User> actual = underTest.findByEmail(email);
+        Optional<User> actual = Optional.ofNullable(underTest.findByEmail(email)); //wrapped it using optional
         actual.ifPresent(value -> assertThat(value).isEqualTo(expected));
 
 

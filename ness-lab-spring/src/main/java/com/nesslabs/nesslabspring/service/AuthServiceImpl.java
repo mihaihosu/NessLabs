@@ -50,16 +50,17 @@ public class AuthServiceImpl implements AuthService{
         if (userEntity != null && passwordEncoder.matches(loginRequestDto.getPassword(),userEntity.getPassword())) {
             AuthResponseDto responseDto = new AuthResponseDto();
             responseDto.setEmail(userEntity.getEmail());
-            responseDto.setIsAdmin(userEntity.getIs_admin());
+            responseDto.setIsAdmin(userEntity.is_admin());   //Here also from get_isAdmin to is_admin
             return responseDto;
         }
         return null;
     }
 
+        //ANOTHER CHANGE FROM get_isConfirmed to is_confirmed
         public String createToken(AuthResponseDto loginResponseDto) {
             User user = getUserByEmail(loginResponseDto.getEmail());
 
-            if (!user.getIs_confirmed()) {
+            if (!user.is_confirmed()) {
                 return null; // user's account is not confirmed, return null
             }
 
