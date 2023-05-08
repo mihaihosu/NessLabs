@@ -1,12 +1,11 @@
-package com.nesslabs.nesslabspring.services;
+package com.nesslabs.nesslabspring.service;
 
-import com.nesslabs.nesslabspring.repositories.EmailSender;
+import com.nesslabs.nesslabspring.repository.EmailSender;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.annotation.Bean;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Async;

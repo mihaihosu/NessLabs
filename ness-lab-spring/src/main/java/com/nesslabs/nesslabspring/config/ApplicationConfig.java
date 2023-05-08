@@ -1,6 +1,7 @@
 package com.nesslabs.nesslabspring.config;
 
-import com.nesslabs.nesslabspring.repositories.UserRepository;
+import com.nesslabs.nesslabspring.model.User;
+import com.nesslabs.nesslabspring.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,12 +18,18 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @RequiredArgsConstructor
 public class ApplicationConfig {
 
-    private final UserRepository repository;
+    private final UserRepository userRepository;
 
     @Bean
     public UserDetailsService userDetailsService() {
-        return username -> repository.findByEmail(username)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+        return email -> {
+            User user = userRepository.findByEmail(email);
+            if (user != null) {
+                return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), user.getAuthorities());
+            } else {
+                throw new UsernameNotFoundException("User not found");
+            }
+        };
     }
 
     @Bean

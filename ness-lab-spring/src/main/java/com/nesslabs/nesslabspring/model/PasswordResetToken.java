@@ -6,13 +6,10 @@ import lombok.*;
 import java.util.Calendar;
 import java.util.Date;
 
-@Data
-@Builder
 @Getter
 @Setter
 @Entity
 @NoArgsConstructor
-@AllArgsConstructor
 @Table(name = "_user_token")
 public class PasswordResetToken {
     @Id
@@ -20,22 +17,21 @@ public class PasswordResetToken {
     private Long token_id;
     private String token;
     private Date expirationTime;
+    private boolean used;
     private static final int EXPIRATION_TIME = 5;
 
-    @OneToOne
-    @JoinColumn(name = "user_id")
+    @ManyToOne
+    @JoinColumn(
+            nullable = false,
+            name = "user_id"
+    )
     private User user;
 
     public PasswordResetToken(String token, User user) {
         super();
         this.token = token;
         this.user = user;
-        this.expirationTime = this.getExpirationTime();
-    }
-
-    public PasswordResetToken(String token) {
-        super();
-        this.token = token;
+        this.used = false;
         this.expirationTime = this.getExpirationTime();
     }
 

@@ -2,6 +2,8 @@ package com.nesslabs.nesslabspring.dto;
 
 import lombok.*;
 
+
+//probably no longer needed
 @NoArgsConstructor
 @Getter
 @AllArgsConstructor
