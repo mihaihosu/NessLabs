@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component,Input  } from '@angular/core';
 
 import { FormInputBase } from '../../model/form-input-base.model';
 import { FormTextbox } from '../../model/form-textbox.model';
 import { FormDropdown } from '../../model/form-dropdown.model';
 import { FormCheckbox } from '../../model/form-checkbox.model';
-
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {ErrorStateMatcher} from '@angular/material/core';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -13,28 +14,17 @@ import { FormCheckbox } from '../../model/form-checkbox.model';
 })
 export class LoginComponent {
   buttonEnabled: boolean = false;
+  loginForm: FormGroup;
+  password:string;
+  showPassword = false;
 
-  myForm: FormInputBase<string | boolean>[] = [
-    new FormTextbox({
-      key: 'username',
-      iconSrc: '../assets/icons/user.svg',
-      label: 'Username',
-      type: 'text',
-      required: true,
-    }),
-
-    new FormTextbox({
-      key: 'password',
-      iconSrc: '../assets/icons/locker password.svg',
-      label: 'Password',
-      type: 'password',
-      required: true,
-    }),
-  ];
-
+  toggleShowPassword() {
+    this.showPassword = !this.showPassword;
+  }
+  
   setButtonEnabled($event) {
     this.buttonEnabled = $event.buttonEnabled;
   }
-
+ 
   clickHandler() {}
 }

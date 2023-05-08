@@ -19,7 +19,13 @@ export class CreateAccountComponent {
     2: ['../assets/icons/passwordRequirementsUnchecked.svg', false],
     3: ['../assets/icons/passwordRequirementsUnchecked.svg', false],
   };
+  password:string;
+  showPassword = false;
 
+  toggleShowPassword() {
+    this.showPassword = !this.showPassword;
+  }
+  
   myForm: FormInputBase<string | boolean>[] = [
     new FormTextbox({
       key: 'email',
