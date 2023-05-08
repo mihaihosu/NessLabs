@@ -54,6 +54,7 @@ public class UserService implements UserDetailsService {
         return user;
     }
 
+    //FUNCTIONALITY WILL WORK WITH SERGIUS' MERGE
     private boolean isUserByEmailConfirmed(String email) {
         List<User> users = userRepository.findAllByEmail(email);
         return users.stream()
