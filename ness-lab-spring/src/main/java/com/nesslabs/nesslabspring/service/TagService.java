@@ -6,8 +6,12 @@ import com.nesslabs.nesslabspring.model.Tag;
 import java.util.List;
 
 public interface TagService {
-    Tag createTag(String name);
+    TagRequestDto createTag(String name);
 
     List<TagRequestDto> getAllTags();
+
+    TagRequestDto convertTagToDto(Tag tag);
+
+    List<TagRequestDto> convertTagsToDtos(List<Tag> tags);
 
 }

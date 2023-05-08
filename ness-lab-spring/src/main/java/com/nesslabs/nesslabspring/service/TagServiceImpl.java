@@ -7,7 +7,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.cache.annotation.CachePut;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,16 +20,15 @@ public class TagServiceImpl implements TagService{
     private final TagRepository tagRepository;
 
     @Override
-    public Tag createTag(String name) {
+    public TagRequestDto createTag(String name) {
         Tag existingTag =  tagRepository.findByName(name);
         if(existingTag != null){
             throw new IllegalArgumentException("Tag with name" + name + " already exists");
         }
         Tag tag = new Tag(name);
-        return tagRepository.save(tag);
+        tagRepository.saveAndFlush(tag);
+        return convertTagToDto(tag);
     }
-
-
 
     @CachePut(value="tags")
     public List<TagRequestDto> getAllTags() {
@@ -38,7 +36,13 @@ public class TagServiceImpl implements TagService{
         return convertTagsToDtos(tags);
     }
 
-    private List<TagRequestDto> convertTagsToDtos(List<Tag> tags) {
+
+    //Converting
+    public TagRequestDto convertTagToDto(Tag tag) {
+        return TagRequestDto.builder().name(tag.getName()).build();
+    }
+
+    public List<TagRequestDto> convertTagsToDtos(List<Tag> tags) {
         return tags.stream()
                 .map(tag -> new TagRequestDto(tag.getName()))
                 .collect(Collectors.toList());
