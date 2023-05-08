@@ -5,6 +5,7 @@ import com.nesslabs.nesslabspring.model.Tag;
 import com.nesslabs.nesslabspring.service.TagServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,12 +24,13 @@ public class TagController {
 
     @PostMapping
     public ResponseEntity<TagRequestDto> createTag(@RequestBody TagRequestDto tagDto) {
-        Tag createdTag = tagService.createTag(tagDto.getName());
-        TagRequestDto createdTagDto = new TagRequestDto(createdTag.getName());
+        TagRequestDto createdTagDto = tagService.createTag(tagDto.getName());
         return new ResponseEntity<>(createdTagDto, HttpStatus.CREATED);
     }
 
+
     @GetMapping
+    @Cacheable(value = "tags")
     public ResponseEntity<List<TagRequestDto>> getAllTags() {
         List<TagRequestDto> tagDtos = tagService.getAllTags();
         return new ResponseEntity<>(tagDtos, HttpStatus.OK);
