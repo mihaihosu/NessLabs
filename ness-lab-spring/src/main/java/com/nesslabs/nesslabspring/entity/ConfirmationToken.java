@@ -15,7 +15,7 @@ import java.util.Optional;
 public class ConfirmationToken {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)
@@ -24,11 +24,12 @@ public class ConfirmationToken {
     @Column(nullable = false)
     private LocalDateTime createdAt;
 
+    @Column(nullable = false)
     private LocalDateTime expiresAt;
 
     private LocalDateTime confirmedAt;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(
             nullable = false,
             name = "app_user_id"

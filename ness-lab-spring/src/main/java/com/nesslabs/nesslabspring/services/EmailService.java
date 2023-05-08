@@ -12,9 +12,6 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
-
-
-
 @Service
 @AllArgsConstructor
 public class EmailService implements EmailSender {
@@ -22,9 +19,6 @@ public class EmailService implements EmailSender {
     private final static Logger LOGGER = LoggerFactory.getLogger(EmailService.class);
 
     private final JavaMailSender mailSender;
-
-
-
 
     @Override
     @Async

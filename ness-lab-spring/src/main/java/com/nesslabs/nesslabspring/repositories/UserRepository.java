@@ -16,13 +16,20 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     Optional<User> findByEmail(String email);
 
-    @Query("select u FROM User u WHERE u.username = :username and u.email = :email")
-    User findUserByDetails(@Param("username") String username, @Param("email") String email);
-
-
     @Transactional
     @Modifying
     @Query("UPDATE User a " +
             "SET a.is_confirmed = TRUE WHERE a.email =?1")
     int enableUser(@Param("email") String email);
+
+    @Transactional
+    @Modifying
+    @Query("UPDATE User a " + "SET a.username =:username WHERE a.email =:email")
+    void updateUsername(@Param("email") String email, @Param("username") String username);
+
+    @Transactional
+    @Modifying
+    @Query("UPDATE User a SET a.password =:password WHERE a.email =:email" )
+    void updatePassword(@Param("email") String email, @Param("password") String password);
+
 }

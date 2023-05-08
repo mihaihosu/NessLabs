@@ -27,7 +27,7 @@ public class User implements UserDetails {
     boolean is_admin;
     boolean is_confirmed = false;
 
-    public User(String email, String username, String password, boolean is_admin) {
+    public User(String username, String email, String password, boolean is_admin) {
         this.username = username;
         this.email = email;
         this.password = password;
@@ -61,4 +61,7 @@ public class User implements UserDetails {
         return is_confirmed;
     }
 
+    public void setIs_confirmed(boolean is_confirmed) {
+        this.is_confirmed = is_confirmed;
+    }
 }

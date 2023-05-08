@@ -5,6 +5,7 @@ import com.nesslabs.nesslabspring.entity.User;
 import com.nesslabs.nesslabspring.dto.RegistrationRequest;
 
 import com.nesslabs.nesslabspring.repositories.EmailSender;
+import com.nesslabs.nesslabspring.exception.InvalidConfirmationEmail;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,7 +20,7 @@ public class RegistrationService {
     private final EmailSender emailSender;
     private final ConfirmationTokenService confirmationTokenService;
 
-    public String register(RegistrationRequest request) {
+    public void register(RegistrationRequest request) throws InvalidConfirmationEmail {
         boolean isValidEmail = emailValidator.test(request.getEmail());
         if(!isValidEmail) {
             throw new IllegalStateException("email not valid");
@@ -32,34 +33,37 @@ public class RegistrationService {
                 true)
         );
 
-        String link = "http://localhost:8080/api/v1/auth/registration/confirm?token=" + token;
-        emailSender.send(
-                request.getEmail(),
-                buildEmail(request.getUsername(), link));
-
-        return "One more step.Please verify your account to access the application";
+        if(token.equals("null")){
+            throw new InvalidConfirmationEmail("Exista deja un utilizator cu acest email");
+        }else {
+            String link = "http://localhost:8080/api/v1/auth/registration/confirm?token=" + token;
+            emailSender.send(
+                    request.getEmail(),
+                    buildEmail(request.getUsername(), link));
+        }
     }
 
     @Transactional
-    public String confirmToken(String token) {
+    public void confirmToken(String token) throws InvalidConfirmationEmail {
         ConfirmationToken confirmationToken = confirmationTokenService
-                .getToken(token)
-                .orElseThrow(() ->
-                        new IllegalStateException("token not found"));
+                .getToken(token);
+
+        if(confirmationToken == null){
+            new InvalidConfirmationEmail("Email-ul de confirmare al contului nu mai este valid");
+        }
 
         if (confirmationToken.getConfirmedAt() != null) {
-            throw new IllegalStateException("email already confirmed, please login");
+            throw new InvalidConfirmationEmail("Contul asociat cu acest utilizator este confirmat.");
         }
 
         LocalDateTime expiredAt = confirmationToken.getExpiresAt();
 
         if (expiredAt.isBefore(LocalDateTime.now())) {
-            throw new IllegalStateException("token expired");
+            throw new InvalidConfirmationEmail("Email-ul de verificare a contului a expirat");
         }
 
         confirmationTokenService.setConfirmedAt(token);
         userService.enableUser(confirmationToken.getUser().getEmail());
-        return "confirmed";
     }
 
     private String buildEmail(String name, String link) {
