@@ -5,13 +5,16 @@ import com.nesslabs.nesslabspring.model.User;
 import com.nesslabs.nesslabspring.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -22,11 +25,15 @@ public class UserService implements UserDetailsService {
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
+
+
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        return userRepository.findByEmail(email)
+        Optional<UserDetails> userDetailsOptional = Optional.ofNullable(userRepository.findByEmail(email));
+        return userDetailsOptional
                 .orElseThrow(() -> new UsernameNotFoundException(String.format(USER_NOT_FOUND_MSG, email)));
     }
+
 
     public User signUpUser(User user) throws InvalidCredentialException {
         boolean userExistsByEmail = isUserByEmailConfirmed(user.getEmail());
@@ -47,6 +54,7 @@ public class UserService implements UserDetailsService {
         return user;
     }
 
+    //FUNCTIONALITY WILL WORK WITH SERGIUS' MERGE
     private boolean isUserByEmailConfirmed(String email) {
         List<User> users = userRepository.findAllByEmail(email);
         return users.stream()

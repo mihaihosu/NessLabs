@@ -17,7 +17,7 @@ import java.util.Collections;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "_users")
+@Table(name = "_user")
 public class User implements UserDetails {
 
     @Id
@@ -26,9 +26,17 @@ public class User implements UserDetails {
     private String email;
     private String username;
     private String password;
-    boolean is_admin;
-    boolean is_confirmed = false;
 
+    private boolean is_admin;
+    private boolean is_confirmed = false;
+
+    public User(String email, String username, String password, boolean is_admin, boolean is_confirmed) {
+        this.email = email;
+        this.username = username;
+        this.password = password;
+        this.is_admin = is_admin;
+        this.is_confirmed = is_confirmed;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -56,4 +64,6 @@ public class User implements UserDetails {
     public boolean isEnabled() {
         return is_confirmed;
     }
+
+
 }
