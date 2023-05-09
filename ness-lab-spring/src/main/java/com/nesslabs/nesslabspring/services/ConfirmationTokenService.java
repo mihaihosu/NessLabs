@@ -2,13 +2,11 @@ package com.nesslabs.nesslabspring.services;
 
 import com.nesslabs.nesslabspring.entity.ConfirmationToken;
 import com.nesslabs.nesslabspring.repositories.ConfirmationTokenRepository;
-import com.nesslabs.nesslabspring.repositories.UserRepository;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.util.Optional;
+
 
 @Service
 public class ConfirmationTokenService {

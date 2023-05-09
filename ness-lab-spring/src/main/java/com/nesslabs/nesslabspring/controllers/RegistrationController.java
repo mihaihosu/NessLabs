@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.*;
 @AllArgsConstructor
 public class RegistrationController {
     private final RegistrationService registrationService;
-    private final ConfirmationTokenRepository tokenRepository;
-    private final UserService userService;
 
     @PostMapping("/auth/registration")
     public ResponseEntity<String> register (@RequestBody RegistrationRequest request) throws InvalidConfirmationEmail {
@@ -37,7 +35,7 @@ public class RegistrationController {
          }catch(InvalidConfirmationEmail e){
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
          }
-            return ResponseEntity.status(HttpStatus.CREATED).body("Email is verified successfully. Now you can login to your account");
+            return ResponseEntity.status(HttpStatus.CREATED).body("Account is verified successfully. Now you can login to your account");
         }
 
 }

@@ -33,14 +33,16 @@ public class RegistrationService {
                 true)
         );
 
-        if(token.equals("null")){
-            throw new InvalidConfirmationEmail("Exista deja un utilizator cu acest email");
+        if(token.equals("EmailAccountConfirmed")){
+            throw new InvalidConfirmationEmail("Exista un cont asociat cu acest email");
+        }else if(token.equals("UsernameAccountConfirmed")){
+            throw new InvalidConfirmationEmail("Exista un cont asociat cu acest username");
         }else {
             String link = "http://localhost:8080/api/v1/auth/registration/confirm?token=" + token;
             emailSender.send(
                     request.getEmail(),
                     buildEmail(request.getUsername(), link));
-        }
+             }
     }
 
     @Transactional
@@ -49,10 +51,9 @@ public class RegistrationService {
                 .getToken(token);
 
         if(confirmationToken == null){
-            new InvalidConfirmationEmail("Email-ul de confirmare al contului nu mai este valid");
+            throw new InvalidConfirmationEmail("Email-ul de confirmare al contului nu mai este valid");
         }
-
-        if (confirmationToken.getConfirmedAt() != null) {
+        else if (confirmationToken.getConfirmedAt() != null) {
             throw new InvalidConfirmationEmail("Contul asociat cu acest utilizator este confirmat.");
         }
 

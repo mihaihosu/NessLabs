@@ -16,8 +16,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -35,28 +34,27 @@ class ConfirmationTokenServiceTest {
     @InjectMocks
     private UserService userService;
 
+    @Mock
+    private ConfirmationTokenRepository confirmationTokenRepository;
 
-//    @Test
-//    void ReturnTheConfirmationToken() {
-//
-//        User user = User.builder()
-//                .id(1L)
-//                .email("example@yahoo.com")
-//                .username("example")
-//                .password("Password1233")
-//                .is_admin(false)
-//                .build();
-//
-//        when(userRepository.findByEmail(user.getEmail())).thenReturn(Optional.empty());
-//
-//        String token = userService.signUpUser(user);
-//
-//        ConfirmationToken tokenFound = confirmationTokenService.getToken(token);
-//
-//        assertEquals(tokenFound.getToken(),"confirmedToken");
-//        assertNotEquals(tokenFound.getCreatedAt(), null);
-//
-//    }
+    @Test
+    void ReturnTheConfirmationToken() {
+
+        User user = new User("Mihai","mergeasergiu@gmail.com", "1234",false);
+        user.setId(1L);
+        ConfirmationToken confirmationToken = new ConfirmationToken("confirmationToken", LocalDateTime.now(),
+                LocalDateTime.now().plusMinutes(15), user);
+        confirmationToken.setId(1L);
+
+        userRepository.save(user);
+
+        confirmationTokenService.saveConfirmationToken(confirmationToken);
+
+        ConfirmationToken token1 = confirmationTokenService.getToken("confirmationToken");
+
+        assertNotNull(token1);
+
+    }
 
 //    @Test
 //    void setConfirmedAt() {

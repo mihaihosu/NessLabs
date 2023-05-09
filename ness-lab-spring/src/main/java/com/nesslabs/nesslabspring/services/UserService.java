@@ -23,7 +23,6 @@ public class UserService implements UserDetailsService {
     private static final String USER_NOT_FOUND_MSG = "user with email %s not found";
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
-    private final EmailSender emailSender;
 
     public int enableUser(String email) {
        return userRepository.enableUser(email);
@@ -38,60 +37,91 @@ public class UserService implements UserDetailsService {
 
     public String signUpUser(User user) {
 
-        boolean userExists = userRepository
+        boolean mailExists = userRepository
                 .findByEmail(user.getEmail())
                 .isPresent();
+        boolean usernameExists = userRepository.findByUsername(user.getUsername()).isPresent();
 
-
-            if (userExists) {
-                User existUser = userRepository.findByEmail(user.getEmail()).orElse(null);
-                if (!existUser.isEnabled()) {
-
-                    String encodedPassword = bCryptPasswordEncoder
+        if (mailExists) {
+            User existUser = userRepository.findByEmail(user.getEmail()).orElse(null);
+            if (!existUser.isEnabled()) {
+                String encodedPassword = bCryptPasswordEncoder
                             .encode(user.getPassword());
 
-                    user.setPassword(encodedPassword);
+                user.setPassword(encodedPassword);
 
-                    userRepository.updatePassword(existUser.getEmail(), user.getPassword());
+                userRepository.updatePasswordByEmail(existUser.getEmail(), user.getPassword());
 
-                    userRepository.updateUsername(existUser.getEmail(), user.getUsername());
+                userRepository.updateUsernameByEmail(existUser.getEmail(), user.getUsername());
 
-                    confirmationTokenService.deleteToken(Math.toIntExact(existUser.getId()));
+                confirmationTokenService.deleteToken(Math.toIntExact(existUser.getId()));
 
-                    String token = UUID.randomUUID().toString();
-                    ConfirmationToken confirmationToken = new ConfirmationToken(
+                String token = UUID.randomUUID().toString();
+
+                ConfirmationToken confirmationToken = new ConfirmationToken(
                             token,
                             LocalDateTime.now(),
-                            LocalDateTime.now().plusMinutes(15),
+                            LocalDateTime.now().plusMinutes(60),
                             existUser
                     );
 
-                    confirmationTokenService.saveConfirmationToken(confirmationToken);
+                confirmationTokenService.saveConfirmationToken(confirmationToken);
 
-                    return token;
+                 return token;
+
                 } else {
-                    return "null";
+                    return "EmailAccountConfirmed";
                 }
-            } else {
-                String token = UUID.randomUUID().toString();
-                ConfirmationToken confirmationToken = new ConfirmationToken(
-                        token,
-                        LocalDateTime.now(),
-                        LocalDateTime.now().plusMinutes(15),
-                        user
-                );
-
+        } else if( usernameExists ) {
+            User existUser = userRepository.findByUsername(user.getUsername()).orElse(null);
+            if (!existUser.isEnabled()) {
                 String encodedPassword = bCryptPasswordEncoder
                         .encode(user.getPassword());
 
                 user.setPassword(encodedPassword);
 
-                userRepository.save(user);
+                userRepository.updatePasswordByUsername(existUser.getUsername(), user.getPassword());
+
+                userRepository.updateEmailByUsername(existUser.getUsername(), user.getEmail());
+
+                confirmationTokenService.deleteToken(Math.toIntExact(existUser.getId()));
+
+                String token = UUID.randomUUID().toString();
+
+                ConfirmationToken confirmationToken = new ConfirmationToken(
+                        token,
+                        LocalDateTime.now(),
+                        LocalDateTime.now().plusMinutes(60),
+                        existUser
+                );
 
                 confirmationTokenService.saveConfirmationToken(confirmationToken);
 
-                //TODO: SEND EMAIL
                 return token;
+
+            } else {
+                return "UsernameAccountConfirmed";
             }
+        } else{
+            String token = UUID.randomUUID().toString();
+
+            ConfirmationToken confirmationToken = new ConfirmationToken(
+                    token,
+                    LocalDateTime.now(),
+                    LocalDateTime.now().plusMinutes(60),
+                    user
+            );
+
+            String encodedPassword = bCryptPasswordEncoder
+                    .encode(user.getPassword());
+
+            user.setPassword(encodedPassword);
+
+            userRepository.save(user);
+
+            confirmationTokenService.saveConfirmationToken(confirmationToken);
+
+            return token;
         }
+    }
 }
