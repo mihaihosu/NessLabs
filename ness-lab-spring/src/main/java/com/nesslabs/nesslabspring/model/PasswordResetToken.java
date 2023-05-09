@@ -10,7 +10,7 @@ import java.util.Date;
 @Setter
 @Entity
 @NoArgsConstructor
-@Table(name = "_user_token")
+@Table(name = "_user_pwdres_token")
 public class PasswordResetToken {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,7 +18,7 @@ public class PasswordResetToken {
     private String token;
     private Date expirationTime;
     private boolean used;
-    private static final int EXPIRATION_TIME = 5;
+    private static final int EXPIRATION_TIME = 60;
 
     @ManyToOne
     @JoinColumn(
@@ -40,5 +40,10 @@ public class PasswordResetToken {
         calendar.setTimeInMillis(new Date().getTime());
         calendar.add(Calendar.MINUTE,EXPIRATION_TIME);
         return new Date(calendar.getTime().getTime());
+    }
+
+    public boolean isTokenExpired() {
+        Date now = new Date();
+        return !now.after(this.expirationTime);
     }
 }
