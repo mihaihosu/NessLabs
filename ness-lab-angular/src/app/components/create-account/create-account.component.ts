@@ -121,14 +121,12 @@ export class CreateAccountComponent {
   }
 
   hasInputChanged(inputName) {
-    if (inputName !== 'password') {
-      return;
+    if (inputName === 'password') {
+      const passwordControl = this.createAccountForm.get('password');
+      const password = passwordControl.value;
+
+      this.updatePasswordRequirements(password);
     }
-
-    const passwordControl = this.createAccountForm.get('password');
-    const password = passwordControl.value;
-
-    this.updatePasswordRequirements(password);
 
     this.buttonEnabledConditions();
   }
