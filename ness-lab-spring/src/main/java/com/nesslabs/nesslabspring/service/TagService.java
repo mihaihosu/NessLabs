@@ -10,8 +10,4 @@ public interface TagService {
 
     List<TagRequestDto> getAllTags();
 
-    TagRequestDto convertTagToDto(Tag tag);
-
-    List<TagRequestDto> convertTagsToDtos(List<Tag> tags);
-
 }

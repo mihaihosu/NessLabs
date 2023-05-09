@@ -39,11 +39,11 @@ public class TagServiceImpl implements TagService{
 
 
     //Converting
-    public TagRequestDto convertTagToDto(Tag tag) {
+    private TagRequestDto convertTagToDto(Tag tag) {
         return TagRequestDto.builder().name(tag.getName()).build();
     }
 
-    public List<TagRequestDto> convertTagsToDtos(List<Tag> tags) {
+    private List<TagRequestDto> convertTagsToDtos(List<Tag> tags) {
         return tags.stream()
                 .map(tag -> new TagRequestDto(tag.getName()))
                 .collect(Collectors.toList());
