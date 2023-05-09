@@ -3,12 +3,12 @@
   flex-wrap: wrap;
   gap: 20px;
 }
-
 .left {
-  flex: 1 1 300px;
+  flex: 1 1 350px;
   display: flex;
   flex-direction: column;
   gap: 20px;
+  margin-left: 20px;
 }
 
 .right {
@@ -16,7 +16,7 @@
   display: flex;
   flex-direction: column;
   gap: 15px;
-  padding-right: 5rem;
+  padding-right: 6rem;
 }
 
 .button1,
@@ -35,7 +35,6 @@
 
 .options-box {
   display: flex;
-  /* align-items: center; */
   justify-content: space-between;
   flex-direction: column;
 }
@@ -44,11 +43,6 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
-
-.events-content {
-  height: 600px;
-  border: 1px solid black;
 }
 
 .content-navbar {
@@ -62,18 +56,67 @@
   flex-direction: row;
 }
 
-.event-type {
-  padding-left: 2rem;
-}
-
 .event-checkbox {
   margin-right: 4rem;
 }
-
-.date {
+.event-checkbox-input {
+  border: 4px solid #271d04;
+  border-radius: 1.85951px;
+  width: 33.47px;
+  height: 33.47px;
+}
+.calendar {
   display: flex;
   align-content: space-between;
   flex-direction: column;
   padding-right: 60px;
   padding-left: 40px;
+  width: 357px;
+  height: 40px;
+  border-radius: 8px;
+}
+
+.calendar::placeholder {
+  color: #191d30;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 700;
+}
+.event-type-title {
+  color: #271d04;
+  font-size: 10px;
+  font-family: "Lato", sans-serif;
+}
+.logo-ness-academy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 200px;
+}
+.event-status-title {
+  color: #271d04;
+  font-size: 15px;
+  font-family: "Lato", sans-serif;
+}
+.event-type-title {
+  color: #271d04;
+  font-size: 15px;
+  font-family: "Lato", sans-serif;
+}
+.event-type {
+  font-style: normal;
+  font-size: 14px;
+  color: #271d04;
+}
+.tags-buttons {
+  display: grid;
+  grid-template-columns: 30% 30% 30%;
+  gap: 25px;
+}
+.button-tag {
+  background: #f1f2f3;
+  border-radius: 8px;
+  border: none;
+  height: 36px;
 }

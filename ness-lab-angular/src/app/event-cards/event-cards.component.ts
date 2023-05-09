@@ -74,6 +74,22 @@ export class EventCardsComponent implements OnInit {
         autor: 'OtherAdminName',
         imgURL: './assets/img/img3.png',
       },
+      {
+        data: '30 MARTIE 2023',
+        ora: '20:00',
+        titlu: 'Concert Chitara',
+        loc: 'Piata Unirii',
+        autor: 'OtherAdminName',
+        imgURL: './assets/img/img1.png',
+      },
+      {
+        data: '30 MARTIE 2023',
+        ora: '20:00',
+        titlu: 'Concert Chitara',
+        loc: 'Piata Unirii',
+        autor: 'OtherAdminName',
+        imgURL: './assets/img/img1.png',
+      },
     ],
   };
 
