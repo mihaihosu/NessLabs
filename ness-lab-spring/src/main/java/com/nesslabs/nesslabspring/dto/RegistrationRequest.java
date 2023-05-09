@@ -3,14 +3,14 @@ package com.nesslabs.nesslabspring.dto;
 
 import lombok.*;
 
-
-@Data
-@Builder
+@Getter
 @AllArgsConstructor
+@EqualsAndHashCode
+@ToString
 @NoArgsConstructor
 public class RegistrationRequest {
-    private  String email;
-    private  String username;
-    private  String password;
-    private  boolean is_admin;
+    private String email;
+    private String username;
+    private String password;
+    private boolean is_admin;
 }

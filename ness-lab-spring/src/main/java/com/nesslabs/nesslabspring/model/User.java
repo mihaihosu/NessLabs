@@ -29,16 +29,14 @@ public class User implements UserDetails {
     private String email;
     private String username;
     private String password;
+    boolean is_admin;
+    boolean is_confirmed = true;
 
-    private boolean is_admin;
-    private boolean is_confirmed = false;
-
-    public User(String email, String username, String password, boolean is_admin, boolean is_confirmed) {
+    public User(String email, String username, String password, boolean is_admin) {
         this.email = email;
         this.username = username;
         this.password = password;
         this.is_admin = is_admin;
-        this.is_confirmed = is_confirmed;
     }
 
     @Override
