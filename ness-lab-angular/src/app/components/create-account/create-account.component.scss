@@ -1,87 +1,21 @@
-// * {
-//   margin: 0;
-//   padding: 0;
-//   box-sizing: border-box;
-//   font-family: Arial, Helvetica, sans-serif;
-// }
-
-// body {
-//   height: 100vh;
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-//   background: black;
-// }
-
-// .create-account {
-//   width: 400px;
-//   height: min-content;
-//   padding: 55px;
-//   padding-top: 0.5%;
-//   padding-bottom: 0.3%;
-//   border-radius: 12px;
-//   align-items: center;
-//   justify-content: center;
-//   background: white;
-// }
-
-// .create-account form {
-//   font-size: 20px;
-// }
-
-// .needs-validation {
-//   margin-bottom: 10%;
-// }
-
-// .img-capitala-europeana {
-//   width: 55%;
-//   margin-bottom: 15%;
-//   margin-left: 24%;
-// }
-
-// .img-ness {
-//   width: 45%;
-//   margin-top: 6%;
-//   margin-left: 25%;
-// }
-// .text {
-//   display: flex;
-//   top: 50%;
-//   margin-right: 5%;
-//   margin-bottom: 10%;
-//   font-family: Arial, Helvetica, sans-serif;
-//   font-weight: bold;
-//   justify-content: center;
-// }
-
-// .new-here {
-//   font-weight: 300;
-//   font-size: x-small;
-//   font-family: Arial, Helvetica, sans-serif;
-//   font-weight: bolder;
-//   margin-left: 25%;
-//   margin-top: 3%;
-//   margin-bottom: 3%;
-// }
 ul.requirement-list {
   list-style: none;
-  transform:scale(0.9);
+  transform: scale(0.9);
   padding-left: 0;
- 
 }
 
 ul.requirement-list li {
   display: flex;
   align-items: center;
   margin-bottom: 5px;
-  transform:scale(0.9);
+  transform: scale(0.9);
   font-size: 52%;
 }
 
 ul.requirement-list li img {
   margin-right: 5px;
   padding-left: 5%;
-  transform:scale(0.9);
+  transform: scale(0.9);
 }
 
 .password-requirement-title {
@@ -90,14 +24,14 @@ ul.requirement-list li img {
   font-weight: bold;
   padding-left: 10%;
   padding-bottom: 3px;
-  margin-top:5px;
-  transform:scale(0.9);
+  margin-top: 15px;
+  transform: scale(0.9);
 }
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  
+
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -119,17 +53,14 @@ ul.requirement-list li img {
   align-items: center;
   justify-content: center;
   background: white;
- 
 }
 
 .login form {
   font-size: 20px;
-  
 }
 
 .needs-validation {
   margin-bottom: 10%;
-  
 }
 
 .img-capitala-europeana {
@@ -153,24 +84,24 @@ ul.requirement-list li img {
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
   justify-content: center;
-  transform:scale(0.8);
+  transform: scale(0.8);
 }
 
-.form-control{
-width:80%;
-margin-left: 9%;
-height:2rem;
-border-radius:8px ;
-transform:scale(0.9);
-
+.form-control {
+  width: 80%;
+  margin-left: 9%;
+  height: 2rem;
+  border-radius: 8px;
+  transform: scale(0.9);
+  text-indent: 4%;
 }
-.invalid-feedback{
-  transform:scale(0.9);
-  height:15px;
-  width:63%;
+.invalid-feedback {
+  transform: scale(0.9);
+  height: 15px;
+  width: 63%;
   margin-left: 12%;
   font-size: 60%;
-  color:rgb(255, 84, 16);
+  color: rgb(255, 84, 16);
 }
 
 .new-here {
@@ -180,59 +111,73 @@ transform:scale(0.9);
   font-weight: bolder;
   margin-left: 25%;
   margin-top: 3%;
-  transform:scale(0.9);
+  transform: scale(0.9);
   margin-bottom: 3%;
 }
-.form-label{
-  font-weight:bold;
-  font-size:50%;
-  transform:scale(0.9);
- 
-
+.form-label {
+  font-weight: bold;
+  font-size: 50%;
+  transform: scale(0.9);
 }
-.psw-svg{
-  margin-left:14%;
+.psw-svg {
+  margin-left: 14%;
   position: relative;
-  top:3px;
-  transform:scale(0.9);
- 
+  top: 3px;
+  transform: scale(0.9);
 }
-.svg-user{
-  margin-left:14%;
+.svg-user {
+  margin-left: 14%;
   position: relative;
-  transform:scale(0.9);
-  top:3px;
- 
+  transform: scale(0.9);
+  top: 3px;
 }
 
-.svg-mail{
-  margin-left:14%;
+.svg-mail {
+  margin-left: 14%;
   position: relative;
-  top:3px;
-  transform:scale(0.9);
+  top: 3px;
+  transform: scale(0.9);
 }
 button {
-  color:white;
-  font-size: 65%;;
+  color: white;
+  font-size: 65%;
   margin-left: 20%;
   width: 55%;
   margin-top: 10%;
-  height:30px;
+  height: 30px;
   border-radius: 500px;
-  transform:scale(0.9);
+  transform: scale(0.9);
   background-color: rgb(132, 0, 255);
   border-color: rgb(96, 12, 175);
-  }
+}
 
-  button:hover{
-      background-color: rgb(97, 3, 186);
-      color:white;
-      cursor: pointer;
-  }
+.show-password {
+  cursor: pointer;
+}
 
-  .material-icons{
-    position: relative;
-    right:40px;
-    transform:scale(0.9);
-    top:5px;
-  }
+button:disabled {
+  background-color: rgb(148, 148, 148);
+  border-color: rgb(35, 35, 35);
+}
+
+button:not(:disabled) {
+  background-color: rgb(132, 0, 255);
+  border-color: rgb(96, 12, 175);
+}
+
+button:not(:disabled):hover {
+  background-color: rgb(97, 3, 186);
+  color: white;
+  cursor: pointer;
+}
+
+.material-icons {
+  position: relative;
+  right: 40px;
+  transform: scale(0.9);
+  top: 5px;
+}
+
+.password-requirements-text {
+  font-size: 120%;
+}

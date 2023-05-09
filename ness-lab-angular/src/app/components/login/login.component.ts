@@ -1,11 +1,7 @@
-import { Component,Input  } from '@angular/core';
+import { Component } from '@angular/core';
 
-import { FormInputBase } from '../../model/form-input-base.model';
-import { FormTextbox } from '../../model/form-textbox.model';
-import { FormDropdown } from '../../model/form-dropdown.model';
-import { FormCheckbox } from '../../model/form-checkbox.model';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import {ErrorStateMatcher} from '@angular/material/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -13,18 +9,71 @@ import {ErrorStateMatcher} from '@angular/material/core';
   template: `styles: ['button {color:white;}']`,
 })
 export class LoginComponent {
+  constructor(private fb: FormBuilder) {
+    this.loginForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(8)]],
+    });
+  }
+
   buttonEnabled: boolean = false;
   loginForm: FormGroup;
-  password:string;
+  password: string = '';
+  email: string = '';
   showPassword = false;
+
+  showPasswordPath = {
+    show: '../assets/icons/show password.svg',
+    hide: '../assets/icons/hide password.svg',
+  };
+
+  isPasswordEmpty: boolean = true;
+  isEmailEmpty: boolean = true;
 
   toggleShowPassword() {
     this.showPassword = !this.showPassword;
   }
-  
+
   setButtonEnabled($event) {
     this.buttonEnabled = $event.buttonEnabled;
   }
- 
+
+  onSubmit() {
+    console.log('OK');
+  }
+
+  canSetButtonEnabled() {
+    if (
+      !this.loginForm.get('email').hasError('email') &&
+      !this.loginForm.get('password').hasError('minlength')
+    ) {
+      if (!this.isEmailEmpty && !this.isPasswordEmpty) {
+        return true;
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }
+  }
+
+  hasInputChanged(inputName) {
+    if (inputName === 'password') {
+      if (this.password === '') {
+        this.isPasswordEmpty = true;
+      } else {
+        this.isPasswordEmpty = false;
+      }
+    } else if (inputName === 'email') {
+      if (this.email === '') {
+        this.isEmailEmpty = true;
+      } else {
+        this.isEmailEmpty = false;
+      }
+    }
+
+    this.buttonEnabled = this.canSetButtonEnabled();
+  }
+
   clickHandler() {}
 }

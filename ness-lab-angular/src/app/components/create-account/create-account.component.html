@@ -1,104 +1,15 @@
-<!-- <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <link rel="icon" type="image/x-icon" href="favicon.ico" />
-  </head>
-  <body
-    style="
-      background-size: cover;
-      background-image: url('../assets/img/background_login.jpg');
-    "
-  >
-    <div class="create-account">
-      <img
-        src="../assets/img/logo-timisoara-2023.png"
-        class="img-capitala-europeana"
-        alt="capitala-europeana"
-      />
-      <p class="text">Create Account</p>
-
-      <form class="needs-validation">
-        <app-form
-          class="form-group"
-          [formFields]="myForm"
-          (inputEventsEmitter)="setInputEvents($event)"
-          (input)="(onPasswordInput)"
-        >
-        </app-form>
-
-        <div class="wrapper">
-          <div class="content">
-            <p class="password-requirement-title">Password must contain:</p>
-            <ul class="requirement-list">
-              <li>
-                <img
-                  [src]="passwordRequirementBulletCheck[0][0]"
-                  alt="circle"
-                />
-                <span>At least 8 characters</span>
-              </li>
-              <li>
-                <img
-                  [src]="passwordRequirementBulletCheck[1][0]"
-                  alt="circle"
-                />
-                <span>At least one small letter</span>
-              </li>
-              <li>
-                <img
-                  [src]="passwordRequirementBulletCheck[2][0]"
-                  alt="circle"
-                />
-                <span>At least one capital letter</span>
-              </li>
-              <li>
-                <img
-                  [src]="passwordRequirementBulletCheck[3][0]"
-                  alt="circle"
-                />
-                <span>At least one number or symbol</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <app-button
-          (btnClick)="clickHandler()"
-          text="Create Account"
-          [isDisabled]="!buttonEnabled"
-        >
-        </app-button>
-        <p class="new-here">
-          Already have an account?
-          <a routerLink="/login" style="text-decoration: none">Login.</a>
-        </p>
-        <img
-          src="../../../assets/img/logo-ness.png"
-          alt="ness"
-          class="img-ness"
-        />
-      </form>
-    </div>
-  </body>
-</html> -->
-<div class="container"
-    style="
-       -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-      background-image: url('../assets/img/background_login.jpg');
-    "
-  >
-    <div class="login">
-      <form class="needs-validation">
-       
+<div
+  class="container"
+  style="
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-image: url('../assets/img/background_login.jpg');
+  "
+>
+  <div class="login">
+    <form class="needs-validation" [formGroup]="createAccountForm">
       <img
         src="../assets/img/logo-timisoara-2023.png"
         class="img-capitala-europeana"
@@ -108,98 +19,166 @@
       <p class="text">Create Account</p>
 
       <div class="form-group was-validated">
-   
-     
-       <label class="form-label" for="email">   
-        <svg width="15" class="svg-mail"height="15" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M20.5 4.52734H4.5C3.39543 4.52734 2.5 5.42277 2.5 6.52734V18.5273C2.5 19.6319 3.39543 20.5273 4.5 20.5273H20.5C21.6046 20.5273 22.5 19.6319 22.5 18.5273V6.52734C22.5 5.42277 21.6046 4.52734 20.5 4.52734Z" stroke="#120217" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M22.5 7.52734L13.53 13.2273C13.2213 13.4208 12.8643 13.5234 12.5 13.5234C12.1357 13.5234 11.7787 13.4208 11.47 13.2273L2.5 7.52734" stroke="#120217" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <label class="form-label" for="email">
+          <svg
+            width="15"
+            class="svg-mail"
+            height="15"
+            viewBox="0 0 25 25"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <image
+              xlink:href="../assets/icons/mail.svg"
+              width="25"
+              height="25"
+            />
           </svg>
-          Email</label>
-       <input  class="form-control" type="email" id="email" required>
-       <div class="invalid-feedback">
-        Please enter an email!
-       </div>
-  
-   </div>
-   <div class="form-group was-validated">
-   
-     
-    <label class="form-label" for="user">   
-     <svg class="svg-user" xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0  25 25" fill="none">
-     <path d="M19.5 21.5273V19.5273C19.5 18.4665 19.0786 17.4491 18.3284 16.6989C17.5783 15.9488 16.5609 15.5273 15.5 15.5273H9.5C8.43913 15.5273 7.42172 15.9488 6.67157 16.6989C5.92143 17.4491 5.5 18.4665 5.5 19.5273V21.5273" stroke="#120217" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-     <path d="M12.5 11.5273C14.7091 11.5273 16.5 9.73648 16.5 7.52734C16.5 5.3182 14.7091 3.52734 12.5 3.52734C10.2909 3.52734 8.5 5.3182 8.5 7.52734C8.5 9.73648 10.2909 11.5273 12.5 11.5273Z" stroke="#120217" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-     </svg>Username</label>
-    <input  class="form-control" type="text" id="user" required>
-    <div class="invalid-feedback">
-      Please enter an username!
-    </div>
-
-</div>
-   <div class="form-group was-validated">
-     
-       <label class="form-label" for="password">
-         <svg class="psw-svg" width="14" height="15" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M19 11.5273H5C3.89543 11.5273 3 12.4228 3 13.5273V20.5273C3 21.6319 3.89543 22.5273 5 22.5273H19C20.1046 22.5273 21 21.6319 21 20.5273V13.5273C21 12.4228 20.1046 11.5273 19 11.5273Z" stroke="#120217" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M7 11.5273V7.52734C7 6.20126 7.52678 4.92949 8.46447 3.99181C9.40215 3.05413 10.6739 2.52734 12 2.52734C13.3261 2.52734 14.5979 3.05413 15.5355 3.99181C16.4732 4.92949 17 6.20126 17 7.52734V11.5273" stroke="#120217" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg> Password</label>
-       <input  class="form-control" type="{{ showPassword ? 'text' : 'password' }}" name="password" [(ngModel)]="password">
-      <svg width="20" height="20"class="material-icons" (click)="toggleShowPassword()" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M2 12C2 12 5 5 12 5C19 5 22 12 22 12C22 12 19 19 12 19C5 19 2 12 2 12Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        
-      
-        
-       <div class="invalid-feedback">
-           Please enter a password!
-       </div>
-   </div>
-   <div class="wrapper">
-    <div class="content">
-      <p class="password-requirement-title">Password must contain:</p>
-      <ul class="requirement-list">
-        <li>
-          <img
-            [src]="passwordRequirementBulletCheck[0][0]"
-            alt="circle"
-          />
-          <span>At least 8 characters</span>
-        </li>
-        <li>
-          <img
-            [src]="passwordRequirementBulletCheck[1][0]"
-            alt="circle"
-          />
-          <span>At least one small letter</span>
-        </li>
-        <li>
-          <img
-            [src]="passwordRequirementBulletCheck[2][0]"
-            alt="circle"
-          />
-          <span>At least one capital letter</span>
-        </li>
-        <li>
-          <img
-            [src]="passwordRequirementBulletCheck[3][0]"
-            alt="circle"
-          />
-          <span>At least one number or symbol</span>
-        </li>
-      </ul>
-    </div>
-  </div>
-        <button type="button" class=" btn-login btn btn-primary btn-rounded">CREATE ACCOUNT</button>
-        <p class="new-here">
-          New here?
-          <a routerLink="/create-account" href="#"style="text-decoration: none;cursor: pointer;" >Create account.</a>
-        </p>
-        <img
-          src="../../../assets/img/logo-ness.png"
-          alt="ness"
-          class="img-ness"
+          Email</label
+        >
+        <input
+          formControlName="email"
+          class="form-control"
+          type="email"
+          id="email"
+          required
+          (input)="hasInputChanged('email')"
         />
-      </form>
-    </div>
+        <mat-error
+          class="invalid-feedback"
+          *ngIf="createAccountForm.get('email').hasError('email')"
+        >
+          The email is not in the correct format.
+        </mat-error>
+      </div>
+      <div class="form-group was-validated">
+        <label class="form-label" for="user">
+          <svg
+            class="svg-user"
+            xmlns="http://www.w3.org/2000/svg"
+            width="15"
+            height="15"
+            viewBox="0 0  25 25"
+            fill="none"
+          >
+            <image
+              xlink:href="../assets/icons/user.svg"
+              width="25"
+              height="25"
+            /></svg
+          >Username</label
+        >
+        <input
+          formControlName="username"
+          class="form-control"
+          type="text"
+          id="user"
+          required
+          (input)="hasInputChanged('username')"
+        />
+        <mat-error
+          class="invalid-feedback"
+          *ngIf="createAccountForm.get('username').hasError('pattern')"
+        >
+          The username is not in the correct format.
+        </mat-error>
+      </div>
+      <div class="form-group was-validated">
+        <label class="form-label" for="password">
+          <svg
+            class="psw-svg"
+            width="14"
+            height="15"
+            viewBox="0 0 24 25"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <image
+              xlink:href="../assets/icons/locker password.svg"
+              width="24"
+              height="25"
+            />
+          </svg>
+          Password</label
+        >
+        <input
+          formControlName="password"
+          class="form-control"
+          type="{{ showPassword ? 'text' : 'password' }}"
+          name="password"
+          [(ngModel)]="password"
+          (input)="hasInputChanged('password')"
+        />
+        <svg
+          width="20"
+          height="20"
+          class="material-icons show-password"
+          (click)="toggleShowPassword()"
+          viewBox="0 0 24 24"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <image
+            [attr.xlink:href]="
+              showPassword ? showPasswordPath.show : showPasswordPath.hide
+            "
+            width="24"
+            height="24"
+          />
+        </svg>
+      </div>
+      <div class="wrapper">
+        <div class="content">
+          <p class="password-requirement-title">Password must contain:</p>
+          <ul class="requirement-list">
+            <li>
+              <img [src]="passwordRequirementBulletCheck[0][0]" alt="circle" />
+              <span class="password-requirements-text"
+                >At least 8 characters</span
+              >
+            </li>
+            <li>
+              <img [src]="passwordRequirementBulletCheck[1][0]" alt="circle" />
+              <span class="password-requirements-text"
+                >At least one small letter</span
+              >
+            </li>
+            <li>
+              <img [src]="passwordRequirementBulletCheck[2][0]" alt="circle" />
+              <span class="password-requirements-text"
+                >At least one capital letter</span
+              >
+            </li>
+            <li>
+              <img [src]="passwordRequirementBulletCheck[3][0]" alt="circle" />
+              <span class="password-requirements-text"
+                >At least one number or symbol</span
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+      <button
+        type="button"
+        class="btn-login btn btn-primary btn-rounded"
+        [disabled]="!buttonEnabled"
+      >
+        CREATE ACCOUNT
+      </button>
+      <p class="new-here">
+        New here?
+        <a
+          routerLink="/create-account"
+          href="#"
+          style="text-decoration: none; cursor: pointer"
+          >Create account.</a
+        >
+      </p>
+      <img
+        src="../../../assets/img/logo-ness.png"
+        alt="ness"
+        class="img-ness"
+      />
+    </form>
   </div>
+</div>
