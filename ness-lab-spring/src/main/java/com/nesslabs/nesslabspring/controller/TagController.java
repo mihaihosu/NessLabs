@@ -3,7 +3,6 @@ package com.nesslabs.nesslabspring.controller;
 import com.nesslabs.nesslabspring.dto.TagRequestDto;
 import com.nesslabs.nesslabspring.service.TagService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +16,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class TagController {
 
-    @Autowired
     private final TagService tagService;
 
     @PostMapping
