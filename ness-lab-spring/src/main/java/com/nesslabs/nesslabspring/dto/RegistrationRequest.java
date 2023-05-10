@@ -3,10 +3,9 @@ package com.nesslabs.nesslabspring.dto;
 
 import lombok.*;
 
-@Getter
+@Data
+@Builder
 @AllArgsConstructor
-@EqualsAndHashCode
-@ToString
 @NoArgsConstructor
 public class RegistrationRequest {
     private String email;

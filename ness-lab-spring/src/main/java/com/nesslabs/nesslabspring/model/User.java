@@ -9,9 +9,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
 import java.util.Collection;
 import java.util.Collections;
 
@@ -29,14 +26,16 @@ public class User implements UserDetails {
     private String email;
     private String username;
     private String password;
-    boolean is_admin;
-    boolean is_confirmed = true;
 
-    public User(String email, String username, String password, boolean is_admin) {
+    boolean is_admin;
+    boolean is_confirmed = false;
+
+    public User(String email, String username, String password, boolean is_admin, boolean is_confirmed) {
         this.email = email;
         this.username = username;
         this.password = password;
         this.is_admin = is_admin;
+        this.is_confirmed = is_confirmed;
     }
 
     @Override

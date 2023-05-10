@@ -4,15 +4,12 @@ import com.nesslabs.nesslabspring.exception.InvalidCredentialException;
 import com.nesslabs.nesslabspring.model.User;
 import com.nesslabs.nesslabspring.repository.UserRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -65,13 +62,6 @@ public class UserService implements UserDetailsService {
         List<User> users = userRepository.findAllByUsername(username);
         return users.stream()
                 .anyMatch(User::is_confirmed);
-    }
-
-    public String changeUserPassword(User user, String password) {
-        String encodedPassword = bCryptPasswordEncoder.encode(password);
-        user.setPassword(encodedPassword);
-        userRepository.save(user);
-        return "password reset works";
     }
 
 }
