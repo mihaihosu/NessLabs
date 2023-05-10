@@ -27,8 +27,8 @@ public class User implements UserDetails {
     private String username;
     private String password;
 
-    private boolean is_admin;
-    private boolean is_confirmed = false;
+    boolean is_admin;
+    boolean is_confirmed = false;
 
     public User(String email, String username, String password, boolean is_admin, boolean is_confirmed) {
         this.email = email;

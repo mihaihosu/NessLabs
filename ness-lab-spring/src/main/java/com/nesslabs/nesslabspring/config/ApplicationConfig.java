@@ -38,7 +38,6 @@ public class ApplicationConfig {
         authProvider.setUserDetailsService(userDetailsService());
         authProvider.setPasswordEncoder(passwordEncoder());
         return authProvider;
-
     }
 
     @Bean

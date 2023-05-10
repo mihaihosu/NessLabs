@@ -3,8 +3,7 @@ package com.nesslabs.nesslabspring.controller;
 
 import com.nesslabs.nesslabspring.dto.AuthRequestDto;
 import com.nesslabs.nesslabspring.dto.AuthResponseDto;
-import com.nesslabs.nesslabspring.security.JwtService;
-import com.nesslabs.nesslabspring.service.AuthServiceImpl;
+import com.nesslabs.nesslabspring.service.AuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class AuthController {
 
-    private final AuthServiceImpl authService;
+    private final AuthService authService;
 
     @PostMapping("/auth/login")
     private ResponseEntity<AuthRequestDto> loginUser(@RequestBody AuthRequestDto loginRequestDto) {
@@ -36,7 +35,6 @@ public class AuthController {
         }
         return ResponseEntity.status(401).build();
     }
-
 
 
 
