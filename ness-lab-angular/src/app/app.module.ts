@@ -11,6 +11,7 @@ import { IconModule } from './shared/icon/icon/icon.module';
 import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from './shared/material.module';
 import { HomePageComponent } from './home-page/home-page.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { HomePageComponent } from './home-page/home-page.component';
     FormsModule,
     IconModule,
     HttpClientModule,
+    BrowserAnimationsModule,
   ],
 
   providers: [],

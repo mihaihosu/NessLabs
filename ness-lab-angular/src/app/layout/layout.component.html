@@ -2,7 +2,7 @@
   <div class="left">
     <div><input class="calendar" placeholder="Select Date " /></div>
     <div class="tags">
-      <div class="tags-title"><h3>Related Tags</h3></div>
+      <div class="tags-title"><h2>Related Tags</h2></div>
       <div class="tags-buttons">
         <div *ngFor="let button of buttons.buttons">
           <button class="button-tag">{{ button.name }}</button>
@@ -10,16 +10,16 @@
       </div>
     </div>
     <div>
-      <div class="event-type-title"><h3>Type of Event</h3></div>
+      <div class="event-type-title"><h2>Type of Event</h2></div>
       <div class="options-box">
         <div class="options-box-v2">
-          <div class="event-type"><h3>Free</h3></div>
+          <div class="event-type"><p>Free</p></div>
           <div class="event-checkbox">
             <input class="event-checkbox-input" type="checkbox" />
           </div>
         </div>
         <div class="options-box-v2">
-          <div class="event-type"><h3>With ticket</h3></div>
+          <div class="event-type"><p>With ticket</p></div>
           <div class="event-checkbox">
             <input class="event-checkbox-input" type="checkbox" />
           </div>
@@ -27,22 +27,22 @@
       </div>
     </div>
     <div>
-      <div class="event-status-title"><h3>Event Status</h3></div>
+      <div class="event-status-title"><h2>Event Status</h2></div>
       <div class="options-box">
         <div class="options-box-v2">
-          <div class="event-type"><h3>Available</h3></div>
+          <div class="event-type"><p>Available</p></div>
           <div class="event-checkbox">
             <input class="event-checkbox-input" type="checkbox" />
           </div>
         </div>
         <div class="options-box-v2">
-          <div class="event-type"><h3>Draft</h3></div>
+          <div class="event-type"><p>Draft</p></div>
           <div class="event-checkbox">
             <input class="event-checkbox-input" type="checkbox" />
           </div>
         </div>
         <div class="options-box-v2">
-          <div class="event-type"><h3>Unavailable</h3></div>
+          <div class="event-type"><p>Unavailable</p></div>
           <div class="event-checkbox">
             <input class="event-checkbox-input" type="checkbox" />
           </div>
@@ -57,15 +57,17 @@
     <div class="content-navbar">
       <mat-button-toggle-group class="toggle-button">
         <mat-button-toggle value="my-event">
-          <mat-icon class="my-events" sgvIcon="my-events"></mat-icon>
+          <mat-icon svgIcon="my-events"></mat-icon>
           My Events</mat-button-toggle
         >
         <mat-button-toggle value="all-events">
-          <mat-icon class="calendar-icon" sgvIcon="calendar-icon"></mat-icon>All
-          Events</mat-button-toggle
+          <mat-icon svgIcon="calendar-icon"></mat-icon>
+          All Events</mat-button-toggle
         >
       </mat-button-toggle-group>
-      <button class="button-add-event">Add New Event</button>
+      <button class="button-add-event">
+        <mat-icon class="add-icon" svgIcon="add"></mat-icon>Add New Event
+      </button>
     </div>
     <div class="events-content"><app-event-cards></app-event-cards></div>
   </div>

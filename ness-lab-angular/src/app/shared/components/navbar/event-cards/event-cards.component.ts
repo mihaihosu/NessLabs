@@ -16,7 +16,7 @@ export class EventCardsComponent implements OnInit {
         titlu: 'Concert Chitara',
         loc: 'Piata Unirii',
         autor: 'OtherAdminName',
-        imgURL: './assets/img/img1.png',
+        imgURL: './assets/img/img5.png',
       },
       {
         data: '03 OCTOMBRIE 2023',
@@ -40,7 +40,7 @@ export class EventCardsComponent implements OnInit {
         titlu: 'Concert Chitara',
         loc: 'Piata Unirii',
         autor: 'OtherAdminName',
-        imgURL: './assets/img/img4.png',
+        imgURL: './assets/img/img5.png',
       },
       {
         data: '12 IUNIE 2023',
@@ -64,7 +64,7 @@ export class EventCardsComponent implements OnInit {
         titlu: 'Concert Chitara',
         loc: 'Piata Unirii',
         autor: 'OtherAdminName',
-        imgURL: './assets/img/img1.png',
+        imgURL: './assets/img/universe.png',
       },
       {
         data: '13 FEBRUARIE 2023',
@@ -73,22 +73,6 @@ export class EventCardsComponent implements OnInit {
         loc: 'Piata Unirii',
         autor: 'OtherAdminName',
         imgURL: './assets/img/img3.png',
-      },
-      {
-        data: '30 MARTIE 2023',
-        ora: '20:00',
-        titlu: 'Concert Chitara',
-        loc: 'Piata Unirii',
-        autor: 'OtherAdminName',
-        imgURL: './assets/img/img1.png',
-      },
-      {
-        data: '30 MARTIE 2023',
-        ora: '20:00',
-        titlu: 'Concert Chitara',
-        loc: 'Piata Unirii',
-        autor: 'OtherAdminName',
-        imgURL: './assets/img/img1.png',
       },
     ],
   };
