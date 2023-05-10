@@ -1,0 +1,96 @@
+.mat-toolbar {
+  background: #fff;
+  position: relative;
+  margin-top: 15px !important;
+}
+.mat-toolbar-single-row {
+  padding: 0 35px;
+}
+.toolbar {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  align-items: center !important;
+}
+.search-div {
+  grid-column: 10;
+  margin-left: 100px;
+}
+.span-search {
+  margin-left: 20px;
+  color: #4c4a47;
+  font-size: 16px;
+  grid-column: 11;
+}
+.home {
+  margin-left: 6px;
+  display: inline-block;
+  font-size: 16px;
+}
+.home-div {
+  grid-column: 3;
+  display: flex;
+  justify-content: flex-start;
+}
+.profile {
+  margin-left: 10px;
+  font-size: 16px;
+  margin-top: 8px;
+  width: 86px;
+  height: 40px;
+}
+svg {
+  vertical-align: sub;
+}
+.img-home {
+  margin-bottom: 6px;
+}
+.img-profile {
+  margin-bottom: 5px;
+}
+.profile:hover {
+  background-color: #fde6ff;
+  width: 86px;
+  height: 40px;
+}
+.login-div {
+  font-weight: bold;
+  grid-column: 11;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.btn-primary {
+  background: #8102ae;
+  border-radius: 66px;
+  margin-left: 50px;
+  --bs-btn-border-color: #8102ae;
+  --bs-btn-hover-border-color: #8102ae;
+  --bs-btn-active-bg: #8102ae;
+  width: 123px;
+  height: 40px;
+}
+.img-logo-timisoara-2023 img {
+  width: 184.88px;
+  height: 74px;
+}
+.favorite {
+  font-size: 16px;
+  margin-left: 5px;
+}
+.login {
+  font-size: 16px;
+  background: #fbfbfb;
+  width: 174px;
+  height: 40px;
+  margin-left: 10px;
+  grid-column: 5;
+}
+.register {
+  font-size: 16px;
+  background: #fbfbfb;
+  width: 174px;
+  height: 40px;
+  grid-column: 5;
+  color: #8102ae;
+  margin-left: 10px;
+}

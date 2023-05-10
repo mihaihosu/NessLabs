@@ -5,10 +5,27 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { EventCardsComponent } from './event-cards/event-cards.component';
 import { LayoutComponent } from './layout/layout.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { MaterialModule } from './shared/material.module';
+import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
-  declarations: [AppComponent, EventCardsComponent, LayoutComponent],
-  imports: [BrowserModule, AppRoutingModule, MatIconModule],
+  declarations: [
+    AppComponent,
+    EventCardsComponent,
+    LayoutComponent,
+    NavbarComponent,
+  ],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    AppRoutingModule,
+    MatIconModule,
+    MaterialModule,
+    FormsModule,
+  ],
+
   providers: [],
   bootstrap: [AppComponent],
 })
