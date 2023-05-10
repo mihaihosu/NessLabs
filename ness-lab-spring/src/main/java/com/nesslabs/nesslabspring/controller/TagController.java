@@ -1,17 +1,14 @@
 package com.nesslabs.nesslabspring.controller;
 
 import com.nesslabs.nesslabspring.dto.TagRequestDto;
-import com.nesslabs.nesslabspring.model.Tag;
-import com.nesslabs.nesslabspring.service.TagServiceImpl;
+import com.nesslabs.nesslabspring.service.TagService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @CrossOrigin
@@ -19,8 +16,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class TagController {
 
-    @Autowired
-    private final TagServiceImpl tagService;
+    private final TagService tagService;
 
     @PostMapping
     public ResponseEntity<TagRequestDto> createTag(@RequestBody TagRequestDto tagDto) {

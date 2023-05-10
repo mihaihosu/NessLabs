@@ -33,11 +33,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 String jwt = authHeader.substring(7);
                 Authentication auth = jwtService.getAuthentication(jwt);
                 SecurityContextHolder.getContext().setAuthentication(auth);
-
-                // Add the JWT token to the response header
-               // response.addHeader("Set-Cookie", "jwt= " + jwt);
-
-                // Call filterChain.doFilter after adding the JWT token to the response header
                 filterChain.doFilter(request, response);
             } else {
                 filterChain.doFilter(request, response);

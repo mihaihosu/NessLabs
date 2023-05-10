@@ -14,6 +14,7 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+
 @Configuration
 @RequiredArgsConstructor
 @EnableWebSecurity
@@ -41,6 +42,7 @@ public class SecurityConfiguration implements WebMvcConfigurer {
                 .authorizeHttpRequests()
                 .requestMatchers("**").permitAll()
                 .requestMatchers("/api/v1/auth/**").permitAll()
+                .requestMatchers("/api/v1/pwdres/**").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
@@ -49,15 +51,13 @@ public class SecurityConfiguration implements WebMvcConfigurer {
                 .and()
                 .authenticationProvider(authenticationProvider)
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
-                        .formLogin();
-
+                .formLogin();
 //                .headers().frameOptions().disable();
+
         http.headers().frameOptions().disable();
         http.cors().and().csrf().disable();
 
-
         return http.build();
     }
-
 
 }
