@@ -36,7 +36,6 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
-import { ModalModule } from 'ngx-bootstrap/modal';
 
 @NgModule({
   declarations: [],
@@ -77,7 +76,6 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     MatPaginatorModule,
     MatSortModule,
     MatTableModule,
-    ModalModule,
   ],
 })
 export class MaterialModule {}
