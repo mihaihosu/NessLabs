@@ -6,9 +6,11 @@ import { AppComponent } from './app.component';
 import { EventCardsComponent } from './event-cards/event-cards.component';
 import { LayoutComponent } from './layout/layout.component';
 import { NavbarComponent } from './navbar/navbar.component';
-import { MaterialModule } from './shared/material.module';
 import { FormsModule } from '@angular/forms';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { IconModule } from './shared/icon/icon/icon.module';
+import { HttpClientModule } from '@angular/common/http';
+import { MaterialModule } from './shared/material.module';
+import { MatIcon } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -19,11 +21,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule,
     AppRoutingModule,
     MatIconModule,
     MaterialModule,
     FormsModule,
+    IconModule,
+    HttpClientModule,
   ],
 
   providers: [],
