@@ -50,13 +50,22 @@
       </div>
     </div>
     <div class="logo-ness-academy">
-      <img src="./assets/img/logo_Ness.png" />
+      <img src="./assets/img/logo-ness.png" />
     </div>
   </div>
   <div class="right">
     <div class="content-navbar">
-      <button>MyEvents</button>
-      <button>AddEvent</button>
+      <mat-button-toggle-group class="toggle-button">
+        <mat-button-toggle value="my-event">
+          <mat-icon class="my-events" sgvIcon="my-events"></mat-icon>
+          My Events</mat-button-toggle
+        >
+        <mat-button-toggle value="all-events">
+          <mat-icon class="calendar-icon" sgvIcon="calendar-icon"></mat-icon>All
+          Events</mat-button-toggle
+        >
+      </mat-button-toggle-group>
+      <button class="button-add-event">Add New Event</button>
     </div>
     <div class="events-content"><app-event-cards></app-event-cards></div>
   </div>

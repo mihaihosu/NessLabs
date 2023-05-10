@@ -20,7 +20,14 @@ export class IconModule {
       .addSvgIcon('add', this.setPath(`${this.path}/add.svg`))
       .addSvgIcon('user', this.setPath(`${this.path}/user.svg`))
       .addSvgIcon('heart', this.setPath(`${this.path}/heart.svg`))
-      .addSvgIcon('search', this.setPath(`${this.path}/search.svg`));
+      .addSvgIcon('edit', this.setPath(`${this.path}/edit.svg`))
+      .addSvgIcon('trash', this.setPath(`${this.path}/trash.svg`))
+      .addSvgIcon(
+        'calendar-icon',
+        this.setPath(`${this.path}/calendar icon.svg`)
+      )
+      .addSvgIcon('search', this.setPath(`${this.path}/search.svg`))
+      .addSvgIcon('my-events', this.setPath(`${this.path}/my events.svg`));
   }
 
   private setPath(url: string): SafeResourceUrl {
