@@ -8,12 +8,8 @@ import com.nesslabs.nesslabspring.security.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.Arrays;
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -29,7 +25,7 @@ public class AuthServiceImpl implements AuthService{
     public User getUserByEmail(String email) {
         return userRepository.findByEmail(email);
     }
-
+    @Override
     public AuthResponseDto checkUserCredentials(AuthRequestDto loginRequestDto) {
 
         if (loginRequestDto.getEmail() == null || loginRequestDto.getEmail().isEmpty()) {
@@ -51,7 +47,7 @@ public class AuthServiceImpl implements AuthService{
         return null;
     }
 
-
+        @Override
         public String createToken(AuthResponseDto loginResponseDto) {
             User user = getUserByEmail(loginResponseDto.getEmail());
 
@@ -64,7 +60,7 @@ public class AuthServiceImpl implements AuthService{
             return jwt;
         }
 
-
+        @Override
         public HttpHeaders createHeader(String token) {
             HttpHeaders headers = new HttpHeaders();
             headers.set(HttpHeaders.AUTHORIZATION, "Bearer " + token);

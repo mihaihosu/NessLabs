@@ -30,6 +30,7 @@ public class PasswordResetServiceImpl implements PasswordResetService{
         return new BCryptPasswordEncoder();
     }
 
+    @Override
     public void sendPasswordResetRequest(String email) throws InvalidCredentialException {
         User user = userRepository.findByEmail(email);
         if(user == null) {
@@ -41,11 +42,12 @@ public class PasswordResetServiceImpl implements PasswordResetService{
         emailService.send(email,buildEmail(user.getEmail(),link));
     }
 
-    public void createPasswordResetTokenForUser(User user, String passwordToken) {
+    private void createPasswordResetTokenForUser(User user, String passwordToken) {
         PasswordResetToken passwordResetToken = new PasswordResetToken(passwordToken, user);
         passwordResetRepository.save(passwordResetToken);
     }
 
+    @Override
     public void resetPassword(String token, PasswordResetRequest request) throws InvalidTokenException, InvalidCredentialException {
         try{
             validatePasswordResetToken(token);
@@ -64,12 +66,12 @@ public class PasswordResetServiceImpl implements PasswordResetService{
         passwordResetRepository.save(passwordResetToken);
     }
 
-    public void changeUserPassword(User user, String password) {
+    private void changeUserPassword(User user, String password) {
         user.setPassword(passwordEncoder.encode(password));
         userRepository.save(user);
     }
 
-    public void validateNewPassword(String newPassword) {
+    private void validateNewPassword(String newPassword) {
         boolean isValidPassword = passwordValidatorService.test(newPassword);
         if(!isValidPassword) {
             throw new InvalidCredentialException("Password not valid, ensure at least one lowercase letter," +
@@ -77,6 +79,7 @@ public class PasswordResetServiceImpl implements PasswordResetService{
         }
     }
 
+    @Override
     public void validatePasswordResetToken(String token) throws InvalidTokenException{
         final PasswordResetToken passToken = passwordResetRepository.findByToken(token);
         if(isTokenFound(passToken)) {
@@ -100,7 +103,7 @@ public class PasswordResetServiceImpl implements PasswordResetService{
         return passToken.isTokenExpired();
     }
 
-    public String buildEmail(String name, String link) {
+    private String buildEmail(String name, String link) {
         return "<html>\n" +
                 "  <head>\n" +
                 "    <meta charset=\"utf-8\">\n" +

@@ -3,7 +3,7 @@ package com.nesslabs.nesslabspring.controller;
 import com.nesslabs.nesslabspring.dto.PasswordResetRequest;
 import com.nesslabs.nesslabspring.exception.InvalidCredentialException;
 import com.nesslabs.nesslabspring.exception.InvalidTokenException;
-import com.nesslabs.nesslabspring.service.PasswordResetServiceImpl;
+import com.nesslabs.nesslabspring.service.PasswordResetService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin
 public class PasswordResetController {
 
-    private final PasswordResetServiceImpl passwordResetService;
+    private final PasswordResetService passwordResetService;
 
     @PostMapping("/pwdres/request")
     public ResponseEntity<String> sendPasswordResetRequest(@RequestHeader String email) {
