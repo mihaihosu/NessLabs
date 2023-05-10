@@ -50,9 +50,7 @@ public class UserService implements UserDetailsService {
 
                 user.setPassword(encodedPassword);
 
-                userRepository.updatePasswordByEmail(existUser.getEmail(), user.getPassword());
-
-                userRepository.updateUsernameByEmail(existUser.getEmail(), user.getUsername());
+                userRepository.updateUserDataByEmail(existUser.getEmail(), user.getPassword(), user.getUsername(), user.is_admin());
 
                 confirmationTokenService.deleteToken(Math.toIntExact(existUser.getId()));
 
@@ -80,9 +78,7 @@ public class UserService implements UserDetailsService {
 
                 user.setPassword(encodedPassword);
 
-                userRepository.updatePasswordByUsername(existUser.getUsername(), user.getPassword());
-
-                userRepository.updateEmailByUsername(existUser.getUsername(), user.getEmail());
+                userRepository.updateUserDataByUsername(existUser.getUsername(), user.getPassword(),user.getEmail(), user.is_admin());
 
                 confirmationTokenService.deleteToken(Math.toIntExact(existUser.getId()));
 

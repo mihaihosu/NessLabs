@@ -26,24 +26,24 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     @Transactional
     @Modifying
-    @Query("UPDATE User a " + "SET a.username =:username WHERE a.email =:email")
-    void updateUsernameByEmail(@Param("email") String email, @Param("username") String username);
+    @Query("UPDATE User a " + "SET a.username =:username, a.password =:password, a.is_admin =:is_admin WHERE a.email =:email")
+    void updateUserDataByEmail(@Param("email") String email,  @Param("password") String password ,@Param("username") String username, @Param("is_admin") boolean is_admin);
+
+//    @Transactional
+//    @Modifying
+//    @Query("UPDATE User a SET a.password =:password WHERE a.email =:email" )
+//    void updatePasswordByEmail(@Param("email") String email, @Param("password") String password);
+
 
     @Transactional
     @Modifying
-    @Query("UPDATE User a SET a.password =:password WHERE a.email =:email" )
-    void updatePasswordByEmail(@Param("email") String email, @Param("password") String password);
+    @Query("UPDATE User a " + "SET a.email =:email, a.password =:password, a.is_admin =:is_admin WHERE a.username =:username")
+    void updateUserDataByUsername(@Param("username") String username, @Param("password") String password, @Param("email") String email, @Param("is_admin") boolean is_admin);
 
-
-    @Transactional
-    @Modifying
-    @Query("UPDATE User a " + "SET a.email =:email WHERE a.username =:username")
-    void updateEmailByUsername(@Param("username") String username, @Param("email") String email);
-
-    @Transactional
-    @Modifying
-    @Query("UPDATE User a SET a.password =:password WHERE a.username =:username" )
-    void updatePasswordByUsername(@Param("username") String username, @Param("password") String password);
+//    @Transactional
+//    @Modifying
+//    @Query("UPDATE User a SET a.password =:password WHERE a.username =:username" )
+//    void updatePasswordByUsername(@Param("username") String username, @Param("password") String password);
 
 
 
