@@ -1,38 +1,40 @@
-<div class="grid-container">
-  <div class="grid-container__event-card" *ngFor="let event of events.events">
-    <div class="grid-container__event-card__container">
-      <img
-        class="grid-container__event-card__container__image"
-        [src]="event.imgURL"
-      />
-      <div class="grid-container__event-card__container__buttons">
-        <button
-          class="grid-container__event-card__container__buttons__button-edit"
-        >
-          <mat-icon
-            class="grid-container__event-card__container__buttons__button-edit__icon-edit"
-            svgIcon="edit"
-          ></mat-icon>
-        </button>
-        <button
-          class="grid-container__event-card__container__buttons__button-delete"
-        >
-          <mat-icon
-            class="grid-container__event-card__container__buttons__button-edit__icon-delete"
-            svgIcon="trash"
-          ></mat-icon>
-        </button>
-      </div>
-      <div class="grid-container__event-card__container__text">
-        <p class="grid-container__event-card__container__text__p1">
-          {{ event.data + " , ORA " + event.ora }}
-        </p>
-        <p class="grid-container__event-card__container__text__p2">
-          {{ event.titlu }}
-        </p>
-        <p class="grid-container__event-card__container__text__p3">
-          {{ event.loc }}
-        </p>
+<div class="scroll-container">
+  <div class="grid-container">
+    <div class="grid-container__event-card" *ngFor="let event of events.events">
+      <div class="grid-container__event-card__container">
+        <img
+          class="grid-container__event-card__container__image"
+          [src]="event.imgURL"
+        />
+        <div class="grid-container__event-card__container__buttons">
+          <button
+            class="grid-container__event-card__container__buttons__button-edit"
+          >
+            <mat-icon
+              class="grid-container__event-card__container__buttons__button-edit__icon-edit"
+              svgIcon="edit"
+            ></mat-icon>
+          </button>
+          <button
+            class="grid-container__event-card__container__buttons__button-delete"
+          >
+            <mat-icon
+              class="grid-container__event-card__container__buttons__button-edit__icon-delete"
+              svgIcon="trash"
+            ></mat-icon>
+          </button>
+        </div>
+        <div class="grid-container__event-card__container__text">
+          <p class="grid-container__event-card__container__text__p1">
+            {{ event.data + " , ORA " + event.ora }}
+          </p>
+          <p class="grid-container__event-card__container__text__p2">
+            {{ event.titlu }}
+          </p>
+          <p class="grid-container__event-card__container__text__p3">
+            {{ event.loc }}
+          </p>
+        </div>
       </div>
     </div>
   </div>
