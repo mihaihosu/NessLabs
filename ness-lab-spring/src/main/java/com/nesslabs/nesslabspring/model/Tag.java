@@ -13,11 +13,8 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name ="_tag")
 public class Tag {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
+    @Id
     private String name;
 
-    public Tag(String name){this.name = name;}
 }

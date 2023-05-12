@@ -31,7 +31,6 @@ public class TagServiceImpl implements TagService{
     }
 
     @Override
-    @CachePut(value="tags")
     public List<TagRequestDto> getAllTags() {
         List<Tag> tags = tagRepository.findAll();
         return convertTagsToDtos(tags);
