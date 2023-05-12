@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { SearchService } from 'src/app/services/search.service';
 
 @Component({
   selector: 'app-event-cards',
@@ -6,7 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./event-cards.component.scss'],
 })
 export class EventCardsComponent implements OnInit {
-  constructor() {}
+  constructor(private filterService: SearchService) {}
+
+  @Input() selectedCards: string = 'all-events';
 
   events = {
     events: [
@@ -92,6 +95,51 @@ export class EventCardsComponent implements OnInit {
       },
     ],
   };
+  myevents = {
+    myevents: [
+      {
+        data: '30 MARTIE 2023',
+        ora: '20:00',
+        titlu: 'Concert Chitara',
+        loc: 'Piata Unirii',
+        autor: 'OtherAdminName',
+        imgURL: './assets/img/img5.png',
+      },
+      {
+        data: '03 OCTOMBRIE 2023',
+        ora: '20:00',
+        titlu: 'Concert Chitara',
+        loc: 'Piata Unirii',
+        autor: 'OtherAdminName',
+        imgURL: './assets/img/img2.png',
+      },
+      {
+        data: '13 FEBRUARIE 2023',
+        ora: '20:00',
+        titlu: 'Concert Chitara',
+        loc: 'Piata Unirii',
+        autor: 'OtherAdminName',
+        imgURL: './assets/img/img3.png',
+      },
+      {
+        data: '15 APRILIE 2023',
+        ora: '20:00',
+        titlu: 'Concert Chitara',
+        loc: 'Piata Unirii',
+        autor: 'OtherAdminName',
+        imgURL: './assets/img/img5.png',
+      },
+      {
+        data: '13 FEBRUARIE 2023',
+        ora: '20:00',
+        titlu: 'Concert Chitara',
+        loc: 'Piata Unirii',
+        autor: 'OtherAdminName',
+        imgURL: './assets/img/img3.png',
+      },
+    ],
+  };
+  filteredCardEvents: string[] = [];
 
   ngOnInit(): void {}
 }

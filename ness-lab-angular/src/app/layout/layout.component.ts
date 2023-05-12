@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { EventCardsComponent } from '../shared/components/navbar/event-cards/event-cards.component';
 
 @Component({
   selector: 'app-layout',
@@ -8,7 +9,14 @@ import { Component, OnInit } from '@angular/core';
 export class LayoutComponent implements OnInit {
   constructor() {}
 
-  selectedDate = 'Select Date';
+  selectedDate: any;
+
+  selectedCards: string = 'all-events';
+
+  onSelectedCardsView(view: string) {
+    this.selectedCards = view;
+    console.log(view);
+  }
 
   buttons = {
     buttons: [

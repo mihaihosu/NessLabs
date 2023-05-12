@@ -1,6 +1,13 @@
 <div class="scroll-container">
   <div class="grid-container">
-    <div class="grid-container__event-card" *ngFor="let event of events.events">
+    <div
+      class="grid-container__event-card"
+      *ngFor="
+        let event of selectedCards === 'all-events'
+          ? events.events
+          : myevents.myevents
+      "
+    >
       <div class="grid-container__event-card__container">
         <img
           class="grid-container__event-card__container__image"

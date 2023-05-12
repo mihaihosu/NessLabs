@@ -1,6 +1,15 @@
 <div class="home-page">
   <div class="left">
     <div><input class="calendar" placeholder="Select Date " /></div>
+    <!-- <div>
+      <mat-icon></mat-icon>
+      <input
+        matInput
+        type="date"
+        [(ngModel)]="selectedDate"
+        placeholder="Select Data"
+      />
+    </div> -->
     <div class="tags">
       <div class="tags-title"><h2>Related Tags</h2></div>
       <div class="tags-buttons">
@@ -56,11 +65,19 @@
   <div class="right">
     <div class="content-navbar">
       <mat-button-toggle-group class="toggle-button">
-        <mat-button-toggle value="my-event">
+        <mat-button-toggle
+          value="my-event"
+          [checked]="selectedCards === 'my-events'"
+          (click)="onSelectedCardsView('my-events')"
+        >
           <mat-icon svgIcon="my-events"></mat-icon>
           My Events</mat-button-toggle
         >
-        <mat-button-toggle value="all-events">
+        <mat-button-toggle
+          value="all-events"
+          [checked]="selectedCards === 'all-events'"
+          (click)="onSelectedCardsView('all-events')"
+        >
           <mat-icon svgIcon="calendar-icon"></mat-icon>
           All Events</mat-button-toggle
         >
@@ -69,6 +86,8 @@
         <mat-icon class="add-icon" svgIcon="add"></mat-icon>Add New Event
       </button>
     </div>
-    <div class="events-content"><app-event-cards></app-event-cards></div>
+    <div class="events-content">
+      <app-event-cards [selectedCards]="selectedCards"></app-event-cards>
+    </div>
   </div>
 </div>

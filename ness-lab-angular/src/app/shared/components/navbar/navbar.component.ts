@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SearchService } from 'src/app/services/search.service';
 
 @Component({
   selector: 'app-navbar',
@@ -7,8 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
   clickprofile: boolean = false;
+  filter!: string;
 
-  constructor() {}
+  constructor(private filterService: SearchService) {}
+
+  applyFilter() {
+    this.filterService.setFilter(this.filter);
+  }
 
   ngOnInit(): void {}
 
