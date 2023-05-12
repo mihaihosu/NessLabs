@@ -14,18 +14,18 @@ import static org.mockito.Mockito.*;
 
 class RegistrationServiceTest {
 
-    private RegistrationService registrationService;
+    private RegistrationServiceImpl registrationService;
     @Mock
     private EmailValidatorService emailValidatorService;
     @Mock
     private PasswordValidatorService passwordValidatorService;
     @Mock
-    private UserService userService;
+    private UserServiceImpl userService;
 
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
-        registrationService = new RegistrationService(emailValidatorService, passwordValidatorService, userService);
+        registrationService = new RegistrationServiceImpl(emailValidatorService, passwordValidatorService, userService);
     }
 
     @Test

@@ -1,6 +1,5 @@
 package com.nesslabs.nesslabspring.controller;
 
-import com.nesslabs.nesslabspring.dto.PasswordResetRequest;
 import com.nesslabs.nesslabspring.dto.RegistrationRequest;
 import com.nesslabs.nesslabspring.exception.InvalidCredentialException;
 import com.nesslabs.nesslabspring.service.RegistrationService;
@@ -14,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(path = "api/v1")
 @AllArgsConstructor
 public class RegistrationController {
-    private RegistrationService registrationService;
+    private final RegistrationService registrationService;
 
     @PostMapping("/auth/registration")
     public ResponseEntity<String> register(@RequestBody RegistrationRequest request) {
