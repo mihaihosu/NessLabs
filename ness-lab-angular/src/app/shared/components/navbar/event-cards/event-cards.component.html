@@ -2,11 +2,7 @@
   <div class="grid-container">
     <div
       class="grid-container__event-card"
-      *ngFor="
-        let event of selectedCards === 'all-events'
-          ? events.events
-          : myevents.myevents
-      "
+      *ngFor="let event of searchEventsCards"
     >
       <div class="grid-container__event-card__container">
         <img

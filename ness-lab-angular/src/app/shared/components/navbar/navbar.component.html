@@ -18,7 +18,13 @@
   </div>
   <div class="search-div">
     <mat-icon svgIcon="search"></mat-icon>
-    <input type="text" placeholder="Search for event..." class="input-search" />
+    <input
+      type="text"
+      placeholder="Search for event..."
+      class="input-search"
+      [(ngModel)]="searchCards"
+      (input)="sendSearchCards()"
+    />
   </div>
   <div class="login-div">LOGIN</div>
   <div>

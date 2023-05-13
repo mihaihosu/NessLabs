@@ -8,17 +8,17 @@ import { SearchService } from 'src/app/services/search.service';
 })
 export class NavbarComponent implements OnInit {
   clickprofile: boolean = false;
-  filter!: string;
-
-  constructor(private filterService: SearchService) {}
-
-  applyFilter() {
-    this.filterService.setFilter(this.filter);
-  }
+  searchCards: string = '';
+  constructor(private searchCardsService: SearchService) {}
 
   ngOnInit(): void {}
 
   clickProfile() {
     this.clickprofile = !this.clickprofile;
+  }
+
+  sendSearchCards() {
+    this.searchCardsService.search(this.searchCards);
+    console.log(this.searchCards);
   }
 }
