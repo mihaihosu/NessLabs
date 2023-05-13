@@ -9,9 +9,16 @@
     <p mat-dialog-title>{{ titluModal }}</p>
     <p>{{ loginMessage }}</p>
   </div>
-  <mat-dialog-actions class="action">
-    <button class="action__done-button" mat-button (click)="closeDialog()">
-      DONE
-    </button>
-  </mat-dialog-actions>
+  <div class="action-div">
+    <hr class="hr" />
+    <mat-dialog-actions class="action-div__action">
+      <button
+        class="action-div__action__done-button"
+        mat-button
+        (click)="closeDialog()"
+      >
+        DONE
+      </button>
+    </mat-dialog-actions>
+  </div>
 </div>
