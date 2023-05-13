@@ -20,6 +20,12 @@ export class EventCardsComponent implements OnChanges, OnInit {
     );
   }
 
+  hasPassed(event: any): boolean {
+    const eventData = new Date(event.data + event.ora);
+    const currentData = new Date();
+    return eventData < currentData;
+  }
+
   isLogin = false;
   @Input() selectedCards: string = 'all-events';
   searchEventsCards: any[] = [];
@@ -72,6 +78,8 @@ export class EventCardsComponent implements OnChanges, OnInit {
         loc: 'Piata Unirii',
         autor: 'OtherAdminName',
         imgURL: './assets/img/img5.png',
+        type: 'free',
+        status: 'available',
       },
       {
         data: '03 OCTOMBRIE 2023',
@@ -80,6 +88,8 @@ export class EventCardsComponent implements OnChanges, OnInit {
         loc: 'Piata Unirii',
         autor: 'OtherAdminName',
         imgURL: './assets/img/img2.png',
+        type: 'with ticket',
+        status: 'draft',
       },
       {
         data: '13 FEBRUARIE 2023',
@@ -88,6 +98,8 @@ export class EventCardsComponent implements OnChanges, OnInit {
         loc: 'Piata Unirii',
         autor: 'OtherAdminName',
         imgURL: './assets/img/img3.png',
+        type: 'with ticket',
+        status: 'unavailable',
       },
       {
         data: '15 APRILIE 2023',
@@ -96,6 +108,8 @@ export class EventCardsComponent implements OnChanges, OnInit {
         loc: 'Piata Unirii',
         autor: 'OtherAdminName',
         imgURL: './assets/img/img5.png',
+        type: 'with ticket',
+        status: 'draft',
       },
       {
         data: '12 IUNIE 2023',
@@ -104,6 +118,8 @@ export class EventCardsComponent implements OnChanges, OnInit {
         loc: 'Piata Unirii',
         autor: 'OtherAdminName',
         imgURL: './assets/img/img7.png',
+        type: 'free',
+        status: 'unavailable',
       },
       {
         data: '15 APRILIE 2023',
@@ -112,6 +128,8 @@ export class EventCardsComponent implements OnChanges, OnInit {
         loc: 'Piata Unirii',
         autor: 'OtherAdminName',
         imgURL: './assets/img/img4.png',
+        type: 'with ticket',
+        status: 'draft',
       },
       {
         data: '12 IUNIE 2023',
@@ -120,6 +138,8 @@ export class EventCardsComponent implements OnChanges, OnInit {
         loc: 'Piata Unirii',
         autor: 'OtherAdminName',
         imgURL: './assets/img/universe.png',
+        type: 'free',
+        status: 'available',
       },
       {
         data: '13 FEBRUARIE 2023',
@@ -128,6 +148,8 @@ export class EventCardsComponent implements OnChanges, OnInit {
         loc: 'Piata Unirii',
         autor: 'OtherAdminName',
         imgURL: './assets/img/img7.png',
+        type: 'free',
+        status: 'draft',
       },
       {
         data: '12 IUNIE 2023',
@@ -136,6 +158,8 @@ export class EventCardsComponent implements OnChanges, OnInit {
         loc: 'Piata Unirii',
         autor: 'OtherAdminName',
         imgURL: './assets/img/universe.png',
+        type: 'with ticket',
+        status: 'available',
       },
       {
         data: '13 FEBRUARIE 2023',
@@ -144,6 +168,8 @@ export class EventCardsComponent implements OnChanges, OnInit {
         loc: 'Piata Unirii',
         autor: 'OtherAdminName',
         imgURL: './assets/img/img3.png',
+        type: 'with ticket',
+        status: 'draft',
       },
     ],
   };
@@ -156,6 +182,8 @@ export class EventCardsComponent implements OnChanges, OnInit {
         loc: 'Piata Unirii',
         autor: 'OtherAdminName',
         imgURL: './assets/img/img5.png',
+        type: 'with ticket',
+        status: 'draft',
       },
       {
         data: '30 MARTIE 2023',
@@ -164,6 +192,8 @@ export class EventCardsComponent implements OnChanges, OnInit {
         loc: 'Piata Unirii',
         autor: 'OtherAdminName',
         imgURL: './assets/img/img5.png',
+        type: 'with ticket',
+        status: 'unavailable',
       },
       {
         data: '03 OCTOMBRIE 2023',
@@ -172,6 +202,8 @@ export class EventCardsComponent implements OnChanges, OnInit {
         loc: 'Piata Unirii',
         autor: 'OtherAdminName',
         imgURL: './assets/img/img2.png',
+        type: 'with ticket',
+        status: 'available',
       },
       {
         data: '13 FEBRUARIE 2023',
@@ -180,6 +212,8 @@ export class EventCardsComponent implements OnChanges, OnInit {
         loc: 'Piata Unirii',
         autor: 'OtherAdminName',
         imgURL: './assets/img/img3.png',
+        type: 'free',
+        status: 'draft',
       },
       {
         data: '15 APRILIE 2023',
@@ -188,6 +222,8 @@ export class EventCardsComponent implements OnChanges, OnInit {
         loc: 'Piata Unirii',
         autor: 'OtherAdminName',
         imgURL: './assets/img/img5.png',
+        type: 'with ticket',
+        status: 'available',
       },
       {
         data: '12 IUNIE 2023',
@@ -196,6 +232,8 @@ export class EventCardsComponent implements OnChanges, OnInit {
         loc: 'Piata Unirii',
         autor: 'OtherAdminName',
         imgURL: './assets/img/img7.png',
+        type: 'free',
+        status: 'draft',
       },
       {
         data: '15 APRILIE 2023',
@@ -204,6 +242,8 @@ export class EventCardsComponent implements OnChanges, OnInit {
         loc: 'Piata Unirii',
         autor: 'OtherAdminName',
         imgURL: './assets/img/img4.png',
+        type: 'with ticket',
+        status: 'available',
       },
     ],
   };

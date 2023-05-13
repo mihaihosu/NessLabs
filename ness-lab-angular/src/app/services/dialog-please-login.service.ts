@@ -10,8 +10,8 @@ export class DialogPleaseLoginService {
 
   openDialog() {
     const dialogConfig = new MatDialogConfig();
-    dialogConfig.width = '600px';
-    dialogConfig.height = '600px';
+    dialogConfig.width = '740px';
+    dialogConfig.height = '780px';
     dialogConfig.position = {};
 
     this.dialog.open(PleaseLoginDialogComponent, dialogConfig);

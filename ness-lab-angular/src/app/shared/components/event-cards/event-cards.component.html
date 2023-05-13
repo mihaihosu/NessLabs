@@ -3,6 +3,7 @@
     <div
       class="grid-container__event-card"
       *ngFor="let event of searchEventsCards"
+      [ngClass]="{ 'passed-event': hasPassed(event) }"
     >
       <div class="grid-container__event-card__container">
         <img
@@ -11,7 +12,7 @@
         />
         <div class="grid-container__event-card__container__buttons">
           <button
-            *ngIf="isLogin"
+            *ngIf="isLogin && selectedCards === 'my-events'"
             class="grid-container__event-card__container__buttons__button-edit"
           >
             <mat-icon
@@ -20,7 +21,7 @@
             ></mat-icon>
           </button>
           <button
-            *ngIf="isLogin"
+            *ngIf="isLogin && selectedCards === 'my-events'"
             class="grid-container__event-card__container__buttons__button-delete"
           >
             <mat-icon
@@ -30,7 +31,7 @@
           </button>
           <button
             (click)="openModal()"
-            *ngIf="!isLogin"
+            *ngIf="!isLogin && selectedCards === 'my-events'"
             class="grid-container__event-card__container__buttons__button-favorite"
           >
             <mat-icon
