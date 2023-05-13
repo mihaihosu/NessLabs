@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { EventCardsComponent } from '../shared/components/navbar/event-cards/event-cards.component';
+import { EventCardsComponent } from '../shared/components/event-cards/event-cards.component';
 
 @Component({
   selector: 'app-layout',

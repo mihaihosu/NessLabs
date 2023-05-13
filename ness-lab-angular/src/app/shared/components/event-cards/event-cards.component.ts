@@ -1,5 +1,6 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { DialogPleaseLoginService } from 'src/app/services/dialog-please-login.service';
 import { SearchService } from 'src/app/services/search.service';
 
 @Component({
@@ -8,7 +9,10 @@ import { SearchService } from 'src/app/services/search.service';
   styleUrls: ['./event-cards.component.scss'],
 })
 export class EventCardsComponent implements OnChanges, OnInit {
-  constructor(private searchCardsService: SearchService) {
+  constructor(
+    private searchCardsService: SearchService,
+    private dialogService: DialogPleaseLoginService
+  ) {
     this.searchSubscription = this.searchCardsService.searchSubject$.subscribe(
       (param: string) => {
         this.searchEvents(param);
@@ -16,6 +20,7 @@ export class EventCardsComponent implements OnChanges, OnInit {
     );
   }
 
+  isLogin = false;
   @Input() selectedCards: string = 'all-events';
   searchEventsCards: any[] = [];
   private searchSubscription: Subscription;
@@ -52,6 +57,10 @@ export class EventCardsComponent implements OnChanges, OnInit {
     } else {
       this.searchEventsCards = this.myevents.myevents;
     }
+  }
+
+  openModal() {
+    this.dialogService.openDialog();
   }
 
   events = {

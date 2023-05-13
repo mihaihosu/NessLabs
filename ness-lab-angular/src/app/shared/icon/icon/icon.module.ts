@@ -22,6 +22,10 @@ export class IconModule {
       .addSvgIcon('heart', this.setPath(`${this.path}/heart.svg`))
       .addSvgIcon('edit', this.setPath(`${this.path}/edit.svg`))
       .addSvgIcon('trash', this.setPath(`${this.path}/trash.svg`))
+      .addSvgIcon(
+        'check-circle-2',
+        this.setPath(`${this.path}/check-circle-2.svg`)
+      )
 
       .addSvgIcon('search', this.setPath(`${this.path}/search.svg`))
       .addSvgIcon(
