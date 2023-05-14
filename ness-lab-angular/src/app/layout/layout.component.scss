@@ -80,7 +80,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 150px;
+  margin-top: auto;
 }
 .event-status-title {
   color: #271d04;
@@ -114,6 +114,10 @@
   height: 36px;
   text-transform: uppercase;
 }
+.button-tag:active {
+  background-color: #ffd248;
+}
+
 .button-add-event {
   background-color: white;
   border-radius: 28px;
@@ -143,4 +147,31 @@
   border-radius: 8px;
   height: 40px;
   width: 400px;
+}
+input[type="checkbox"] {
+  accent-color: #8102ae;
+}
+
+.matformfield {
+  border: 1px solid black;
+  width: 410px;
+  height: 40px;
+  border-radius: 10px;
+
+  &picker-style {
+    width: 200px;
+  }
+}
+.mat-calendar-content {
+  padding: 0 8px 8px 8px;
+  outline: none;
+  width: 400px;
+}
+.input-calendar {
+  margin-bottom: 20px;
+  display: none;
+}
+
+.mat-form-field-underline {
+  display: none;
 }

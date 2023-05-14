@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { EventCardsComponent } from '../shared/components/event-cards/event-cards.component';
 
 @Component({
   selector: 'app-layout',
@@ -10,45 +9,68 @@ export class LayoutComponent implements OnInit {
   constructor() {}
 
   selectedDate: any;
-
   selectedCards: string = 'all-events';
 
   onSelectedCardsView(view: string) {
     this.selectedCards = view;
-    console.log(view);
+  }
+
+  onSelectedTagButton(index: number) {
+    this.buttons.buttons[index].selected =
+      !this.buttons.buttons[index].selected;
   }
 
   buttons = {
     buttons: [
       {
         name: 'galerie arta',
+        selected: false,
+        icon: '🎨',
       },
       {
         name: 'food',
+        selected: false,
+        icon: '🍔',
       },
       {
         name: 'concert',
+        selected: false,
+        icon: '🎶',
       },
       {
         name: 'festival',
+        selected: false,
+        icon: '🎶',
       },
       {
         name: 'teatru',
+        selected: false,
+        icon: '🎭',
       },
       {
         name: 'expozitie',
+        selected: false,
+        icon: '🏜',
       },
       {
         name: 'food street',
+        selected: false,
+        icon: '🍔',
       },
       {
         name: 'spectacol',
+        selected: false,
+        icon: '🎭',
       },
       {
         name: 'pet friendly',
+        selected: false,
+        icon: '🐶',
       },
       {
         name: 'kid friendly',
+        selected: false,
+        icon: '👨‍🦲',
       },
     ],
   };

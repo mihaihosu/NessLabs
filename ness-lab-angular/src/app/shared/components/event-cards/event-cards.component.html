@@ -3,7 +3,6 @@
     <div
       class="grid-container__event-card"
       *ngFor="let event of searchEventsCards"
-      [ngClass]="{ 'passed-event': hasPassed(event) }"
     >
       <div class="grid-container__event-card__container">
         <img

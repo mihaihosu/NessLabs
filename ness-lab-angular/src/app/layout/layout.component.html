@@ -1,20 +1,27 @@
 <div class="home-page">
   <div class="left">
-    <div><input class="calendar" placeholder="Select Date " /></div>
-    <!-- <div>
-      <mat-icon></mat-icon>
-      <input
-        matInput
-        type="date"
-        [(ngModel)]="selectedDate"
-        placeholder="Select Data"
-      />
-    </div> -->
+    <mat-form-field class="matformfield">
+      <mat-icon svgIcon="calendar-icon" class="input-calendar"></mat-icon>
+      <input matInput [matDatepicker]="picker" placeholder="Select Date " />
+      <mat-icon
+        matSuffix
+        (click)="picker.open()"
+        svgIcon="calendar-icon"
+      ></mat-icon>
+      <mat-datepicker #picker class="date-picker"></mat-datepicker>
+    </mat-form-field>
+
     <div class="tags">
       <div class="tags-title"><h2>Related Tags</h2></div>
       <div class="tags-buttons">
-        <div *ngFor="let button of buttons.buttons">
-          <button class="button-tag">{{ button.name }}</button>
+        <div *ngFor="let button of buttons.buttons; let i = index">
+          <button
+            [ngStyle]="button.selected ? { 'background-color': '#ffd248' } : {}"
+            class="button-tag"
+            (click)="onSelectedTagButton(i)"
+          >
+            {{ button.icon }} {{ button.name }}
+          </button>
         </div>
       </div>
     </div>
@@ -67,7 +74,6 @@
       <mat-button-toggle-group class="toggle-button">
         <mat-button-toggle
           value="my-event"
-          [checked]="selectedCards === 'my-events'"
           (click)="onSelectedCardsView('my-events')"
         >
           <mat-icon svgIcon="my-events"></mat-icon>
@@ -75,7 +81,6 @@
         >
         <mat-button-toggle
           value="all-events"
-          [checked]="selectedCards === 'all-events'"
           (click)="onSelectedCardsView('all-events')"
         >
           <mat-icon svgIcon="calendar-icon"></mat-icon>
