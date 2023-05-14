@@ -13,7 +13,7 @@ import { MaterialModule } from './shared/material.module';
 import { HomePageComponent } from './home-page/home-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { DialogPleaseLoginService } from './services/dialog-please-login.service';
+import { DialogPleaseLoginService } from './services/dialog-service/dialog-please-login.service';
 import { PleaseLoginDialogComponent } from './shared/components/please-login-dialog/please-login-dialog.component';
 
 @NgModule({

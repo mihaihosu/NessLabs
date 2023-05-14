@@ -10,6 +10,7 @@ export class LayoutComponent implements OnInit {
 
   selectedDate: any;
   selectedCards: string = 'all-events';
+  isLogin = 'false';
 
   onSelectedCardsView(view: string) {
     this.selectedCards = view;

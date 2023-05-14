@@ -1,7 +1,7 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { DialogPleaseLoginService } from 'src/app/services/dialog-please-login.service';
-import { SearchService } from 'src/app/services/search.service';
+import { DialogPleaseLoginService } from 'src/app/services/dialog-service/dialog-please-login.service';
+import { SearchService } from 'src/app/services/search-service/search.service';
 
 @Component({
   selector: 'app-event-cards',

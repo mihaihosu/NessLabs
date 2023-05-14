@@ -9,36 +9,46 @@
           class="grid-container__event-card__container__image"
           [src]="event.imgURL"
         />
-        <div class="grid-container__event-card__container__buttons">
+        <div
+          *ngIf="isLogin"
+          class="grid-container__event-card__container__buttons-login"
+        >
           <button
-            *ngIf="isLogin && selectedCards === 'my-events'"
-            class="grid-container__event-card__container__buttons__button-edit"
+            *ngIf="selectedCards === 'my-events'"
+            class="grid-container__event-card__container__buttons-login__button-edit"
           >
             <mat-icon
-              class="grid-container__event-card__container__buttons__button-edit__icon-edit"
+              class="grid-container__event-card__container__buttons-login__button-edit__icon-edit"
               svgIcon="edit"
             ></mat-icon>
           </button>
           <button
-            *ngIf="isLogin && selectedCards === 'my-events'"
-            class="grid-container__event-card__container__buttons__button-delete"
+            *ngIf="selectedCards === 'my-events'"
+            class="grid-container__event-card__container__buttons-login__button-delete"
           >
             <mat-icon
-              class="grid-container__event-card__container__buttons__button-edit__icon-delete"
+              class="grid-container__event-card__container__buttons-login__button-edit__icon-delete"
               svgIcon="trash"
             ></mat-icon>
           </button>
+        </div>
+
+        <div
+          *ngIf="!isLogin"
+          class="grid-container__event-card__container__buttons-no-login"
+        >
           <button
             (click)="openModal()"
             *ngIf="!isLogin && selectedCards === 'my-events'"
-            class="grid-container__event-card__container__buttons__button-favorite"
+            class="grid-container__event-card__container__buttons-no-login__button-favorite"
           >
             <mat-icon
-              class="grid-container__event-card__container__buttons__button-favorite__icon-favorite"
+              class="grid-container__event-card__container__buttons-no-login__button-favorite__icon-favorite"
               svgIcon="heart"
             ></mat-icon>
           </button>
         </div>
+
         <div class="grid-container__event-card__container__text">
           <p class="grid-container__event-card__container__text__p1">
             {{ event.data + " , ORA " + event.ora }}

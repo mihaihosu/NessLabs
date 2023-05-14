@@ -43,7 +43,8 @@
           color: #4c4a47;
         }
       }
-      &__buttons {
+
+      &__buttons-login {
         position: absolute;
         top: 10px;
         left: 10px;
@@ -58,20 +59,31 @@
           }
         }
 
-        &__button-favorite {
-          border-radius: 50%;
-          &__icon-favorite {
-            display: flex;
-            align-items: center;
-            margin-top: 6px;
-          }
-        }
-
         &__button-delete {
           border-radius: 50%;
 
           &__icon-delete {
             margin-top: 5px;
+          }
+        }
+      }
+
+      &__buttons-no-login {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        right: 10px;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+
+        &__button-favorite {
+          border-radius: 50%;
+
+          &__icon-favorite {
+            width: 25px;
+            height: 20px;
+            margin-top: 8px;
           }
         }
       }

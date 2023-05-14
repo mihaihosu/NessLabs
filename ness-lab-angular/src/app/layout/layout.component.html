@@ -1,17 +1,18 @@
 <div class="home-page">
   <div class="left">
-    <mat-form-field class="matformfield">
+    <mat-form-field class="mat-form-field">
       <mat-icon svgIcon="calendar-icon" class="input-calendar"></mat-icon>
-      <input matInput [matDatepicker]="picker" placeholder="Select Date " />
       <mat-icon
         matSuffix
         (click)="picker.open()"
         svgIcon="calendar-icon"
       ></mat-icon>
+      <input matInput [matDatepicker]="picker" placeholder="Select Date " />
+
       <mat-datepicker #picker class="date-picker"></mat-datepicker>
     </mat-form-field>
 
-    <div class="tags">
+    <div>
       <div class="tags-title"><h2>Related Tags</h2></div>
       <div class="tags-buttons">
         <div *ngFor="let button of buttons.buttons; let i = index">

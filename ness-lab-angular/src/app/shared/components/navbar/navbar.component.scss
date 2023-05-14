@@ -58,8 +58,9 @@
   font-weight: bold;
   grid-column: 11;
   display: flex;
-  justify-content: flex-end;
   align-items: center;
+  cursor: pointer;
+  margin-top: 5px;
 }
 .btn-primary {
   background: #8102ae;

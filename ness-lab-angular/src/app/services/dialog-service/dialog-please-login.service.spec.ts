@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DialogPleaseLoginService } from './dialog-please-login.service';
+import { DialogPleaseLoginService } from './dialog-service/dialog-please-login.service';
 
 describe('DialogPleaseLoginService', () => {
   let service: DialogPleaseLoginService;

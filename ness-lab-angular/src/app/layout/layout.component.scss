@@ -105,7 +105,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 15px;
-  width: 300px;
+  width: 350px;
 }
 .button-tag {
   background: #f1f2f3;
@@ -152,7 +152,7 @@ input[type="checkbox"] {
   accent-color: #8102ae;
 }
 
-.matformfield {
+.mat-form-field {
   border: 1px solid black;
   width: 410px;
   height: 40px;
@@ -169,9 +169,5 @@ input[type="checkbox"] {
 }
 .input-calendar {
   margin-bottom: 20px;
-  display: none;
-}
-
-.mat-form-field-underline {
   display: none;
 }
