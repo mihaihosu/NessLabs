@@ -36,6 +36,7 @@ ul.requirement-list li img {
 }
 
 .container {
+  margin: -8px;
   height: 100vh;
   display: flex;
   align-items: center;
@@ -96,10 +97,7 @@ ul.requirement-list li img {
   text-indent: 4%;
 }
 .invalid-feedback {
-  transform: scale(0.9);
-  height: 15px;
-  width: 63%;
-  margin-left: 12%;
+  margin-top: 10px;
   font-size: 60%;
   color: rgb(255, 84, 16);
 }
@@ -180,4 +178,47 @@ button:not(:disabled):hover {
 
 .password-requirements-text {
   font-size: 120%;
+}
+
+// NEW ADDED
+
+mat-form-field {
+  border: 1px solid rgb(0, 0, 0); /* add border */
+  border-radius: 5px; /* round the corners */
+  height: 2rem;
+  width: 15rem;
+}
+
+.Forms {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+mat-label {
+  font-size: 10px;
+  padding-left: 5%;
+}
+
+.email-wrapper {
+  margin-bottom: 1.5rem;
+}
+
+.input-name {
+  margin-bottom: 0.5rem;
+}
+
+input {
+  margin-left: 0.5rem;
+  margin-top: 1.8%;
+  font-size: 75%;
+  width: 93%;
+  border: 0px solid rgb(255, 255, 255); /* add border */
+  box-shadow: none; /* remove box-shadow */
+}
+
+input:focus-within {
+  outline: none;
+  border: none;
+  box-shadow: none; /* remove box-shadow */
 }

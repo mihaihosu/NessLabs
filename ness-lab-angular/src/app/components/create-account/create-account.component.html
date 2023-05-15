@@ -18,114 +18,57 @@
 
       <p class="text">Create Account</p>
 
-      <div class="form-group was-validated">
-        <label class="form-label" for="email">
-          <svg
-            width="15"
-            class="svg-mail"
-            height="15"
-            viewBox="0 0 25 25"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <image
-              xlink:href="../assets/icons/mail.svg"
-              width="25"
-              height="25"
+      <div class="Forms">
+        <div class="email-wrapper">
+          <h6 class="input-name">Email</h6>
+          <mat-form-field>
+            <input
+              matInput
+              formControlName="email"
+              type="email"
+              id="email"
+              [(ngModel)]="email"
+              required
+              (input)="hasInputChanged('email')"
             />
-          </svg>
-          Email</label
-        >
-        <input
-          formControlName="email"
-          class="form-control"
-          type="email"
-          id="email"
-          required
-          (input)="hasInputChanged('email')"
-        />
-        <mat-error
-          class="invalid-feedback"
-          *ngIf="createAccountForm.get('email').hasError('email')"
-        >
-          The email is not in the correct format.
-        </mat-error>
-      </div>
-      <div class="form-group was-validated">
-        <label class="form-label" for="user">
-          <svg
-            class="svg-user"
-            xmlns="http://www.w3.org/2000/svg"
-            width="15"
-            height="15"
-            viewBox="0 0  25 25"
-            fill="none"
-          >
-            <image
-              xlink:href="../assets/icons/user.svg"
-              width="25"
-              height="25"
-            /></svg
-          >Username</label
-        >
-        <input
-          formControlName="username"
-          class="form-control"
-          type="text"
-          id="user"
-          required
-          (input)="hasInputChanged('username')"
-        />
-        <mat-error
-          class="invalid-feedback"
-          *ngIf="createAccountForm.get('username').hasError('pattern')"
-        >
-          The username is not in the correct format.
-        </mat-error>
-      </div>
-      <div class="form-group was-validated">
-        <label class="form-label" for="password">
-          <svg
-            class="psw-svg"
-            width="14"
-            height="15"
-            viewBox="0 0 24 25"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <image
-              xlink:href="../assets/icons/locker password.svg"
-              width="24"
-              height="25"
+            <mat-error class="invalid-feedback">
+              The email is not in the correct format.
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="email-wrapper">
+          <h6 class="input-name">Username</h6>
+          <mat-form-field>
+            <input
+              matInput
+              formControlName="username"
+              type="text"
+              id="user"
+              [(ngModel)]="username"
+              required
+              (input)="hasInputChanged('username')"
             />
-          </svg>
-          Password</label
-        >
-        <input
-          formControlName="password"
-          class="form-control"
-          type="{{ showPassword ? 'text' : 'password' }}"
-          name="password"
-          [(ngModel)]="password"
-          (input)="hasInputChanged('password')"
-        />
-        <svg
-          width="20"
-          height="20"
-          class="material-icons show-password"
-          (click)="toggleShowPassword()"
-          viewBox="0 0 24 24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <image
-            [attr.xlink:href]="
-              showPassword ? showPasswordPath.show : showPasswordPath.hide
-            "
-            width="24"
-            height="24"
-          />
-        </svg>
+            <mat-error
+              class="invalid-feedback"
+              *ngIf="createAccountForm.get('username').hasError('pattern')"
+            >
+              The username is not in the correct format.
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="email-wrapper">
+          <h6 class="input-name">Password</h6>
+          <mat-form-field>
+            <input
+              matInput
+              formControlName="password"
+              type="{{ showPassword ? 'text' : 'password' }}"
+              name="password"
+              [(ngModel)]="password"
+              (input)="hasInputChanged('password')"
+            />
+          </mat-form-field>
+        </div>
       </div>
       <div class="wrapper">
         <div class="content">
