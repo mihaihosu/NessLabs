@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth-services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +9,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   template: `styles: ['button {color:white;}']`,
 })
 export class LoginComponent {
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private authService: AuthService) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(8)]],
@@ -39,7 +39,11 @@ export class LoginComponent {
   }
 
   onSubmit() {
-    console.log('OK');
+    if (this.authService.login(this.email, this.password)) {
+      console.log('Autentificare reusita!');
+    } else {
+      console.log('Authentificare esuata!');
+    }
   }
 
   canSetButtonEnabled() {
