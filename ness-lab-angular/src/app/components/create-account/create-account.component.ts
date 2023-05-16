@@ -1,10 +1,5 @@
 import { Component, Input, ViewChild, ElementRef } from '@angular/core';
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormInputBase } from 'src/app/model/form-input-base.model';
 import { FormTextbox } from 'src/app/model/form-textbox.model';
 
@@ -24,8 +19,6 @@ export class CreateAccountComponent {
       password: ['', [Validators.required, Validators.minLength(8)]],
     });
   }
-
-  @ViewChild('passwordInput') passwordInput: ElementRef;
 
   buttonEnabled: boolean = false;
 
@@ -47,6 +40,8 @@ export class CreateAccountComponent {
     3: ['../assets/icons/passwordRequirementsUnchecked.svg', false],
   };
   password: string;
+  email: string;
+  username: string;
   showPassword = false;
 
   showPasswordPath = {

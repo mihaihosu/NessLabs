@@ -80,4 +80,6 @@ export class LoginComponent {
   }
 
   clickHandler() {}
+
+  submitForm() {}
 }
