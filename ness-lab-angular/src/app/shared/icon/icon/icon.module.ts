@@ -32,7 +32,9 @@ export class IconModule {
         'calendar-icon',
         this.setPath(`${this.path}/calendar-icon.svg`)
       )
-      .addSvgIcon('my-events', this.setPath(`${this.path}/my events.svg`));
+      .addSvgIcon('my-events', this.setPath(`${this.path}/my events.svg`))
+      .addSvgIcon('chevron-down', this.setPath(`${this.path}/chevron-down.svg`))
+      .addSvgIcon('info-icon', this.setPath(`${this.path}/info-icon.svg`));
   }
 
   private setPath(url: string): SafeResourceUrl {

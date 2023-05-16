@@ -81,15 +81,16 @@
   font-size: 16px;
   margin-left: 5px;
 }
-.login {
+.button1 {
   font-size: 16px;
   background: #fbfbfb;
   width: 174px;
   height: 40px;
   margin-left: 15px;
   grid-column: 5;
+  cursor: pointer;
 }
-.register {
+.button2 {
   font-size: 16px;
   background: #fbfbfb;
   width: 174px;
@@ -97,6 +98,7 @@
   grid-column: 5;
   color: #8102ae;
   margin-left: 15px;
+  cursor: pointer;
 }
 .input-search {
   border: none;

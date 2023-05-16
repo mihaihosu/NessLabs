@@ -63,4 +63,12 @@
       </div>
     </div>
   </div>
+
+  <div *ngIf="myevents.myevents.length === 0">
+    <img class="scroll-container__image" src="../../assets/img/no_events.png" />
+    <div class="scroll-container__context">
+      <div class="scroll-container__context__title">{{ noEventsYet }}</div>
+      <p class="scroll-container__context__text">{{ noEventsYetText }}</p>
+    </div>
+  </div>
 </div>

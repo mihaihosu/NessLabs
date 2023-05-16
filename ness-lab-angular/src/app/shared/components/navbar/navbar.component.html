@@ -10,7 +10,7 @@
     <mat-icon svgIcon="heart"></mat-icon>
     <div class="favorite">Favorite</div>
   </div>
-  <div class="profile profile-div" (click)="clickProfile()">
+  <div class="profile profile-div" (mouseenter)="mouseEnterProfile()">
     <mat-icon svgIcon="user"></mat-icon>
     <div>
       <div class="profile-text">Profile</div>
@@ -31,7 +31,11 @@
     <button class="btn btn-primary">REGISTER</button>
   </div>
 </mat-toolbar>
-<div class="toolbar">
-  <div class="login" *ngIf="clickprofile">Login</div>
-  <div class="register" *ngIf="clickprofile">Register</div>
+<div class="toolbar" (mouseleave)="mouseLeaveProfile()">
+  <div class="button1" *ngIf="clickprofile && !isLogin">Login</div>
+  <div class="button2" *ngIf="clickprofile && !isLogin">Register</div>
+  <div class="button1" *ngIf="clickprofile && isLogin" (click)="openModal()">
+    My Account
+  </div>
+  <div class="button2" *ngIf="clickprofile && isLogin">Logout</div>
 </div>

@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -36,10 +35,12 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
-import { IconModule } from './icon/icon/icon.module';
+import { MyAccountDialogComponent } from './components/my-account-dialog/my-account-dialog/my-account-dialog.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    MyAccountDialogComponent
+  ],
   exports: [
     MatAutocompleteModule,
     MatCheckboxModule,

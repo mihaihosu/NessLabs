@@ -7,9 +7,19 @@
         (click)="picker.open()"
         svgIcon="calendar-icon"
       ></mat-icon>
-      <input matInput [matDatepicker]="picker" placeholder="Select Date " />
+      <input
+        matInput
+        [matDatepicker]="picker"
+        placeholder="Select Date "
+        (dateChange)="sendSearchDateCards()"
+      />
 
-      <mat-datepicker #picker class="date-picker"></mat-datepicker>
+      <mat-datepicker
+        [(ngModel)]="selectedDate"
+        ngDefaultControl
+        #picker
+        class="date-picker"
+      ></mat-datepicker>
     </mat-form-field>
 
     <div>

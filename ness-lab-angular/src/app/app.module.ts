@@ -13,8 +13,11 @@ import { MaterialModule } from './shared/material.module';
 import { HomePageComponent } from './home-page/home-page.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { DialogPleaseLoginService } from './services/dialog-service/dialog-please-login.service';
+import { ChangesSavedDialogComponent } from './shared/components/changes-saved-dialog/changes-saved-dialog/changes-saved-dialog.component';
 import { PleaseLoginDialogComponent } from './shared/components/please-login-dialog/please-login-dialog.component';
+import { DeletingEventDialogComponent } from './shared/components/deleting-event-dialog/deleting-event-dialog/deleting-event-dialog.component';
+import { EventPostedDialogComponent } from './shared/components/event-posted-dialog/event-posted-dialog/event-posted-dialog.component';
+import { DraftSavedDialogComponent } from './shared/components/draft-saved-dialog/draft-saved-dialog/draft-saved-dialog.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +27,10 @@ import { PleaseLoginDialogComponent } from './shared/components/please-login-dia
     NavbarComponent,
     HomePageComponent,
     PleaseLoginDialogComponent,
+    ChangesSavedDialogComponent,
+    EventPostedDialogComponent,
+    DeletingEventDialogComponent,
+    DraftSavedDialogComponent,
   ],
   imports: [
     BrowserModule,

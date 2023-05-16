@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { DialogPleaseLoginService } from 'src/app/services/dialog-service/dialog-please-login.service';
+import { DialogService } from 'src/app/services/dialog-service/dialog.service';
 import { SearchService } from 'src/app/services/search-service/search.service';
 
 @Component({
@@ -11,25 +11,26 @@ import { SearchService } from 'src/app/services/search-service/search.service';
 export class EventCardsComponent implements OnChanges, OnInit {
   constructor(
     private searchCardsService: SearchService,
-    private dialogService: DialogPleaseLoginService
+    private dialogService: DialogService
   ) {
     this.searchSubscription = this.searchCardsService.searchSubject$.subscribe(
       (param: string) => {
         this.searchEvents(param);
       }
     );
+    this.searchSubscription =
+      this.searchCardsService.searchDateSubject$.subscribe((param: Date) => {
+        this.searchEventsDate(param);
+      });
   }
 
-  hasPassed(event: any): boolean {
-    const eventData = new Date(event.data + event.ora);
-    const currentData = new Date();
-    return eventData < currentData;
-  }
-
+  private searchSubscription: Subscription;
   isLogin = false;
   @Input() selectedCards: string = 'all-events';
   searchEventsCards: any[] = [];
-  private searchSubscription: Subscription;
+  noEventsYet: string = 'No Event Yet';
+  noEventsYetText: string =
+    'Click the " + Add New Event" button to add some events, and you\'ll see the events here next time you visit this page.';
 
   searchEvents(param: string) {
     if (param) {
@@ -53,6 +54,28 @@ export class EventCardsComponent implements OnChanges, OnInit {
     }
   }
 
+  searchEventsDate(param: Date) {
+    if (param) {
+      if (this.selectedCards === 'all-events') {
+        this.searchEventsCards = this.events.events.filter((event: any) => {
+          const eventDate = event.data.toLowerCase();
+          return eventDate.includes(param);
+        });
+      } else {
+        this.searchEventsCards = this.myevents.myevents.filter((event: any) => {
+          const eventDate = event.titlu.toLowerCase();
+          return eventDate.includes(param);
+        });
+      }
+    } else {
+      if (this.selectedCards === 'all-events') {
+        this.searchEventsCards = this.events.events;
+      } else {
+        this.searchEventsCards = this.myevents.myevents;
+      }
+    }
+  }
+
   ngOnDestroy() {
     this.searchSubscription.unsubscribe();
   }
@@ -65,8 +88,14 @@ export class EventCardsComponent implements OnChanges, OnInit {
     }
   }
 
+  hasPassed(event: any): boolean {
+    const eventData = new Date(event.data + event.ora);
+    const currentData = new Date();
+    return eventData < currentData;
+  }
+
   openModal() {
-    this.dialogService.openDialog();
+    this.dialogService.openPleaseLoginDialog();
   }
 
   events = {
@@ -102,7 +131,7 @@ export class EventCardsComponent implements OnChanges, OnInit {
         status: 'unavailable',
       },
       {
-        data: '15 APRILIE 2023',
+        data: '15 MAI 2023',
         ora: '20:00',
         titlu: 'Atelier Pictura',
         loc: 'Piata Unirii',
@@ -247,5 +276,8 @@ export class EventCardsComponent implements OnChanges, OnInit {
       },
     ],
   };
+  // myevents = {
+  //   myevents: [],
+  // };
   ngOnInit(): void {}
 }

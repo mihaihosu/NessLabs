@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SearchService } from '../services/search-service/search.service';
 
 @Component({
   selector: 'app-layout',
@@ -6,9 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./layout.component.scss'],
 })
 export class LayoutComponent implements OnInit {
-  constructor() {}
+  constructor(private searchService: SearchService) {}
 
-  selectedDate: any;
+  selectedDate: Date = new Date();
   selectedCards: string = 'all-events';
   isLogin = 'false';
 
@@ -19,6 +20,11 @@ export class LayoutComponent implements OnInit {
   onSelectedTagButton(index: number) {
     this.buttons.buttons[index].selected =
       !this.buttons.buttons[index].selected;
+  }
+
+  sendSearchDateCards() {
+    this.searchService.searchDate(this.selectedDate);
+    console.log(this.selectedDate);
   }
 
   buttons = {

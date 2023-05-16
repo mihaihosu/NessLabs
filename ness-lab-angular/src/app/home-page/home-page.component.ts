@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { DialogPleaseLoginService } from '../services/dialog-service/dialog-please-login.service';
 
 @Component({
   selector: 'app-home-page',
