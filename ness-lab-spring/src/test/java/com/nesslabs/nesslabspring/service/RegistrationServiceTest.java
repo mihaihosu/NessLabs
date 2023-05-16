@@ -20,7 +20,7 @@ class RegistrationServiceTest {
     @Mock
     private PasswordValidatorService passwordValidatorService;
     @Mock
-    private UserServiceImpl userService;
+    private UserService userService;
 
     @BeforeEach
     void setUp() {

@@ -3,7 +3,6 @@ package com.nesslabs.nesslabspring.controller;
 import com.nesslabs.nesslabspring.dto.RegistrationRequest;
 import com.nesslabs.nesslabspring.exception.InvalidCredentialException;
 import com.nesslabs.nesslabspring.service.RegistrationService;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
