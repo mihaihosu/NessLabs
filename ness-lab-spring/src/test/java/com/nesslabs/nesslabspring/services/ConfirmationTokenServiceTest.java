@@ -4,7 +4,6 @@ import com.nesslabs.nesslabspring.entity.ConfirmationToken;
 import com.nesslabs.nesslabspring.entity.User;
 import com.nesslabs.nesslabspring.repositories.ConfirmationTokenRepository;
 import com.nesslabs.nesslabspring.repositories.UserRepository;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -13,17 +12,14 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class ConfirmationTokenServiceTest {
 
     @Mock
-    private ConfirmationTokenService confirmationTokenService;
+    private ConfirmationTokenServiceImpl confirmationTokenService;
 
     @Mock
     private UserRepository userRepository;
@@ -32,7 +28,7 @@ class ConfirmationTokenServiceTest {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @InjectMocks
-    private UserService userService;
+    private UserServiceImpl userService;
 
     @Mock
     private ConfirmationTokenRepository confirmationTokenRepository;

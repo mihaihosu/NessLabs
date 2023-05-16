@@ -1,18 +1,17 @@
 package com.nesslabs.nesslabspring.services;
 
 import org.mockito.Mock;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingClass;
 
 public class RegistrationServiceTest {
 
-    private RegistrationService registrationService;
+    private RegistrationServiceImpl registrationServiceImpl;
 
     @Mock
     private EmailValidator emailValidator;
 
     @Mock
-    private UserService userService;
+    private UserServiceImpl userService;
 
     @Mock
-    private ConfirmationTokenService confirmationTokenService;
+    private ConfirmationTokenServiceImpl confirmationTokenService;
 }

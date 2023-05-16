@@ -33,10 +33,10 @@ public class UserServiceTest {
     private ConfirmationTokenRepository confirmationTokenRepository;
 
     @InjectMocks
-    private UserService userService;
+    private UserServiceImpl userService;
 
     @Mock
-    private ConfirmationTokenService confirmationTokenService;
+    private ConfirmationTokenServiceImpl confirmationTokenService;
 
     @Captor
     private ArgumentCaptor<User> userCaptor;

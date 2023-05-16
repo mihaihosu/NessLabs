@@ -18,21 +18,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     Optional<User> findByUsername(String username);
 
-    @Transactional
     @Modifying
     @Query("UPDATE User a " +
             "SET a.is_confirmed = TRUE WHERE a.email =?1")
-    int enableUser(@Param("email") String email);
-
     @Transactional
-    @Modifying
-    @Query("UPDATE User a " + "SET a.username =:username, a.password =:password, a.is_admin =:is_admin WHERE a.email =:email")
-    void updateUserDataByEmail(@Param("email") String email,  @Param("password") String password ,@Param("username") String username, @Param("is_admin") boolean is_admin);
-
-
-    @Transactional
-    @Modifying
-    @Query("UPDATE User a " + "SET a.email =:email, a.password =:password, a.is_admin =:is_admin WHERE a.username =:username")
-    void updateUserDataByUsername(@Param("username") String username, @Param("password") String password, @Param("email") String email, @Param("is_admin") boolean is_admin);
-
+    void enableUser(@Param("email") String email);
 }
