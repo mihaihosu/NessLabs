@@ -1,0 +1,127 @@
+<div
+  class="container"
+  style="
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-image: url('../assets/img/background_login.jpg');
+  "
+>
+  <div class="login">
+    <form class="needs-validation" [formGroup]="createAccountForm">
+      <img
+        src="../assets/img/logo-timisoara-2023.png"
+        class="img-capitala-europeana"
+        alt="capitala-europeana"
+      />
+
+      <p class="text">Create Account</p>
+
+      <div class="Forms">
+        <div class="email-wrapper">
+          <h6 class="input-name">Email</h6>
+          <mat-form-field>
+            <input
+              matInput
+              formControlName="email"
+              type="email"
+              id="email"
+              [(ngModel)]="email"
+              required
+              (input)="hasInputChanged('email')"
+            />
+            <mat-error class="invalid-feedback">
+              The email is not in the correct format.
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="email-wrapper">
+          <h6 class="input-name">Username</h6>
+          <mat-form-field>
+            <input
+              matInput
+              formControlName="username"
+              type="text"
+              id="user"
+              [(ngModel)]="username"
+              required
+              (input)="hasInputChanged('username')"
+            />
+            <mat-error
+              class="invalid-feedback"
+              *ngIf="createAccountForm.get('username').hasError('pattern')"
+            >
+              The username is not in the correct format.
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="email-wrapper">
+          <h6 class="input-name">Password</h6>
+          <mat-form-field>
+            <input
+              matInput
+              formControlName="password"
+              type="{{ showPassword ? 'text' : 'password' }}"
+              name="password"
+              [(ngModel)]="password"
+              (input)="hasInputChanged('password')"
+            />
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="wrapper">
+        <div class="content">
+          <p class="password-requirement-title">Password must contain:</p>
+          <ul class="requirement-list">
+            <li>
+              <img [src]="passwordRequirementBulletCheck[0][0]" alt="circle" />
+              <span class="password-requirements-text"
+                >At least 8 characters</span
+              >
+            </li>
+            <li>
+              <img [src]="passwordRequirementBulletCheck[1][0]" alt="circle" />
+              <span class="password-requirements-text"
+                >At least one small letter</span
+              >
+            </li>
+            <li>
+              <img [src]="passwordRequirementBulletCheck[2][0]" alt="circle" />
+              <span class="password-requirements-text"
+                >At least one capital letter</span
+              >
+            </li>
+            <li>
+              <img [src]="passwordRequirementBulletCheck[3][0]" alt="circle" />
+              <span class="password-requirements-text"
+                >At least one number or symbol</span
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+      <button
+        type="button"
+        class="btn-login btn btn-primary btn-rounded"
+        [disabled]="!buttonEnabled"
+      >
+        CREATE ACCOUNT
+      </button>
+      <p class="new-here">
+        New here?
+        <a
+          routerLink="/create-account"
+          href="#"
+          style="text-decoration: none; cursor: pointer"
+          >Create account.</a
+        >
+      </p>
+      <img
+        src="../../../assets/img/logo-ness.png"
+        alt="ness"
+        class="img-ness"
+      />
+    </form>
+  </div>
+</div>

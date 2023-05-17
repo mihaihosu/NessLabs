@@ -1,0 +1,91 @@
+<div
+  class="container"
+  style="
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-image: url('../assets/img/background_login.jpg');
+  "
+>
+  <div class="login">
+    <form
+      class="needs-validation"
+      [formGroup]="loginForm"
+      (onsubmit)="onSubmit()"
+    >
+      <img
+        src="../assets/img/logo-timisoara-2023.png"
+        class="img-capitala-europeana"
+        alt="capitala-europeana"
+      />
+      <p class="text">Login</p>
+
+      <div class="Forms">
+        <div class="email-wrapper">
+          <h6 class="input-name">Email</h6>
+          <mat-form-field>
+            <input
+              matInput
+              formControlName="email"
+              type="email"
+              id="email"
+              [(ngModel)]="email"
+              required
+              (input)="hasInputChanged('email')"
+            />
+            <mat-error
+              class="invalid-feedback"
+              *ngIf="loginForm.get('email').hasError('email')"
+            >
+              The email is not in the correct format.
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div>
+          <h6 class="input-name">Password</h6>
+          <mat-form-field>
+            <input
+              matInput
+              type="{{ showPassword ? 'text' : 'password' }}"
+              name="password"
+              [(ngModel)]="password"
+              required
+              (input)="hasInputChanged('password')"
+              formControlName="password"
+            />
+            <mat-error
+              class="invalid-feedback"
+              *ngIf="loginForm.get('password').hasError('minlength')"
+            >
+              Password should be at least 8 characters long
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <button
+        mat-raised-button
+        type="submit"
+        class="btn-login btn btn-primary btn-rounded"
+        [disabled]="!buttonEnabled"
+        (click)="onSubmit()"
+      >
+        LOGIN
+      </button>
+      <p class="new-here">
+        New here?
+        <a
+          routerLink="/create-account"
+          href="#"
+          style="text-decoration: none; cursor: pointer"
+          >Create account.</a
+        >
+      </p>
+      <img
+        src="../../../assets/img/logo-ness.png"
+        alt="ness"
+        class="img-ness"
+      />
+    </form>
+  </div>
+</div>
