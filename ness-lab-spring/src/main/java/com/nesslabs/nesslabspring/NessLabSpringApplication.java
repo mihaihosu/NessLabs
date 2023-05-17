@@ -9,7 +9,7 @@ import org.springframework.cache.annotation.EnableCaching;
 
 
 @SpringBootApplication
-@OpenAPIDefinition(info = @Info(title = "Library APIS", version = "3.0", description = ""))
+	@OpenAPIDefinition(info = @Info(title = "Timisoara Events Api", version = "3.0", description = ""))
 public class NessLabSpringApplication {
 
 	public static void main(String[] args) {
