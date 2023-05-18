@@ -13,6 +13,7 @@ public class RegistrationServiceImpl implements RegistrationService{
     private final PasswordValidatorService passwordValidatorService;
     private final UserService userService;
 
+    @Override
     public User register(RegistrationRequest request) throws InvalidCredentialException {
         boolean isValidEmail = emailValidatorService.test(request.getEmail());
         if (!isValidEmail) {
