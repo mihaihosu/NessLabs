@@ -22,18 +22,14 @@
       <p class="text">Login</p>
 
       <div class="Forms">
-        <div>
-          <div class="label-mail">
-            <mat-icon
-              class="label-mail__mail-icon"
-              svgIcon="mail-icon"
-            ></mat-icon>
-            <h6 class="input-name">Email Address</h6>
+        <div class="email-wrapper">
+          <div class="label1">
+            <mat-icon svgIcon="mail-icon"></mat-icon>
+            <h6 class="input-name">Email</h6>
           </div>
 
-          <div>
+          <mat-form-field>
             <input
-              class="input-mail"
               matInput
               formControlName="email"
               type="email"
@@ -42,21 +38,21 @@
               required
               (input)="hasInputChanged('email')"
             />
-            <p
+            <mat-error
               class="invalid-feedback"
               *ngIf="loginForm.get('email').hasError('email')"
             >
               The email is not in the correct format.
-            </p>
-          </div>
+            </mat-error>
+          </mat-form-field>
         </div>
         <div>
-          <div class="label-mail">
+          <div class="label1">
             <mat-icon svgIcon="password-icon"></mat-icon>
             <h6 class="input-name">Password</h6>
           </div>
 
-          <div>
+          <mat-form-field>
             <input
               matInput
               type="{{ showPassword ? 'text' : 'password' }}"
@@ -65,21 +61,20 @@
               required
               (input)="hasInputChanged('password')"
               formControlName="password"
-              class="input-password"
             />
-            <p
+            <mat-error
               class="invalid-feedback"
               *ngIf="loginForm.get('password').hasError('minlength')"
             >
               Password should be at least 8 characters long
-            </p>
-          </div>
+            </mat-error>
+          </mat-form-field>
         </div>
       </div>
       <button
         mat-raised-button
         type="submit"
-        class="btn-login btn-rounded button"
+        class="btn-login btn btn-primary btn-rounded"
         [disabled]="!buttonEnabled"
         (click)="onSubmit()"
       >

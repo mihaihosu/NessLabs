@@ -205,6 +205,8 @@ mat-label {
 
 .input-name {
   margin-bottom: 0.5rem;
+  margin-top: 6px;
+  margin-left: 5px;
 }
 
 input {
@@ -220,4 +222,7 @@ input:focus-within {
   outline: none;
   border: none;
   box-shadow: none; /* remove box-shadow */
+}
+.label1 {
+  display: flex;
 }

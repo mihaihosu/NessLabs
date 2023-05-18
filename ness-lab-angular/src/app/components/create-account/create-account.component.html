@@ -20,7 +20,11 @@
 
       <div class="Forms">
         <div class="email-wrapper">
-          <h6 class="input-name">Email</h6>
+          <div class="label1">
+            <mat-icon svgIcon="mail-icon"></mat-icon>
+            <h6 class="input-name">Email</h6>
+          </div>
+
           <mat-form-field>
             <input
               matInput
@@ -37,7 +41,11 @@
           </mat-form-field>
         </div>
         <div class="email-wrapper">
-          <h6 class="input-name">Username</h6>
+          <div class="label1">
+            <mat-icon svgIcon="user"></mat-icon>
+            <h6 class="input-name">Username</h6>
+          </div>
+
           <mat-form-field>
             <input
               matInput
@@ -57,7 +65,11 @@
           </mat-form-field>
         </div>
         <div class="email-wrapper">
-          <h6 class="input-name">Password</h6>
+          <div class="label1">
+            <mat-icon svgIcon="password-icon"></mat-icon>
+            <h6 class="input-name">Password</h6>
+          </div>
+
           <mat-form-field>
             <input
               matInput
@@ -109,12 +121,12 @@
         CREATE ACCOUNT
       </button>
       <p class="new-here">
-        New here?
+        Already have an account?
         <a
-          routerLink="/create-account"
+          routerLink="/login"
           href="#"
           style="text-decoration: none; cursor: pointer"
-          >Create account.</a
+          >Login</a
         >
       </p>
       <img
