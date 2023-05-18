@@ -22,10 +22,18 @@
       <p class="text">Login</p>
 
       <div class="Forms">
-        <div class="email-wrapper">
-          <h6 class="input-name">Email</h6>
-          <mat-form-field>
+        <div>
+          <div class="label-mail">
+            <mat-icon
+              class="label-mail__mail-icon"
+              svgIcon="mail-icon"
+            ></mat-icon>
+            <h6 class="input-name">Email Address</h6>
+          </div>
+
+          <div>
             <input
+              class="input-mail"
               matInput
               formControlName="email"
               type="email"
@@ -34,17 +42,21 @@
               required
               (input)="hasInputChanged('email')"
             />
-            <mat-error
+            <p
               class="invalid-feedback"
               *ngIf="loginForm.get('email').hasError('email')"
             >
               The email is not in the correct format.
-            </mat-error>
-          </mat-form-field>
+            </p>
+          </div>
         </div>
         <div>
-          <h6 class="input-name">Password</h6>
-          <mat-form-field>
+          <div class="label-mail">
+            <mat-icon svgIcon="password-icon"></mat-icon>
+            <h6 class="input-name">Password</h6>
+          </div>
+
+          <div>
             <input
               matInput
               type="{{ showPassword ? 'text' : 'password' }}"
@@ -53,20 +65,21 @@
               required
               (input)="hasInputChanged('password')"
               formControlName="password"
+              class="input-password"
             />
-            <mat-error
+            <p
               class="invalid-feedback"
               *ngIf="loginForm.get('password').hasError('minlength')"
             >
               Password should be at least 8 characters long
-            </mat-error>
-          </mat-form-field>
+            </p>
+          </div>
         </div>
       </div>
       <button
         mat-raised-button
         type="submit"
-        class="btn-login btn btn-primary btn-rounded"
+        class="btn-login btn-rounded button"
         [disabled]="!buttonEnabled"
         (click)="onSubmit()"
       >

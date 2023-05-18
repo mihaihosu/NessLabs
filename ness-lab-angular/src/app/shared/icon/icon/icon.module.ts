@@ -34,7 +34,12 @@ export class IconModule {
       )
       .addSvgIcon('my-events', this.setPath(`${this.path}/my events.svg`))
       .addSvgIcon('chevron-down', this.setPath(`${this.path}/chevron-down.svg`))
-      .addSvgIcon('info-icon', this.setPath(`${this.path}/info-icon.svg`));
+      .addSvgIcon('info-icon', this.setPath(`${this.path}/info-icon.svg`))
+      .addSvgIcon('mail-icon', this.setPath(`${this.path}/mail.svg`))
+      .addSvgIcon(
+        'password-icon',
+        this.setPath(`${this.path}/locker password.svg`)
+      );
   }
 
   private setPath(url: string): SafeResourceUrl {

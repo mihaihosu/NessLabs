@@ -6,6 +6,7 @@
   position: initial;
   padding-top: 150px;
   gap: 220px;
+
   &__message-div {
     display: flex;
     flex-direction: column;
@@ -34,11 +35,12 @@
       font-size: 16px;
       color: #ffffff;
       margin-right: 10px;
+      margin-top: 2%;
     }
   }
 }
 
 .hr {
-  width: 700px;
+  width: 690px;
   margin-top: 20px;
 }

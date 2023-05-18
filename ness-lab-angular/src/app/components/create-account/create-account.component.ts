@@ -1,4 +1,10 @@
-import { Component, Input, ViewChild, ElementRef } from '@angular/core';
+import {
+  Component,
+  Input,
+  ViewChild,
+  ElementRef,
+  ViewEncapsulation,
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormInputBase } from 'src/app/model/form-input-base.model';
 import { FormTextbox } from 'src/app/model/form-textbox.model';
