@@ -96,6 +96,7 @@ export class EventCardsComponent implements OnChanges, OnInit {
 
   openModal() {
     this.dialogService.openPleaseLoginDialog();
+    console.log('Click !');
   }
 
   events = {

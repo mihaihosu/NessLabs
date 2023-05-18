@@ -126,14 +126,23 @@
   display: flex;
   align-items: center;
 }
-.toggle-button {
-  border-radius: 25px;
+.toggle-button-group {
   height: 40px;
   align-items: center;
+  border-radius: 25px;
+  border: 1px solid #000;
 }
 .mat-button-toggle-checked {
   background-color: #f2cbf6;
+  height: 40px;
 }
+.toggle-button-1 {
+  border-right: 0.2px solid black;
+}
+.toggle-button-2 {
+  border-left: 0.2px solid black;
+}
+
 .tags-title {
   font-weight: 700;
   margin-top: 23px;

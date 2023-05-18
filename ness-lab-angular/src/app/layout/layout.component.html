@@ -82,8 +82,9 @@
   </div>
   <div class="right">
     <div class="content-navbar">
-      <mat-button-toggle-group class="toggle-button">
+      <mat-button-toggle-group class="toggle-button-group">
         <mat-button-toggle
+          class="toggle-button-1"
           value="my-event"
           (click)="onSelectedCardsView('my-events')"
         >
@@ -91,6 +92,7 @@
           My Events</mat-button-toggle
         >
         <mat-button-toggle
+          class="toggle-button-2"
           value="all-events"
           (click)="onSelectedCardsView('all-events')"
         >
