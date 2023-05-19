@@ -1,10 +1,12 @@
 package com.nesslabs.nesslabspring.service;
 
 import com.nesslabs.nesslabspring.dto.EventDto;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
 
+@Service
 public class EventServiceImpl implements EventService{
     @Override
     public List<EventDto> getEventsWithPaginationAndFiltered(
