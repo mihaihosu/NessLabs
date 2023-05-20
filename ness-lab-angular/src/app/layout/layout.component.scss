@@ -161,16 +161,6 @@ input[type="checkbox"] {
   accent-color: #8102ae;
 }
 
-.mat-form-field {
-  border: 1px solid black;
-  width: 377px;
-  height: 40px;
-  border-radius: 10px;
-
-  &picker-style {
-    width: 200px;
-  }
-}
 .mat-calendar-content {
   padding: 0 8px 8px 8px;
   outline: none;
@@ -182,4 +172,46 @@ input[type="checkbox"] {
 }
 .chevron-down {
   margin-right: 15px;
+}
+::ng-deep .mat-calendar {
+  width: 373px !important;
+  height: 433px !important;
+}
+
+.mat-form-field {
+  border: 1px solid black;
+  width: 377px;
+  height: 40px;
+  border-radius: 10px;
+
+  &.mat-form-field-flex {
+    background-color: #ffd248;
+  }
+}
+.matInput {
+  color: #000;
+  font-weight: bold;
+}
+
+::ng-deep .mat-form-field-underline {
+  display: none;
+}
+
+.input-label {
+  position: absolute;
+  top: 30%;
+  left: 12px;
+  transform: translateY(-50%);
+  font-size: 14px;
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+}
+.calendar-icon {
+  font-size: 25px;
+  margin-top: 3px;
+  margin-left: 5px;
+}
+
+::ng-deep .mat-calendar-body-label {
+  display: none;
 }

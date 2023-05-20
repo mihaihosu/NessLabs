@@ -1,20 +1,23 @@
 <div class="home-page">
   <div class="left">
-    <mat-form-field class="mat-form-field">
-      <mat-icon svgIcon="calendar-icon" class="input-calendar"></mat-icon>
+    <mat-form-field
+      class="-field"
+      [ngClass]="{ 'mat-form-field-flex': isOpen }"
+    >
+      <mat-icon
+        matPrefix
+        svgIcon="calendar-icon"
+        class="calendar-icon"
+      ></mat-icon>
       <mat-icon
         class="chevron-down"
         matSuffix
-        (click)="picker.open()"
+        (click)="picker.open(); changeicon()"
         svgIcon="chevron-down"
       ></mat-icon>
-      <input
-        matInput
-        [matDatepicker]="picker"
-        placeholder="Select Date "
-        (dateChange)="sendSearchDateCards()"
-      />
 
+      <input matInput class="matInput" [matDatepicker]="picker" />
+      <label class="input-label">Select Date</label>
       <mat-datepicker
         [(ngModel)]="selectedDate"
         ngDefaultControl

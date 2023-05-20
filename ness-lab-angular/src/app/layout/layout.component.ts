@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchService } from '../services/search-service/search.service';
+import { ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-layout',
   templateUrl: './layout.component.html',
   styleUrls: ['./layout.component.scss'],
+  encapsulation: ViewEncapsulation.Emulated,
 })
 export class LayoutComponent implements OnInit {
   constructor(private searchService: SearchService) {}
@@ -12,6 +14,8 @@ export class LayoutComponent implements OnInit {
   selectedDate: Date = new Date();
   selectedCards: string = 'all-events';
   isLogin = 'false';
+  isOpen: boolean = false;
+  isSelectedDate: boolean = false;
 
   onSelectedCardsView(view: string) {
     this.selectedCards = view;
@@ -22,9 +26,17 @@ export class LayoutComponent implements OnInit {
       !this.buttons.buttons[index].selected;
   }
 
-  sendSearchDateCards() {
-    this.searchService.searchDate(this.selectedDate);
-    console.log(this.selectedDate);
+  // sendSearchDateCards() {
+  //   this.searchService.searchDate(this.selectedDate);
+  //   console.log(this.selectedDate);
+  // }
+
+  selectDate() {
+    this.isSelectedDate = !this.isSelectedDate;
+  }
+
+  changeicon() {
+    this.isOpen = !this.isOpen;
   }
 
   buttons = {

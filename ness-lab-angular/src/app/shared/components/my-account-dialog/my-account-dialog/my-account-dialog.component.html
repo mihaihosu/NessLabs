@@ -1,6 +1,56 @@
 <form>
-  <mat-form-field>
-    <div>Username</div>
-    <input class="username-input" matInput type="text" />
-  </mat-form-field>
+  <div class="my-account-title">My Account</div>
+  <hr />
+  <div class="details-label">Details</div>
+
+  <div class="content">
+    <div class="content__fields">
+      <mat-form-field class="content__fields__mat-form-field-my-account">
+        <div class="content__fields__mat-form-field-my-account__div">
+          <label class="content__fields__mat-form-field-my-account__div__label">
+            Username
+          </label>
+          <input
+            class="content__fields__mat-form-field-my-account__div__input-text"
+            matInput
+            type="text"
+          />
+        </div>
+
+        <div class="content__fields__mat-form-field-my-account__div">
+          <label class="content__fields__mat-form-field-my-account__div__label">
+            Email
+          </label>
+          <input
+            class="content__fields__mat-form-field-my-account__div__input-text"
+            matInput
+            type="text"
+          />
+        </div>
+        <div class="content__fields__mat-form-field-my-account__div">
+          <label class="content__fields__mat-form-field-my-account__div__label">
+            Password
+          </label>
+          <input
+            class="content__fields__mat-form-field-my-account__div__input-text"
+            matInput
+            type="text"
+          />
+          <p class="content__fields__mat-form-field-my-account__div__password">
+            Change Paswword
+          </p>
+        </div>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <hr />
+      <div class="content__buttons">
+        <button mat-button class="content__buttons__cancel">CANCEL</button>
+        <button mat-button class="content__buttons__save-changes">
+          SAVE CHANGES
+        </button>
+      </div>
+    </div>
+  </div>
 </form>
