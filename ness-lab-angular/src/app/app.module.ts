@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { EventCardsComponent } from './shared/components/event-cards/event-cards.component';
@@ -28,6 +28,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MyAccountDialogComponent } from './shared/components/my-account-dialog/my-account-dialog/my-account-dialog.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { MatInputModule } from '@angular/material/input';
     FormComponent,
     ButtonComponent,
     CreateAccountComponent,
+    MyAccountDialogComponent,
   ],
   imports: [
     BrowserModule,
