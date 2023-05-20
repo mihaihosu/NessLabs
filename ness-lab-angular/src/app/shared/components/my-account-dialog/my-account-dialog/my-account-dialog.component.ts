@@ -8,6 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MyAccountDialogComponent implements OnInit {
   constructor() {}
-
+  changePassword: boolean = false;
+  changePasswordClick() {
+    this.changePassword = true;
+  }
   ngOnInit(): void {}
 }

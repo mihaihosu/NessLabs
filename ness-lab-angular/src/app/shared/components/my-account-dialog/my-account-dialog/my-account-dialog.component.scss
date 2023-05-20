@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 17rem;
+  gap: 16rem;
   &__fields {
     display: flex;
     flex-direction: column;
@@ -11,7 +11,7 @@
       display: flex;
       flex-direction: column;
       &__div {
-        margin-top: 20px;
+        margin-top: -15px;
         &__input-text {
           border: 2px solid black;
           border-radius: 8px;
@@ -28,6 +28,7 @@
           font-weight: bold;
           font-family: Roboto, "Helvetica Neue", sans-serif;
           color: #941abf;
+          cursor: pointer;
         }
       }
     }
@@ -61,11 +62,18 @@
     }
   }
 }
-.my-account-title,
+.my-account-title {
+  color: #191d30;
+  font-size: 20px;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  height: 34px;
+  font-weight: bold;
+}
 .details-label {
   color: #191d30;
   font-size: 20px;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   height: 34px;
   font-weight: bold;
+  margin-top: 7%;
 }
