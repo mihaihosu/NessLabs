@@ -42,7 +42,13 @@
               class="invalid-feedback"
               *ngIf="loginForm.get('email').hasError('email')"
             >
-              The email is not in the correct format.
+              Email not found.
+              <a
+                routerLink="/login"
+                href="#"
+                style="cursor: pointer; color: rgb(255, 84, 16)"
+                >Recover your account.</a
+              >
             </mat-error>
           </mat-form-field>
         </div>
@@ -62,11 +68,31 @@
               (input)="hasInputChanged('password')"
               formControlName="password"
             />
+            <mat-icon
+              class="password-icon"
+              (click)="clickShowPassword()"
+              *ngIf="!showPassword"
+              matSuffix
+              svgIcon="hide-password"
+            ></mat-icon>
+            <mat-icon
+              class="password-icon"
+              (click)="clickShowPassword()"
+              *ngIf="showPassword"
+              matSuffix
+              svgIcon="show-password"
+            ></mat-icon>
             <mat-error
               class="invalid-feedback"
               *ngIf="loginForm.get('password').hasError('minlength')"
             >
-              Password should be at least 8 characters long
+              Incorect password.
+              <a
+                routerLink="/login"
+                href="#"
+                style="cursor: pointer; color: rgb(255, 84, 16)"
+                >Recover your account.</a
+              >
             </mat-error>
           </mat-form-field>
         </div>

@@ -6,6 +6,7 @@ import {
   ViewEncapsulation,
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormCheckbox } from 'src/app/model/form-checkbox.model';
 import { FormInputBase } from 'src/app/model/form-input-base.model';
 import { FormTextbox } from 'src/app/model/form-textbox.model';
 
@@ -23,6 +24,7 @@ export class CreateAccountComponent {
         [Validators.required, Validators.pattern(/^[a-zA-Z]{4,30}$/)],
       ],
       password: ['', [Validators.required, Validators.minLength(8)]],
+      checkbox: [false],
     });
   }
 
@@ -49,11 +51,18 @@ export class CreateAccountComponent {
   email: string;
   username: string;
   showPassword = false;
+  isChecked: boolean = false;
 
   showPasswordPath = {
     show: '../assets/icons/show password.svg',
     hide: '../assets/icons/hide password.svg',
   };
+
+  onCheckboxChange(event: Event) {
+    const target = event.target as HTMLInputElement;
+    this.isChecked = target.checked;
+    console.log(this.isChecked);
+  }
 
   toggleShowPassword() {
     this.showPassword = !this.showPassword;
@@ -82,6 +91,12 @@ export class CreateAccountComponent {
       iconSrc: '../assets/icons/locker password.svg',
       type: 'password',
       required: true,
+    }),
+
+    new FormCheckbox({
+      key: 'isAdmin',
+      label: 'Admin Account',
+      required: false,
     }),
   ];
 
@@ -163,5 +178,8 @@ export class CreateAccountComponent {
     }
 
     this.passwordRequirementBulletCheck[index][1] = isRequirementMet;
+  }
+  clickShowPassword() {
+    this.showPassword = !this.showPassword;
   }
 }

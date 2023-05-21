@@ -27,6 +27,7 @@
 
           <mat-form-field>
             <input
+              class="input-x"
               matInput
               formControlName="email"
               type="email"
@@ -49,6 +50,7 @@
           <mat-form-field>
             <input
               matInput
+              class="input-x"
               formControlName="username"
               type="text"
               id="user"
@@ -73,13 +75,40 @@
           <mat-form-field>
             <input
               matInput
+              class="input-x"
               formControlName="password"
               type="{{ showPassword ? 'text' : 'password' }}"
               name="password"
               [(ngModel)]="password"
               (input)="hasInputChanged('password')"
             />
+            <mat-icon
+              class="password-icon"
+              (click)="clickShowPassword()"
+              *ngIf="!showPassword"
+              matSuffix
+              svgIcon="hide-password"
+            ></mat-icon>
+            <mat-icon
+              class="password-icon"
+              (click)="clickShowPassword()"
+              *ngIf="showPassword"
+              matSuffix
+              svgIcon="show-password"
+            ></mat-icon>
           </mat-form-field>
+        </div>
+
+        <div class="admin-account-div">
+          <input
+            formControlName="checkbox"
+            name="checkbox"
+            class="input-check-box"
+            type="checkbox"
+            [checked]="isChecked"
+            (change)="onCheckboxChange($event)"
+          />
+          <p class="admin-account">Admin account.</p>
         </div>
       </div>
       <div class="wrapper">

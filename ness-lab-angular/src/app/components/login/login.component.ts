@@ -1,6 +1,7 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { User } from 'src/app/interfaces/user';
 import { AuthService } from 'src/app/services/auth-services/auth.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { AuthService } from 'src/app/services/auth-services/auth.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
@@ -24,7 +25,8 @@ export class LoginComponent {
   loginForm: FormGroup;
   password: string = '';
   email: string = '';
-  showPassword = false;
+  showPassword: boolean = false;
+  allUsers: User[] = this.authService.users;
 
   showPasswordPath = {
     show: '../assets/icons/show password.svg',
@@ -84,7 +86,19 @@ export class LoginComponent {
     this.buttonEnabled = this.canSetButtonEnabled();
   }
 
-  clickHandler() {}
+  clickShowPassword() {
+    this.showPassword = !this.showPassword;
+  }
 
   submitForm() {}
+
+  correctPassword() {
+    for (const user of this.allUsers) {
+      if (user.password === this.password) {
+        return true;
+      }
+    }
+    return false;
+  }
+  ngOnInit(): void {}
 }

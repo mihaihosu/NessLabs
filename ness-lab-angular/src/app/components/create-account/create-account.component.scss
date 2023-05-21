@@ -209,11 +209,11 @@ mat-label {
   margin-left: 5px;
 }
 
-input {
+.input-x {
   margin-left: 0.5rem;
-  margin-top: 1.8%;
+  margin-top: 1.5%;
   font-size: 75%;
-  width: 93%;
+  width: 85%;
   border: 0px solid rgb(255, 255, 255); /* add border */
   box-shadow: none; /* remove box-shadow */
 }
@@ -225,4 +225,25 @@ input:focus-within {
 }
 .label1 {
   display: flex;
+}
+.password-icon {
+  position: absolute;
+  right: 0.5rem;
+  transform: translateY(-60%);
+}
+.admin-account-div {
+  display: flex;
+  margin-left: 9rem;
+  margin-top: -15px;
+}
+.admin-account {
+  margin-left: 1em;
+  font-size: 10px;
+  margin-top: 0.2em;
+}
+.input-check-box {
+  font-size: 20px;
+}
+input[type="checkbox"] {
+  accent-color: #8102ae;
 }

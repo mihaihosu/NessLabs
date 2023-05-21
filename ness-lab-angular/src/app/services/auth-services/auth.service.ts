@@ -7,7 +7,7 @@ import { User } from 'src/app/interfaces/user';
 export class AuthService {
   constructor() {}
 
-  private users: User[] = [
+  public users: User[] = [
     {
       email: 'user1@gmail.com',
       username: 'user1',
