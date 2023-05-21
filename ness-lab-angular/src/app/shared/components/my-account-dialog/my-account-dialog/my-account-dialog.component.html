@@ -1,4 +1,4 @@
-<form *ngIf="!changePassword">
+<form *ngIf="!changePassword && !saveChanges">
   <div class="my-account-title">My Account</div>
   <hr />
   <div class="details-label">Details</div>
@@ -14,6 +14,7 @@
             class="content__fields__mat-form-field-my-account__div__input-text"
             matInput
             type="text"
+            placeholder="User Name"
           />
         </div>
       </mat-form-field>
@@ -26,7 +27,8 @@
           <input
             class="content__fields__mat-form-field-my-account__div__input-text"
             matInput
-            type="text"
+            type="mail"
+            placeholder="User_name@email.com"
           />
         </div>
       </mat-form-field>
@@ -40,6 +42,7 @@
             class="content__fields__mat-form-field-my-account__div__input-text"
             matInput
             type="password"
+            placeholder="Password"
           />
           <p
             (click)="changePasswordClick()"
@@ -52,10 +55,20 @@
     </div>
 
     <div>
-      <hr />
+      <hr class="content__hr" />
       <div class="content__buttons">
-        <button mat-button class="content__buttons__cancel">CANCEL</button>
-        <button mat-button class="content__buttons__save-changes">
+        <button
+          (click)="closeDialog()"
+          mat-button
+          class="content__buttons__cancel"
+        >
+          CANCEL
+        </button>
+        <button
+          (click)="saveChangesClick()"
+          mat-button
+          class="content__buttons__save-changes"
+        >
           SAVE CHANGES
         </button>
       </div>
@@ -63,7 +76,7 @@
   </div>
 </form>
 
-<form *ngIf="changePassword">
+<form *ngIf="changePassword && !saveChanges">
   <div class="my-account-title">My Account</div>
   <hr />
   <div class="details-label">Change Password</div>
@@ -78,7 +91,8 @@
           <input
             class="content__fields__mat-form-field-my-account__div__input-text"
             matInput
-            type="text"
+            type="password"
+            placeholder="Enter your old password"
           />
         </div>
       </mat-form-field>
@@ -91,8 +105,23 @@
           <input
             class="content__fields__mat-form-field-my-account__div__input-text"
             matInput
-            type="text"
+            type="{{ showPassword1 ? 'text' : 'password' }}"
+            placeholder="Enter a new password"
           />
+          <mat-icon
+            (click)="showPasswordClick1()"
+            *ngIf="!showPassword1"
+            class="content__fields__mat-form-field-my-account__div__icon-password"
+            matSuffix
+            svgIcon="hide-password"
+          ></mat-icon>
+          <mat-icon
+            (click)="showPasswordClick1()"
+            *ngIf="showPassword1"
+            class="content__fields__mat-form-field-my-account__div__icon-password"
+            matSuffix
+            svgIcon="show-password"
+          ></mat-icon>
         </div>
       </mat-form-field>
 
@@ -104,20 +133,47 @@
           <input
             class="content__fields__mat-form-field-my-account__div__input-text"
             matInput
-            type="password"
+            type="{{ showPassword2 ? 'text' : 'password' }}"
+            placeholder="Enter a new password"
           />
+          <mat-icon
+            (click)="showPasswordClick2()"
+            *ngIf="!showPassword2"
+            class="content__fields__mat-form-field-my-account__div__icon-password"
+            matSuffix
+            svgIcon="hide-password"
+          ></mat-icon>
+          <mat-icon
+            (click)="showPasswordClick2()"
+            *ngIf="showPassword2"
+            class="content__fields__mat-form-field-my-account__div__icon-password"
+            matSuffix
+            svgIcon="show-password"
+          ></mat-icon>
         </div>
       </mat-form-field>
     </div>
 
     <div>
-      <hr />
+      <hr class="content__hr2" />
       <div class="content__buttons">
-        <button mat-button class="content__buttons__cancel">CANCEL</button>
-        <button mat-button class="content__buttons__save-changes">
+        <button
+          (click)="closeDialog()"
+          mat-button
+          class="content__buttons__cancel"
+        >
+          CANCEL
+        </button>
+        <button
+          (click)="saveChangesClick()"
+          mat-button
+          class="content__buttons__save-changes"
+        >
           SAVE CHANGES
         </button>
       </div>
     </div>
   </div>
 </form>
+
+<app-changes-saved-dialog *ngIf="saveChanges"></app-changes-saved-dialog>

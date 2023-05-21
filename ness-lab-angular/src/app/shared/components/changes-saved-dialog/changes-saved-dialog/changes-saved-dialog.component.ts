@@ -9,11 +9,16 @@ import { MatDialogRef } from '@angular/material/dialog';
 export class ChangesSavedDialogComponent implements OnInit {
   constructor(private dialogRef: MatDialogRef<ChangesSavedDialogComponent>) {}
 
+  saveChanges: boolean = false;
   @Input() titluModal: string = 'Changes Saved';
   @Input() loginMessage: string = 'Your changes were saved with success!';
 
   closeDialog(): void {
     this.dialogRef.close();
+  }
+
+  saveChangesClick() {
+    this.saveChanges = true;
   }
   ngOnInit(): void {}
 }

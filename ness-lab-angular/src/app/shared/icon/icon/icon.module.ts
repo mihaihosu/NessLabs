@@ -1,5 +1,3 @@
-// icon.module
-// Third Example - icon module
 import { NgModule } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { MaterialModule } from '../../material.module';
@@ -22,6 +20,10 @@ export class IconModule {
       .addSvgIcon('heart', this.setPath(`${this.path}/heart.svg`))
       .addSvgIcon('edit', this.setPath(`${this.path}/edit.svg`))
       .addSvgIcon('trash', this.setPath(`${this.path}/trash.svg`))
+      .addSvgIcon('my-events', this.setPath(`${this.path}/my events.svg`))
+      .addSvgIcon('chevron-down', this.setPath(`${this.path}/chevron-down.svg`))
+      .addSvgIcon('info-icon', this.setPath(`${this.path}/info-icon.svg`))
+      .addSvgIcon('mail-icon', this.setPath(`${this.path}/mail.svg`))
       .addSvgIcon(
         'check-circle-2',
         this.setPath(`${this.path}/check-circle-2.svg`)
@@ -32,13 +34,18 @@ export class IconModule {
         'calendar-icon',
         this.setPath(`${this.path}/calendar-icon.svg`)
       )
-      .addSvgIcon('my-events', this.setPath(`${this.path}/my events.svg`))
-      .addSvgIcon('chevron-down', this.setPath(`${this.path}/chevron-down.svg`))
-      .addSvgIcon('info-icon', this.setPath(`${this.path}/info-icon.svg`))
-      .addSvgIcon('mail-icon', this.setPath(`${this.path}/mail.svg`))
+
       .addSvgIcon(
         'password-icon',
         this.setPath(`${this.path}/locker password.svg`)
+      )
+      .addSvgIcon(
+        'show-password',
+        this.setPath(`${this.path}/show password.svg`)
+      )
+      .addSvgIcon(
+        'hide-password',
+        this.setPath(`${this.path}/hide password.svg`)
       );
   }
 
