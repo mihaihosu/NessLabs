@@ -65,11 +65,6 @@ public class EventServiceImpl implements EventService{
         eventFields(event, eventDto);
         event.setAdminEmail(adminEmail); // Set the admin email
 
-        // Set the duration based on the start and end date times
-        LocalDateTime startDateTime = event.getStartDateTime();
-        LocalDateTime endDateTime = event.getEndDateTime();
-        Duration duration = Duration.between(startDateTime, endDateTime);
-
         // Save the event and return the created event
         return eventRepository.save(event);
     }
