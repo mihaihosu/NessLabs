@@ -51,9 +51,9 @@ public class AuthServiceImpl implements AuthService{
         public String createToken(AuthResponseDto loginResponseDto) {
             User user = getUserByEmail(loginResponseDto.getEmail());
 
-            if (!user.is_confirmed()) {
+            /*if (!user.is_confirmed()) {
                 return null;
-            }
+            }*/
 
             Boolean isAdmin = loginResponseDto.getIsAdmin();
             String jwt = jwtTokenService.generateToken(loginResponseDto.getEmail(), isAdmin);
