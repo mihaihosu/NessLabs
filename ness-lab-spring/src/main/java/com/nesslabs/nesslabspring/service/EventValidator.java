@@ -5,7 +5,7 @@ import com.nesslabs.nesslabspring.exception.InvalidInputException;
 import com.nesslabs.nesslabspring.exception.UnauthorizedException;
 
 public interface EventValidator {
-     void validate(EventDto eventDt, Long userId) throws InvalidInputException;
+     void validate(EventDto eventDt) throws InvalidInputException;
 
      void validateUserAuthorization(Long eventId, String token) throws UnauthorizedException;
 }

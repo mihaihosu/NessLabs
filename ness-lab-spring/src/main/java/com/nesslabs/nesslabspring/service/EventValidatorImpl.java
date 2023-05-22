@@ -22,16 +22,15 @@ import java.util.regex.Pattern;
 public class EventValidatorImpl implements EventValidator{
 
 
-    @Autowired
-    private JwtService jwtService;
-    @Autowired
-    private EventRepository eventRepository;
+    private final JwtService jwtService;
+
+    private final EventRepository eventRepository;
 
 
     private static final String URL_PATTERN = "^(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})([/\\w .-]*)*/?$";
 
     @Override
-    public void validate(EventDto eventDto, Long userId) throws InvalidInputException {
+    public void validate(EventDto eventDto) throws InvalidInputException {
         validateRequiredFields(eventDto);
         validateDates(eventDto);
         validateLinks(eventDto);

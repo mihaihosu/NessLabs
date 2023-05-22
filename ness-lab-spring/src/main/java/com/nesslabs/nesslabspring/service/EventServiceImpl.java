@@ -30,7 +30,7 @@ public class EventServiceImpl implements EventService{
         eventValidator.validateUserAuthorization(eventId, token);
 
         // Other validations
-        eventValidator.validate(eventDto, eventId);
+        eventValidator.validate(eventDto);
 
         // Get the existing event from the repository
         Event existingEvent = eventRepository.findById(eventId)
