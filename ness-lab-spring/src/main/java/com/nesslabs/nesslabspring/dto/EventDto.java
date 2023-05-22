@@ -1,5 +1,6 @@
 package com.nesslabs.nesslabspring.dto;
 
+import com.nesslabs.nesslabspring.model.EventStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -42,5 +43,7 @@ public class EventDto {
     private boolean isKidFriendly;
 
     private String tagName;
+
+    private EventStatus eventStatus;
 
 }

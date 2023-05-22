@@ -42,7 +42,9 @@ public class Event {
 
     private boolean isKidFriendly;
 
-    private Long adminId;
+    private String adminEmail;
 
     private String tagName;
+
+    private EventStatus eventStatus;
 }
