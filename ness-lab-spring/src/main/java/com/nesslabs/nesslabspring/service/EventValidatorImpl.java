@@ -31,7 +31,7 @@ public class EventValidatorImpl implements EventValidator{
     private static final String URL_PATTERN = "^(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})([/\\w .-]*)*/?$";
 
     @Override
-    public void validate(EventDto eventDto, String token, Long userId) throws InvalidInputException {
+    public void validate(EventDto eventDto, Long userId) throws InvalidInputException {
         validateRequiredFields(eventDto);
         validateDates(eventDto);
         validateLinks(eventDto);
@@ -69,10 +69,10 @@ public class EventValidatorImpl implements EventValidator{
     }
 
 
-    private void validateUserAuthorization(Long eventId, String token) throws UnauthorizedException{
-        Long userId = jwtService.getUserIdFromToken(token);
+    public void validateUserAuthorization(Long eventId, String token) throws UnauthorizedException {
+        String username = jwtService.extractUsername(token);
         Event event = eventRepository.findEventById(eventId);
-        if (!event.getAdminId().equals(userId)) {
+        if (!event.getAdminEmail().equals(username)) {
             throw new UnauthorizedException("User is not authorized to edit this event.");
         }
     }
