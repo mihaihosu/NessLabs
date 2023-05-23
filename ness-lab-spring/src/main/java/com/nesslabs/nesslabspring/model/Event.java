@@ -1,6 +1,7 @@
 package com.nesslabs.nesslabspring.model;
 
 
+import com.nesslabs.nesslabspring.enums.EventStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

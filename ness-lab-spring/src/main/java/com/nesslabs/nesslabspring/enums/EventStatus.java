@@ -1,4 +1,4 @@
-package com.nesslabs.nesslabspring.model;
+package com.nesslabs.nesslabspring.enums;
 
 public enum EventStatus {
     UNAVAILABLE,
