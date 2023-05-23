@@ -1,6 +1,6 @@
 package com.nesslabs.nesslabspring.controller;
 
-import com.nesslabs.nesslabspring.dto.RegistrationRequest;
+import com.nesslabs.nesslabspring.dto.RegistrationDto;
 import com.nesslabs.nesslabspring.exception.InvalidCredentialException;
 import com.nesslabs.nesslabspring.service.RegistrationService;
 import lombok.AllArgsConstructor;
@@ -16,7 +16,7 @@ public class RegistrationController {
     private final RegistrationService registrationService;
 
     @PostMapping("/auth/registration")
-    public ResponseEntity<String> register(@RequestBody RegistrationRequest request) {
+    public ResponseEntity<String> register(@RequestBody RegistrationDto request) {
         try {
             registrationService.register(request);
         }catch (InvalidCredentialException e) {

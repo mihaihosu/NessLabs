@@ -1,7 +1,7 @@
 package com.nesslabs.nesslabspring.service;
 
 
-import com.nesslabs.nesslabspring.dto.RegistrationRequest;
+import com.nesslabs.nesslabspring.dto.RegistrationDto;
 import com.nesslabs.nesslabspring.exception.InvalidCredentialException;
 import com.nesslabs.nesslabspring.model.User;
 import org.junit.jupiter.api.BeforeEach;
@@ -30,7 +30,7 @@ class RegistrationServiceTest {
 
     @Test
     void testRegister_WithValidInput_ShouldReturnNewUser() throws InvalidCredentialException {
-        RegistrationRequest request = RegistrationRequest
+        RegistrationDto request = RegistrationDto
                 .builder()
                 .email("exemple@yahoo.com")
                 .password("Password123")
@@ -52,7 +52,7 @@ class RegistrationServiceTest {
 
     @Test
     void testRegister_WithInvalidEmail_ShouldThrowException(){
-        RegistrationRequest request = RegistrationRequest
+        RegistrationDto request = RegistrationDto
                 .builder()
                 .email("exemple")
                 .password("Password123")
@@ -67,7 +67,7 @@ class RegistrationServiceTest {
 
     @Test
     void testRegister_WithInvalidPassword_ShouldThrowException() throws InvalidCredentialException {
-        RegistrationRequest request = RegistrationRequest
+        RegistrationDto request = RegistrationDto
                 .builder()
                 .email("exemple@yahoo.com")
                 .password("Password")
@@ -84,7 +84,7 @@ class RegistrationServiceTest {
 
     @Test
     void testRegister_WithEmptyUsername_ShouldThrowException() throws InvalidCredentialException {
-        RegistrationRequest request = RegistrationRequest
+        RegistrationDto request = RegistrationDto
                 .builder()
                 .email("exemple@yahoo.com")
                 .password("Password123")

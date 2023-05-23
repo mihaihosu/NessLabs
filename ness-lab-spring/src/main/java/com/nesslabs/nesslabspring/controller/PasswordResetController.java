@@ -1,6 +1,6 @@
 package com.nesslabs.nesslabspring.controller;
 
-import com.nesslabs.nesslabspring.dto.PasswordResetRequest;
+import com.nesslabs.nesslabspring.dto.PasswordResetDto;
 import com.nesslabs.nesslabspring.exception.InvalidCredentialException;
 import com.nesslabs.nesslabspring.exception.InvalidTokenException;
 import com.nesslabs.nesslabspring.service.PasswordResetService;
@@ -38,7 +38,7 @@ public class PasswordResetController {
     }
 
     @PostMapping("/pwdres/reset")
-    public ResponseEntity<String> resetPassword(@RequestHeader String token, @RequestBody PasswordResetRequest request) {
+    public ResponseEntity<String> resetPassword(@RequestHeader String token, @RequestBody PasswordResetDto request) {
         try {
             passwordResetService.resetPassword(token, request);
         } catch (InvalidTokenException | InvalidCredentialException e) {
