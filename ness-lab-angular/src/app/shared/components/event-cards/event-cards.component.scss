@@ -1,3 +1,5 @@
+@import "../../../../assets/custom-theme.scss";
+
 .scroll-container {
   height: 800px;
   overflow: auto;
@@ -43,7 +45,7 @@
       }
       &__text {
         margin-left: 15px;
-        line-height: 0.4;
+        line-height: 0.7;
 
         &__p1 {
           font-size: 11px;

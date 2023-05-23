@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { DialogService } from 'src/app/services/dialog-service/dialog.service';
 import { SearchService } from 'src/app/services/search-service/search.service';
 
@@ -12,7 +13,8 @@ export class NavbarComponent implements OnInit {
   searchCards: string = '';
   constructor(
     private searchCardsService: SearchService,
-    private dialogService: DialogService
+    private dialogService: DialogService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {}
@@ -33,5 +35,8 @@ export class NavbarComponent implements OnInit {
   }
   openModal() {
     this.dialogService.openMyAccountDialog();
+  }
+  logout() {
+    this.router.navigate(['login']);
   }
 }

@@ -1,10 +1,4 @@
-import {
-  Component,
-  Input,
-  ViewChild,
-  ElementRef,
-  ViewEncapsulation,
-} from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormCheckbox } from 'src/app/model/form-checkbox.model';
 import { FormInputBase } from 'src/app/model/form-input-base.model';
@@ -14,6 +8,7 @@ import { FormTextbox } from 'src/app/model/form-textbox.model';
   selector: 'app-create-account',
   templateUrl: './create-account.component.html',
   styleUrls: ['./create-account.component.scss'],
+  encapsulation: ViewEncapsulation.Emulated,
 })
 export class CreateAccountComponent {
   constructor(private fb: FormBuilder) {
@@ -51,7 +46,7 @@ export class CreateAccountComponent {
   email: string;
   username: string;
   showPassword = false;
-  isChecked: boolean = false;
+  isAdmin: boolean = false;
 
   showPasswordPath = {
     show: '../assets/icons/show password.svg',
@@ -60,8 +55,8 @@ export class CreateAccountComponent {
 
   onCheckboxChange(event: Event) {
     const target = event.target as HTMLInputElement;
-    this.isChecked = target.checked;
-    console.log(this.isChecked);
+    this.isAdmin = target.checked;
+    console.log(this.isAdmin);
   }
 
   toggleShowPassword() {

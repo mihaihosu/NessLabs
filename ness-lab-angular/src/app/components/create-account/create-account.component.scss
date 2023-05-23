@@ -9,7 +9,7 @@ ul.requirement-list li {
   align-items: center;
   margin-bottom: 5px;
   transform: scale(0.9);
-  font-size: 52%;
+  font-size: 80%;
 }
 
 ul.requirement-list li img {
@@ -19,7 +19,7 @@ ul.requirement-list li img {
 }
 
 .password-requirement-title {
-  font-size: 55%;
+  font-size: 75%;
   font-family: Arial, Helvetica, sans-serif;
   font-weight: bold;
   padding-left: 10%;
@@ -44,8 +44,8 @@ ul.requirement-list li img {
 }
 
 .login {
-  width: 400px;
-  height: 735px;
+  width: 420px;
+  height: 810px;
   padding: 55px;
   padding-top: 0.5%;
   padding-bottom: 0.3%;
@@ -56,7 +56,7 @@ ul.requirement-list li img {
 }
 
 .login form {
-  font-size: 20px;
+  font-size: 15px;
 }
 
 .needs-validation {
@@ -71,12 +71,11 @@ ul.requirement-list li img {
 
 .img-ness {
   width: 45%;
-  margin-top: 10%;
   margin-left: 25%;
 }
 .text {
   display: flex;
-  font-size: 75%;
+  font-size: 120%;
   top: 50%;
   margin-right: 5%;
   margin-bottom: 10%;
@@ -86,19 +85,10 @@ ul.requirement-list li img {
   justify-content: center;
   transform: scale(0.8);
 }
-
-.form-control {
-  width: 80%;
-  margin-left: 9%;
-  height: 2rem;
-  border-radius: 8px;
-  transform: scale(0.9);
-  text-indent: 4%;
-}
-.invalid-feedback {
-  margin-top: 10px;
-  font-size: 60%;
+.mat-error {
+  font-size: 120%;
   color: rgb(255, 84, 16);
+  margin-left: 4px;
 }
 
 .new-here {
@@ -110,30 +100,6 @@ ul.requirement-list li img {
   margin-top: 3%;
   transform: scale(0.9);
   margin-bottom: 3%;
-}
-.form-label {
-  font-weight: bold;
-  font-size: 50%;
-  transform: scale(0.9);
-}
-.psw-svg {
-  margin-left: 14%;
-  position: relative;
-  top: 3px;
-  transform: scale(0.9);
-}
-.svg-user {
-  margin-left: 14%;
-  position: relative;
-  transform: scale(0.9);
-  top: 3px;
-}
-
-.svg-mail {
-  margin-left: 14%;
-  position: relative;
-  top: 3px;
-  transform: scale(0.9);
 }
 button {
   color: white;
@@ -167,21 +133,13 @@ button:not(:disabled):hover {
   color: white;
   cursor: pointer;
 }
-
-.material-icons {
-  position: relative;
-  right: 40px;
-  transform: scale(0.9);
-  top: 5px;
-}
-
 .password-requirements-text {
   font-size: 120%;
 }
 
 // NEW ADDED
 
-mat-form-field {
+.input {
   border: 1px solid rgb(0, 0, 0); /* add border */
   border-radius: 5px; /* round the corners */
   height: 2rem;
@@ -192,44 +150,17 @@ mat-form-field {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-left: 30px;
 }
-
-mat-label {
-  font-size: 10px;
-  padding-left: 5%;
-}
-
-.email-wrapper {
-  margin-bottom: 1.5rem;
-}
-
 .input-name {
   margin-bottom: 0.5rem;
   margin-top: 6px;
   margin-left: 5px;
 }
-
-.input-x {
-  margin-left: 0.5rem;
-  margin-top: 1.5%;
-  font-size: 75%;
-  width: 85%;
-  border: 0px solid rgb(255, 255, 255); /* add border */
-  box-shadow: none; /* remove box-shadow */
-}
-
-input:focus-within {
-  outline: none;
-  border: none;
-  box-shadow: none; /* remove box-shadow */
-}
-.label1 {
-  display: flex;
-}
 .password-icon {
   position: absolute;
-  right: 0.5rem;
-  transform: translateY(-60%);
+  right: 3rem;
+  transform: translateY(40%);
 }
 .admin-account-div {
   display: flex;
@@ -239,11 +170,41 @@ input:focus-within {
 .admin-account {
   margin-left: 1em;
   font-size: 10px;
-  margin-top: 0.2em;
+  margin-top: 1.2em;
 }
 .input-check-box {
   font-size: 20px;
 }
 input[type="checkbox"] {
   accent-color: #8102ae;
+}
+::ng-deep .mat-form-field-underline {
+  display: none;
+}
+::ng-deep .mat-form-field {
+  width: 20rem;
+  height: 6rem;
+}
+.div-label {
+  display: flex;
+  flex-direction: row;
+}
+.label {
+  font-size: 14px;
+  margin-top: 5px;
+  margin-left: 0.5em;
+  font-weight: bold;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+.input-name {
+  border: 1px solid rgb(0, 0, 0); /* add border */
+  border-radius: 5px; /* round the corners */
+  height: 2rem;
+  width: 17rem;
+  margin-top: 5px;
+}
+::ng-deep .mat-form-field-appearance-legacy {
+  .mat-form-field-wrapper {
+    padding-bottom: 5px;
+  }
 }

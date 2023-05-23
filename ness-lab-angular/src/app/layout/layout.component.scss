@@ -1,3 +1,5 @@
+@import "../../assets/custom-theme.scss";
+
 .container {
   display: flex;
   flex-wrap: wrap;
@@ -151,12 +153,12 @@
   margin-top: -2px;
   margin-right: 10px;
 }
-.mat-form-field-data {
-  border: 2px solid #000000;
-  border-radius: 8px;
-  height: 40px;
-  width: 400px;
-}
+// .mat-form-field-data {
+//   border: 2px solid #000000;
+//   border-radius: 8px;
+//   height: 40px;
+//   width: 400px;
+// }
 input[type="checkbox"] {
   accent-color: #8102ae;
 }
@@ -178,19 +180,20 @@ input[type="checkbox"] {
   height: 433px !important;
 }
 
-.mat-form-field {
-  border: 1px solid black;
-  width: 377px;
-  height: 40px;
-  border-radius: 10px;
+// .mat-form-field {
+//   &.mat-form-field-flex {
+//     background-color: #ffd248;
 
-  &.mat-form-field-flex {
-    background-color: #ffd248;
-  }
-}
-.matInput {
+//     border-radius: 10px;
+//   }
+// }
+.matformfield {
   color: #000;
   font-weight: bold;
+  border-radius: 10px;
+  width: 386px;
+  height: 46px;
+  border: 2px solid #000000;
 }
 
 ::ng-deep .mat-form-field-underline {
@@ -210,8 +213,17 @@ input[type="checkbox"] {
   font-size: 25px;
   margin-top: 3px;
   margin-left: 5px;
+  margin-right: 20px;
 }
 
 ::ng-deep .mat-calendar-body-label {
   display: none;
+}
+
+::ng-deep .mat-form-field-flex {
+  margin-top: 0px;
+}
+
+::ng-deep .mat-form-field-infix {
+  width: 380px;
 }

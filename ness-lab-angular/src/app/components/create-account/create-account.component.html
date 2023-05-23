@@ -19,15 +19,14 @@
       <p class="text">Create Account</p>
 
       <div class="Forms">
-        <div class="email-wrapper">
-          <div class="label1">
-            <mat-icon svgIcon="mail-icon"></mat-icon>
-            <h6 class="input-name">Email</h6>
-          </div>
-
+        <div>
           <mat-form-field>
+            <div class="div-label">
+              <mat-icon svgIcon="mail-icon"></mat-icon>
+              <label class="label">Email</label>
+            </div>
             <input
-              class="input-x"
+              class="input-name"
               matInput
               formControlName="email"
               type="email"
@@ -36,21 +35,20 @@
               required
               (input)="hasInputChanged('email')"
             />
-            <mat-error class="invalid-feedback">
+            <mat-error class="mat-error">
               The email is not in the correct format.
             </mat-error>
           </mat-form-field>
         </div>
-        <div class="email-wrapper">
-          <div class="label1">
-            <mat-icon svgIcon="user"></mat-icon>
-            <h6 class="input-name">Username</h6>
-          </div>
-
+        <div>
           <mat-form-field>
+            <div class="div-label">
+              <mat-icon svgIcon="user"></mat-icon>
+              <label class="label">Username</label>
+            </div>
             <input
               matInput
-              class="input-x"
+              class="input-name"
               formControlName="username"
               type="text"
               id="user"
@@ -59,23 +57,22 @@
               (input)="hasInputChanged('username')"
             />
             <mat-error
-              class="invalid-feedback"
+              class="mat-error"
               *ngIf="createAccountForm.get('username').hasError('pattern')"
             >
               The username is not in the correct format.
             </mat-error>
           </mat-form-field>
         </div>
-        <div class="email-wrapper">
-          <div class="label1">
-            <mat-icon svgIcon="password-icon"></mat-icon>
-            <h6 class="input-name">Password</h6>
-          </div>
-
+        <div>
           <mat-form-field>
+            <div class="div-label">
+              <mat-icon svgIcon="password-icon"></mat-icon>
+              <label class="label">Password</label>
+            </div>
             <input
               matInput
-              class="input-x"
+              class="input-name"
               formControlName="password"
               type="{{ showPassword ? 'text' : 'password' }}"
               name="password"
@@ -105,7 +102,7 @@
             name="checkbox"
             class="input-check-box"
             type="checkbox"
-            [checked]="isChecked"
+            [checked]="isAdmin"
             (change)="onCheckboxChange($event)"
           />
           <p class="admin-account">Admin account.</p>

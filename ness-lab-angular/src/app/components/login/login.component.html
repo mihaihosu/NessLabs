@@ -22,14 +22,17 @@
       <p class="text">Login</p>
 
       <div class="Forms">
-        <div class="email-wrapper">
-          <div class="label1">
-            <mat-icon svgIcon="mail-icon"></mat-icon>
-            <h6 class="input-name">Email</h6>
-          </div>
-
+        <div>
           <mat-form-field>
+            <div class="div-label">
+              <mat-icon svgIcon="mail-icon"></mat-icon>
+              <label class="label">Email</label>
+            </div>
             <input
+              [ngClass]="{
+                'error-input': loginForm.get('email').hasError('email')
+              }"
+              class="input-name"
               matInput
               formControlName="email"
               type="email"
@@ -39,7 +42,7 @@
               (input)="hasInputChanged('email')"
             />
             <mat-error
-              class="invalid-feedback"
+              class="mat-error"
               *ngIf="loginForm.get('email').hasError('email')"
             >
               Email not found.
@@ -53,14 +56,17 @@
           </mat-form-field>
         </div>
         <div>
-          <div class="label1">
-            <mat-icon svgIcon="password-icon"></mat-icon>
-            <h6 class="input-name">Password</h6>
-          </div>
-
           <mat-form-field>
+            <div class="div-label">
+              <mat-icon svgIcon="password-icon"></mat-icon>
+              <label class="label">Password</label>
+            </div>
             <input
               matInput
+              [ngClass]="{
+                'error-input': loginForm.get('password').hasError('minlength')
+              }"
+              class="input-name"
               type="{{ showPassword ? 'text' : 'password' }}"
               name="password"
               [(ngModel)]="password"
@@ -83,7 +89,7 @@
               svgIcon="show-password"
             ></mat-icon>
             <mat-error
-              class="invalid-feedback"
+              class="mat-error"
               *ngIf="loginForm.get('password').hasError('minlength')"
             >
               Incorect password.
@@ -100,7 +106,6 @@
       <button
         mat-raised-button
         type="submit"
-        class="btn-login btn btn-primary btn-rounded"
         [disabled]="!buttonEnabled"
         (click)="onSubmit()"
       >

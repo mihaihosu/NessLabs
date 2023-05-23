@@ -38,5 +38,7 @@
   <div class="button1" *ngIf="clickprofile && isLogin" (click)="openModal()">
     My Account
   </div>
-  <div class="button2" *ngIf="clickprofile && isLogin">Logout</div>
+  <div class="button2" *ngIf="clickprofile && isLogin" (click)="logout()">
+    Logout
+  </div>
 </div>
