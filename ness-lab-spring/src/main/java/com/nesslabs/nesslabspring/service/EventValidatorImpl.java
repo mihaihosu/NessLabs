@@ -38,13 +38,13 @@ public class EventValidatorImpl implements EventValidator{
     }
 
     private void validateRequiredFields(EventDto eventDto) throws InvalidInputException {
-        if (eventDto.getPhoto().isEmpty()) {
+        if (eventDto.getPhoto() == null || eventDto.getPhoto().isEmpty()) {
             throw new InvalidInputException("Photo is required.");
         }
-        if (eventDto.getTitle().isEmpty()) {
+        if (eventDto.getTitle() == null || eventDto.getTitle().isEmpty()) {
             throw new InvalidInputException("Title field is required.");
         }
-        if (eventDto.getDescription().isEmpty()) {
+        if (eventDto.getDescription() == null || eventDto.getDescription().isEmpty()) {
             throw new InvalidInputException("Description field is required.");
         }
         if (eventDto.getStartDate() == null || eventDto.getEndDate() == null || eventDto.getStartTime() == null) {
