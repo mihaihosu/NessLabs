@@ -6,26 +6,15 @@ import com.nesslabs.nesslabspring.exception.UnauthorizedException;
 import com.nesslabs.nesslabspring.model.Event;
 import com.nesslabs.nesslabspring.repository.EventRepository;
 import com.nesslabs.nesslabspring.security.JwtService;
-import io.micrometer.common.util.StringUtils;
-import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.time.Duration;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.regex.Pattern;
 
 @Service
 @RequiredArgsConstructor
 public class EventValidatorImpl implements EventValidator{
 
-
     private final JwtService jwtService;
-
     private final EventRepository eventRepository;
-
 
     private static final String URL_PATTERN = "^(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})([/\\w .-]*)*/?$";
 
@@ -34,7 +23,7 @@ public class EventValidatorImpl implements EventValidator{
         validateRequiredFields(eventDto);
         validateDates(eventDto);
         validateLinks(eventDto);
-        validateDuration(eventDto);
+
     }
 
     private void validateRequiredFields(EventDto eventDto) throws InvalidInputException {
