@@ -20,6 +20,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
+import java.time.Duration;
+import java.time.LocalDateTime;
+
 @Service
 @RequiredArgsConstructor
 public class EventServiceImpl implements EventService{
@@ -97,33 +100,29 @@ public class EventServiceImpl implements EventService{
 
         // Other validations
         eventValidator.validate(eventDto);
+        Event event = new Event();
+        setEventFields(event,eventDto);
 
-        // Get the existing event from the repository
-        Event existingEvent = eventRepository.findById(eventId)
-                .orElseThrow(() -> new EntityNotFoundException("Event not found with ID: " + eventId));
+        LocalDateTime startDateTime = event.getStartDateTime();
+        LocalDateTime endDateTime = event.getEndDateTime();
+        Duration duration = Duration.between(startDateTime,endDateTime);
 
-        eventFields(existingEvent,eventDto);
-
-        // Save the updated event
-        return eventRepository.saveAndFlush(existingEvent);
+        //eventRepository.save(event);
     }
 
-
-    private void eventFields(Event event, EventDto eventDto){
+    private void setEventFields(Event event, EventDto eventDto) {
         event.setTitle(eventDto.getTitle());
         event.setDescription(eventDto.getDescription());
         event.setStartDateTime(LocalDateTime.of(eventDto.getStartDate(), eventDto.getStartTime()));
         event.setEndDateTime(LocalDateTime.of(eventDto.getEndDate(), eventDto.getStartTime().plus(eventDto.getDuration())));
         event.setAddress(eventDto.getAddress());
-        event.setEventLink(eventDto.getEventLink());
-        event.setTicketLink(eventDto.getTicketLink());
+        event.setEventLink(event.getEventLink());
+        event.setTicketLink(event.getTicketLink());
         event.setPhoto(eventDto.getPhoto());
         event.setFree(eventDto.isFree());
         event.setPetFriendly(eventDto.isPetFriendly());
         event.setKidFriendly(eventDto.isKidFriendly());
         event.setTagName(eventDto.getTagName());
-        event.setEventStatus(eventDto.getEventStatus());
+        //event.setEventStatus(eventDto.getEventStatus());
     }
-
-
 }
