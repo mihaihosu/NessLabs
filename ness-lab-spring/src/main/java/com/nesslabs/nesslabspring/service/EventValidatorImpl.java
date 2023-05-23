@@ -23,15 +23,7 @@ public class EventValidatorImpl implements EventValidator{
         validateRequiredFields(eventDto);
         validateDates(eventDto);
         validateLinks(eventDto);
-    }
-
-    @Override
-    public void validateEventOwner(Long eventId, String token) throws UnauthorizedException {
-        String username = jwtService.extractUsername(token);
-        Event event = eventRepository.findEventById(eventId);
-        if (!event.getAdminEmail().equals(username)) {
-            throw new UnauthorizedException("User is not authorized to edit this event.");
-        }
+        validateDuration(eventDto);
     }
 
     private void validateRequiredFields(EventDto eventDto) throws InvalidInputException {
@@ -57,6 +49,7 @@ public class EventValidatorImpl implements EventValidator{
             throw new InvalidInputException("End date cannot be before start date.");
         }
     }
+
 
     private void validateLinks(EventDto eventDto) throws InvalidInputException {
         if (!eventDto.getEventLink().matches(URL_PATTERN) && !eventDto.getEventLink().isEmpty()) {

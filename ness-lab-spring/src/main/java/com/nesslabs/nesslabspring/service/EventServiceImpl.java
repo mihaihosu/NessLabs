@@ -12,12 +12,6 @@ import com.nesslabs.nesslabspring.repository.EventRepository;
 import com.nesslabs.nesslabspring.security.JwtService;
 import com.nesslabs.nesslabspring.utils.QueryParser;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.jpa.domain.Specification;
-import com.nesslabs.nesslabspring.exception.InvalidInputException;
-import jakarta.persistence.EntityNotFoundException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -26,6 +20,9 @@ import java.util.stream.Collectors;
 
 import java.time.Duration;
 
+import java.time.LocalDateTime;
+
+import java.time.Duration;
 import java.time.LocalDateTime;
 
 @Service
@@ -112,25 +109,10 @@ public class EventServiceImpl implements EventService{
         LocalDateTime endDateTime = event.getEndDateTime();
         Duration duration = Duration.between(startDateTime,endDateTime);
 
-        //eventRepository.save(event);
-    public void createEvent(EventDto eventDto, String token) throws InvalidInputException, UnauthorizedException{
+        eventFields(existingEvent,eventDto);
 
-        String adminEmail = jwtService.extractUsername(token);
-        System.out.println(eventDto);
-        if(jwtService.extractIsAdmin(token)) {
-            try{
-                jwtService.getAuthentication(token);
-                eventValidator.validate(eventDto);
-            }catch (InvalidInputException e) {
-                throw new InvalidInputException("Invalid input");
-            }catch (JwtAuthenticationException e) {
-                throw new JwtAuthenticationException("Invalid token");
-            }
-            Event event = new Event();
-            setEventFields(event,eventDto);
-            event.setAdminEmail(adminEmail);
-            eventRepository.save(event);
-        } else throw new UnauthorizedException("Unauthorized");
+        // Save the updated event
+        return eventRepository.saveAndFlush(existingEvent);
     }
 
     private void setEventFields(Event event, EventDto eventDto) {

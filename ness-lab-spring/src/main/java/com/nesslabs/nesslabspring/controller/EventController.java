@@ -74,7 +74,6 @@ public class EventController {
                     .badRequest()
                     .body(e.getMessage());
         }
-
     }
 
 
