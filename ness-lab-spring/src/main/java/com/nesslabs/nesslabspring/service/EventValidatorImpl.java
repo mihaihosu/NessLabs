@@ -34,17 +34,17 @@ public class EventValidatorImpl implements EventValidator{
         validateRequiredFields(eventDto);
         validateDates(eventDto);
         validateLinks(eventDto);
-
+        validateDuration(eventDto);
     }
 
     private void validateRequiredFields(EventDto eventDto) throws InvalidInputException {
-        if (eventDto.getPhoto() == null || eventDto.getPhoto().isEmpty()) {
+        if (eventDto.getPhoto().isEmpty()) {
             throw new InvalidInputException("Photo is required.");
         }
-        if (eventDto.getTitle() == null || eventDto.getTitle().isEmpty()) {
+        if (eventDto.getTitle().isEmpty()) {
             throw new InvalidInputException("Title field is required.");
         }
-        if (eventDto.getDescription() == null || eventDto.getDescription().isEmpty()) {
+        if (eventDto.getDescription().isEmpty()) {
             throw new InvalidInputException("Description field is required.");
         }
         if (eventDto.getStartDate() == null || eventDto.getEndDate() == null || eventDto.getStartTime() == null) {
@@ -57,7 +57,6 @@ public class EventValidatorImpl implements EventValidator{
             throw new InvalidInputException("End date cannot be before start date.");
         }
     }
-
 
     private void validateLinks(EventDto eventDto) throws InvalidInputException {
         if (!eventDto.getEventLink().matches(URL_PATTERN) && !eventDto.getEventLink().isEmpty()) {

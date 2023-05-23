@@ -1,6 +1,6 @@
 package com.nesslabs.nesslabspring.service;
 
-import com.nesslabs.nesslabspring.dto.RegistrationRequest;
+import com.nesslabs.nesslabspring.dto.RegistrationDto;
 import com.nesslabs.nesslabspring.exception.InvalidCredentialException;
 import com.nesslabs.nesslabspring.model.User;
 import lombok.AllArgsConstructor;
@@ -13,7 +13,7 @@ public class RegistrationServiceImpl implements RegistrationService{
     private PasswordValidatorService passwordValidatorService;
     private final UserServiceImpl userService;
 
-    public User register(RegistrationRequest request) throws InvalidCredentialException {
+    public User register(RegistrationDto request) throws InvalidCredentialException {
         boolean isValidEmail = emailValidatorService.test(request.getEmail());
         if (!isValidEmail) {
             throw new InvalidCredentialException("email not valid");

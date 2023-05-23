@@ -10,6 +10,9 @@ import com.nesslabs.nesslabspring.service.EventService;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
+import com.nesslabs.nesslabspring.dto.EventDto;
+import com.nesslabs.nesslabspring.model.Event;
+import com.nesslabs.nesslabspring.service.EventService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -40,4 +43,13 @@ public class EventController {
         }
     }
 
+    @PostMapping("/create")
+    public ResponseEntity<Event> createEvent(@RequestBody EventDto eventDto, @RequestHeader("Authorization") String token) {
+        try{
+            eventService.createEvent(eventDto, token);
+        }catch(Exception e) {
+            e.printStackTrace();
+        }
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
 }

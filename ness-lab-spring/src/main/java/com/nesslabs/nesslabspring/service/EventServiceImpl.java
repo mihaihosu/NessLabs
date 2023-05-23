@@ -7,7 +7,6 @@ import com.nesslabs.nesslabspring.repository.EventRepository;
 import com.nesslabs.nesslabspring.security.JwtService;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.Duration;
@@ -17,47 +16,42 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
+
 @Service
 @RequiredArgsConstructor
 public class EventServiceImpl implements EventService{
 
-    private final EventRepository eventRepository;
-
     private final EventValidator eventValidator;
-
-    public Event updateEvent(Long eventId, EventDto eventDto, String token) throws InvalidInputException {
-        // Validate owner
-        eventValidator.validateEventOwner(eventId, token);
-
-        // Other validations
+    private final JwtService jwtService;
+    @Override
+    public void createEvent(EventDto eventDto, String token) throws InvalidInputException {
+        String adminEmail = jwtService.extractUsername(token);
         eventValidator.validate(eventDto);
+        Event event = new Event();
+        setEventFields(event,eventDto);
 
-        // Get the existing event from the repository
-        Event existingEvent = eventRepository.findById(eventId)
-                .orElseThrow(() -> new EntityNotFoundException("Event not found with ID: " + eventId));
+        LocalDateTime startDateTime = event.getStartDateTime();
+        LocalDateTime endDateTime = event.getEndDateTime();
+        Duration duration = Duration.between(startDateTime,endDateTime);
 
-        eventFields(existingEvent,eventDto);
-
-        // Save the updated event
-        return eventRepository.saveAndFlush(existingEvent);
+        //eventRepository.save(event);
     }
 
-
-    private void eventFields(Event event, EventDto eventDto){
+    private void setEventFields(Event event, EventDto eventDto) {
         event.setTitle(eventDto.getTitle());
         event.setDescription(eventDto.getDescription());
         event.setStartDateTime(LocalDateTime.of(eventDto.getStartDate(), eventDto.getStartTime()));
         event.setEndDateTime(LocalDateTime.of(eventDto.getEndDate(), eventDto.getStartTime().plus(eventDto.getDuration())));
         event.setAddress(eventDto.getAddress());
-        event.setEventLink(eventDto.getEventLink());
-        event.setTicketLink(eventDto.getTicketLink());
+        event.setEventLink(event.getEventLink());
+        event.setTicketLink(event.getTicketLink());
         event.setPhoto(eventDto.getPhoto());
         event.setFree(eventDto.isFree());
         event.setPetFriendly(eventDto.isPetFriendly());
         event.setKidFriendly(eventDto.isKidFriendly());
         event.setTagName(eventDto.getTagName());
-        event.setEventStatus(eventDto.getEventStatus());
+        //event.setEventStatus(eventDto.getEventStatus());
     }
-
-
 }
