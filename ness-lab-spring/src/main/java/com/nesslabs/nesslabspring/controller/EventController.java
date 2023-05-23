@@ -22,9 +22,6 @@ import org.springframework.web.bind.annotation.*;
 public class EventController {
 
     private final EventService eventService;
-    private final JwtService jwtService;
-
-
 
     @PutMapping("/{eventId}")
     public ResponseEntity<Event> updateEvent(
@@ -43,12 +40,4 @@ public class EventController {
         }
     }
 
-
-
-    @PostMapping("/create")
-    public ResponseEntity<Event> createEvent(@RequestBody EventDto eventDto, @RequestHeader("Authorization") String token) {
-        String adminEmail = jwtService.extractUsername(token);
-        Event createdEvent = eventService.createEvent(eventDto, adminEmail);
-        return ResponseEntity.status(HttpStatus.CREATED).body(createdEvent);
-    }
 }

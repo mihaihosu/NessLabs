@@ -59,25 +59,5 @@ public class EventServiceImpl implements EventService{
         event.setEventStatus(eventDto.getEventStatus());
     }
 
-    public Event createEvent(EventDto eventDto, String adminEmail) {
-        // Create a new Event instance and set its properties from the DTO
-        Event event = new Event();
-        eventFields(event, eventDto);
-        event.setAdminEmail(adminEmail); // Set the admin email
-
-        // Save the event and return the created event
-        return eventRepository.save(event);
-    }
-
-
-
-
-
-
-
-
-
-
-
 
 }

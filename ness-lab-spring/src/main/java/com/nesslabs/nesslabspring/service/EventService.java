@@ -7,6 +7,4 @@ import com.nesslabs.nesslabspring.model.Event;
 public interface EventService {
 
     Event updateEvent(Long eventId, EventDto eventDto, String token) throws InvalidInputException;
-
-    Event createEvent(EventDto eventDto, String adminEmail);
 }
