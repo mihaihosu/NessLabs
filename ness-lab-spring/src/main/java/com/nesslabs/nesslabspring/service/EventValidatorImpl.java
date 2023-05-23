@@ -39,13 +39,13 @@ public class EventValidatorImpl implements EventValidator{
     }
 
     private void validateRequiredFields(EventDto eventDto) throws InvalidInputException {
-        if (eventDto.getPhoto() == null || eventDto.getPhoto().isEmpty()) {
+        if (eventDto.getPhoto().isEmpty()) {
             throw new InvalidInputException("Photo is required.");
         }
-        if (eventDto.getTitle() == null || eventDto.getTitle().isEmpty()) {
+        if (eventDto.getTitle().isEmpty()) {
             throw new InvalidInputException("Title field is required.");
         }
-        if (eventDto.getDescription() == null || eventDto.getDescription().isEmpty()) {
+        if (eventDto.getDescription().isEmpty()) {
             throw new InvalidInputException("Description field is required.");
         }
         if (eventDto.getStartDate() == null || eventDto.getEndDate() == null || eventDto.getStartTime() == null) {
@@ -82,7 +82,7 @@ public class EventValidatorImpl implements EventValidator{
     }
 
 
-    public void validateUserAuthorization(Long eventId, String token) throws UnauthorizedException {
+    public void validateEventOwner(Long eventId, String token) throws UnauthorizedException {
         String username = jwtService.extractUsername(token);
         Event event = eventRepository.findEventById(eventId);
         if (!event.getAdminEmail().equals(username)) {

@@ -26,8 +26,8 @@ public class EventServiceImpl implements EventService{
     private final EventValidator eventValidator;
 
     public Event updateEvent(Long eventId, EventDto eventDto, String token) throws InvalidInputException {
-        // Validate user authorization
-        eventValidator.validateUserAuthorization(eventId, token);
+        // Validate owner
+        eventValidator.validateEventOwner(eventId, token);
 
         // Other validations
         eventValidator.validate(eventDto);

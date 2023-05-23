@@ -34,12 +34,12 @@ public class EventController {
         try {
             Event updatedEvent = eventService.updateEvent(eventId, eventDto, token);
             return ResponseEntity.ok(updatedEvent);
-        } catch (InvalidInputException e) {
-            return ResponseEntity.badRequest().body(null);
         } catch (UnauthorizedException e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
         } catch (EntityNotFoundException e) {
             return ResponseEntity.notFound().build();
+        } catch (InvalidInputException e) {
+            throw new RuntimeException(e);
         }
     }
 
