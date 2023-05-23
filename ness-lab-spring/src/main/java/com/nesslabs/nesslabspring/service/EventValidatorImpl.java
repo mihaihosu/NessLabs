@@ -34,7 +34,6 @@ public class EventValidatorImpl implements EventValidator{
         validateRequiredFields(eventDto);
         validateDates(eventDto);
         validateLinks(eventDto);
-        validateDuration(eventDto);
 
     }
 
@@ -56,18 +55,6 @@ public class EventValidatorImpl implements EventValidator{
     private void validateDates(EventDto eventDto) throws InvalidInputException {
         if (eventDto.getStartDate().isAfter(eventDto.getEndDate())) {
             throw new InvalidInputException("End date cannot be before start date.");
-        }
-    }
-
-    private void validateDuration(EventDto eventDto) throws InvalidInputException {
-        if (eventDto.getDuration() != null) {
-            long seconds = eventDto.getDuration().getSeconds();
-            long maxDurationSeconds = 60 * 60 * 24 * 14; // Maximum duration of 2 weeks in seconds
-            long minDurationSeconds = 60 * 60; // Minimum duration of 1 hour in seconds
-
-            if (seconds < minDurationSeconds || seconds > maxDurationSeconds) {
-                throw new InvalidInputException("Duration should be between 1 hour and 2 weeks.");
-            }
         }
     }
 
