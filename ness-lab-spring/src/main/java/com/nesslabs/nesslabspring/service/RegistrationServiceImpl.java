@@ -24,7 +24,7 @@ public class RegistrationServiceImpl implements RegistrationService{
             throw new InvalidCredentialException("password not valid, ensure at least one lowercase letter, uppercase letter and one digit, at least 8 characters");
         }
 
-        if (request.getUsername().isEmpty()) {
+        if (request.getUsername() == null || request.getUsername().isEmpty()) {
             throw new InvalidCredentialException("Username not valid");
         }
 
