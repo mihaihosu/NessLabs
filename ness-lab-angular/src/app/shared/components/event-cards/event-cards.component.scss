@@ -65,6 +65,14 @@
         }
       }
 
+      &__text2 {
+        line-height: 0.4;
+        &__p4 {
+          font-size: 1em;
+          color: #0696e7;
+        }
+      }
+
       &__buttons-login {
         position: absolute;
         top: 10px;

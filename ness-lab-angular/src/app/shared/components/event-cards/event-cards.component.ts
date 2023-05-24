@@ -114,6 +114,7 @@ export class EventCardsComponent implements OnChanges, OnInit {
         type: 'free',
         status: 'available',
         endDateTime: new Date(2023, 6, 24, 20, 43),
+        author: 'OtherAdminName',
       },
       {
         data: '03 OCTOMBRIE 2023',
@@ -125,6 +126,7 @@ export class EventCardsComponent implements OnChanges, OnInit {
         type: 'with ticket',
         status: 'draft',
         endDateTime: new Date(2023, 0, 24, 16, 43),
+        author: 'AdminName',
       },
       {
         data: '13 FEBRUARIE 2023',
@@ -136,6 +138,7 @@ export class EventCardsComponent implements OnChanges, OnInit {
         type: 'with ticket',
         status: 'unavailable',
         endDateTime: new Date(2023, 9, 24, 9, 43),
+        author: 'OtherAdminName',
       },
       {
         data: '15 MAI 2023',
@@ -147,6 +150,7 @@ export class EventCardsComponent implements OnChanges, OnInit {
         type: 'with ticket',
         status: 'draft',
         endDateTime: new Date(2023, 1, 24, 9, 43),
+        author: 'OtherAdminName',
       },
       {
         data: '12 IUNIE 2023',
@@ -158,6 +162,7 @@ export class EventCardsComponent implements OnChanges, OnInit {
         type: 'free',
         status: 'unavailable',
         endDateTime: new Date(2023, 2, 24, 9, 43),
+        author: 'AdminName',
       },
       {
         data: '15 APRILIE 2023',
@@ -169,6 +174,7 @@ export class EventCardsComponent implements OnChanges, OnInit {
         type: 'with ticket',
         status: 'draft',
         endDateTime: new Date(2023, 7, 24, 22, 43),
+        author: 'AdminName',
       },
       {
         data: '12 IUNIE 2023',
@@ -180,6 +186,7 @@ export class EventCardsComponent implements OnChanges, OnInit {
         type: 'free',
         status: 'available',
         endDateTime: new Date(2023, 11, 24, 9, 43),
+        author: 'AdminName',
       },
       {
         data: '13 FEBRUARIE 2023',
@@ -191,6 +198,7 @@ export class EventCardsComponent implements OnChanges, OnInit {
         type: 'free',
         status: 'draft',
         endDateTime: new Date(2023, 10, 24, 19, 43),
+        author: 'AdminName',
       },
       {
         data: '12 IUNIE 2023',
@@ -202,6 +210,7 @@ export class EventCardsComponent implements OnChanges, OnInit {
         type: 'with ticket',
         status: 'available',
         endDateTime: new Date(2023, 3, 24, 9, 43),
+        author: 'OtherAdminName',
       },
       {
         data: '12 IUNIE 2023',
@@ -213,6 +222,7 @@ export class EventCardsComponent implements OnChanges, OnInit {
         type: 'free',
         status: 'unavailable',
         endDateTime: new Date(2023, 8, 24, 21, 43),
+        author: 'OtherAdminName',
       },
     ],
   };
@@ -228,6 +238,7 @@ export class EventCardsComponent implements OnChanges, OnInit {
         type: 'with ticket',
         status: 'available',
         endDateTime: new Date(2023, 1, 24, 9, 43),
+        author: 'OtherAdminName',
       },
       {
         data: '12 IUNIE 2023',
@@ -238,6 +249,7 @@ export class EventCardsComponent implements OnChanges, OnInit {
         imgURL: './assets/img/img8.png',
         type: 'free',
         status: 'unavailable',
+        author: 'OtherAdminName',
       },
       {
         data: '30 MARTIE 2023',
@@ -249,6 +261,7 @@ export class EventCardsComponent implements OnChanges, OnInit {
         type: 'with ticket',
         status: 'draft',
         endDateTime: new Date(2023, 1, 24, 9, 43),
+        author: 'OtherAdminName',
       },
       {
         data: '30 MARTIE 2023',
@@ -259,6 +272,7 @@ export class EventCardsComponent implements OnChanges, OnInit {
         imgURL: './assets/img/img5.png',
         type: 'with ticket',
         status: 'unavailable',
+        author: 'OtherAdminName',
       },
       {
         data: '03 OCTOMBRIE 2023',

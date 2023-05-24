@@ -53,7 +53,13 @@
           </button>
         </div>
 
-        <div class="grid-container__event-card__container__text">
+        <div
+          class="grid-container__event-card__container__text"
+          [ngClass]="{
+            'grid-container__event-card__container__text2':
+              selectedCards === 'all-events'
+          }"
+        >
           <p class="grid-container__event-card__container__text__p1">
             {{ event.data + " , ORA " + event.ora }}
           </p>
@@ -62,6 +68,16 @@
           </p>
           <p class="grid-container__event-card__container__text__p3">
             {{ event.loc }}
+          </p>
+          <p
+            *ngIf="selectedCards === 'all-events'"
+            class="grid-container__event-card__container__text__p4"
+            [ngClass]="{
+              'grid-container__event-card__container__text2__p4':
+                selectedCards === 'all-events'
+            }"
+          >
+            {{ "Added by " + event.author }}
           </p>
         </div>
       </div>
