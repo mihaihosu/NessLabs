@@ -22,6 +22,7 @@ import java.util.stream.Collectors;
 
 
 import java.time.Duration;
+
 import java.time.LocalDateTime;
 
 @Service
@@ -123,7 +124,8 @@ public class EventServiceImpl implements EventService{
         event.setFree(eventDto.isFree());
         event.setPetFriendly(eventDto.isPetFriendly());
         event.setKidFriendly(eventDto.isKidFriendly());
+        event.setAdminEmail(event.getAdminEmail());
         event.setTagName(eventDto.getTagName());
-        //event.setEventStatus(eventDto.getEventStatus());
+        event.setEventStatus(eventDto.getEventStatus());
     }
 }

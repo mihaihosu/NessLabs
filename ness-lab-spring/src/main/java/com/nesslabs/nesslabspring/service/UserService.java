@@ -47,7 +47,7 @@ public class UserService implements UserDetailsService {
         String encodedPassword = bCryptPasswordEncoder.encode(user.getPassword());
         user.setPassword(encodedPassword);
         userRepository.saveAndFlush(user);
-
+        System.out.println(user);
         return user;
     }
 
@@ -55,13 +55,13 @@ public class UserService implements UserDetailsService {
     private boolean isUserByEmailConfirmed(String email) {
         List<User> users = userRepository.findAllByEmail(email);
         return users.stream()
-                .anyMatch(User::is_confirmed);
+                .anyMatch(User::isConfirmed);
     }
 
     private boolean isUserByUsernameConfirmed(String username) {
         List<User> users = userRepository.findAllByUsername(username);
         return users.stream()
-                .anyMatch(User::is_confirmed);
+                .anyMatch(User::isConfirmed);
     }
 
 }
