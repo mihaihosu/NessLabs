@@ -1,21 +1,35 @@
 package com.nesslabs.nesslabspring.controller;
 
 import com.nesslabs.nesslabspring.dto.EventDto;
+import com.nesslabs.nesslabspring.exception.EventNotFoundException;
 import com.nesslabs.nesslabspring.service.EventService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.List;
 
+@CrossOrigin
+@RequestMapping(path = "api/v1")
 @RestController
+@RequiredArgsConstructor
 public class EventController {
 
-    EventService eventService;
+    private final EventService eventService;
+    @GetMapping("/events/{id}")
+    public ResponseEntity<?> getEventById(@PathVariable Long id){
+        try {
+            EventDto eventDto = eventService.getEventById(id);
+            return new ResponseEntity<>(eventDto, HttpStatus.OK);
+        }catch (EventNotFoundException e){
+            return ResponseEntity
+                    .badRequest()
+                    .body(e.getMessage());
+        }
 
+    }
 
     @GetMapping("/events")
     public ResponseEntity <List<EventDto>> getEventsWithPaginationAndFiltered(

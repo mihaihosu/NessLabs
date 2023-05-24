@@ -44,7 +44,7 @@ public class EventDto {
 
     private boolean isKidFriendly;
 
-    private Long adminEmail;
+    private String adminEmail;
 
     private String tagName;
 
