@@ -42,6 +42,10 @@ public class SecurityConfiguration implements WebMvcConfigurer {
                 .requestMatchers("**").permitAll()
                 .requestMatchers("/api/v1/auth/**").permitAll()
                 .requestMatchers("/api/v1/pwdres/**").permitAll()
+                .requestMatchers("/swagger-ui/**"). permitAll()
+                .requestMatchers("/v3/api-docs/**").permitAll()
+                .requestMatchers("/v3/api-docs.yaml").permitAll()
+                .requestMatchers("/swagger-ui.html").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
@@ -49,8 +53,8 @@ public class SecurityConfiguration implements WebMvcConfigurer {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authenticationProvider(authenticationProvider)
-                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
-                .formLogin();
+                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+//                .formLogin();
 //                .headers().frameOptions().disable();
 
         http.headers().frameOptions().disable();
