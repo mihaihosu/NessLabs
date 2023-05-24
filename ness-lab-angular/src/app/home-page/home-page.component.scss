@@ -1,6 +1,5 @@
-@import "../../assets/custom-theme.scss";
 .home-page {
-  height: 100vh;
+  height: 100%;
   overflow-y: hidden;
 }
 
@@ -9,6 +8,6 @@
 }
 .event-cards {
   position: fixed;
-  top: 180px;
+  top: 15%;
   width: 100%;
 }
