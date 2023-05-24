@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { SearchService } from '../services/search-service/search.service';
 import { ViewEncapsulation } from '@angular/core';
+import { MatDatepicker } from '@angular/material/datepicker';
 
 @Component({
   selector: 'app-layout',
@@ -16,6 +17,7 @@ export class LayoutComponent implements OnInit {
   isLogin = 'false';
   isOpen: boolean = false;
   isSelectedDate: boolean = false;
+  @ViewChild('picker') picker: MatDatepicker<any>;
 
   onSelectedCardsView(view: string) {
     this.selectedCards = view;
@@ -35,8 +37,16 @@ export class LayoutComponent implements OnInit {
     this.isSelectedDate = !this.isSelectedDate;
   }
 
-  changeicon() {
-    this.isOpen = !this.isOpen;
+  open() {
+    this.picker.open();
+    this.isOpen = true;
+    console.log(this.isOpen);
+  }
+
+  close() {
+    this.picker.close();
+    this.isOpen = false;
+    console.log(this.isOpen);
   }
 
   buttons = {

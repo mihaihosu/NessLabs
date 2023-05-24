@@ -7,6 +7,10 @@
       <div class="grid-container__event-card__container">
         <img
           class="grid-container__event-card__container__image"
+          [ngClass]="{
+            'grid-container__event-card__container__image__haspassed':
+              hasPassed(event)
+          }"
           [src]="event.imgURL"
         />
         <div

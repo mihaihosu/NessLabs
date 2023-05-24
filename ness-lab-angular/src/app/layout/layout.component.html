@@ -14,14 +14,14 @@
         *ngIf="!isOpen"
         class="chevron-down"
         matSuffix
-        (click)="picker.open(); changeicon()"
+        (click)="open()"
         svgIcon="chevron-down"
       ></mat-icon>
       <mat-icon
         *ngIf="isOpen"
         class="chevron-down"
         matSuffix
-        (click)="picker.close(); changeicon()"
+        (click)="close()"
         svgIcon="chevron-up"
       ></mat-icon>
 
