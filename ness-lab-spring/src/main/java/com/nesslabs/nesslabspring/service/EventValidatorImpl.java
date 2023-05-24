@@ -23,7 +23,15 @@ public class EventValidatorImpl implements EventValidator{
         validateRequiredFields(eventDto);
         validateDates(eventDto);
         validateLinks(eventDto);
-        validateDuration(eventDto);
+    }
+
+    @Override
+    public void validateEventOwner(Long eventId, String token) throws UnauthorizedException {
+        String username = jwtService.extractUsername(token);
+        Event event = eventRepository.findEventById(eventId);
+        if (!event.getAdminEmail().equals(username)) {
+            throw new UnauthorizedException("User is not authorized to edit this event.");
+        }
     }
 
     private void validateRequiredFields(EventDto eventDto) throws InvalidInputException {
@@ -53,20 +61,6 @@ public class EventValidatorImpl implements EventValidator{
         }
         if (!eventDto.getTicketLink().matches(URL_PATTERN) && !eventDto.getTicketLink().isEmpty()) {
             throw new InvalidInputException("Ticket link is not a valid URL.");
-        }
-    }
-
-
-    private void validateDuration(EventDto eventDto) throws InvalidInputException {
-
-
-    }
-
-    private void validateUserAuthorization(Long eventId, String token) throws UnauthorizedException{
-        Long userId = jwtService.getUserIdFromToken(token);
-        Event event = eventRepository.findEventById(eventId);
-        if (!event.getAdminEmail().equals(username)) {
-            throw new UnauthorizedException("User is not authorized to edit this event.");
         }
     }
 

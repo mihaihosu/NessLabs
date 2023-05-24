@@ -11,5 +11,5 @@ public class RegistrationDto {
     private String email;
     private String username;
     private String password;
-    private boolean is_admin;
+    private boolean admin;
 }
