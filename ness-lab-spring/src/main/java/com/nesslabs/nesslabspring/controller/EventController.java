@@ -24,7 +24,7 @@ public class EventController {
     private final EventService eventService;
 
     @PutMapping("/{eventId}")
-    public ResponseEntity<Event> updateEvent(
+    public ResponseEntity<?> updateEvent(
             @PathVariable Long eventId,
             @RequestBody EventDto eventDto,
             @RequestHeader("Authorization") String token) {
@@ -36,7 +36,7 @@ public class EventController {
         } catch (EntityNotFoundException e) {
             return ResponseEntity.status(404).build(); // Returns HTTP status 404 (Not Found)
         } catch (InvalidInputException e) {
-            return ResponseEntity.status(500).body(null); // Returns HTTP status 500 (Internal Server Error)
+            return ResponseEntity.status(500).body(e.getMessage()); // Returns HTTP status 500 (Internal Server Error)
         }
     }
 }
