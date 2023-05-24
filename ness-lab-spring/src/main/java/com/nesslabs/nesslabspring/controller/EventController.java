@@ -30,14 +30,13 @@ public class EventController {
             @RequestHeader("Authorization") String token) {
         try {
             Event updatedEvent = eventService.updateEvent(eventId, eventDto, token);
-            return ResponseEntity.ok(updatedEvent);
+            return ResponseEntity.status(200).body(updatedEvent); // Returns HTTP status 200 (OK)
         } catch (UnauthorizedException e) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+            return ResponseEntity.status(401).body(null); // Returns HTTP status 401 (Unauthorized)
         } catch (EntityNotFoundException e) {
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.status(404).build(); // Returns HTTP status 404 (Not Found)
         } catch (InvalidInputException e) {
-            throw new RuntimeException(e);
+            return ResponseEntity.status(500).body(null); // Returns HTTP status 500 (Internal Server Error)
         }
     }
-
 }
