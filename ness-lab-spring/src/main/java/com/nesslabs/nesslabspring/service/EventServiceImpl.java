@@ -127,6 +127,7 @@ public class EventServiceImpl implements EventService{
         event.setFree(eventDto.isFree());
         event.setPetFriendly(eventDto.isPetFriendly());
         event.setKidFriendly(eventDto.isKidFriendly());
+        event.setAdminEmail(event.getAdminEmail());
         event.setTagName(eventDto.getTagName());
         event.setEventStatus(eventDto.getEventStatus());
     }
