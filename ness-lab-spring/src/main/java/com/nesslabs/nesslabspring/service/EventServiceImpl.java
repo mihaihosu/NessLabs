@@ -5,19 +5,10 @@ import com.nesslabs.nesslabspring.exception.InvalidInputException;
 import com.nesslabs.nesslabspring.model.Event;
 import com.nesslabs.nesslabspring.repository.EventRepository;
 import com.nesslabs.nesslabspring.security.JwtService;
-import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.Duration;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.List;
-
-import java.time.Duration;
 import java.time.LocalDateTime;
 
 @Service
@@ -26,18 +17,20 @@ public class EventServiceImpl implements EventService{
 
     private final EventValidator eventValidator;
     private final JwtService jwtService;
+    private final EventRepository eventRepository;
+
+    @Override
+    public Event updateEvent(Long eventId, EventDto eventDto, String token) throws InvalidInputException {
+        return null;
+    }
+
     @Override
     public void createEvent(EventDto eventDto, String token) throws InvalidInputException {
         String adminEmail = jwtService.extractUsername(token);
         eventValidator.validate(eventDto);
         Event event = new Event();
         setEventFields(event,eventDto);
-
-        LocalDateTime startDateTime = event.getStartDateTime();
-        LocalDateTime endDateTime = event.getEndDateTime();
-        Duration duration = Duration.between(startDateTime,endDateTime);
-
-        //eventRepository.save(event);
+        eventRepository.save(event);
     }
 
     private void setEventFields(Event event, EventDto eventDto) {
@@ -52,7 +45,8 @@ public class EventServiceImpl implements EventService{
         event.setFree(eventDto.isFree());
         event.setPetFriendly(eventDto.isPetFriendly());
         event.setKidFriendly(eventDto.isKidFriendly());
+        event.setAdminEmail(event.getAdminEmail());
         event.setTagName(eventDto.getTagName());
-        //event.setEventStatus(eventDto.getEventStatus());
+        event.setEventStatus(eventDto.getEventStatus());
     }
 }

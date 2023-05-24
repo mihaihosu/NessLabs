@@ -5,14 +5,8 @@ import com.nesslabs.nesslabspring.dto.EventDto;
 import com.nesslabs.nesslabspring.exception.InvalidInputException;
 import com.nesslabs.nesslabspring.exception.UnauthorizedException;
 import com.nesslabs.nesslabspring.model.Event;
-import com.nesslabs.nesslabspring.security.JwtService;
 import com.nesslabs.nesslabspring.service.EventService;
 import jakarta.persistence.EntityNotFoundException;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import com.nesslabs.nesslabspring.dto.EventDto;
-import com.nesslabs.nesslabspring.model.Event;
-import com.nesslabs.nesslabspring.service.EventService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -47,9 +41,11 @@ public class EventController {
     public ResponseEntity<Event> createEvent(@RequestBody EventDto eventDto, @RequestHeader("Authorization") String token) {
         try{
             eventService.createEvent(eventDto, token);
-        }catch(Exception e) {
-            e.printStackTrace();
+            return ResponseEntity.status(HttpStatus.CREATED).build();
+        }catch (UnauthorizedException e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+        }catch (InvalidInputException e) {
+            throw new RuntimeException(e);
         }
-        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 }

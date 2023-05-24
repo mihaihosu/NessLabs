@@ -23,7 +23,15 @@ public class EventValidatorImpl implements EventValidator{
         validateRequiredFields(eventDto);
         validateDates(eventDto);
         validateLinks(eventDto);
+    }
 
+    @Override
+    public void validateEventOwner(Long eventId, String token) throws UnauthorizedException {
+        String username = jwtService.extractUsername(token);
+        Event event = eventRepository.findEventById(eventId);
+        if (!event.getAdminEmail().equals(username)) {
+            throw new UnauthorizedException("User is not authorized to edit this event.");
+        }
     }
 
     private void validateRequiredFields(EventDto eventDto) throws InvalidInputException {
