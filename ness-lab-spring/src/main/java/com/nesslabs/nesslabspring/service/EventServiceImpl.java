@@ -2,6 +2,7 @@ package com.nesslabs.nesslabspring.service;
 
 import com.nesslabs.nesslabspring.dto.EventDto;
 import com.nesslabs.nesslabspring.exception.InvalidInputException;
+import com.nesslabs.nesslabspring.exception.UnauthorizedException;
 import com.nesslabs.nesslabspring.model.Event;
 import com.nesslabs.nesslabspring.repository.EventRepository;
 import com.nesslabs.nesslabspring.security.JwtService;
@@ -24,12 +25,15 @@ public class EventServiceImpl implements EventService{
     }
 
     @Override
-    public void createEvent(EventDto eventDto, String token) throws InvalidInputException {
+    public void createEvent(EventDto eventDto, String token) throws InvalidInputException, UnauthorizedException{
         String adminEmail = jwtService.extractUsername(token);
-        eventValidator.validate(eventDto);
-        Event event = new Event();
-        setEventFields(event,eventDto);
-        eventRepository.save(event);
+        if(jwtService.extractIsAdmin(token) && jwtService.getAuthentication(token).isAuthenticated()) {
+            eventValidator.validate(eventDto);
+            Event event = new Event();
+            setEventFields(event,eventDto);
+            event.setAdminEmail(adminEmail);
+            eventRepository.save(event);
+        } else throw new UnauthorizedException("Unauthorized");
     }
 
     private void setEventFields(Event event, EventDto eventDto) {
@@ -38,13 +42,12 @@ public class EventServiceImpl implements EventService{
         event.setStartDateTime(LocalDateTime.of(eventDto.getStartDate(), eventDto.getStartTime()));
         event.setEndDateTime(LocalDateTime.of(eventDto.getEndDate(), eventDto.getStartTime().plus(eventDto.getDuration())));
         event.setAddress(eventDto.getAddress());
-        event.setEventLink(event.getEventLink());
-        event.setTicketLink(event.getTicketLink());
+        event.setEventLink(eventDto.getEventLink());
+        event.setTicketLink(eventDto.getTicketLink());
         event.setPhoto(eventDto.getPhoto());
         event.setFree(eventDto.isFree());
         event.setPetFriendly(eventDto.isPetFriendly());
         event.setKidFriendly(eventDto.isKidFriendly());
-        event.setAdminEmail(event.getAdminEmail());
         event.setTagName(eventDto.getTagName());
         event.setEventStatus(eventDto.getEventStatus());
     }
