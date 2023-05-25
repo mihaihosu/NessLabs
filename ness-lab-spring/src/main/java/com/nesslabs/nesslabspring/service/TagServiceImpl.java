@@ -15,8 +15,6 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class TagServiceImpl implements TagService{
-
-    @Autowired
     private final TagRepository tagRepository;
 
     @Override

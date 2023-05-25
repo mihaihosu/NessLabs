@@ -65,6 +65,11 @@ public class JwtService {
         return extractClaim(token, claims -> claims.get("isAdmin", Boolean.class));
     }
 
+    public Long getUserIdFromToken(String token) {
+        return extractClaim(token, claims -> claims.get("id", Long.class));
+    }
+
+
 
     public <T> T extractClaim(String token, Function<Claims, T> claimsResolver){
         final Claims claims = extractAllClaims(token);
