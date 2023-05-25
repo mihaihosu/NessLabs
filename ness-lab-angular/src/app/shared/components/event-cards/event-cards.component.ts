@@ -356,6 +356,7 @@ export class EventCardsComponent implements OnChanges, OnInit {
       },
     ],
   };
+
   // myevents = {
   //   myevents: [],
   // };

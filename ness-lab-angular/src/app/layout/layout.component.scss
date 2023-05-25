@@ -42,8 +42,8 @@
   margin-right: 4rem;
 }
 .event-checkbox-input {
-  border: 4px solid #000000;
-  border-radius: 1.85951px;
+  border: 0.4em solid #000000;
+  border-radius: 1.8%;
   height: 1.5rem;
   width: 1.5rem;
 }
@@ -100,7 +100,7 @@
 }
 .button-tag {
   background: #f1f2f3;
-  border-radius: 8px;
+  border-radius: 0.7em;
   border: none;
   height: 2.5rem;
   text-transform: uppercase;
@@ -111,7 +111,7 @@
 
 .button-add-event {
   background-color: white;
-  border-radius: 28px;
+  border-radius: 2em;
   width: 11%;
   height: 90%;
   display: flex;
@@ -120,18 +120,18 @@
 .toggle-button-group {
   height: 90%;
   align-items: center;
-  border-radius: 25px;
-  border: 1px solid #000;
+  border-radius: 2em;
+  border: 0.1em solid #000;
 }
 .mat-button-toggle-checked {
   background-color: #f2cbf6;
   height: 100%;
 }
 .toggle-button-1 {
-  border-right: 0.2px solid black;
+  border-right: 0.1em solid black;
 }
 .toggle-button-2 {
-  border-left: 0.2px solid black;
+  border-left: 0.1em solid black;
 }
 
 .tags-title {
@@ -148,6 +148,7 @@
 //   height: 40px;
 //   width: 400px;
 // }
+
 input[type="checkbox"] {
   accent-color: #8102ae;
 }
@@ -174,10 +175,10 @@ input[type="checkbox"] {
 .matformfield {
   color: #000;
   font-weight: bold;
-  border-radius: 10px;
+  border-radius: 1em;
   width: 87%;
-  height: 5%;
-  border: 2px solid #000000;
+  height: 3.5em;
+  border: 0.1em solid #000000;
 }
 
 ::ng-deep .mat-form-field-underline {
@@ -206,5 +207,5 @@ input[type="checkbox"] {
 }
 
 ::ng-deep .mat-form-field-infix {
-  width: 18rem !important;
+  width: 19rem !important;
 }

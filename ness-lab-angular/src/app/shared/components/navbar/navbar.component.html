@@ -27,9 +27,9 @@
       (input)="sendSearchCards()"
     />
   </div>
-  <div class="login-div">LOGIN</div>
+  <div class="login-div" (click)="login()">LOGIN</div>
   <div>
-    <button class="btn btn-primary">REGISTER</button>
+    <button class="btn btn-primary" (click)="register()">REGISTER</button>
   </div>
 </mat-toolbar>
 <div class="toolbar" (mouseleave)="mouseLeaveProfile()">

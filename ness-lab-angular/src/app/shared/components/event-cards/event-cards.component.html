@@ -84,7 +84,7 @@
     </div>
   </div>
 
-  <div *ngIf="myevents.myevents.length === 0">
+  <div *ngIf="myevents.myevents.length === 0 && selectedCards === 'my-events'">
     <img class="scroll-container__image" src="../../assets/img/no_events.png" />
     <div class="scroll-container__context">
       <div class="scroll-container__context__title">{{ noEventsYet }}</div>
