@@ -7,6 +7,7 @@ import com.nesslabs.nesslabspring.mappers.EventMapper;
 import com.nesslabs.nesslabspring.exception.InvalidInputException;
 import com.nesslabs.nesslabspring.exception.JwtAuthenticationException;
 import com.nesslabs.nesslabspring.exception.UnauthorizedException;
+import com.nesslabs.nesslabspring.exception.UnauthorizedException;
 import com.nesslabs.nesslabspring.model.Event;
 import com.nesslabs.nesslabspring.repository.EventRepository;
 import com.nesslabs.nesslabspring.security.JwtService;
@@ -127,7 +128,6 @@ public class EventServiceImpl implements EventService{
         event.setFree(eventDto.isFree());
         event.setPetFriendly(eventDto.isPetFriendly());
         event.setKidFriendly(eventDto.isKidFriendly());
-        event.setAdminEmail(event.getAdminEmail());
         event.setTagName(eventDto.getTagName());
         event.setEventStatus(eventDto.getEventStatus());
     }
