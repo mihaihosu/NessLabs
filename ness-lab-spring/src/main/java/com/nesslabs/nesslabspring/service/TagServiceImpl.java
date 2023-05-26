@@ -15,8 +15,6 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class TagServiceImpl implements TagService{
-
-    @Autowired
     private final TagRepository tagRepository;
 
     @Override
@@ -31,7 +29,6 @@ public class TagServiceImpl implements TagService{
     }
 
     @Override
-    @CachePut(value="tags")
     public List<TagRequestDto> getAllTags() {
         List<Tag> tags = tagRepository.findAll();
         return convertTagsToDtos(tags);

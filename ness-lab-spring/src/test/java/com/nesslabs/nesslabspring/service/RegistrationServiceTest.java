@@ -14,7 +14,7 @@ import static org.mockito.Mockito.*;
 
 class RegistrationServiceTest {
 
-    private RegistrationService registrationService;
+    private RegistrationServiceImpl registrationService;
     @Mock
     private EmailValidatorService emailValidatorService;
     @Mock
@@ -25,7 +25,7 @@ class RegistrationServiceTest {
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
-        registrationService = new RegistrationService(emailValidatorService, passwordValidatorService, userService);
+        registrationService = new RegistrationServiceImpl(emailValidatorService, passwordValidatorService, userService);
     }
 
     @Test

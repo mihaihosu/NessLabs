@@ -4,6 +4,9 @@ import com.nesslabs.nesslabspring.dto.EventDto;
 import com.nesslabs.nesslabspring.model.Event;
 import org.springframework.stereotype.Service;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
+
 @Service
 public class EventMapper {
     public EventDto toDto(Event event) {
@@ -12,10 +15,10 @@ public class EventMapper {
                 .photo(event.getPhoto())
                 .title(event.getTitle())
                 .description(event.getDescription())
-                .startDateTime(event.getStartDateTime())
-                .endDateTime(event.getEndDateTime())
-                .startTime(event.getStartTime())
-                .duration(event.getDuration())
+                .startDate(event.getStartDateTime().toLocalDate())
+                .endDate(event.getEndDateTime().toLocalDate())
+                .startTime(event.getStartDateTime().toLocalTime())
+                .duration(Duration.between(event.getEndDateTime().toLocalTime(), (event.getStartDateTime().toLocalTime())))
                 .address(event.getAddress())
                 .eventLink(event.getEventLink())
                 .ticketLink(event.getTicketLink())
@@ -24,7 +27,7 @@ public class EventMapper {
                 .isKidFriendly(event.isKidFriendly())
                 .adminEmail(event.getAdminEmail())
                 .tagName(event.getTagName())
-                .status(event.getStatus())
+                .eventStatus(event.getEventStatus())
                 .build();
     }
 
@@ -34,10 +37,8 @@ public class EventMapper {
                 .photo(eventDto.getPhoto())
                 .title(eventDto.getTitle())
                 .description(eventDto.getDescription())
-                .startDateTime(eventDto.getStartDateTime())
-                .endDateTime(eventDto.getEndDateTime())
-                .startTime(eventDto.getStartTime())
-                .duration(eventDto.getDuration())
+                .startDateTime(LocalDateTime.of(eventDto.getStartDate(), eventDto.getStartTime()))
+                .endDateTime(LocalDateTime.of(eventDto.getEndDate(), eventDto.getStartTime().plus(eventDto.getDuration())))
                 .address(eventDto.getAddress())
                 .eventLink(eventDto.getEventLink())
                 .ticketLink(eventDto.getTicketLink())
@@ -46,7 +47,7 @@ public class EventMapper {
                 .isKidFriendly(eventDto.isKidFriendly())
                 .adminEmail(eventDto.getAdminEmail())
                 .tagName(eventDto.getTagName())
-                .status(eventDto.getStatus())
+                .eventStatus(eventDto.getEventStatus())
                 .build();
     }
 

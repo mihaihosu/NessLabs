@@ -13,6 +13,8 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table(name ="_tag")
 public class Tag {
+
     @Id
     private String name;
+
 }

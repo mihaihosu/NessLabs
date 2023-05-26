@@ -18,7 +18,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 @RequiredArgsConstructor
 @EnableWebSecurity
-
 public class SecurityConfiguration implements WebMvcConfigurer {
 
     private final JwtAuthenticationFilter jwtAuthFilter;

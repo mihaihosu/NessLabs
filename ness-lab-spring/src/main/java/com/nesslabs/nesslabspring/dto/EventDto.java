@@ -7,7 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.Duration;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Data
@@ -24,9 +24,9 @@ public class EventDto {
 
     private String description;
 
-    private LocalDateTime startDateTime;
+    private LocalDate startDate;
 
-    private LocalDateTime endDateTime;
+    private LocalDate endDate;
 
     private LocalTime startTime;
 
@@ -48,6 +48,6 @@ public class EventDto {
 
     private String tagName;
 
-    private EventStatus status;
+    private EventStatus eventStatus;
 
 }

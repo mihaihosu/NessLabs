@@ -2,7 +2,15 @@ package com.nesslabs.nesslabspring.controller;
 
 import com.nesslabs.nesslabspring.dto.EventDto;
 import com.nesslabs.nesslabspring.exception.EventNotFoundException;
+import com.nesslabs.nesslabspring.exception.InvalidInputException;
+import com.nesslabs.nesslabspring.exception.UnauthorizedException;
+import com.nesslabs.nesslabspring.model.Event;
+import com.nesslabs.nesslabspring.security.JwtService;
 import com.nesslabs.nesslabspring.service.EventService;
+import jakarta.servlet.http.HttpServletRequest;
+import lombok.RequiredArgsConstructor;
+import jakarta.persistence.EntityNotFoundException;
+import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -12,15 +20,34 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
+import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin
-@RequestMapping(path = "api/v1")
+@RequestMapping(path = "api/v1/events")
 @RestController
 @RequiredArgsConstructor
 public class EventController {
 
     private final EventService eventService;
-    @GetMapping("/events")
+
+    @PutMapping("/{eventId}")
+    public ResponseEntity<?> updateEvent(
+            @PathVariable Long eventId,
+            @RequestBody EventDto eventDto,
+            @RequestHeader("Authorization") String token) {
+        try {
+            Event updatedEvent = eventService.updateEvent(eventId, eventDto, token);
+            return ResponseEntity.status(200).body(updatedEvent); // Returns HTTP status 200 (OK)
+        } catch (UnauthorizedException e) {
+            return ResponseEntity.status(401).body(null); // Returns HTTP status 401 (Unauthorized)
+        } catch (EntityNotFoundException e) {
+            return ResponseEntity.status(404).build(); // Returns HTTP status 404 (Not Found)
+        } catch (InvalidInputException e) {
+            return ResponseEntity.status(500).body(e.getMessage()); // Returns HTTP status 500 (Internal Server Error)
+        }
+    }
+
+    @GetMapping()
     public ResponseEntity<List<EventDto>> getEventsWithPaginationAndFiltered(
             @RequestParam(required = false, value = "start_date") LocalDateTime startDate,
             @RequestParam(required = false, value = "end_date") LocalDateTime endDate,
@@ -39,7 +66,8 @@ public class EventController {
         return new ResponseEntity<>(filtered_events, HttpStatus.OK);
     }
 
-    @GetMapping("/events/{id}")
+
+    @GetMapping("/{id}")
     public ResponseEntity<?> getEventById(@PathVariable Long id){
         try {
             EventDto eventDto = eventService.getEventById(id);

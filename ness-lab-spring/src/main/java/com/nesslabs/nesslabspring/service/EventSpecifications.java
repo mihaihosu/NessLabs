@@ -54,7 +54,7 @@ public class EventSpecifications {
 
     public static Specification<Event> hasEventTypes(List<EventStatus> eventStatus) {
         return (root, query, criteriaBuilder) ->
-                root.get("status").in(eventStatus);
+                root.get("eventStatus").in(eventStatus);
     }
 
     public static Specification<Event> containsText(String searchInput) {

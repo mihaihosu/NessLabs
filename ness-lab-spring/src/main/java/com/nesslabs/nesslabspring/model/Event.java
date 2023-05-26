@@ -1,5 +1,6 @@
 package com.nesslabs.nesslabspring.model;
 
+
 import com.nesslabs.nesslabspring.enums.EventStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -7,9 +8,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.Duration;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 @Data
 @Builder
@@ -32,10 +31,6 @@ public class Event {
 
     private LocalDateTime endDateTime;
 
-    private LocalTime startTime;
-
-    private Duration duration;
-
     private String address;
 
     private String eventLink;
@@ -52,5 +47,5 @@ public class Event {
 
     private String tagName;
 
-    private EventStatus status;
+    private EventStatus eventStatus;
 }
