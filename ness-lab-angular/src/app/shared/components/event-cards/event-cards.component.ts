@@ -36,7 +36,7 @@ export class EventCardsComponent implements OnChanges, OnInit {
   searchEvents(param: string) {
     if (param) {
       if (this.selectedCards === 'all-events') {
-        this.searchEventsCards = this.events.events.filter((event: any) => {
+        this.searchEventsCards = this.eventsAll.filter((event: any) => {
           const eventTitle = event.titlu.toLowerCase();
           return eventTitle.includes(param.toLowerCase());
         });
@@ -48,7 +48,7 @@ export class EventCardsComponent implements OnChanges, OnInit {
       }
     } else {
       if (this.selectedCards === 'all-events') {
-        this.searchEventsCards = this.events.events;
+        this.searchEventsCards = this.eventsAll;
       } else {
         this.searchEventsCards = this.myevents.myevents;
       }
@@ -58,7 +58,7 @@ export class EventCardsComponent implements OnChanges, OnInit {
   searchEventsDate(param: Date) {
     if (param) {
       if (this.selectedCards === 'all-events') {
-        this.searchEventsCards = this.events.events.filter((event: any) => {
+        this.searchEventsCards = this.eventsAll.filter((event: any) => {
           const eventDate = event.data.toLowerCase();
           return eventDate.includes(param);
         });
@@ -70,7 +70,7 @@ export class EventCardsComponent implements OnChanges, OnInit {
       }
     } else {
       if (this.selectedCards === 'all-events') {
-        this.searchEventsCards = this.events.events;
+        this.searchEventsCards = this.eventsAll;
       } else {
         this.searchEventsCards = this.myevents.myevents;
       }
@@ -83,7 +83,7 @@ export class EventCardsComponent implements OnChanges, OnInit {
 
   ngOnChanges() {
     if (this.selectedCards === 'all-events') {
-      this.searchEventsCards = this.events.events;
+      this.searchEventsCards = this.eventsAll;
     } else {
       this.searchEventsCards = this.myevents.myevents;
     }
@@ -356,7 +356,8 @@ export class EventCardsComponent implements OnChanges, OnInit {
       },
     ],
   };
-
+  eventsAll: any[] = this.events.events;
+  // eventsAll:any[]=[];
   // myevents = {
   //   myevents: [],
   // };

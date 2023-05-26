@@ -11,6 +11,7 @@ import { SearchService } from 'src/app/services/search-service/search.service';
 export class NavbarComponent implements OnInit {
   clickprofile: boolean = false;
   searchCards: string = '';
+  isAdmin = true;
   constructor(
     private searchCardsService: SearchService,
     private dialogService: DialogService,
