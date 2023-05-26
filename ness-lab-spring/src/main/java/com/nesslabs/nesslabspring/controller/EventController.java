@@ -20,6 +20,25 @@ import java.util.List;
 public class EventController {
 
     private final EventService eventService;
+    @GetMapping("/events")
+    public ResponseEntity<List<EventDto>> getEventsWithPaginationAndFiltered(
+            @RequestParam(required = false, value = "start_date") LocalDateTime startDate,
+            @RequestParam(required = false, value = "end_date") LocalDateTime endDate,
+            @RequestParam(required = false, value = "tags") String tags,
+            @RequestParam(required = false, value = "characteristics") String characteristics,
+            @RequestParam(required = false, value = "is_free") Boolean is_free,
+            @RequestParam(required = false, value = "event_status") String event_status,
+            @RequestParam(required = false, value = "search_input") String search_input,
+            @RequestParam(required = false, value = "my_events") Boolean my_events,
+            @RequestParam(value = "offset") Integer offset,
+            @RequestParam(value = "page_size") Integer page_size,
+            @RequestHeader("Authorization") String token
+    ) {
+        List<EventDto> filtered_events = eventService.getEventsWithPaginationAndFiltered( startDate, endDate, tags, characteristics, is_free, event_status,
+                search_input, my_events, offset, page_size, token);
+        return new ResponseEntity<>(filtered_events, HttpStatus.OK);
+    }
+
     @GetMapping("/events/{id}")
     public ResponseEntity<?> getEventById(@PathVariable Long id){
         try {
@@ -33,23 +52,4 @@ public class EventController {
 
     }
 
-    @GetMapping("/events")
-    public ResponseEntity <List<EventDto>> getEventsWithPaginationAndFiltered(
-            @RequestParam(value = "start_date") LocalDateTime startDate,
-            @RequestParam(value = "end_date") LocalDateTime endDate,
-            @RequestParam(value = "tags") String tags,
-            @RequestParam(value = "characteristics") String characteristics,
-            @RequestParam(value = "is_free") Boolean is_free,
-            @RequestParam(value = "event_status") String event_status,
-            @RequestParam(value = "search_input") String search_input,
-            @RequestParam(value = "my_events") Boolean my_events,
-            @RequestParam(value = "offset") Integer offset,
-            @RequestParam(value = "page_size") Integer page_size,
-            @RequestHeader("Authorization") String token
-    ) {
-
-        List<EventDto> filtered_events = eventService.getEventsWithPaginationAndFiltered( startDate, endDate, tags, characteristics, is_free, event_status,
-                search_input, my_events, offset, page_size, token);
-        return new ResponseEntity<>(filtered_events, HttpStatus.OK);
-    }
 }

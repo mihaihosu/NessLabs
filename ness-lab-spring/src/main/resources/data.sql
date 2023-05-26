@@ -1,6 +1,6 @@
 INSERT INTO _user (email, username, password, is_admin, is_confirmed)
 VALUES ('sara@yahoo.com', 'Sara', 'Password1@', true, false),
-       ('lara@yahoo.com', 'Lara', 'Password2@', false, true),
+       ('lara@yahoo.com', 'Lara', '$2a$10$bdR.wy1ImvmHhCC7DNzfVODBiqUGI09Pf1ywPq5uif9FXbCJfDxIu', false, true),
        ('cara@yahoo.com', 'Cara', 'Password3@', false, true),
        ('vara@yahoo.com', 'Vara', 'Password4@', true, true),
        ('para@yahoo.com', 'Para', 'Password5@', false, false),

@@ -65,9 +65,10 @@ public class EventServiceImpl implements EventService{
         if (searchInput != null && !searchInput.isEmpty()) {
             specification = specification.and(EventSpecifications.containsText(searchInput));
         }
-        if (myEvents) {
-            if(jwtService.extractIsAdmin(token)) {
-                String userEmail = jwtService.extractUsername(token);
+        if (myEvents != null  && myEvents) {
+            String tokenWithoutBearer = token.substring(7);
+            if(jwtService.extractIsAdmin(tokenWithoutBearer)) {
+                String userEmail = jwtService.extractUsername(tokenWithoutBearer);
                 specification = specification.and(EventSpecifications.isMyEvent(userEmail));
             }
         }

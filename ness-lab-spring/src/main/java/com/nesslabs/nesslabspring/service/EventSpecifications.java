@@ -31,26 +31,6 @@ public class EventSpecifications {
                 .map(String::toLowerCase)
                 .toList();
 
-//        if(characteristicsLowerCase.contains("pet friendly") && characteristicsLowerCase.contains("kid friendly")) {
-//            return (root, query, criteriaBuilder) ->
-//                    criteriaBuilder.and(
-//                            criteriaBuilder.isTrue(root.get("isPetFriendly")),
-//                            criteriaBuilder.isTrue(root.get("isKidFriendly"))
-//                    );
-//        }
-//
-//        else if(characteristicsLowerCase.contains("pet friendly")) {
-//            return (root, query, criteriaBuilder) ->
-//                    criteriaBuilder.isTrue(root.get("isPetFriendly"));
-//        }
-//
-//        else if(characteristicsLowerCase.contains("kid friendly")) {
-//            return (root, query, criteriaBuilder) ->
-//                    criteriaBuilder.isTrue(root.get("isKidFriendly"));
-//        }
-//
-//        else throw new TagNotFoundException("Wring characteristic input");
-
         return (root, query, criteriaBuilder) -> {
             List<Predicate> predicates = new ArrayList<>();
 
