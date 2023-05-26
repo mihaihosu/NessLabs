@@ -85,4 +85,11 @@ public class EventSpecifications {
                         criteriaBuilder.like(root.get("address"), "%" + searchInput + "%")
                 );
     }
+
+    public static Specification<Event> isMyEvent(String userEmail) {
+        return (root, query, criteriaBuilder) -> (
+                criteriaBuilder.equal(root.get("adminEmail"), userEmail)
+        );
+
+    }
 }

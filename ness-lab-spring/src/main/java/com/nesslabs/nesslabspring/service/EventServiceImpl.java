@@ -6,6 +6,7 @@ import com.nesslabs.nesslabspring.exception.EventNotFoundException;
 import com.nesslabs.nesslabspring.mappers.EventMapper;
 import com.nesslabs.nesslabspring.model.Event;
 import com.nesslabs.nesslabspring.repository.EventRepository;
+import com.nesslabs.nesslabspring.security.JwtService;
 import com.nesslabs.nesslabspring.utils.QueryParser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -27,11 +28,12 @@ public class EventServiceImpl implements EventService{
 
     private final EventMapper eventMapper;
     private final EventRepository eventRepository;
+    private final JwtService jwtService;
     @Override
     public List<EventDto> getEventsWithPaginationAndFiltered(
             LocalDateTime startDate, LocalDateTime endDate, String tags, String characteristics,
-            Boolean isFree, String eventStatus, String searchInput, Integer myEvents,
-            Integer offset, Integer pageSize
+            Boolean isFree, String eventStatus, String searchInput, Boolean myEvents,
+            Integer offset, Integer pageSize, String token
     ) {
 
         Specification<Event> specification = Specification.where(null);
@@ -63,13 +65,16 @@ public class EventServiceImpl implements EventService{
         if (searchInput != null && !searchInput.isEmpty()) {
             specification = specification.and(EventSpecifications.containsText(searchInput));
         }
-        if (myEvents != null) {
-            // Logic for filtering based on the user's events (admin-specific)
+        if (myEvents) {
+            if(jwtService.extractIsAdmin(token)) {
+                String userEmail = jwtService.extractUsername(token);
+                specification = specification.and(EventSpecifications.isMyEvent(userEmail));
+            }
         }
 
         PageRequest pageRequest = PageRequest.of(offset / pageSize, pageSize);
 
-        Page<Event> eventPage = eventRepository.findAll(specification ,pageRequest);
+        Page<Event> eventPage = eventRepository.findAll(specification, pageRequest);
 
 
         return eventPage.getContent()

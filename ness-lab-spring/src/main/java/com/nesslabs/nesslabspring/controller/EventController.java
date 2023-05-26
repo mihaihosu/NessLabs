@@ -3,6 +3,7 @@ package com.nesslabs.nesslabspring.controller;
 import com.nesslabs.nesslabspring.dto.EventDto;
 import com.nesslabs.nesslabspring.exception.EventNotFoundException;
 import com.nesslabs.nesslabspring.service.EventService;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -41,13 +42,14 @@ public class EventController {
             @RequestParam(value = "is_free") Boolean is_free,
             @RequestParam(value = "event_status") String event_status,
             @RequestParam(value = "search_input") String search_input,
-            @RequestParam(value = "my_events") Integer my_events,
-            @RequestParam(value = "page_number") Integer page_number,
-            @RequestParam(value = "page_size") Integer page_size
+            @RequestParam(value = "my_events") Boolean my_events,
+            @RequestParam(value = "offset") Integer offset,
+            @RequestParam(value = "page_size") Integer page_size,
+            @RequestHeader("Authorization") String token
     ) {
 
         List<EventDto> filtered_events = eventService.getEventsWithPaginationAndFiltered( startDate, endDate, tags, characteristics, is_free, event_status,
-                search_input, my_events, page_number, page_size);
+                search_input, my_events, offset, page_size, token);
         return new ResponseEntity<>(filtered_events, HttpStatus.OK);
     }
 }
