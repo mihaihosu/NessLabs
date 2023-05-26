@@ -18,9 +18,7 @@ import { PleaseLoginDialogComponent } from './shared/components/please-login-dia
 import { DeletingEventDialogComponent } from './shared/components/deleting-event-dialog/deleting-event-dialog/deleting-event-dialog.component';
 import { EventPostedDialogComponent } from './shared/components/event-posted-dialog/event-posted-dialog/event-posted-dialog.component';
 import { DraftSavedDialogComponent } from './shared/components/draft-saved-dialog/draft-saved-dialog/draft-saved-dialog.component';
-import { InputComponent } from './generic/input/input.component';
 import { LoginComponent } from './components/login/login.component';
-import { FormComponent } from './generic/form/form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ButtonComponent } from './generic/button/button.component';
 import { CreateAccountComponent } from './components/create-account/create-account.component';
@@ -42,9 +40,7 @@ import { MyAccountDialogComponent } from './shared/components/my-account-dialog/
     EventPostedDialogComponent,
     DeletingEventDialogComponent,
     DraftSavedDialogComponent,
-    InputComponent,
     LoginComponent,
-    FormComponent,
     ButtonComponent,
     CreateAccountComponent,
     MyAccountDialogComponent,

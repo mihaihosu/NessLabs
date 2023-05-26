@@ -36,13 +36,16 @@ ul.requirement-list li img {
 }
 
 .container {
-  height: 100vh;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-image: url("../../../assets/img/background_login.jpg") !important;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: black;
+  height: 100%;
 }
-
 .login {
   width: 420px;
   height: 810px;
