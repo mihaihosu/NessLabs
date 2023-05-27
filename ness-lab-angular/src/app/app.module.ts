@@ -27,6 +27,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MyAccountDialogComponent } from './shared/components/my-account-dialog/my-account-dialog/my-account-dialog.component';
+import { RecoverAccountComponent } from './components/recover-account/recover-account.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { MyAccountDialogComponent } from './shared/components/my-account-dialog/
     ButtonComponent,
     CreateAccountComponent,
     MyAccountDialogComponent,
+    RecoverAccountComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable, Subject } from 'rxjs';
 import { User } from 'src/app/interfaces/user';
 
 @Injectable({
@@ -6,6 +7,19 @@ import { User } from 'src/app/interfaces/user';
 })
 export class AuthService {
   constructor() {}
+  isAdmin: boolean = false;
+  isConfirm: boolean = false;
+
+  public isConfirmedSubject$: Subject<boolean> = new Subject<boolean>();
+  public isAdminSubject$: Subject<boolean> = new Subject<boolean>();
+
+  public isConfirmObservable(): Observable<boolean> {
+    return this.isConfirmedSubject$.asObservable();
+  }
+
+  public isAdminObservable(): Observable<boolean> {
+    return this.isAdminSubject$.asObservable();
+  }
 
   public users: User[] = [
     {
@@ -37,7 +51,12 @@ export class AuthService {
     );
     if (userIndex != -1) {
       this.users[userIndex].is_confirmed = true;
+      // this.isConfirmedSubject$.next(this.users[userIndex].is_confirmed);
+      // this.isAdminSubject$.next(this.users[userIndex].is_admin);
       console.log(this.users[userIndex].is_confirmed);
+      this.isConfirm = this.users[userIndex].is_confirmed;
+      console.log(this.users[userIndex].is_admin);
+      this.isAdmin = this.users[userIndex].is_admin;
       return true;
     } else {
       return false;

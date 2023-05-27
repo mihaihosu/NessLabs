@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { SearchService } from '../services/search-service/search.service';
 import { ViewEncapsulation } from '@angular/core';
 import { MatDatepicker } from '@angular/material/datepicker';
+import { AuthService } from '../services/auth-services/auth.service';
 
 @Component({
   selector: 'app-layout',
@@ -10,7 +11,10 @@ import { MatDatepicker } from '@angular/material/datepicker';
   encapsulation: ViewEncapsulation.Emulated,
 })
 export class LayoutComponent implements OnInit {
-  constructor(private searchService: SearchService) {}
+  constructor(
+    private searchService: SearchService,
+    private authService: AuthService
+  ) {}
 
   selectedDate: Date = new Date();
   selectedCards: string = 'all-events';
@@ -18,6 +22,7 @@ export class LayoutComponent implements OnInit {
   isOpen: boolean = false;
   isSelectedDate: boolean = false;
   @ViewChild('picker') picker: MatDatepicker<any>;
+  isAdmin: boolean = false;
 
   onSelectedCardsView(view: string) {
     this.selectedCards = view;
@@ -104,5 +109,8 @@ export class LayoutComponent implements OnInit {
     ],
   };
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.isAdmin = this.authService.isAdmin;
+    console.log('Este admin: ' + this.isAdmin);
+  }
 }

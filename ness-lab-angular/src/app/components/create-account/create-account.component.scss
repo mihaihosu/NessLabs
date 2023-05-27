@@ -155,11 +155,7 @@ button:not(:disabled):hover {
   align-items: center;
   margin-left: 30px;
 }
-.input-name {
-  margin-bottom: 0.5rem;
-  margin-top: 6px;
-  margin-left: 5px;
-}
+
 .password-icon {
   position: absolute;
   right: 3rem;
@@ -205,6 +201,9 @@ input[type="checkbox"] {
   height: 2rem;
   width: 17rem;
   margin-top: 5px;
+  margin-bottom: 0.5rem;
+  margin-top: 6px;
+  margin-left: 5px;
 }
 ::ng-deep .mat-form-field-appearance-legacy {
   .mat-form-field-wrapper {

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { AuthService } from 'src/app/services/auth-services/auth.service';
 import { DialogService } from 'src/app/services/dialog-service/dialog.service';
 import { SearchService } from 'src/app/services/search-service/search.service';
 
@@ -11,16 +13,39 @@ import { SearchService } from 'src/app/services/search-service/search.service';
 export class NavbarComponent implements OnInit {
   clickprofile: boolean = false;
   searchCards: string = '';
-  isAdmin = true;
+  isConfirmed: boolean = false;
+  isAdmin: boolean = false;
+
+  private isConfirmedSubscription: Subscription;
+  private isAdminSubscription: Subscription;
+
   constructor(
     private searchCardsService: SearchService,
     private dialogService: DialogService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.isConfirmed = this.authService.isConfirm;
+    this.isAdmin = this.authService.isAdmin;
 
-  isLogin = true;
+    console.log(this.isAdmin);
+    console.log(this.isConfirmed);
+
+    this.isConfirmedSubscription = this.authService
+      .isConfirmObservable()
+      .subscribe((isConfirmed: boolean) => {
+        this.isConfirmed = isConfirmed;
+      });
+    this.isAdminSubscription = this.authService
+      .isAdminObservable()
+      .subscribe((isAdmin: boolean) => {
+        this.isConfirmed = isAdmin;
+      });
+    console.log(this.isAdmin);
+    console.log(this.isConfirmed);
+  }
 
   mouseEnterProfile() {
     this.clickprofile = true;
@@ -45,5 +70,9 @@ export class NavbarComponent implements OnInit {
   }
   register() {
     this.router.navigate(['create-account']);
+  }
+  ngOnDestroy() {
+    this.isConfirmedSubscription.unsubscribe();
+    this.isAdminSubscription.unsubscribe();
   }
 }
