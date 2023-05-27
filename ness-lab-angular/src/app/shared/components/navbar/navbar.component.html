@@ -39,7 +39,7 @@
       REGISTER
     </button>
 
-    <div *ngIf="isAdmin" class="search-div-isAdmin">
+    <!-- <div *ngIf="isAdmin">
       <mat-icon svgIcon="search"></mat-icon>
       <input
         type="text"
@@ -49,12 +49,20 @@
         [(ngModel)]="searchCards"
         (input)="sendSearchCards()"
       />
-    </div>
+    </div> -->
   </div>
 </mat-toolbar>
 <div class="toolbar" (mouseleave)="mouseLeaveProfile()">
-  <div class="button1" *ngIf="clickprofile && !isConfirmed">Login</div>
-  <div class="button2" *ngIf="clickprofile && !isConfirmed">Register</div>
+  <div class="button1" *ngIf="clickprofile && !isConfirmed" (click)="login()">
+    Login
+  </div>
+  <div
+    class="button2"
+    *ngIf="clickprofile && !isConfirmed"
+    (click)="register()"
+  >
+    Register
+  </div>
   <div
     class="button1"
     *ngIf="clickprofile && isConfirmed"

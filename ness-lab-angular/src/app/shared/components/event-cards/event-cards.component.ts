@@ -1,5 +1,6 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { AuthService } from 'src/app/services/auth-services/auth.service';
 import { DialogService } from 'src/app/services/dialog-service/dialog.service';
 import { SearchService } from 'src/app/services/search-service/search.service';
 
@@ -11,7 +12,8 @@ import { SearchService } from 'src/app/services/search-service/search.service';
 export class EventCardsComponent implements OnChanges, OnInit {
   constructor(
     private searchCardsService: SearchService,
-    private dialogService: DialogService
+    private dialogService: DialogService,
+    private authService: AuthService
   ) {
     this.searchSubscription = this.searchCardsService.searchSubject$.subscribe(
       (param: string) => {
@@ -24,8 +26,9 @@ export class EventCardsComponent implements OnChanges, OnInit {
       });
   }
 
+  isConfirmed: boolean = false;
+  isAdmin: boolean = false;
   private searchSubscription: Subscription;
-  isLogin = false;
   @Input() selectedCards: string = 'all-events';
   searchEventsCards: any[] = [];
   noEventsYet: string = 'No Event Yet';
@@ -97,7 +100,6 @@ export class EventCardsComponent implements OnChanges, OnInit {
 
   openModal() {
     this.dialogService.openPleaseLoginDialog();
-    console.log('Click !');
   }
 
   events = {
@@ -115,6 +117,7 @@ export class EventCardsComponent implements OnChanges, OnInit {
         status: 'available',
         endDateTime: new Date(2023, 6, 24, 20, 43),
         author: 'OtherAdminName',
+        is_free: true,
       },
       {
         data: '03 OCTOMBRIE 2023',
@@ -127,6 +130,7 @@ export class EventCardsComponent implements OnChanges, OnInit {
         status: 'draft',
         endDateTime: new Date(2023, 0, 24, 16, 43),
         author: 'AdminName',
+        is_free: false,
       },
       {
         data: '13 FEBRUARIE 2023',
@@ -139,6 +143,7 @@ export class EventCardsComponent implements OnChanges, OnInit {
         status: 'unavailable',
         endDateTime: new Date(2023, 9, 24, 9, 43),
         author: 'OtherAdminName',
+        is_free: true,
       },
       {
         data: '15 MAI 2023',
@@ -151,6 +156,7 @@ export class EventCardsComponent implements OnChanges, OnInit {
         status: 'draft',
         endDateTime: new Date(2023, 1, 24, 9, 43),
         author: 'OtherAdminName',
+        is_free: false,
       },
       {
         data: '12 IUNIE 2023',
@@ -163,6 +169,7 @@ export class EventCardsComponent implements OnChanges, OnInit {
         status: 'unavailable',
         endDateTime: new Date(2023, 2, 24, 9, 43),
         author: 'AdminName',
+        is_free: true,
       },
       {
         data: '15 APRILIE 2023',
@@ -175,6 +182,7 @@ export class EventCardsComponent implements OnChanges, OnInit {
         status: 'draft',
         endDateTime: new Date(2023, 7, 24, 22, 43),
         author: 'AdminName',
+        is_free: false,
       },
       {
         data: '12 IUNIE 2023',
@@ -187,6 +195,7 @@ export class EventCardsComponent implements OnChanges, OnInit {
         status: 'available',
         endDateTime: new Date(2023, 11, 24, 9, 43),
         author: 'AdminName',
+        is_free: false,
       },
       {
         data: '13 FEBRUARIE 2023',
@@ -199,6 +208,7 @@ export class EventCardsComponent implements OnChanges, OnInit {
         status: 'draft',
         endDateTime: new Date(2023, 10, 24, 19, 43),
         author: 'AdminName',
+        is_free: true,
       },
       {
         data: '12 IUNIE 2023',
@@ -211,6 +221,7 @@ export class EventCardsComponent implements OnChanges, OnInit {
         status: 'available',
         endDateTime: new Date(2023, 3, 24, 9, 43),
         author: 'OtherAdminName',
+        is_free: true,
       },
       {
         data: '12 IUNIE 2023',
@@ -223,6 +234,7 @@ export class EventCardsComponent implements OnChanges, OnInit {
         status: 'unavailable',
         endDateTime: new Date(2023, 8, 24, 21, 43),
         author: 'OtherAdminName',
+        is_free: false,
       },
     ],
   };
@@ -239,6 +251,7 @@ export class EventCardsComponent implements OnChanges, OnInit {
         status: 'available',
         endDateTime: new Date(2023, 1, 24, 9, 43),
         author: 'OtherAdminName',
+        is_free: false,
       },
       {
         data: '12 IUNIE 2023',
@@ -250,6 +263,7 @@ export class EventCardsComponent implements OnChanges, OnInit {
         type: 'free',
         status: 'unavailable',
         author: 'OtherAdminName',
+        is_free: true,
       },
       {
         data: '30 MARTIE 2023',
@@ -262,6 +276,7 @@ export class EventCardsComponent implements OnChanges, OnInit {
         status: 'draft',
         endDateTime: new Date(2023, 1, 24, 9, 43),
         author: 'OtherAdminName',
+        is_free: true,
       },
       {
         data: '30 MARTIE 2023',
@@ -273,6 +288,7 @@ export class EventCardsComponent implements OnChanges, OnInit {
         type: 'with ticket',
         status: 'unavailable',
         author: 'OtherAdminName',
+        is_free: false,
       },
       {
         data: '03 OCTOMBRIE 2023',
@@ -283,6 +299,7 @@ export class EventCardsComponent implements OnChanges, OnInit {
         imgURL: './assets/img/img2.png',
         type: 'with ticket',
         status: 'available',
+        is_free: true,
       },
       {
         data: '13 FEBRUARIE 2023',
@@ -293,6 +310,7 @@ export class EventCardsComponent implements OnChanges, OnInit {
         imgURL: './assets/img/img3.png',
         type: 'free',
         status: 'draft',
+        is_free: false,
       },
       {
         data: '15 APRILIE 2023',
@@ -303,6 +321,7 @@ export class EventCardsComponent implements OnChanges, OnInit {
         imgURL: './assets/img/img5.png',
         type: 'with ticket',
         status: 'available',
+        is_free: true,
       },
       {
         data: '12 IUNIE 2023',
@@ -313,6 +332,7 @@ export class EventCardsComponent implements OnChanges, OnInit {
         imgURL: './assets/img/img7.png',
         type: 'free',
         status: 'draft',
+        is_free: false,
       },
       {
         data: '15 APRILIE 2023',
@@ -323,6 +343,7 @@ export class EventCardsComponent implements OnChanges, OnInit {
         imgURL: './assets/img/img4.png',
         type: 'with ticket',
         status: 'available',
+        is_free: true,
       },
       {
         data: '13 FEBRUARIE 2023',
@@ -333,6 +354,7 @@ export class EventCardsComponent implements OnChanges, OnInit {
         imgURL: './assets/img/img7.png',
         type: 'free',
         status: 'draft',
+        is_free: false,
       },
       {
         data: '12 IUNIE 2023',
@@ -343,6 +365,7 @@ export class EventCardsComponent implements OnChanges, OnInit {
         imgURL: './assets/img/universe.png',
         type: 'with ticket',
         status: 'available',
+        is_free: true,
       },
       {
         data: '13 FEBRUARIE 2023',
@@ -353,13 +376,74 @@ export class EventCardsComponent implements OnChanges, OnInit {
         imgURL: './assets/img/img3.png',
         type: 'with ticket',
         status: 'draft',
+        is_free: false,
       },
     ],
   };
+  mostPopular = {
+    mostPopular: [
+      {
+        data: '12 IUNIE 2023',
+        ora: '20:00',
+        titlu: 'Teatru Papusi',
+        loc: 'Piata Unirii',
+        autor: 'OtherAdminName',
+        imgURL: './assets/img/img10.png',
+        type: 'with ticket',
+        status: 'available',
+        endDateTime: new Date(2023, 12, 24, 9, 43),
+        author: 'OtherAdminName',
+        is_free: true,
+      },
+      {
+        data: '12 IUNIE 2023',
+        ora: '20:00',
+        titlu: 'Concert Chitara',
+        loc: 'Piata Unirii',
+        autor: 'OtherAdminName',
+        imgURL: './assets/img/universe.png',
+        type: 'with ticket',
+        status: 'available',
+        endDateTime: new Date(2023, 11, 24, 9, 43),
+        author: 'OtherAdminName',
+        is_free: false,
+      },
+      {
+        data: '12 IUNIE 2023',
+        ora: '20:00',
+        titlu: 'Curs De Gatit',
+        loc: 'Piata Unirii',
+        autor: 'OtherAdminName',
+        imgURL: './assets/img/img8.png',
+        type: 'free',
+        status: 'unavailable',
+        endDateTime: new Date(2023, 12, 24, 9, 43),
+        author: 'AdminName',
+        is_free: true,
+      },
+      {
+        data: '12 IUNIE 2023',
+        ora: '20:00',
+        titlu: 'Concert Chitara',
+        loc: 'Piata Unirii',
+        autor: 'OtherAdminName',
+        imgURL: './assets/img/universe.png',
+        type: 'with ticket',
+        status: 'available',
+        endDateTime: new Date(2023, 8, 24, 9, 43),
+        author: 'OtherAdminName',
+        is_free: true,
+      },
+    ],
+  };
+
   eventsAll: any[] = this.events.events;
   // eventsAll:any[]=[];
   // myevents = {
   //   myevents: [],
   // };
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.isConfirmed = this.authService.isConfirm;
+    this.isAdmin = this.authService.isAdmin;
+  }
 }

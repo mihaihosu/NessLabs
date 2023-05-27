@@ -23,6 +23,7 @@ export class LayoutComponent implements OnInit {
   isSelectedDate: boolean = false;
   @ViewChild('picker') picker: MatDatepicker<any>;
   isAdmin: boolean = false;
+  isConfirmed: boolean = false;
 
   onSelectedCardsView(view: string) {
     this.selectedCards = view;
@@ -45,13 +46,11 @@ export class LayoutComponent implements OnInit {
   open() {
     this.picker.open();
     this.isOpen = true;
-    console.log(this.isOpen);
   }
 
   close() {
     this.picker.close();
     this.isOpen = false;
-    console.log(this.isOpen);
   }
 
   buttons = {
@@ -111,6 +110,5 @@ export class LayoutComponent implements OnInit {
 
   ngOnInit(): void {
     this.isAdmin = this.authService.isAdmin;
-    console.log('Este admin: ' + this.isAdmin);
   }
 }

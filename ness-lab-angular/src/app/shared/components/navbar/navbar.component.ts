@@ -16,35 +16,40 @@ export class NavbarComponent implements OnInit {
   isConfirmed: boolean = false;
   isAdmin: boolean = false;
 
-  private isConfirmedSubscription: Subscription;
-  private isAdminSubscription: Subscription;
+  // private isConfirmedSubscription: Subscription;
+  // private isAdminSubscription: Subscription;
 
   constructor(
     private searchCardsService: SearchService,
     private dialogService: DialogService,
     private router: Router,
     private authService: AuthService
-  ) {}
+  ) {
+    // this.isConfirmedSubscription = this.authService
+    //   .isConfirmObservable()
+    //   .subscribe((isConfirmed: boolean) => {
+    //     this.isConfirmed = isConfirmed;
+    //   });
+    // this.isAdminSubscription = this.authService
+    //   .isAdminObservable()
+    //   .subscribe((isAdmin: boolean) => {
+    //     this.isAdmin = isAdmin;
+    //   });
+  }
 
   ngOnInit(): void {
-    this.isConfirmed = this.authService.isConfirm;
     this.isAdmin = this.authService.isAdmin;
+    this.isConfirmed = this.authService.isConfirm;
 
     console.log(this.isAdmin);
     console.log(this.isConfirmed);
 
-    this.isConfirmedSubscription = this.authService
-      .isConfirmObservable()
-      .subscribe((isConfirmed: boolean) => {
-        this.isConfirmed = isConfirmed;
-      });
-    this.isAdminSubscription = this.authService
-      .isAdminObservable()
-      .subscribe((isAdmin: boolean) => {
-        this.isConfirmed = isAdmin;
-      });
-    console.log(this.isAdmin);
-    console.log(this.isConfirmed);
+    // this.authService.isAdminObservable().subscribe((isAdmin) => {
+    //   this.isAdmin = isAdmin;
+    // });
+    // this.authService.isConfirmObservable().subscribe((isConfirmed) => {
+    //   this.isConfirmed = isConfirmed;
+    // });
   }
 
   mouseEnterProfile() {
@@ -57,7 +62,6 @@ export class NavbarComponent implements OnInit {
 
   sendSearchCards() {
     this.searchCardsService.search(this.searchCards);
-    console.log(this.searchCards);
   }
   openModal() {
     this.dialogService.openMyAccountDialog();
@@ -71,8 +75,8 @@ export class NavbarComponent implements OnInit {
   register() {
     this.router.navigate(['create-account']);
   }
-  ngOnDestroy() {
-    this.isConfirmedSubscription.unsubscribe();
-    this.isAdminSubscription.unsubscribe();
-  }
+  // ngOnDestroy() {
+  //   this.isConfirmedSubscription.unsubscribe();
+  //   this.isAdminSubscription.unsubscribe();
+  // }
 }

@@ -49,14 +49,12 @@ export class AuthService {
     const userIndex = this.users.findIndex(
       (user) => user.password === password && user.email === email
     );
-    if (userIndex != -1) {
+    if (userIndex !== -1) {
       this.users[userIndex].is_confirmed = true;
-      // this.isConfirmedSubject$.next(this.users[userIndex].is_confirmed);
-      // this.isAdminSubject$.next(this.users[userIndex].is_admin);
-      console.log(this.users[userIndex].is_confirmed);
       this.isConfirm = this.users[userIndex].is_confirmed;
-      console.log(this.users[userIndex].is_admin);
       this.isAdmin = this.users[userIndex].is_admin;
+      // this.isConfirmedSubject$.next(this.isConfirm);
+      // this.isAdminSubject$.next(this.isAdmin);
       return true;
     } else {
       return false;

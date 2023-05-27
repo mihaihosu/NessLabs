@@ -1,4 +1,94 @@
 <div class="scroll-container">
+  <div *ngIf="!isAdmin" class="div-most-popular">
+    <div>
+      <p class="most-popular-text">Most popular 🔥</p>
+    </div>
+    <div class="most-popular-div">
+      <div
+        class="grid-container__event-card"
+        *ngFor="let event of mostPopular.mostPopular"
+      >
+        <div class="grid-container__event-card__container">
+          <img
+            class="grid-container__event-card__container__image"
+            [ngClass]="{
+              'grid-container__event-card__container__image__haspassed':
+                hasPassed(event)
+            }"
+            [src]="event.imgURL"
+          />
+          <div
+            *ngIf="isConfirmed"
+            class="grid-container__event-card__container__buttons-login"
+          >
+            <button
+              *ngIf="selectedCards === 'my-events'"
+              class="grid-container__event-card__container__buttons-login__button-edit"
+            >
+              <mat-icon
+                class="grid-container__event-card__container__buttons-login__button-edit__icon-edit"
+                svgIcon="edit"
+              ></mat-icon>
+            </button>
+            <button
+              *ngIf="selectedCards === 'my-events'"
+              class="grid-container__event-card__container__buttons-login__button-delete"
+            >
+              <mat-icon
+                class="grid-container__event-card__container__buttons-login__button-edit__icon-delete"
+                svgIcon="trash"
+              ></mat-icon>
+            </button>
+          </div>
+
+          <div
+            *ngIf="!isConfirmed"
+            class="grid-container__event-card__container__buttons-no-login"
+          >
+            <button
+              (click)="openModal()"
+              *ngIf="!isConfirmed"
+              class="grid-container__event-card__container__buttons-no-login__button-favorite"
+            >
+              <mat-icon
+                class="grid-container__event-card__container__buttons-no-login__button-favorite__icon-favorite"
+                svgIcon="heart"
+              ></mat-icon>
+            </button>
+          </div>
+
+          <div
+            class="grid-container__event-card__container__text"
+            [ngClass]="{
+              'grid-container__event-card__container__text2':
+                selectedCards === 'all-events'
+            }"
+          >
+            <p class="grid-container__event-card__container__text__p1">
+              {{ event.data + " , ORA " + event.ora }}
+            </p>
+            <p class="grid-container__event-card__container__text__p2">
+              {{ event.titlu }}
+            </p>
+            <p class="grid-container__event-card__container__text__p3">
+              {{ event.loc }}
+            </p>
+            <p
+              *ngIf="selectedCards === 'all-events' && isAdmin"
+              class="grid-container__event-card__container__text__p4"
+              [ngClass]="{
+                'grid-container__event-card__container__text2__p4':
+                  selectedCards === 'all-events'
+              }"
+            >
+              {{ "Added by " + event.author }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p *ngIf="!isAdmin" class="most-popular-text">Events you may like</p>
   <div class="grid-container">
     <div
       class="grid-container__event-card"
@@ -14,7 +104,7 @@
           [src]="event.imgURL"
         />
         <div
-          *ngIf="isLogin"
+          *ngIf="isConfirmed"
           class="grid-container__event-card__container__buttons-login"
         >
           <button
@@ -38,12 +128,27 @@
         </div>
 
         <div
-          *ngIf="!isLogin"
+          *ngIf="!isConfirmed"
           class="grid-container__event-card__container__buttons-no-login"
         >
+          <div
+            (click)="openModal()"
+            *ngIf="
+              (!isConfirmed && selectedCards === 'my-events') || !isConfirmed
+            "
+            class="grid-container__event-card__container__button-free"
+          >
+            <mat-icon
+              *ngIf="event.is_free"
+              class="grid-container__event-card__container__button-free__icon-free"
+              svgIcon="draft"
+            ></mat-icon>
+          </div>
           <button
             (click)="openModal()"
-            *ngIf="!isLogin && selectedCards === 'my-events'"
+            *ngIf="
+              (!isConfirmed && selectedCards === 'my-events') || !isConfirmed
+            "
             class="grid-container__event-card__container__buttons-no-login__button-favorite"
           >
             <mat-icon
@@ -70,7 +175,7 @@
             {{ event.loc }}
           </p>
           <p
-            *ngIf="selectedCards === 'all-events'"
+            *ngIf="selectedCards === 'all-events' && isAdmin"
             class="grid-container__event-card__container__text__p4"
             [ngClass]="{
               'grid-container__event-card__container__text2__p4':

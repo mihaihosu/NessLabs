@@ -56,7 +56,6 @@ export class CreateAccountComponent {
   onCheckboxChange(event: Event) {
     const target = event.target as HTMLInputElement;
     this.isAdmin = target.checked;
-    console.log(this.isAdmin);
   }
 
   toggleShowPassword() {

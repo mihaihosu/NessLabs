@@ -95,7 +95,7 @@
   </div>
   <div class="right">
     <div class="content-navbar">
-      <mat-button-toggle-group class="toggle-button-group">
+      <mat-button-toggle-group *ngIf="isAdmin" class="toggle-button-group">
         <mat-button-toggle
           class="toggle-button-1"
           value="my-event"
@@ -113,7 +113,7 @@
           All Events</mat-button-toggle
         >
       </mat-button-toggle-group>
-      <button class="button-add-event">
+      <button *ngIf="isAdmin" class="button-add-event">
         <mat-icon class="add-icon" svgIcon="add"></mat-icon>Add New Event
       </button>
     </div>
