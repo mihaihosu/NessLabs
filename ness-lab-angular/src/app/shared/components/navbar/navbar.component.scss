@@ -92,6 +92,15 @@
   grid-column: 5;
   cursor: pointer;
 }
+.my-account {
+  font-size: 16px;
+  background: #fbfbfb;
+  width: 174px;
+  height: 40px;
+  margin-left: 20%;
+  grid-column: 5;
+  cursor: pointer;
+}
 .button2 {
   font-size: 16px;
   background: #fbfbfb;
@@ -100,6 +109,16 @@
   grid-column: 5;
   color: #8102ae;
   margin-left: 15px;
+  cursor: pointer;
+}
+.button2-logout {
+  font-size: 16px;
+  background: #fbfbfb;
+  width: 174px;
+  height: 40px;
+  grid-column: 5;
+  color: #d45215;
+  margin-left: 20%;
   cursor: pointer;
 }
 .input-search {

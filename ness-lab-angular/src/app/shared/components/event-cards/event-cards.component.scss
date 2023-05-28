@@ -1,5 +1,5 @@
 .scroll-container {
-  height: 50rem;
+  height: 51rem;
   overflow: auto;
   &__context {
     display: flex;
@@ -95,6 +95,10 @@
             margin-top: 20%;
           }
         }
+        &__button-draft {
+          width: 20%;
+          height: 30%;
+        }
       }
 
       &__buttons-no-login {
@@ -143,4 +147,26 @@
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0.04)),
     #ffffff;
   border-radius: 8px;
+}
+
+.favorite {
+  &__no-login {
+    &__context {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2em;
+
+      &__title {
+        color: #941abf;
+        font-family: "Lato", sans-serif;
+        font-style: normal;
+        font-size: 1.5em;
+        font-weight: 600;
+      }
+      &__text {
+        font-size: 1em;
+      }
+    }
+  }
 }

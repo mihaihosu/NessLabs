@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth-services/auth.service';
 import { DialogService } from 'src/app/services/dialog-service/dialog.service';
+import { NavbarService } from 'src/app/services/navbar-service/navbar.service';
 import { SearchService } from 'src/app/services/search-service/search.service';
 
 @Component({
@@ -15,6 +16,7 @@ export class NavbarComponent implements OnInit {
   searchCards: string = '';
   isConfirmed: boolean = false;
   isAdmin: boolean = false;
+  clickFavorite: boolean = false;
 
   // private isConfirmedSubscription: Subscription;
   // private isAdminSubscription: Subscription;
@@ -23,7 +25,8 @@ export class NavbarComponent implements OnInit {
     private searchCardsService: SearchService,
     private dialogService: DialogService,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private navbarService: NavbarService
   ) {
     // this.isConfirmedSubscription = this.authService
     //   .isConfirmObservable()
@@ -40,9 +43,6 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
     this.isAdmin = this.authService.isAdmin;
     this.isConfirmed = this.authService.isConfirm;
-
-    console.log(this.isAdmin);
-    console.log(this.isConfirmed);
 
     // this.authService.isAdminObservable().subscribe((isAdmin) => {
     //   this.isAdmin = isAdmin;
@@ -79,4 +79,10 @@ export class NavbarComponent implements OnInit {
   //   this.isConfirmedSubscription.unsubscribe();
   //   this.isAdminSubscription.unsubscribe();
   // }
+
+  onFavoriteClick() {
+    this.clickFavorite = !this.clickFavorite;
+    this.navbarService.emitClickFavorite(this.clickFavorite);
+    console.log(this.clickFavorite);
+  }
 }

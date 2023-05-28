@@ -7,7 +7,7 @@ import { RecoverAccountComponent } from './components/recover-account/recover-ac
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', redirectTo: '/home-page', pathMatch: 'full' },
   { path: 'create-account', component: CreateAccountComponent },
   { path: 'home-page', component: HomePageComponent },
   { path: 'recover-account', component: RecoverAccountComponent },

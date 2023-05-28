@@ -8,7 +8,7 @@
   </div>
   <div class="favorite-div">
     <mat-icon svgIcon="heart"></mat-icon>
-    <div class="favorite">Favorite</div>
+    <div class="favorite" (click)="onFavoriteClick()">Favorite</div>
   </div>
   <div class="profile profile-div" (mouseenter)="mouseEnterProfile()">
     <mat-icon svgIcon="user"></mat-icon>
@@ -64,13 +64,17 @@
     Register
   </div>
   <div
-    class="button1"
+    class="my-account"
     *ngIf="clickprofile && isConfirmed"
     (click)="openModal()"
   >
     My Account
   </div>
-  <div class="button2" *ngIf="clickprofile && isConfirmed" (click)="logout()">
+  <div
+    class="button2-logout"
+    *ngIf="clickprofile && isConfirmed"
+    (click)="logout()"
+  >
     Logout
   </div>
 </div>

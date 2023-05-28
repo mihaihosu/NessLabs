@@ -1,4 +1,4 @@
-<div class="scroll-container">
+<div class="scroll-container" *ngIf="!isFavoriteClicked">
   <div *ngIf="!isAdmin" class="div-most-popular">
     <div>
       <p class="most-popular-text">Most popular 🔥</p>
@@ -116,6 +116,17 @@
               svgIcon="edit"
             ></mat-icon>
           </button>
+
+          <mat-icon
+            *ngIf="
+              selectedCards === 'my-events' &&
+              event.is_draft &&
+              !hasPassed(event)
+            "
+            class="grid-container__event-card__container__buttons-login__button-draft"
+            svgIcon="draft"
+          ></mat-icon>
+
           <button
             *ngIf="selectedCards === 'my-events'"
             class="grid-container__event-card__container__buttons-login__button-delete"
@@ -136,7 +147,6 @@
             *ngIf="
               (!isConfirmed && selectedCards === 'my-events') || !isConfirmed
             "
-            class="grid-container__event-card__container__button-free"
           >
             <mat-icon
               *ngIf="event.is_free"
@@ -195,5 +205,13 @@
       <div class="scroll-container__context__title">{{ noEventsYet }}</div>
       <p class="scroll-container__context__text">{{ noEventsYetText }}</p>
     </div>
+  </div>
+</div>
+
+<div class="favorite" *ngIf="isFavoriteClicked && !isConfirmed">
+  <img class="favorite__no-login" src="../../assets/img/no_events.png" />
+  <div class="favorite__no-login__context">
+    <div class="favorite__no-login__context__title">{{ needToLogin }}</div>
+    <p class="favorite__no-login__context__text">{{ needToLoginText }}</p>
   </div>
 </div>

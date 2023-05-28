@@ -2,6 +2,7 @@ import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/services/auth-services/auth.service';
 import { DialogService } from 'src/app/services/dialog-service/dialog.service';
+import { NavbarService } from 'src/app/services/navbar-service/navbar.service';
 import { SearchService } from 'src/app/services/search-service/search.service';
 
 @Component({
@@ -13,28 +14,39 @@ export class EventCardsComponent implements OnChanges, OnInit {
   constructor(
     private searchCardsService: SearchService,
     private dialogService: DialogService,
-    private authService: AuthService
+    private authService: AuthService,
+    private navbarService: NavbarService
   ) {
-    this.searchSubscription = this.searchCardsService.searchSubject$.subscribe(
-      (param: string) => {
-        this.searchEvents(param);
-      }
-    );
-    this.searchSubscription =
-      this.searchCardsService.searchDateSubject$.subscribe((param: Date) => {
-        this.searchEventsDate(param);
-      });
+    // this.searchSubscription = this.searchCardsService.searchSubject$.subscribe(
+    //   (param: string) => {
+    //     this.searchEvents(param);
+    //   }
+    // );
+    // this.searchSubscription =
+    //   this.searchCardsService.searchDateSubject$.subscribe((param: Date) => {
+    //     this.searchEventsDate(param);
+    //   });
+    this.subscriptionFavorite =
+      this.navbarService.isFavoriteClickedObservable.subscribe(
+        (clicked: boolean) => {
+          this.isFavoriteClicked = clicked;
+        }
+      );
   }
 
   isConfirmed: boolean = false;
   isAdmin: boolean = false;
+  isFavoriteClicked: boolean = false;
   private searchSubscription: Subscription;
-  @Input() selectedCards: string = 'all-events';
+  @Input() selectedCards: string = 'my-events';
   searchEventsCards: any[] = [];
   noEventsYet: string = 'No Event Yet';
-
   noEventsYetText: string =
     'Click the " + Add New Event" button to add some events, and you\'ll see the events here next time you visit this page.';
+  needToLogin: string = 'Need to Login';
+  needToLoginText: string =
+    'To add events to your favorites list,please log in to your account, or create one.';
+  private subscriptionFavorite: Subscription;
 
   searchEvents(param: string) {
     if (param) {
@@ -81,7 +93,8 @@ export class EventCardsComponent implements OnChanges, OnInit {
   }
 
   ngOnDestroy() {
-    this.searchSubscription.unsubscribe();
+    // this.searchSubscription.unsubscribe();
+    this.subscriptionFavorite.unsubscribe();
   }
 
   ngOnChanges() {
@@ -252,6 +265,7 @@ export class EventCardsComponent implements OnChanges, OnInit {
         endDateTime: new Date(2023, 1, 24, 9, 43),
         author: 'OtherAdminName',
         is_free: false,
+        is_draft: true,
       },
       {
         data: '12 IUNIE 2023',
@@ -277,6 +291,7 @@ export class EventCardsComponent implements OnChanges, OnInit {
         endDateTime: new Date(2023, 1, 24, 9, 43),
         author: 'OtherAdminName',
         is_free: true,
+        is_draft: true,
       },
       {
         data: '30 MARTIE 2023',
@@ -300,6 +315,7 @@ export class EventCardsComponent implements OnChanges, OnInit {
         type: 'with ticket',
         status: 'available',
         is_free: true,
+        is_draft: true,
       },
       {
         data: '13 FEBRUARIE 2023',
@@ -322,6 +338,7 @@ export class EventCardsComponent implements OnChanges, OnInit {
         type: 'with ticket',
         status: 'available',
         is_free: true,
+        is_draft: true,
       },
       {
         data: '12 IUNIE 2023',
@@ -344,6 +361,7 @@ export class EventCardsComponent implements OnChanges, OnInit {
         type: 'with ticket',
         status: 'available',
         is_free: true,
+        is_draft: true,
       },
       {
         data: '13 FEBRUARIE 2023',
@@ -438,7 +456,7 @@ export class EventCardsComponent implements OnChanges, OnInit {
   };
 
   eventsAll: any[] = this.events.events;
-  // eventsAll:any[]=[];
+  // eventsAll: any[] = [];
   // myevents = {
   //   myevents: [],
   // };
