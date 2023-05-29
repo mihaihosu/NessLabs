@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SearchService } from '../services/search-service/search.service';
+import { DialogService } from '../services/dialog-service/dialog.service';
 
 @Component({
   selector: 'app-layout',
@@ -7,7 +8,7 @@ import { SearchService } from '../services/search-service/search.service';
   styleUrls: ['./layout.component.scss'],
 })
 export class LayoutComponent implements OnInit {
-  constructor(private searchService: SearchService) {}
+  constructor(private searchService: SearchService, private openDialogService: DialogService) {}
 
   selectedDate: Date = new Date();
   selectedCards: string = 'all-events';
@@ -25,6 +26,10 @@ export class LayoutComponent implements OnInit {
   sendSearchDateCards() {
     this.searchService.searchDate(this.selectedDate);
     console.log(this.selectedDate);
+  }
+
+  addNew() {
+    this.openDialogService.openAddNewEvent()
   }
 
   buttons = {

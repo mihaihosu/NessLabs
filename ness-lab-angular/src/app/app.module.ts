@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { EventCardsComponent } from './shared/components/event-cards/event-cards.component';
 import { LayoutComponent } from './layout/layout.component';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IconModule } from './shared/icon/icon/icon.module';
 import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from './shared/material.module';
@@ -18,6 +18,8 @@ import { PleaseLoginDialogComponent } from './shared/components/please-login-dia
 import { DeletingEventDialogComponent } from './shared/components/deleting-event-dialog/deleting-event-dialog/deleting-event-dialog.component';
 import { EventPostedDialogComponent } from './shared/components/event-posted-dialog/event-posted-dialog/event-posted-dialog.component';
 import { DraftSavedDialogComponent } from './shared/components/draft-saved-dialog/draft-saved-dialog/draft-saved-dialog.component';
+import { AddNewEventComponent } from './add-new-event/add-new-event.component';
+
 
 @NgModule({
   declarations: [
@@ -31,6 +33,7 @@ import { DraftSavedDialogComponent } from './shared/components/draft-saved-dialo
     EventPostedDialogComponent,
     DeletingEventDialogComponent,
     DraftSavedDialogComponent,
+    AddNewEventComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,6 +44,7 @@ import { DraftSavedDialogComponent } from './shared/components/draft-saved-dialo
     IconModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule
   ],
 
   providers: [],

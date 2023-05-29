@@ -1,0 +1,134 @@
+<form id="container" [formGroup]="form">
+  <h1>Create New Event</h1>
+
+  <div class="content">
+    <div class="card-content">
+      <div class="details">
+        <h2>Event Details</h2>
+        <h3>Upload Photo</h3>
+        <!-- <button mat-button color="primary">
+            <mat-icon class="add-icon" svgIcon="add"></mat-icon>Add event cover
+          </button> -->
+
+        <input
+          type="file"
+          id="img"
+          style="display: none"
+          accept="image/*"
+          (change)="onSelect($event)"
+        />
+        <button
+          mat-stroked-button
+          color="primary"
+          (click)="uploadButtonClicked()"
+        >
+          <mat-icon class="add-icon" svgIcon="add"></mat-icon>Add event cover
+        </button>
+
+        <br />
+        <br />
+        <div class="first-input">
+          <h2>Event Details</h2>
+          <label>Title</label>
+          <br />
+
+          <mat-form-field appearance="outline" floatLabel="never">
+            <input matInput placeholder="Title of event" />
+          </mat-form-field>
+          <br />
+
+          <label>Description</label>
+          <br />
+
+          <mat-form-field appearance="outline" floatLabel="never">
+            <input matInput placeholder="Information about event" />
+          </mat-form-field>
+        </div>
+
+        <h2>Date and Location</h2>
+
+        <div class="dates">
+          <mat-form-field>
+            <mat-label>Start Date</mat-label>
+            <input matInput [matDatepicker]="picker1" />
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker1">
+              <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+            </mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>End Date</mat-label>
+            <input matInput [matDatepicker]="picker2" />
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker2">
+              <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+            </mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" floatLabel="never">
+            <mat-label>Duration</mat-label>
+            <input matInput placeholder="0h 0m" />
+          </mat-form-field>
+        </div>
+
+        <br />
+        <br />
+        <div class="street">
+          <label>Street</label>
+          <mat-form-field appearance="outline" floatLabel="never">
+            <input matInput placeholder="Address of event" />
+          </mat-form-field>
+
+          <label>Street Number</label>
+          <br />
+          <mat-form-field appearance="outline" floatLabel="never">
+            <input matInput placeholder="1" />
+          </mat-form-field>
+        </div>
+      </div>
+
+      <br />
+      <div class="links">
+        <h2>Extras</h2>
+
+        <label>Link of event</label>
+        <br />
+
+        <mat-form-field appearance="outline" floatLabel="never">
+          <input matInput placeholder="Insert URL of event" />
+        </mat-form-field>
+        <br />
+
+        <label>Link of tickets</label>
+        <br />
+
+        <mat-form-field appearance="outline" floatLabel="never">
+          <input matInput placeholder="Insert URL for tickets" />
+        </mat-form-field>
+        <br />
+      </div>
+    </div>
+
+    <div class="generator">
+      <h2>Event Generator</h2>
+
+      <div id="add-image">
+       <img [src]="url" title="Profile Picture" height="299px" width="480px" /> 
+      </div>
+      <div class="img-details">
+        aici adaugi divul ala cu text
+      </div>
+    </div>
+  </div>
+  <br />
+  <mat-card-footer>
+    <button mat-stroked-button color="primary">CANCEL</button>
+    <div class="save">
+      <button mat-stroked-button color="primary">SAVE AS DRAFT</button>
+      <button mat-raised-button color="primary">POST EVENT</button>
+    </div>
+  </mat-card-footer>
+</form>
