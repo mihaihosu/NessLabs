@@ -30,6 +30,7 @@
                 svgIcon="edit"
               ></mat-icon>
             </button>
+
             <button
               *ngIf="selectedCards === 'my-events'"
               class="grid-container__event-card__container__buttons-login__button-delete"
@@ -128,6 +129,7 @@
           ></mat-icon>
 
           <button
+            (click)="openDeleteModal()"
             *ngIf="selectedCards === 'my-events'"
             class="grid-container__event-card__container__buttons-login__button-delete"
           >
@@ -151,7 +153,7 @@
             <mat-icon
               *ngIf="event.is_free"
               class="grid-container__event-card__container__button-free__icon-free"
-              svgIcon="draft"
+              svgIcon="free_tag"
             ></mat-icon>
           </div>
           <button

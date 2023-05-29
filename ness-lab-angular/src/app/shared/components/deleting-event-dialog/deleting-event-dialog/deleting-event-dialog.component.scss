@@ -4,8 +4,8 @@
   justify-content: flex-end;
   align-items: center;
   position: initial;
-  padding-top: 150px;
-  gap: 220px;
+  padding-top: 14rem;
+  gap: 9rem;
   &__message-div {
     display: flex;
     flex-direction: column;
@@ -34,11 +34,12 @@
       font-size: 16px;
       color: #ffffff;
       margin-right: 10px;
+      margin-top: 0.7em;
     }
   }
 }
 
 .hr {
-  width: 700px;
+  width: 43rem;
   margin-top: 20px;
 }

@@ -115,6 +115,10 @@ export class EventCardsComponent implements OnChanges, OnInit {
     this.dialogService.openPleaseLoginDialog();
   }
 
+  openDeleteModal() {
+    this.dialogService.openDeletingEventDialog();
+  }
+
   events = {
     events: [
       {

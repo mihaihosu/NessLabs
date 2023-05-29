@@ -26,6 +26,9 @@ export class IconModule {
       .addSvgIcon('mail-icon', this.setPath(`${this.path}/mail.svg`))
       .addSvgIcon('chevron-up', this.setPath(`${this.path}/chevron-up.svg`))
       .addSvgIcon('draft', this.setPath(`${this.path}/draft.svg`))
+      .addSvgIcon('free_tag', this.setPath(`${this.path}/free_tag.svg`))
+      .addSvgIcon('liked', this.setPath(`${this.path}/liked.svg`))
+      .addSvgIcon('no_liked', this.setPath(`${this.path}/no_liked.svg`))
       .addSvgIcon(
         'check-circle-2',
         this.setPath(`${this.path}/check-circle-2.svg`)

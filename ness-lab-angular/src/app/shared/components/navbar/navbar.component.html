@@ -2,12 +2,12 @@
   <div class="img-logo-timisoara-2023">
     <img src="./assets/img/logo-timisoara-2023.png" />
   </div>
-  <div class="home-div">
+  <div class="home-div" [ngClass]="{ 'favorite-active': !clickFavorite }">
     <mat-icon class="icon-home" svgIcon="home"></mat-icon>
     <div class="home">Home</div>
   </div>
-  <div class="favorite-div">
-    <mat-icon svgIcon="heart"></mat-icon>
+  <div class="favorite-div" [ngClass]="{ 'favorite-active': clickFavorite }">
+    <mat-icon class="favorite-icon" svgIcon="heart"></mat-icon>
     <div class="favorite" (click)="onFavoriteClick()">Favorite</div>
   </div>
   <div class="profile profile-div" (mouseenter)="mouseEnterProfile()">

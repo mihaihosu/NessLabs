@@ -21,7 +21,7 @@
   cursor: pointer;
   margin-left: 6px;
   font-size: 16px;
-  margin-top: 5px;
+  margin-top: 3px;
 }
 .home-div {
   grid-column: 3;
@@ -81,7 +81,9 @@
   cursor: pointer;
   font-size: 16px;
   margin-left: 5px;
-  margin-top: 2px;
+}
+.favorite-active {
+  color: #8102ae;
 }
 .button1 {
   font-size: 16px;
@@ -140,19 +142,13 @@
 }
 .profile-text {
   cursor: pointer;
-  margin-top: 5px;
+  margin-top: 2%;
   margin-left: 3px;
 }
 
 @media screen and (max-width: 768px) {
   .toolbar {
     grid-template-columns: repeat(4, 1fr);
-  }
-
-  .home-div {
-    grid-column: 1;
-    justify-content: center;
-    margin-bottom: 10px;
   }
 
   .favorite-div {
