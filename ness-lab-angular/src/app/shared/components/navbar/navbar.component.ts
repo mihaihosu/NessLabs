@@ -17,6 +17,7 @@ export class NavbarComponent implements OnInit {
   isConfirmed: boolean = false;
   isAdmin: boolean = false;
   clickFavorite: boolean = false;
+  clickHome: boolean = true;
 
   // private isConfirmedSubscription: Subscription;
   // private isAdminSubscription: Subscription;
@@ -80,9 +81,10 @@ export class NavbarComponent implements OnInit {
   //   this.isAdminSubscription.unsubscribe();
   // }
 
-  onFavoriteClick() {
+  onFavoriteHomeClick() {
     this.clickFavorite = !this.clickFavorite;
+    this.clickHome = !this.clickHome;
     this.navbarService.emitClickFavorite(this.clickFavorite);
-    console.log(this.clickFavorite);
+    this.navbarService.emitClickHome(this.clickHome);
   }
 }

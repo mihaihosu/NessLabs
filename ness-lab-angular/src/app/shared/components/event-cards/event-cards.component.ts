@@ -34,9 +34,11 @@ export class EventCardsComponent implements OnChanges, OnInit {
       );
   }
 
+  isFavorite: boolean = false;
   isConfirmed: boolean = false;
   isAdmin: boolean = false;
   isFavoriteClicked: boolean = false;
+  isHomeClicked: boolean = false;
   private searchSubscription: Subscription;
   @Input() selectedCards: string = 'my-events';
   searchEventsCards: any[] = [];
@@ -117,6 +119,10 @@ export class EventCardsComponent implements OnChanges, OnInit {
 
   openDeleteModal() {
     this.dialogService.openDeletingEventDialog();
+  }
+
+  addToFavorite() {
+    this.isFavorite = !this.isFavorite;
   }
 
   events = {
@@ -465,6 +471,7 @@ export class EventCardsComponent implements OnChanges, OnInit {
   //   myevents: [],
   // };
   ngOnInit(): void {
+    this.selectedCards = 'all-events';
     this.isConfirmed = this.authService.isConfirm;
     this.isAdmin = this.authService.isAdmin;
   }

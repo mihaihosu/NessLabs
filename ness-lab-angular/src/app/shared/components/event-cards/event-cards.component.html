@@ -18,37 +18,11 @@
             [src]="event.imgURL"
           />
           <div
-            *ngIf="isConfirmed"
-            class="grid-container__event-card__container__buttons-login"
-          >
-            <button
-              *ngIf="selectedCards === 'my-events'"
-              class="grid-container__event-card__container__buttons-login__button-edit"
-            >
-              <mat-icon
-                class="grid-container__event-card__container__buttons-login__button-edit__icon-edit"
-                svgIcon="edit"
-              ></mat-icon>
-            </button>
-
-            <button
-              *ngIf="selectedCards === 'my-events'"
-              class="grid-container__event-card__container__buttons-login__button-delete"
-            >
-              <mat-icon
-                class="grid-container__event-card__container__buttons-login__button-edit__icon-delete"
-                svgIcon="trash"
-              ></mat-icon>
-            </button>
-          </div>
-
-          <div
-            *ngIf="!isConfirmed"
+            *ngIf="!isConfirmed || (isConfirmed && !isAdmin)"
             class="grid-container__event-card__container__buttons-no-login"
           >
             <button
               (click)="openModal()"
-              *ngIf="!isConfirmed"
               class="grid-container__event-card__container__buttons-no-login__button-favorite"
             >
               <mat-icon
@@ -58,13 +32,7 @@
             </button>
           </div>
 
-          <div
-            class="grid-container__event-card__container__text"
-            [ngClass]="{
-              'grid-container__event-card__container__text2':
-                selectedCards === 'all-events'
-            }"
-          >
+          <div class="grid-container__event-card__container__text">
             <p class="grid-container__event-card__container__text__p1">
               {{ event.data + " , ORA " + event.ora }}
             </p>
@@ -74,22 +42,15 @@
             <p class="grid-container__event-card__container__text__p3">
               {{ event.loc }}
             </p>
-            <p
-              *ngIf="selectedCards === 'all-events' && isAdmin"
-              class="grid-container__event-card__container__text__p4"
-              [ngClass]="{
-                'grid-container__event-card__container__text2__p4':
-                  selectedCards === 'all-events'
-              }"
-            >
-              {{ "Added by " + event.author }}
-            </p>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <p *ngIf="!isAdmin" class="most-popular-text">Events you may like</p>
+  <p *ngIf="!isConfirmed" class="most-popular-text">Events you may like</p>
+  <p *ngIf="isConfirmed && !isAdmin" class="most-popular-text">
+    Best match for you
+  </p>
   <div class="grid-container">
     <div
       class="grid-container__event-card"
@@ -104,12 +65,9 @@
           }"
           [src]="event.imgURL"
         />
-        <div
-          *ngIf="isConfirmed"
-          class="grid-container__event-card__container__buttons-login"
-        >
+        <div class="grid-container__event-card__container__buttons-login">
           <button
-            *ngIf="selectedCards === 'my-events'"
+            *ngIf="selectedCards === 'my-events' && isAdmin"
             class="grid-container__event-card__container__buttons-login__button-edit"
           >
             <mat-icon
@@ -122,7 +80,8 @@
             *ngIf="
               selectedCards === 'my-events' &&
               event.is_draft &&
-              !hasPassed(event)
+              !hasPassed(event) &&
+              isAdmin
             "
             class="grid-container__event-card__container__buttons-login__button-draft"
             svgIcon="draft"
@@ -130,7 +89,7 @@
 
           <button
             (click)="openDeleteModal()"
-            *ngIf="selectedCards === 'my-events'"
+            *ngIf="selectedCards === 'my-events' && isAdmin"
             class="grid-container__event-card__container__buttons-login__button-delete"
           >
             <mat-icon
@@ -144,23 +103,15 @@
           *ngIf="!isConfirmed"
           class="grid-container__event-card__container__buttons-no-login"
         >
-          <div
-            (click)="openModal()"
-            *ngIf="
-              (!isConfirmed && selectedCards === 'my-events') || !isConfirmed
-            "
-          >
+          <div>
             <mat-icon
               *ngIf="event.is_free"
-              class="grid-container__event-card__container__button-free__icon-free"
+              class="grid-container__event-card__container__buttons-no-login__button-free__icon-free"
               svgIcon="free_tag"
             ></mat-icon>
           </div>
           <button
             (click)="openModal()"
-            *ngIf="
-              (!isConfirmed && selectedCards === 'my-events') || !isConfirmed
-            "
             class="grid-container__event-card__container__buttons-no-login__button-favorite"
           >
             <mat-icon
@@ -168,6 +119,26 @@
               svgIcon="heart"
             ></mat-icon>
           </button>
+        </div>
+
+        <div
+          *ngIf="isConfirmed && !isAdmin"
+          class="grid-container__event-card__container__buttons-user"
+        >
+          <mat-icon
+            *ngIf="event.is_free"
+            class="grid-container__event-card__container__buttons-user__icon-free"
+            svgIcon="free_tag"
+          ></mat-icon>
+          <mat-icon
+            class="grid-container__event-card__container__buttons-user__icon-no-like"
+            svgIcon="no_like"
+          ></mat-icon>
+          <mat-icon
+            *ngIf="isFavorite"
+            class="grid-container__event-card__container__buttons-user__icon-like"
+            svgIcon="liked"
+          ></mat-icon>
         </div>
 
         <div

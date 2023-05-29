@@ -109,7 +109,7 @@
         display: flex;
         justify-content: flex-end;
         align-items: center;
-        gap: 70%;
+        gap: 55%;
         &__button-favorite {
           border-radius: 50%;
 
@@ -119,11 +119,33 @@
             margin-top: 30%;
           }
         }
+        &__button-free {
+          &__icon-free {
+            width: 8rem;
+            height: 2.5rem;
+          }
+        }
       }
-      &__button-free {
+
+      &__buttons-user {
+        position: absolute;
+        top: 4%;
+        right: 4%;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 10.5rem;
+        &__icon-no-like {
+          width: 3em;
+          height: 4em;
+        }
+        &__icon-like {
+          width: 1.8em;
+          height: 3em;
+        }
         &__icon-free {
-          width: 90%;
-          height: 25%;
+          width: 8rem;
+          height: 2.5rem;
         }
       }
     }
