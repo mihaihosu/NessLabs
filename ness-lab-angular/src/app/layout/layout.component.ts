@@ -16,6 +16,7 @@ export class LayoutComponent implements OnInit {
     private authService: AuthService
   ) {}
 
+  selectedToggle: string = 'all-events';
   selectedDate: Date = new Date();
   selectedCards: string = 'all-events';
   isLogin = 'false';
@@ -33,11 +34,6 @@ export class LayoutComponent implements OnInit {
     this.buttons.buttons[index].selected =
       !this.buttons.buttons[index].selected;
   }
-
-  // sendSearchDateCards() {
-  //   this.searchService.searchDate(this.selectedDate);
-  //   console.log(this.selectedDate);
-  // }
 
   selectDate() {
     this.isSelectedDate = !this.isSelectedDate;
@@ -109,6 +105,7 @@ export class LayoutComponent implements OnInit {
   };
 
   ngOnInit(): void {
+    this.selectedCards = this.selectedToggle;
     this.isAdmin = this.authService.isAdmin;
   }
 }

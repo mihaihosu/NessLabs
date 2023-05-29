@@ -95,7 +95,11 @@
   </div>
   <div class="right">
     <div class="content-navbar">
-      <mat-button-toggle-group *ngIf="isAdmin" class="toggle-button-group">
+      <mat-button-toggle-group
+        *ngIf="isAdmin"
+        class="toggle-button-group"
+        [(ngModel)]="selectedToggle"
+      >
         <mat-button-toggle
           class="toggle-button-1"
           value="my-event"

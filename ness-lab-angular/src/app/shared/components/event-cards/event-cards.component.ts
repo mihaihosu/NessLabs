@@ -121,8 +121,8 @@ export class EventCardsComponent implements OnChanges, OnInit {
     this.dialogService.openDeletingEventDialog();
   }
 
-  addToFavorite() {
-    this.isFavorite = !this.isFavorite;
+  addToFavorite(event: any) {
+    event.is_favorite = !event.is_favorite;
   }
 
   events = {
@@ -141,6 +141,7 @@ export class EventCardsComponent implements OnChanges, OnInit {
         endDateTime: new Date(2023, 6, 24, 20, 43),
         author: 'OtherAdminName',
         is_free: true,
+        is_favorite: false,
       },
       {
         data: '03 OCTOMBRIE 2023',
@@ -154,6 +155,7 @@ export class EventCardsComponent implements OnChanges, OnInit {
         endDateTime: new Date(2023, 0, 24, 16, 43),
         author: 'AdminName',
         is_free: false,
+        is_favorite: false,
       },
       {
         data: '13 FEBRUARIE 2023',
@@ -167,6 +169,7 @@ export class EventCardsComponent implements OnChanges, OnInit {
         endDateTime: new Date(2023, 9, 24, 9, 43),
         author: 'OtherAdminName',
         is_free: true,
+        is_favorite: false,
       },
       {
         data: '15 MAI 2023',
@@ -180,6 +183,7 @@ export class EventCardsComponent implements OnChanges, OnInit {
         endDateTime: new Date(2023, 1, 24, 9, 43),
         author: 'OtherAdminName',
         is_free: false,
+        is_favorite: false,
       },
       {
         data: '12 IUNIE 2023',
@@ -193,6 +197,7 @@ export class EventCardsComponent implements OnChanges, OnInit {
         endDateTime: new Date(2023, 2, 24, 9, 43),
         author: 'AdminName',
         is_free: true,
+        is_favorite: false,
       },
       {
         data: '15 APRILIE 2023',
@@ -206,6 +211,7 @@ export class EventCardsComponent implements OnChanges, OnInit {
         endDateTime: new Date(2023, 7, 24, 22, 43),
         author: 'AdminName',
         is_free: false,
+        is_favorite: false,
       },
       {
         data: '12 IUNIE 2023',
@@ -219,6 +225,7 @@ export class EventCardsComponent implements OnChanges, OnInit {
         endDateTime: new Date(2023, 11, 24, 9, 43),
         author: 'AdminName',
         is_free: false,
+        is_favorite: false,
       },
       {
         data: '13 FEBRUARIE 2023',
@@ -232,6 +239,7 @@ export class EventCardsComponent implements OnChanges, OnInit {
         endDateTime: new Date(2023, 10, 24, 19, 43),
         author: 'AdminName',
         is_free: true,
+        is_favorite: false,
       },
       {
         data: '12 IUNIE 2023',
@@ -245,6 +253,7 @@ export class EventCardsComponent implements OnChanges, OnInit {
         endDateTime: new Date(2023, 3, 24, 9, 43),
         author: 'OtherAdminName',
         is_free: true,
+        is_favorite: false,
       },
       {
         data: '12 IUNIE 2023',
@@ -258,6 +267,7 @@ export class EventCardsComponent implements OnChanges, OnInit {
         endDateTime: new Date(2023, 8, 24, 21, 43),
         author: 'OtherAdminName',
         is_free: false,
+        is_favorite: false,
       },
     ],
   };

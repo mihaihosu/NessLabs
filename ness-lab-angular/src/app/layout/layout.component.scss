@@ -62,9 +62,11 @@
 .logo-ness-academy {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-top: auto;
+  justify-content: flex-end;
+
+  width: 40%;
+  height: 40%;
+  margin-left: 25%;
 }
 .event-status-title {
   color: #271d04;
@@ -142,13 +144,6 @@
   margin-top: -2%;
   margin-right: 7%;
 }
-// .mat-form-field-data {
-//   border: 2px solid #000000;
-//   border-radius: 8px;
-//   height: 40px;
-//   width: 400px;
-// }
-
 input[type="checkbox"] {
   accent-color: #8102ae;
 }
@@ -165,13 +160,13 @@ input[type="checkbox"] {
   height: 26rem !important;
 }
 
-// .mat-form-field {
-//   &.mat-form-field-flex {
-//     background-color: #ffd248;
+.mat-form-field {
+  &.mat-form-field-flex {
+    background-color: #ffd248;
 
-//     border-radius: 10px;
-//   }
-// }
+    border-radius: 10px;
+  }
+}
 .matformfield {
   color: #000;
   font-weight: bold;
