@@ -54,13 +54,13 @@ public class UserService implements UserDetailsService {
     private boolean isUserByEmailConfirmed(String email) {
         List<User> users = userRepository.findAllByEmail(email);
         return users.stream()
-                .anyMatch(User::isConfirmed);
+                .anyMatch(User::is_confirmed);
     }
 
     private boolean isUserByUsernameConfirmed(String username) {
         List<User> users = userRepository.findAllByUsername(username);
         return users.stream()
-                .anyMatch(User::isConfirmed);
+                .anyMatch(User::is_confirmed);
     }
 
 }
