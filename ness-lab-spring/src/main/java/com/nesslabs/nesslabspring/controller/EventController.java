@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin
-@RequestMapping(path = "api/events/")
+@RequestMapping(path = "api/v1/events/")
 @RequiredArgsConstructor
 public class EventController {
 
@@ -43,9 +43,9 @@ public class EventController {
             eventService.createEvent(eventDto, token);
             return ResponseEntity.status(HttpStatus.CREATED).build();
         }catch (UnauthorizedException e) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }catch (InvalidInputException e) {
-            throw new RuntimeException(e);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
         }
     }
 }

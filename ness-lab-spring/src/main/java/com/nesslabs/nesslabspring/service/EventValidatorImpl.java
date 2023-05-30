@@ -19,7 +19,7 @@ public class EventValidatorImpl implements EventValidator{
     private static final String URL_PATTERN = "^(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})([/\\w .-]*)*/?$";
 
     @Override
-    public void validate(EventDto eventDto) throws InvalidInputException {
+    public void validate(EventDto eventDto) throws InvalidInputException, UnauthorizedException {
         validateRequiredFields(eventDto);
         validateDates(eventDto);
         validateLinks(eventDto);
@@ -44,8 +44,11 @@ public class EventValidatorImpl implements EventValidator{
         if (eventDto.getDescription().isEmpty()) {
             throw new InvalidInputException("Description field is required.");
         }
-        if (eventDto.getStartDate() == null || eventDto.getEndDate() == null || eventDto.getStartTime() == null) {
+        if (eventDto.getStartDate() == null || eventDto.getEndDate() == null || eventDto.getStartTime() == null || eventDto.getDuration() == null) {
             throw new InvalidInputException("Start date, end date, and time fields are required.");
+        }
+        if (eventDto.getAddress().isEmpty()) {
+            throw new InvalidInputException("Address is required");
         }
     }
 

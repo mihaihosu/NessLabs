@@ -2,6 +2,7 @@ package com.nesslabs.nesslabspring.service;
 
 import com.nesslabs.nesslabspring.dto.EventDto;
 import com.nesslabs.nesslabspring.exception.InvalidInputException;
+import com.nesslabs.nesslabspring.exception.JwtAuthenticationException;
 import com.nesslabs.nesslabspring.exception.UnauthorizedException;
 import com.nesslabs.nesslabspring.model.Event;
 import com.nesslabs.nesslabspring.repository.EventRepository;
@@ -26,9 +27,18 @@ public class EventServiceImpl implements EventService{
 
     @Override
     public void createEvent(EventDto eventDto, String token) throws InvalidInputException, UnauthorizedException{
+
         String adminEmail = jwtService.extractUsername(token);
-        if(jwtService.extractIsAdmin(token) && jwtService.getAuthentication(token).isAuthenticated()) {
-            eventValidator.validate(eventDto);
+        System.out.println(eventDto);
+        if(jwtService.extractIsAdmin(token)) {
+            try{
+                jwtService.getAuthentication(token);
+                eventValidator.validate(eventDto);
+            }catch (InvalidInputException e) {
+                throw new InvalidInputException("Invalid input");
+            }catch (JwtAuthenticationException e) {
+                throw new JwtAuthenticationException("Invalid token");
+            }
             Event event = new Event();
             setEventFields(event,eventDto);
             event.setAdminEmail(adminEmail);
