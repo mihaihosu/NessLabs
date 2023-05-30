@@ -125,7 +125,7 @@ export class EventCardsComponent implements OnChanges, OnInit {
   }
 
   addToFavorite(event: any) {
-    event.is_favorite = !event.is_favorite;
+    event.isFavorite = !event.isFavorite;
   }
 
   eventsAll: Card[] = this.cardsServices.getCards();

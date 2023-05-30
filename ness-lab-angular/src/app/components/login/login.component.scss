@@ -92,8 +92,8 @@ button {
   margin-top: 20%;
   height: 40px;
   border-radius: 500px;
-  background-color: rgb(132, 0, 255);
-  border-color: rgb(96, 12, 175);
+  background-color: #8102ae;
+  border-color: #8102ae;
 }
 button:disabled {
   background-color: rgb(148, 148, 148);
@@ -101,12 +101,12 @@ button:disabled {
 }
 
 button:not(:disabled) {
-  background-color: rgb(132, 0, 255);
-  border-color: rgb(96, 12, 175);
+  background-color: #8102ae;
+  border-color: #8102ae;
 }
 
 button:not(:disabled):hover {
-  background-color: rgb(97, 3, 186);
+  background-color: #8102ae;
   color: white;
   cursor: pointer;
 }

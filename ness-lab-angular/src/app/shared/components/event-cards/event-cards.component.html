@@ -22,7 +22,7 @@
               *ngIf="!event.isFavorite"
               class="grid-container__event-card__container__buttons-user__icon-no-like"
               svgIcon="no_like"
-              (click)="addToFavorite(event)"
+              (click)="!isConfirmed ? openModal() : addToFavorite(event)"
             ></mat-icon>
             <mat-icon
               *ngIf="event.isFavorite"
