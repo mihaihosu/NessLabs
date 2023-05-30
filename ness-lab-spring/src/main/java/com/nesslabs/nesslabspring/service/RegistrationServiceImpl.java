@@ -34,7 +34,7 @@ public class RegistrationServiceImpl implements RegistrationService{
                         .username(request.getUsername())
                         .email(request.getEmail())
                         .password(request.getPassword())
-                        .admin(request.isAdmin())
+                        .is_admin(request.is_admin())
                         .build()
         );
     }

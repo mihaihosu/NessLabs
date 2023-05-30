@@ -47,6 +47,8 @@ public class SecurityConfiguration implements WebMvcConfigurer {
                 .requestMatchers("/swagger-ui.html").permitAll()
                 .requestMatchers("/api/events/**").permitAll()
                 .requestMatchers("/api/events/create/").hasAuthority("ROLE_ADMIN")
+                .requestMatchers("/api/events/**").permitAll()
+                .requestMatchers("/api/events/create/").hasAuthority("ROLE_ADMIN")
                 .anyRequest()
                 .authenticated()
                 .and()
