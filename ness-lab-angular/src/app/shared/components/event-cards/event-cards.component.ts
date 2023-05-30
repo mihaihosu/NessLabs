@@ -1,6 +1,8 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { Card } from 'src/app/interfaces/card';
 import { AuthService } from 'src/app/services/auth-services/auth.service';
+import { CardsService } from 'src/app/services/cards/cards.service';
 import { DialogService } from 'src/app/services/dialog-service/dialog.service';
 import { NavbarService } from 'src/app/services/navbar-service/navbar.service';
 import { SearchService } from 'src/app/services/search-service/search.service';
@@ -15,7 +17,8 @@ export class EventCardsComponent implements OnChanges, OnInit {
     private searchCardsService: SearchService,
     private dialogService: DialogService,
     private authService: AuthService,
-    private navbarService: NavbarService
+    private navbarService: NavbarService,
+    private cardsServices: CardsService
   ) {
     // this.searchSubscription = this.searchCardsService.searchSubject$.subscribe(
     //   (param: string) => {
@@ -58,7 +61,7 @@ export class EventCardsComponent implements OnChanges, OnInit {
           return eventTitle.includes(param.toLowerCase());
         });
       } else {
-        this.searchEventsCards = this.myevents.myevents.filter((event: any) => {
+        this.searchEventsCards = this.myEvents.filter((event: any) => {
           const eventTitle = event.titlu.toLowerCase();
           return eventTitle.includes(param.toLowerCase());
         });
@@ -67,7 +70,7 @@ export class EventCardsComponent implements OnChanges, OnInit {
       if (this.selectedCards === 'all-events') {
         this.searchEventsCards = this.eventsAll;
       } else {
-        this.searchEventsCards = this.myevents.myevents;
+        this.searchEventsCards = this.myEvents;
       }
     }
   }
@@ -80,7 +83,7 @@ export class EventCardsComponent implements OnChanges, OnInit {
           return eventDate.includes(param);
         });
       } else {
-        this.searchEventsCards = this.myevents.myevents.filter((event: any) => {
+        this.searchEventsCards = this.myEvents.filter((event: any) => {
           const eventDate = event.titlu.toLowerCase();
           return eventDate.includes(param);
         });
@@ -89,7 +92,7 @@ export class EventCardsComponent implements OnChanges, OnInit {
       if (this.selectedCards === 'all-events') {
         this.searchEventsCards = this.eventsAll;
       } else {
-        this.searchEventsCards = this.myevents.myevents;
+        this.searchEventsCards = this.myEvents;
       }
     }
   }
@@ -103,7 +106,7 @@ export class EventCardsComponent implements OnChanges, OnInit {
     if (this.selectedCards === 'all-events') {
       this.searchEventsCards = this.eventsAll;
     } else {
-      this.searchEventsCards = this.myevents.myevents;
+      this.searchEventsCards = this.myEvents;
     }
   }
 
@@ -125,357 +128,9 @@ export class EventCardsComponent implements OnChanges, OnInit {
     event.is_favorite = !event.is_favorite;
   }
 
-  events = {
-    events: [
-      {
-        startDateTime: '30 MARTIE 2023',
-        startTime: '16:00',
-        ora: '20:00',
-        duration: '3h',
-        titlu: 'Concert Chitara',
-        loc: 'Piata Unirii',
-        autor: 'OtherAdminName',
-        imgURL: './assets/img/img5.png',
-        type: 'free',
-        status: 'available',
-        endDateTime: new Date(2023, 6, 24, 20, 43),
-        author: 'OtherAdminName',
-        is_free: true,
-        is_favorite: false,
-      },
-      {
-        data: '03 OCTOMBRIE 2023',
-        ora: '20:00',
-        titlu: 'Saptamana Verde',
-        loc: 'Piata Unirii',
-        autor: 'OtherAdminName',
-        imgURL: './assets/img/img2.png',
-        type: 'with ticket',
-        status: 'draft',
-        endDateTime: new Date(2023, 0, 24, 16, 43),
-        author: 'AdminName',
-        is_free: false,
-        is_favorite: false,
-      },
-      {
-        data: '13 FEBRUARIE 2023',
-        ora: '20:00',
-        titlu: 'Festival Nostalgia',
-        loc: 'Piata Unirii',
-        autor: 'OtherAdminName',
-        imgURL: './assets/img/img3.png',
-        type: 'with ticket',
-        status: 'unavailable',
-        endDateTime: new Date(2023, 9, 24, 9, 43),
-        author: 'OtherAdminName',
-        is_free: true,
-        is_favorite: false,
-      },
-      {
-        data: '15 MAI 2023',
-        ora: '20:00',
-        titlu: 'Atelier Pictura',
-        loc: 'Piata Unirii',
-        autor: 'OtherAdminName',
-        imgURL: './assets/img/img5.png',
-        type: 'with ticket',
-        status: 'draft',
-        endDateTime: new Date(2023, 1, 24, 9, 43),
-        author: 'OtherAdminName',
-        is_free: false,
-        is_favorite: false,
-      },
-      {
-        data: '12 IUNIE 2023',
-        ora: '20:00',
-        titlu: 'Curs De Gatit',
-        loc: 'Piata Unirii',
-        autor: 'OtherAdminName',
-        imgURL: './assets/img/img8.png',
-        type: 'free',
-        status: 'unavailable',
-        endDateTime: new Date(2023, 2, 24, 9, 43),
-        author: 'AdminName',
-        is_free: true,
-        is_favorite: false,
-      },
-      {
-        data: '15 APRILIE 2023',
-        ora: '20:00',
-        titlu: 'Robotii de azi',
-        loc: 'Piata Unirii',
-        autor: 'OtherAdminName',
-        imgURL: './assets/img/img4.png',
-        type: 'with ticket',
-        status: 'draft',
-        endDateTime: new Date(2023, 7, 24, 22, 43),
-        author: 'AdminName',
-        is_free: false,
-        is_favorite: false,
-      },
-      {
-        data: '12 IUNIE 2023',
-        ora: '20:00',
-        titlu: 'Concert Chitara',
-        loc: 'Piata Unirii',
-        autor: 'OtherAdminName',
-        imgURL: './assets/img/universe.png',
-        type: 'free',
-        status: 'available',
-        endDateTime: new Date(2023, 11, 24, 9, 43),
-        author: 'AdminName',
-        is_free: false,
-        is_favorite: false,
-      },
-      {
-        data: '13 FEBRUARIE 2023',
-        ora: '20:00',
-        titlu: 'Cursuri Yoga',
-        loc: 'Piata Unirii',
-        autor: 'OtherAdminName',
-        imgURL: './assets/img/img7.png',
-        type: 'free',
-        status: 'draft',
-        endDateTime: new Date(2023, 10, 24, 19, 43),
-        author: 'AdminName',
-        is_free: true,
-        is_favorite: false,
-      },
-      {
-        data: '12 IUNIE 2023',
-        ora: '20:00',
-        titlu: 'Concert Chitara',
-        loc: 'Piata Unirii',
-        autor: 'OtherAdminName',
-        imgURL: './assets/img/universe.png',
-        type: 'with ticket',
-        status: 'available',
-        endDateTime: new Date(2023, 3, 24, 9, 43),
-        author: 'OtherAdminName',
-        is_free: true,
-        is_favorite: false,
-      },
-      {
-        data: '12 IUNIE 2023',
-        ora: '20:00',
-        titlu: 'Curs De Gatit',
-        loc: 'Piata Unirii',
-        autor: 'OtherAdminName',
-        imgURL: './assets/img/img8.png',
-        type: 'free',
-        status: 'unavailable',
-        endDateTime: new Date(2023, 8, 24, 21, 43),
-        author: 'OtherAdminName',
-        is_free: false,
-        is_favorite: false,
-      },
-    ],
-  };
-  myevents = {
-    myevents: [
-      {
-        data: '12 IUNIE 2023',
-        ora: '20:00',
-        titlu: 'Concert Chitara',
-        loc: 'Piata Unirii',
-        autor: 'OtherAdminName',
-        imgURL: './assets/img/universe.png',
-        type: 'with ticket',
-        status: 'available',
-        endDateTime: new Date(2023, 1, 24, 9, 43),
-        author: 'OtherAdminName',
-        is_free: false,
-        is_draft: true,
-      },
-      {
-        data: '12 IUNIE 2023',
-        ora: '20:00',
-        titlu: 'Curs De Gatit',
-        loc: 'Piata Unirii',
-        autor: 'OtherAdminName',
-        imgURL: './assets/img/img8.png',
-        type: 'free',
-        status: 'unavailable',
-        author: 'OtherAdminName',
-        is_free: true,
-      },
-      {
-        data: '30 MARTIE 2023',
-        ora: '20:00',
-        titlu: 'Concert Chitara',
-        loc: 'Piata Unirii',
-        autor: 'OtherAdminName',
-        imgURL: './assets/img/img5.png',
-        type: 'with ticket',
-        status: 'draft',
-        endDateTime: new Date(2023, 1, 24, 9, 43),
-        author: 'OtherAdminName',
-        is_free: true,
-        is_draft: true,
-      },
-      {
-        data: '30 MARTIE 2023',
-        ora: '20:00',
-        titlu: 'Concert Chitara',
-        loc: 'Piata Unirii',
-        autor: 'OtherAdminName',
-        imgURL: './assets/img/img5.png',
-        type: 'with ticket',
-        status: 'unavailable',
-        author: 'OtherAdminName',
-        is_free: false,
-      },
-      {
-        data: '03 OCTOMBRIE 2023',
-        ora: '20:00',
-        titlu: 'Saptamana Verde',
-        loc: 'Piata Unirii',
-        autor: 'OtherAdminName',
-        imgURL: './assets/img/img2.png',
-        type: 'with ticket',
-        status: 'available',
-        is_free: true,
-        is_draft: true,
-      },
-      {
-        data: '13 FEBRUARIE 2023',
-        ora: '20:00',
-        titlu: 'Festival Nostalgia',
-        loc: 'Piata Unirii',
-        autor: 'OtherAdminName',
-        imgURL: './assets/img/img3.png',
-        type: 'free',
-        status: 'draft',
-        is_free: false,
-      },
-      {
-        data: '15 APRILIE 2023',
-        ora: '20:00',
-        titlu: 'Atelier Pictura',
-        loc: 'Piata Unirii',
-        autor: 'OtherAdminName',
-        imgURL: './assets/img/img5.png',
-        type: 'with ticket',
-        status: 'available',
-        is_free: true,
-        is_draft: true,
-      },
-      {
-        data: '12 IUNIE 2023',
-        ora: '20:00',
-        titlu: 'Curs De Gatit',
-        loc: 'Piata Unirii',
-        autor: 'OtherAdminName',
-        imgURL: './assets/img/img7.png',
-        type: 'free',
-        status: 'draft',
-        is_free: false,
-      },
-      {
-        data: '15 APRILIE 2023',
-        ora: '20:00',
-        titlu: 'Robotii de azi',
-        loc: 'Piata Unirii',
-        autor: 'OtherAdminName',
-        imgURL: './assets/img/img4.png',
-        type: 'with ticket',
-        status: 'available',
-        is_free: true,
-        is_draft: true,
-      },
-      {
-        data: '13 FEBRUARIE 2023',
-        ora: '20:00',
-        titlu: 'Cursuri Yoga',
-        loc: 'Piata Unirii',
-        autor: 'OtherAdminName',
-        imgURL: './assets/img/img7.png',
-        type: 'free',
-        status: 'draft',
-        is_free: false,
-      },
-      {
-        data: '12 IUNIE 2023',
-        ora: '20:00',
-        titlu: 'Concert Chitara',
-        loc: 'Piata Unirii',
-        autor: 'OtherAdminName',
-        imgURL: './assets/img/universe.png',
-        type: 'with ticket',
-        status: 'available',
-        is_free: true,
-      },
-      {
-        data: '13 FEBRUARIE 2023',
-        ora: '20:00',
-        titlu: 'Concert Chitara',
-        loc: 'Piata Unirii',
-        autor: 'OtherAdminName',
-        imgURL: './assets/img/img3.png',
-        type: 'with ticket',
-        status: 'draft',
-        is_free: false,
-      },
-    ],
-  };
-  mostPopular = {
-    mostPopular: [
-      {
-        data: '12 IUNIE 2023',
-        ora: '20:00',
-        titlu: 'Teatru Papusi',
-        loc: 'Piata Unirii',
-        autor: 'OtherAdminName',
-        imgURL: './assets/img/img10.png',
-        type: 'with ticket',
-        status: 'available',
-        endDateTime: new Date(2023, 12, 24, 9, 43),
-        author: 'OtherAdminName',
-        is_free: true,
-      },
-      {
-        data: '12 IUNIE 2023',
-        ora: '20:00',
-        titlu: 'Concert Chitara',
-        loc: 'Piata Unirii',
-        autor: 'OtherAdminName',
-        imgURL: './assets/img/universe.png',
-        type: 'with ticket',
-        status: 'available',
-        endDateTime: new Date(2023, 11, 24, 9, 43),
-        author: 'OtherAdminName',
-        is_free: false,
-      },
-      {
-        data: '12 IUNIE 2023',
-        ora: '20:00',
-        titlu: 'Curs De Gatit',
-        loc: 'Piata Unirii',
-        autor: 'OtherAdminName',
-        imgURL: './assets/img/img8.png',
-        type: 'free',
-        status: 'unavailable',
-        endDateTime: new Date(2023, 12, 24, 9, 43),
-        author: 'AdminName',
-        is_free: true,
-      },
-      {
-        data: '12 IUNIE 2023',
-        ora: '20:00',
-        titlu: 'Concert Chitara',
-        loc: 'Piata Unirii',
-        autor: 'OtherAdminName',
-        imgURL: './assets/img/universe.png',
-        type: 'with ticket',
-        status: 'available',
-        endDateTime: new Date(2023, 8, 24, 9, 43),
-        author: 'OtherAdminName',
-        is_free: true,
-      },
-    ],
-  };
-
-  eventsAll: any[] = this.events.events;
+  eventsAll: Card[] = this.cardsServices.getCards();
+  myEvents: Card[] = this.cardsServices.getMyCards();
+  mostPopular: Card[] = this.cardsServices.getMostPopularCards();
   // eventsAll: any[] = [];
   // myevents = {
   //   myevents: [],

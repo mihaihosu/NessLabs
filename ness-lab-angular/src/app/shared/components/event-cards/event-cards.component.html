@@ -4,10 +4,7 @@
       <p class="most-popular-text">Most popular 🔥</p>
     </div>
     <div class="most-popular-div">
-      <div
-        class="grid-container__event-card"
-        *ngFor="let event of mostPopular.mostPopular"
-      >
+      <div class="grid-container__event-card" *ngFor="let event of mostPopular">
         <div class="grid-container__event-card__container">
           <img
             class="grid-container__event-card__container__image"
@@ -15,32 +12,35 @@
               'grid-container__event-card__container__image__haspassed':
                 hasPassed(event)
             }"
-            [src]="event.imgURL"
+            [src]="event.imageURL"
           />
           <div
             *ngIf="!isConfirmed || (isConfirmed && !isAdmin)"
             class="grid-container__event-card__container__buttons-no-login"
           >
-            <button
-              (click)="openModal()"
-              class="grid-container__event-card__container__buttons-no-login__button-favorite"
-            >
-              <mat-icon
-                class="grid-container__event-card__container__buttons-no-login__button-favorite__icon-favorite"
-                svgIcon="heart"
-              ></mat-icon>
-            </button>
+            <mat-icon
+              *ngIf="!event.isFavorite"
+              class="grid-container__event-card__container__buttons-user__icon-no-like"
+              svgIcon="no_like"
+              (click)="addToFavorite(event)"
+            ></mat-icon>
+            <mat-icon
+              *ngIf="event.isFavorite"
+              class="grid-container__event-card__container__buttons-user__icon-like"
+              svgIcon="liked"
+              (click)="addToFavorite(event)"
+            ></mat-icon>
           </div>
 
           <div class="grid-container__event-card__container__text">
             <p class="grid-container__event-card__container__text__p1">
-              {{ event.data + " , ORA " + event.ora }}
+              {{ event.date + " , ORA " + event.time }}
             </p>
             <p class="grid-container__event-card__container__text__p2">
-              {{ event.titlu }}
+              {{ event.title }}
             </p>
             <p class="grid-container__event-card__container__text__p3">
-              {{ event.loc }}
+              {{ event.location }}
             </p>
           </div>
         </div>
@@ -63,7 +63,7 @@
             'grid-container__event-card__container__image__haspassed':
               hasPassed(event)
           }"
-          [src]="event.imgURL"
+          [src]="event.imageURL"
         />
         <div class="grid-container__event-card__container__buttons-login">
           <button
@@ -79,7 +79,7 @@
           <mat-icon
             *ngIf="
               selectedCards === 'my-events' &&
-              event.is_draft &&
+              event.isDraft &&
               !hasPassed(event) &&
               isAdmin
             "
@@ -105,7 +105,7 @@
         >
           <div>
             <mat-icon
-              *ngIf="event.is_free"
+              *ngIf="event.isFree"
               class="grid-container__event-card__container__buttons-no-login__button-free__icon-free"
               svgIcon="free_tag"
             ></mat-icon>
@@ -126,18 +126,18 @@
           class="grid-container__event-card__container__buttons-user"
         >
           <mat-icon
-            *ngIf="event.is_free"
+            *ngIf="event.isFree"
             class="grid-container__event-card__container__buttons-user__icon-free"
             svgIcon="free_tag"
           ></mat-icon>
           <mat-icon
-            *ngIf="!event.is_favorite"
+            *ngIf="!event.isFavorite"
             class="grid-container__event-card__container__buttons-user__icon-no-like"
             svgIcon="no_like"
             (click)="addToFavorite(event)"
           ></mat-icon>
           <mat-icon
-            *ngIf="event.is_favorite"
+            *ngIf="event.isFavorite"
             class="grid-container__event-card__container__buttons-user__icon-like"
             svgIcon="liked"
             (click)="addToFavorite(event)"
@@ -152,13 +152,13 @@
           }"
         >
           <p class="grid-container__event-card__container__text__p1">
-            {{ event.data + " , ORA " + event.ora }}
+            {{ event.date + " , ORA " + event.time }}
           </p>
           <p class="grid-container__event-card__container__text__p2">
-            {{ event.titlu }}
+            {{ event.title }}
           </p>
           <p class="grid-container__event-card__container__text__p3">
-            {{ event.loc }}
+            {{ event.location }}
           </p>
           <p
             *ngIf="selectedCards === 'all-events' && isAdmin"
@@ -175,7 +175,7 @@
     </div>
   </div>
 
-  <div *ngIf="myevents.myevents.length === 0 && selectedCards === 'my-events'">
+  <div *ngIf="myEvents.length === 0 && selectedCards === 'my-events'">
     <img class="scroll-container__image" src="../../assets/img/no_events.png" />
     <div class="scroll-container__context">
       <div class="scroll-container__context__title">{{ noEventsYet }}</div>

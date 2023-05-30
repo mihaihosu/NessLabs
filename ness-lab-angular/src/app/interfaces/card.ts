@@ -1,13 +1,22 @@
 export interface Card {
-  date: Date;
+  id: number;
+  date: string;
   time: string;
   title: string;
   location: string;
   author: string;
   imageURL: string;
-  type: string;
-  status: string;
+  startDateTime: Date;
   endDateTime: Date;
+  startTime: Date;
+  duration: Date;
+  address: string;
+  eventLink: string;
+  ticketLink: string;
   createdBy: string;
+  isPetFriendly: boolean;
+  isKidFriendly: boolean;
   isFree: boolean;
+  isDraft: boolean;
+  isFavorite: boolean;
 }
