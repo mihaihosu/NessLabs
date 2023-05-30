@@ -29,6 +29,7 @@ export class EventCardsComponent implements OnChanges, OnInit {
     //   this.searchCardsService.searchDateSubject$.subscribe((param: Date) => {
     //     this.searchEventsDate(param);
     //   });
+
     this.subscriptionFavorite =
       this.navbarService.isFavoriteClickedObservable.subscribe(
         (clicked: boolean) => {
@@ -131,11 +132,17 @@ export class EventCardsComponent implements OnChanges, OnInit {
   eventsAll: Card[] = this.cardsServices.getCards();
   myEvents: Card[] = this.cardsServices.getMyCards();
   mostPopular: Card[] = this.cardsServices.getMostPopularCards();
+  favoriteEvents: Card[] = this.cardsServices
+    .getCards()
+    .filter((card) => card.isFavorite === true && !this.hasPassed(card));
+
   // eventsAll: any[] = [];
   // myevents = {
   //   myevents: [],
   // };
+
   ngOnInit(): void {
+    console.log(this.favoriteEvents);
     this.selectedCards = 'all-events';
     this.isConfirmed = this.authService.isConfirm;
     this.isAdmin = this.authService.isAdmin;

@@ -191,3 +191,62 @@
     <p class="favorite__no-login__context__text">{{ needToLoginText }}</p>
   </div>
 </div>
+
+<p *ngIf="isFavoriteClicked && isConfirmed" class="most-popular-text">
+  Favorites Events ❤️
+</p>
+<div class="grid-container" *ngIf="isFavoriteClicked && isConfirmed">
+  <div class="grid-container__event-card" *ngFor="let event of favoriteEvents">
+    <div class="grid-container__event-card__container">
+      <img
+        class="grid-container__event-card__container__image"
+        [ngClass]="{
+          'grid-container__event-card__container__image__haspassed':
+            hasPassed(event)
+        }"
+        [src]="event.imageURL"
+      />
+
+      <div
+        *ngIf="isConfirmed && !isAdmin"
+        class="grid-container__event-card__container__buttons-user"
+      >
+        <mat-icon
+          *ngIf="event.isFree"
+          class="grid-container__event-card__container__buttons-user__icon-free"
+          svgIcon="free_tag"
+        ></mat-icon>
+        <mat-icon
+          *ngIf="!event.isFavorite"
+          class="grid-container__event-card__container__buttons-user__icon-no-like"
+          svgIcon="no_like"
+          (click)="addToFavorite(event)"
+        ></mat-icon>
+        <mat-icon
+          *ngIf="event.isFavorite"
+          class="grid-container__event-card__container__buttons-user__icon-like"
+          svgIcon="liked"
+          (click)="addToFavorite(event)"
+        ></mat-icon>
+      </div>
+
+      <div
+        class="grid-container__event-card__container__text"
+        [ngClass]="{
+          'grid-container__event-card__container__text2':
+            selectedCards === 'all-events'
+        }"
+      >
+        <p class="grid-container__event-card__container__text__p1">
+          {{ event.date + " , ORA " + event.time }}
+        </p>
+        <p class="grid-container__event-card__container__text__p2">
+          {{ event.title }}
+        </p>
+        <p class="grid-container__event-card__container__text__p3">
+          {{ event.location }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

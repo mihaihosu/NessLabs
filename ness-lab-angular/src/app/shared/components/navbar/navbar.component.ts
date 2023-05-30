@@ -76,6 +76,7 @@ export class NavbarComponent implements OnInit {
   register() {
     this.router.navigate(['create-account']);
   }
+
   // ngOnDestroy() {
   //   this.isConfirmedSubscription.unsubscribe();
   //   this.isAdminSubscription.unsubscribe();

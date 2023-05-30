@@ -14,7 +14,14 @@ export class IconModule {
     public matIconRegistry: MatIconRegistry
   ) {
     this.matIconRegistry
-      .addSvgIcon('home', this.setPath(`${this.path}/home icon - selected.svg`))
+      .addSvgIcon(
+        'home-unselected',
+        this.setPath(`${this.path}/home icon - unselected.svg`)
+      )
+      .addSvgIcon(
+        'home-selected',
+        this.setPath(`${this.path}/home icon - selected.svg`)
+      )
       .addSvgIcon('add', this.setPath(`${this.path}/add.svg`))
       .addSvgIcon('user', this.setPath(`${this.path}/user.svg`))
       .addSvgIcon('heart', this.setPath(`${this.path}/heart.svg`))

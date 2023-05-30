@@ -8,9 +8,14 @@
     (click)="onFavoriteHomeClick()"
   >
     <mat-icon
-      [ngStyle]="{ color: clickFavorite ? '' : '#8102ae' }"
+      *ngIf="!clickFavorite"
       class="icon-home"
-      svgIcon="home"
+      svgIcon="home-selected"
+    ></mat-icon>
+    <mat-icon
+      *ngIf="clickFavorite"
+      class="icon-home"
+      svgIcon="home-unselected"
     ></mat-icon>
     <div class="home">Home</div>
   </div>
