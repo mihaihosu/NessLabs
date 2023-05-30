@@ -21,12 +21,15 @@
   cursor: pointer;
   margin-left: 6px;
   font-size: 16px;
-  margin-top: 3px;
+  margin-top: 5%;
 }
 .home-div {
   grid-column: 3;
   display: flex;
   justify-content: flex-start;
+  background: white;
+  border: none;
+  font-weight: 600;
 }
 .favorite-div {
   display: flex;
@@ -91,6 +94,7 @@
   cursor: pointer;
   font-size: 16px;
   margin-left: 5px;
+  font-weight: 600;
 }
 .favorite-active {
   color: #8102ae;
@@ -155,6 +159,7 @@
   cursor: pointer;
   margin-top: 2%;
   margin-left: 3px;
+  font-weight: 600;
 }
 .my-account-isAdmin {
   font-size: 16px;

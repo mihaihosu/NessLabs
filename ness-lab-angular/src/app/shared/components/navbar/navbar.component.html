@@ -2,7 +2,8 @@
   <div class="img-logo-timisoara-2023">
     <img src="./assets/img/logo-timisoara-2023.png" />
   </div>
-  <div
+  <button
+    [disabled]="isAdmin"
     class="home-div"
     [ngClass]="{ 'favorite-active': !clickFavorite }"
     (click)="onFavoriteHomeClick()"
@@ -18,7 +19,7 @@
       svgIcon="home-unselected"
     ></mat-icon>
     <div class="home">Home</div>
-  </div>
+  </button>
   <div
     class="favorite-div"
     [ngClass]="{ 'favorite-active': clickFavorite }"
