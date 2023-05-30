@@ -27,20 +27,20 @@ public class User implements UserDetails {
     private String username;
     private String password;
 
-    boolean admin;
-    boolean confirmed = false;
+    boolean is_admin;
+    boolean is_confirmed = false;
 
-    public User(String email, String username, String password, boolean admin, boolean confirmed) {
+    public User(String email, String username, String password, boolean is_admin, boolean is_confirmed) {
         this.email = email;
         this.username = username;
         this.password = password;
-        this.admin = admin;
-        this.confirmed = confirmed;
+        this.is_admin = is_admin;
+        this.is_confirmed = is_confirmed;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        String roleName = admin ? "ADMIN" : "USER";
+        String roleName = is_admin ? "ADMIN" : "USER";
         SimpleGrantedAuthority authority = new SimpleGrantedAuthority(roleName);
         return Collections.singletonList(authority);
     }
@@ -52,7 +52,7 @@ public class User implements UserDetails {
 
     @Override
     public boolean isAccountNonLocked() {
-        return !confirmed;
+        return !is_confirmed;
     }
 
     @Override
@@ -62,7 +62,7 @@ public class User implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return confirmed;
+        return is_confirmed;
     }
 
 

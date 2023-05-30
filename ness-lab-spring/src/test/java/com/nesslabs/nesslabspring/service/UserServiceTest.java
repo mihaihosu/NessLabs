@@ -60,16 +60,16 @@ class UserServiceTest {
         user.setEmail("test@test.com");
         user.setUsername("testUser");
         user.setPassword("testPassword12@");
-        user.setAdmin(false);
-        user.setConfirmed(false);
+        user.setIs_admin(false);
+        user.setIs_confirmed(false);
 
 
         User user2 = new User();
         user2.setEmail("test@test.com");
         user2.setUsername("testUser");
         user2.setPassword("testPassword12@");
-        user2.setConfirmed(true);
-        user2.setAdmin(false);
+        user2.setIs_confirmed(true);
+        user2.setIs_admin(false);
 
         List<User> existingUsers = new ArrayList<>();
         existingUsers.add(user2);
@@ -86,16 +86,16 @@ class UserServiceTest {
         user.setEmail("test@test.com");
         user.setUsername("testUser");
         user.setPassword("testPassword12@");
-        user.setAdmin(false);
-        user.setConfirmed(false);
+        user.setIs_admin(false);
+        user.setIs_confirmed(false);
 
 
         User user2 = new User();
         user2.setEmail("test@test.com");
         user2.setUsername("testUser");
         user2.setPassword("testPassword12@");
-        user2.setConfirmed(true);
-        user2.setAdmin(false);
+        user2.setIs_confirmed(true);
+        user2.setIs_admin(false);
 
         List<User> existingUsers = new ArrayList<>();
         existingUsers.add(user2);
