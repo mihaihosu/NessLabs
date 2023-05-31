@@ -89,11 +89,14 @@
         </div>
       </div>
     </div>
-    <div class="logo-ness-academy">
+    <div
+      [ngClass]="{ 'logo-ness-academy-admin': isAdmin }"
+      class="logo-ness-academy"
+    >
       <img src="./assets/img/logo-ness.png" />
     </div>
   </div>
-  <div class="right">
+  <div class="right" [ngClass]="{ 'right-admin': isAdmin }">
     <div class="content-navbar">
       <mat-button-toggle-group
         *ngIf="isAdmin"

@@ -28,6 +28,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MyAccountDialogComponent } from './shared/components/my-account-dialog/my-account-dialog/my-account-dialog.component';
 import { RecoverAccountComponent } from './components/recover-account/recover-account.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,7 @@ import { RecoverAccountComponent } from './components/recover-account/recover-ac
     MatFormFieldModule,
   ],
 
-  providers: [],
+  providers: [DatePipe],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

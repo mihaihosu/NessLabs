@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Card } from 'src/app/interfaces/card';
+import { DateTransformService } from 'src/app/pipes/date-transform.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CardsService {
-  constructor() {}
+  constructor(private dateTransformService: DateTransformService) {}
 
   getCards(): Card[] {
     return [
@@ -964,5 +965,16 @@ export class CardsService {
         isFavorite: false,
       },
     ];
+  }
+  transformCardsDateFormat(cards: Card[]): any[] {
+    return cards.map((card) => {
+      return {
+        ...card,
+        startDateTime: this.dateTransformService.transformStartDate(
+          card.startDateTime
+        ),
+        startTime: this.dateTransformService.transformStartTime(card.startTime),
+      };
+    });
   }
 }

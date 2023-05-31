@@ -129,7 +129,9 @@ export class EventCardsComponent implements OnChanges, OnInit {
     event.isFavorite = !event.isFavorite;
   }
 
-  eventsAll: Card[] = this.cardsServices.getCards();
+  eventsAll: any[] = this.cardsServices.transformCardsDateFormat(
+    this.cardsServices.getCards()
+  );
   myEvents: Card[] = this.cardsServices.getMyCards();
   mostPopular: Card[] = this.cardsServices.getMostPopularCards();
   favoriteEvents: Card[] = this.cardsServices

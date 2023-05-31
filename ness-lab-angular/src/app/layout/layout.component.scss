@@ -10,6 +10,13 @@
   flex: 1 1 90rem;
   display: flex;
   flex-direction: column;
+  margin-left: auto;
+  padding-right: 3rem;
+}
+.right-admin {
+  flex: 1 1 90rem;
+  display: flex;
+  flex-direction: column;
   gap: 2rem;
   margin-left: auto;
   padding-right: 3rem;
@@ -63,10 +70,19 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-
+  margin-top: 70%;
   width: 40%;
   height: 40%;
   margin-left: 25%;
+}
+.logo-ness-academy-admin {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 40%;
+  height: 40%;
+  margin-left: 25%;
+  margin-top: -10%;
 }
 .event-status-title {
   color: #271d04;
