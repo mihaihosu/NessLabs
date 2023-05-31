@@ -16,6 +16,8 @@ import java.time.LocalTime;
 @NoArgsConstructor
 public class EventDto {
 
+    private Long id;
+
     private String photo;
 
     private String title;
@@ -41,6 +43,8 @@ public class EventDto {
     private boolean isPetFriendly;
 
     private boolean isKidFriendly;
+
+    private String adminEmail;
 
     private String tagName;
 
