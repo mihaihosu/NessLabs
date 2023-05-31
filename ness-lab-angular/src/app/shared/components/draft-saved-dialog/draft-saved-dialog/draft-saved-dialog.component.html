@@ -1,0 +1,24 @@
+<div class="content">
+  <div class="content__message-div">
+    <mat-dialog-content>
+      <mat-icon
+        class="content__message-div__circle-icon"
+        svgIcon="check-circle-2"
+      ></mat-icon>
+    </mat-dialog-content>
+    <p mat-dialog-title>{{ titluModal }}</p>
+    <p>{{ loginMessage }}</p>
+  </div>
+  <div class="action-div">
+    <hr class="hr" />
+    <mat-dialog-actions class="action-div__action">
+      <button
+        class="action-div__action__done-button"
+        mat-button
+        (click)="closeDialog()"
+      >
+        DONE
+      </button>
+    </mat-dialog-actions>
+  </div>
+</div>
