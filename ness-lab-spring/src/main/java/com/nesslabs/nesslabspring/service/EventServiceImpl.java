@@ -2,48 +2,51 @@ package com.nesslabs.nesslabspring.service;
 
 import com.nesslabs.nesslabspring.dto.EventDto;
 import com.nesslabs.nesslabspring.exception.InvalidInputException;
+import com.nesslabs.nesslabspring.exception.JwtAuthenticationException;
+import com.nesslabs.nesslabspring.exception.UnauthorizedException;
 import com.nesslabs.nesslabspring.model.Event;
 import com.nesslabs.nesslabspring.repository.EventRepository;
 import com.nesslabs.nesslabspring.security.JwtService;
-import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.Duration;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class EventServiceImpl implements EventService{
 
+    private final EventValidator eventValidator;
+    private final JwtService jwtService;
     private final EventRepository eventRepository;
 
-    private final EventValidator eventValidator;
-
+    @Override
     public Event updateEvent(Long eventId, EventDto eventDto, String token) throws InvalidInputException {
-        // Validate owner
-        eventValidator.validateEventOwner(eventId, token);
-
-        // Other validations
-        eventValidator.validate(eventDto);
-
-        // Get the existing event from the repository
-        Event existingEvent = eventRepository.findById(eventId)
-                .orElseThrow(() -> new EntityNotFoundException("Event not found with ID: " + eventId));
-
-        eventFields(existingEvent,eventDto);
-
-        // Save the updated event
-        return eventRepository.saveAndFlush(existingEvent);
+        return null;
     }
 
+    @Override
+    public void createEvent(EventDto eventDto, String token) throws InvalidInputException, UnauthorizedException{
 
-    private void eventFields(Event event, EventDto eventDto){
+        String adminEmail = jwtService.extractUsername(token);
+        System.out.println(eventDto);
+        if(jwtService.extractIsAdmin(token)) {
+            try{
+                jwtService.getAuthentication(token);
+                eventValidator.validate(eventDto);
+            }catch (InvalidInputException e) {
+                throw new InvalidInputException("Invalid input");
+            }catch (JwtAuthenticationException e) {
+                throw new JwtAuthenticationException("Invalid token");
+            }
+            Event event = new Event();
+            setEventFields(event,eventDto);
+            event.setAdminEmail(adminEmail);
+            eventRepository.save(event);
+        } else throw new UnauthorizedException("Unauthorized");
+    }
+
+    private void setEventFields(Event event, EventDto eventDto) {
         event.setTitle(eventDto.getTitle());
         event.setDescription(eventDto.getDescription());
         event.setStartDateTime(LocalDateTime.of(eventDto.getStartDate(), eventDto.getStartTime()));
@@ -58,6 +61,4 @@ public class EventServiceImpl implements EventService{
         event.setTagName(eventDto.getTagName());
         event.setEventStatus(eventDto.getEventStatus());
     }
-
-
 }

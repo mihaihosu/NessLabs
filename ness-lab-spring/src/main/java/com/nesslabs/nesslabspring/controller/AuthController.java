@@ -23,7 +23,6 @@ public class AuthController {
 
         if (loginResponseDto != null) {
             String token = authService.createToken(loginResponseDto);
-
             if (token != null) {
 
                 HttpHeaders headers = authService.createHeader(token);

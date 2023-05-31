@@ -1,6 +1,6 @@
 package com.nesslabs.nesslabspring.service;
 
-import com.nesslabs.nesslabspring.dto.PasswordResetRequest;
+import com.nesslabs.nesslabspring.dto.PasswordResetDto;
 import com.nesslabs.nesslabspring.exception.InvalidCredentialException;
 import com.nesslabs.nesslabspring.exception.InvalidTokenException;
 import com.nesslabs.nesslabspring.model.PasswordResetToken;
@@ -48,7 +48,7 @@ public class PasswordResetServiceImpl implements PasswordResetService{
     }
 
     @Override
-    public void resetPassword(String token, PasswordResetRequest request) throws InvalidTokenException, InvalidCredentialException {
+    public void resetPassword(String token, PasswordResetDto request) throws InvalidTokenException, InvalidCredentialException {
         try{
             validatePasswordResetToken(token);
         }catch (InvalidTokenException e) {
