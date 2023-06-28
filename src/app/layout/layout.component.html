@@ -1,31 +1,18 @@
 <div class="home-page">
   <div class="left">
-    <mat-form-field
-      class="matformfield"
-      appearance="fill"
-      [ngClass]="{ 'mat-form-field-flex': isOpen }"
-    >
+    <mat-form-field class="mat-form-field">
+      <mat-icon svgIcon="calendar-icon" class="input-calendar"></mat-icon>
       <mat-icon
-        matPrefix
+        matSuffix
+        (click)="picker.open()"
         svgIcon="calendar-icon"
-        class="calendar-icon"
       ></mat-icon>
-      <mat-icon
-        *ngIf="!isOpen"
-        class="chevron-down"
-        matSuffix
-        (click)="open()"
-        svgIcon="chevron-down"
-      ></mat-icon>
-      <mat-icon
-        *ngIf="isOpen"
-        class="chevron-down"
-        matSuffix
-        (click)="close()"
-        svgIcon="chevron-up"
-      ></mat-icon>
-
-      <input matInput placeholder="Selecte date" [matDatepicker]="picker" />
+      <input
+        matInput
+        [matDatepicker]="picker"
+        placeholder="Select Date "
+        (dateChange)="sendSearchDateCards()"
+      />
 
       <mat-datepicker
         [(ngModel)]="selectedDate"
@@ -59,14 +46,14 @@
           </div>
         </div>
         <div class="options-box-v2">
-          <div class="event-type-with-ticket"><p>With ticket</p></div>
+          <div class="event-type"><p>With ticket</p></div>
           <div class="event-checkbox">
             <input class="event-checkbox-input" type="checkbox" />
           </div>
         </div>
       </div>
     </div>
-    <div *ngIf="isAdmin">
+    <div>
       <div class="event-status-title"><h2>Event Status</h2></div>
       <div class="options-box">
         <div class="options-box-v2">
@@ -89,22 +76,14 @@
         </div>
       </div>
     </div>
-    <div
-      [ngClass]="{ 'logo-ness-academy-admin': isAdmin }"
-      class="logo-ness-academy"
-    >
+    <div class="logo-ness-academy">
       <img src="./assets/img/logo-ness.png" />
     </div>
   </div>
-  <div class="right" [ngClass]="{ 'right-admin': isAdmin }">
+  <div class="right">
     <div class="content-navbar">
-      <mat-button-toggle-group
-        *ngIf="isAdmin"
-        class="toggle-button-group"
-        [(ngModel)]="selectedToggle"
-      >
+      <mat-button-toggle-group class="toggle-button">
         <mat-button-toggle
-          class="toggle-button-1"
           value="my-event"
           (click)="onSelectedCardsView('my-events')"
         >
@@ -112,7 +91,6 @@
           My Events</mat-button-toggle
         >
         <mat-button-toggle
-          class="toggle-button-2"
           value="all-events"
           (click)="onSelectedCardsView('all-events')"
         >
@@ -120,7 +98,7 @@
           All Events</mat-button-toggle
         >
       </mat-button-toggle-group>
-      <button *ngIf="isAdmin" class="button-add-event">
+      <button class="button-add-event">
         <mat-icon class="add-icon" svgIcon="add"></mat-icon>Add New Event
       </button>
     </div>

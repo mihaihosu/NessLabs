@@ -4,8 +4,8 @@
   justify-content: flex-end;
   align-items: center;
   position: initial;
-  padding-top: 14rem;
-  gap: 11.2rem;
+  padding-top: 150px;
+  gap: 220px;
   &__message-div {
     display: flex;
     flex-direction: column;
@@ -22,11 +22,11 @@
 .action-div {
   &__action {
     display: flex;
-    justify-content: flex-end;
+    justify-content: end;
     margin-top: -15px;
     &__done-button {
       width: 180px;
-      height: 50px;
+      height: 58px;
       background: #941abf;
       border-radius: 66px;
       font-style: normal;
@@ -34,11 +34,11 @@
       font-size: 16px;
       color: #ffffff;
       margin-right: 10px;
-      margin-top: 5px;
     }
   }
-  &__hr {
-    width: 43rem;
-    margin-top: 20px;
-  }
+}
+
+.hr {
+  width: 700px;
+  margin-top: 20px;
 }

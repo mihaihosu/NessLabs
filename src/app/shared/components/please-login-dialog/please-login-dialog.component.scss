@@ -4,9 +4,8 @@
   justify-content: flex-end;
   align-items: center;
   position: initial;
-  padding-top: 35%;
-  gap: 140px;
-
+  padding-top: 150px;
+  gap: 220px;
   &__message-div {
     display: flex;
     flex-direction: column;
@@ -23,7 +22,7 @@
 .action-div {
   &__action {
     display: flex;
-    justify-content: flex-end;
+    justify-content: end;
     margin-top: -15px;
     &__done-button {
       width: 180px;
@@ -35,12 +34,11 @@
       font-size: 16px;
       color: #ffffff;
       margin-right: 10px;
-      margin-top: 2%;
     }
   }
 }
 
 .hr {
-  width: 690px;
+  width: 700px;
   margin-top: 20px;
 }
