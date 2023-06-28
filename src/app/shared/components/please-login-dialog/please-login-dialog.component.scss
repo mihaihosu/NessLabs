@@ -1,0 +1,46 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  position: initial;
+  padding-top: 35%;
+  gap: 140px;
+
+  &__message-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+
+    &__circle-icon {
+      width: 100px;
+      height: 100px;
+    }
+  }
+}
+
+.action-div {
+  &__action {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: -15px;
+    &__done-button {
+      width: 180px;
+      height: 58px;
+      background: #941abf;
+      border-radius: 66px;
+      font-style: normal;
+      font-weight: 800;
+      font-size: 16px;
+      color: #ffffff;
+      margin-right: 10px;
+      margin-top: 2%;
+    }
+  }
+}
+
+.hr {
+  width: 690px;
+  margin-top: 20px;
+}

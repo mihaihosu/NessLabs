@@ -1,0 +1,222 @@
+.left {
+  flex: 1 1 20rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-left: 2rem;
+}
+
+.right {
+  flex: 1 1 90rem;
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  padding-right: 3rem;
+}
+.right-admin {
+  flex: 1 1 90rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-left: auto;
+  padding-right: 3rem;
+}
+
+.options-box {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.options-box-v2 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.content-navbar {
+  display: flex;
+  justify-content: space-between;
+  gap: 10%;
+}
+
+.home-page {
+  display: flex;
+  flex-direction: row;
+}
+
+.event-checkbox {
+  margin-right: 4rem;
+}
+.event-checkbox-input {
+  border: 0.4em solid #000000;
+  border-radius: 1.8%;
+  height: 1.5rem;
+  width: 1.5rem;
+}
+.calendar {
+  display: flex;
+  align-content: space-between;
+  flex-direction: column;
+}
+
+.event-type-title {
+  color: #271d04;
+  font-size: 10%;
+  margin-top: 5%;
+  font-family: "Lato", sans-serif;
+}
+.logo-ness-academy {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin-top: 70%;
+  width: 40%;
+  height: 40%;
+  margin-left: 25%;
+}
+.logo-ness-academy-admin {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 40%;
+  height: 40%;
+  margin-left: 25%;
+  margin-top: -10%;
+}
+.event-status-title {
+  color: #271d04;
+  font-size: 10%;
+  font-family: "Lato", sans-serif;
+  font-weight: bold;
+  margin-top: 5%;
+}
+.event-type-title {
+  color: #271d04;
+  font-size: 10%;
+  font-family: "Lato", sans-serif;
+  font-weight: 700;
+}
+.event-type {
+  font-style: normal;
+  font-size: 1em;
+  color: #271d04;
+  font-weight: bold;
+}
+.event-type-with-ticket {
+  font-style: normal;
+  font-size: 1em;
+  color: #271d04;
+  font-weight: bold;
+  margin-top: 0.5rem !important;
+}
+.tags-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7em;
+  width: 83%;
+}
+.button-tag {
+  background: #f1f2f3;
+  border-radius: 0.7em;
+  border: none;
+  height: 2.5rem;
+  text-transform: uppercase;
+}
+.button-tag:active {
+  background-color: #ffd248;
+}
+
+.button-add-event {
+  background-color: white;
+  border-radius: 2em;
+  width: 11%;
+  height: 90%;
+  display: flex;
+  align-items: center;
+}
+.toggle-button-group {
+  height: 90%;
+  align-items: center;
+  border-radius: 2em;
+  border: 0.1em solid #000;
+}
+.mat-button-toggle-checked {
+  background-color: #f2cbf6;
+  height: 100%;
+}
+.toggle-button-1 {
+  border-right: 0.1em solid black;
+}
+.toggle-button-2 {
+  border-left: 0.1em solid black;
+}
+
+.tags-title {
+  font-weight: 700;
+  margin-top: 1rem;
+}
+.add-icon {
+  margin-top: -2%;
+  margin-right: 7%;
+}
+input[type="checkbox"] {
+  accent-color: #8102ae;
+}
+
+.input-calendar {
+  margin-bottom: 10%;
+  display: none;
+}
+.chevron-down {
+  margin-right: 50%;
+}
+::ng-deep .mat-calendar {
+  width: 25rem !important;
+  height: 26rem !important;
+}
+
+.mat-form-field {
+  &.mat-form-field-flex {
+    background-color: #ffd248;
+
+    border-radius: 10px;
+  }
+}
+.matformfield {
+  color: #000;
+  font-weight: bold;
+  border-radius: 1em;
+  width: 87%;
+  height: 3.5em;
+  border: 0.1em solid #000000;
+}
+
+::ng-deep .mat-form-field-underline {
+  display: none;
+}
+
+.input-label {
+  position: absolute;
+  top: 30%;
+  transform: translateY(-50%);
+  font-size: 1rem;
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+}
+.calendar-icon {
+  margin-left: 0.2em;
+  margin-right: 1em;
+}
+
+::ng-deep .mat-calendar-body-label {
+  display: none;
+}
+
+::ng-deep .mat-form-field-flex {
+  margin-bottom: 01em;
+}
+
+::ng-deep .mat-form-field-infix {
+  width: 19rem !important;
+}

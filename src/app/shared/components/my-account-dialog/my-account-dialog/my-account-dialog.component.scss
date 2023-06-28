@@ -1,0 +1,113 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 12.5rem;
+  margin-left: 1rem;
+  &__fields {
+    display: flex;
+    flex-direction: column;
+    &__mat-form-field-my-account {
+      width: 95%;
+      display: flex;
+      flex-direction: column;
+
+      &__div {
+        position: relative;
+        margin-top: -40px;
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+        &__input-text {
+          border: 2px solid black;
+          border-radius: 8px;
+          height: 30px;
+          font-size: 1.2rem;
+        }
+        &__icon-password {
+          position: absolute;
+          right: 1rem;
+          margin-top: 2.3em;
+        }
+        &__label {
+          font-size: 14px;
+          font-weight: bold;
+          font-family: Roboto, "Helvetica Neue", sans-serif;
+        }
+        &__password {
+          font-size: 14px;
+          font-weight: bold;
+          font-family: Roboto, "Helvetica Neue", sans-serif;
+          color: #941abf;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    &__cancel {
+      border: 5px solid #941abf;
+      width: 27%;
+      height: 45px;
+      border-radius: 66px;
+      font-style: normal;
+      font-weight: 800;
+      font-size: 100%;
+      color: #941abf;
+      margin-right: 10px;
+    }
+    &__save-changes {
+      background: #941abf;
+      width: 27%;
+      height: 45px;
+      border-radius: 66px;
+      font-style: normal;
+      font-weight: 800;
+      font-size: 100%;
+      color: white;
+      margin-right: 10px;
+    }
+  }
+
+  &__hr {
+    color: #4d4d50;
+    margin-top: 2rem;
+  }
+  &__hr2 {
+    margin-top: 3rem;
+  }
+}
+.my-account-title {
+  color: #191d30;
+  font-size: 20px;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  height: 34px;
+  font-weight: bold;
+  margin-left: 1rem;
+  margin-top: 2rem;
+}
+.details-label {
+  color: #191d30;
+  font-size: 20px;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  height: 34px;
+  font-weight: bold;
+  margin-top: 7%;
+  margin-left: 1rem;
+}
+::ng-deep .mat-dialog-container {
+  padding: 0%;
+}
+::ng-deep .mat-form-field-wrapper {
+  padding-bottom: 0px;
+}
+::ng-deep .mat-form-field-appearance-legacy .mat-form-field-wrapper {
+  padding-bottom: 0em;
+}
+.buttons-div {
+  margin-top: 4%;
+}

@@ -1,0 +1,197 @@
+<form *ngIf="!changePassword && !saveChanges">
+  <div class="my-account-title">My Account</div>
+  <hr />
+  <div class="details-label">Details</div>
+
+  <div class="content">
+    <div class="content__fields">
+      <mat-form-field
+        floatLabel="never"
+        class="content__fields__mat-form-field-my-account"
+      >
+        <div class="content__fields__mat-form-field-my-account__div">
+          <label class="content__fields__mat-form-field-my-account__div__label">
+            Username
+          </label>
+          <input
+            class="content__fields__mat-form-field-my-account__div__input-text"
+            matInput
+            type="text"
+            placeholder="User Name"
+          />
+        </div>
+      </mat-form-field>
+
+      <mat-form-field
+        floatLabel="never"
+        class="content__fields__mat-form-field-my-account"
+      >
+        <div class="content__fields__mat-form-field-my-account__div">
+          <label class="content__fields__mat-form-field-my-account__div__label">
+            Email
+          </label>
+          <input
+            class="content__fields__mat-form-field-my-account__div__input-text"
+            matInput
+            type="mail"
+            placeholder="User_name@email.com"
+          />
+        </div>
+      </mat-form-field>
+
+      <mat-form-field
+        floatLabel="never"
+        class="content__fields__mat-form-field-my-account"
+      >
+        <div class="content__fields__mat-form-field-my-account__div">
+          <label class="content__fields__mat-form-field-my-account__div__label">
+            Password
+          </label>
+          <input
+            class="content__fields__mat-form-field-my-account__div__input-text"
+            matInput
+            type="password"
+            placeholder="Password"
+          />
+          <p
+            (click)="changePasswordClick()"
+            class="content__fields__mat-form-field-my-account__div__password"
+          >
+            Change Password
+          </p>
+        </div>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <hr class="content__hr" />
+      <div class="content__buttons">
+        <button
+          (click)="closeDialog()"
+          mat-button
+          class="content__buttons__cancel"
+        >
+          CANCEL
+        </button>
+        <button
+          (click)="saveChangesClick()"
+          mat-button
+          class="content__buttons__save-changes"
+        >
+          SAVE CHANGES
+        </button>
+      </div>
+    </div>
+  </div>
+</form>
+
+<form *ngIf="changePassword && !saveChanges">
+  <div class="my-account-title">My Account</div>
+  <hr />
+  <div class="details-label">Change Password</div>
+
+  <div class="content">
+    <div class="content__fields">
+      <mat-form-field
+        floatLabel="never"
+        class="content__fields__mat-form-field-my-account"
+      >
+        <div class="content__fields__mat-form-field-my-account__div">
+          <label class="content__fields__mat-form-field-my-account__div__label">
+            Old Password
+          </label>
+          <input
+            class="content__fields__mat-form-field-my-account__div__input-text"
+            matInput
+            type="password"
+            placeholder="Enter your old password"
+          />
+        </div>
+      </mat-form-field>
+
+      <mat-form-field
+        floatLabel="never"
+        class="content__fields__mat-form-field-my-account"
+      >
+        <div class="content__fields__mat-form-field-my-account__div">
+          <label class="content__fields__mat-form-field-my-account__div__label">
+            New Password
+          </label>
+          <input
+            class="content__fields__mat-form-field-my-account__div__input-text"
+            matInput
+            type="{{ showPassword1 ? 'text' : 'password' }}"
+            placeholder="Enter a new password"
+          />
+          <mat-icon
+            (click)="showPasswordClick1()"
+            *ngIf="!showPassword1"
+            class="content__fields__mat-form-field-my-account__div__icon-password"
+            matSuffix
+            svgIcon="hide-password"
+          ></mat-icon>
+          <mat-icon
+            (click)="showPasswordClick1()"
+            *ngIf="showPassword1"
+            class="content__fields__mat-form-field-my-account__div__icon-password"
+            matSuffix
+            svgIcon="show-password"
+          ></mat-icon>
+        </div>
+      </mat-form-field>
+
+      <mat-form-field
+        floatLabel="never"
+        class="content__fields__mat-form-field-my-account"
+      >
+        <div class="content__fields__mat-form-field-my-account__div">
+          <label class="content__fields__mat-form-field-my-account__div__label">
+            Repeat New Password
+          </label>
+          <input
+            class="content__fields__mat-form-field-my-account__div__input-text"
+            matInput
+            type="{{ showPassword2 ? 'text' : 'password' }}"
+            placeholder="Enter a new password"
+          />
+          <mat-icon
+            (click)="showPasswordClick2()"
+            *ngIf="!showPassword2"
+            class="content__fields__mat-form-field-my-account__div__icon-password"
+            matSuffix
+            svgIcon="hide-password"
+          ></mat-icon>
+          <mat-icon
+            (click)="showPasswordClick2()"
+            *ngIf="showPassword2"
+            class="content__fields__mat-form-field-my-account__div__icon-password"
+            matSuffix
+            svgIcon="show-password"
+          ></mat-icon>
+        </div>
+      </mat-form-field>
+    </div>
+
+    <div class="buttons-div">
+      <hr class="content__hr2" />
+      <div class="content__buttons">
+        <button
+          (click)="closeDialog()"
+          mat-button
+          class="content__buttons__cancel"
+        >
+          CANCEL
+        </button>
+        <button
+          (click)="saveChangesClick()"
+          mat-button
+          class="content__buttons__save-changes"
+        >
+          SAVE CHANGES
+        </button>
+      </div>
+    </div>
+  </div>
+</form>
+
+<app-changes-saved-dialog *ngIf="saveChanges"></app-changes-saved-dialog>

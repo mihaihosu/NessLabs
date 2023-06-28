@@ -1,0 +1,188 @@
+.mat-toolbar {
+  background: #fff;
+  position: relative;
+  margin-top: 15px !important;
+}
+.mat-toolbar-single-row {
+  padding: 0 35px;
+}
+.toolbar {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  align-items: center !important;
+}
+.search-div {
+  grid-column: 10;
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 16px;
+}
+.home {
+  cursor: pointer;
+  margin-left: 6px;
+  font-size: 16px;
+  margin-top: 5%;
+}
+.home-div {
+  grid-column: 3;
+  display: flex;
+  justify-content: flex-start;
+  background: white;
+  border: none;
+  font-weight: 600;
+}
+.favorite-div {
+  display: flex;
+  justify-content: flex-start;
+  grid-column: 4;
+}
+.profile-div {
+  display: flex;
+  justify-content: flex-start;
+  grid-column: 5;
+  margin-left: 10px !important;
+  font-size: 16px;
+  margin-top: 8px !important;
+  width: 86px;
+  height: 40px;
+}
+.profile-div-isAdmin {
+  display: flex;
+  justify-content: flex-start;
+  grid-column: 4;
+  margin-left: 20% !important;
+  font-size: 16px;
+  margin-top: 8px !important;
+  width: 86px;
+  height: 40px;
+}
+.icon-home {
+  margin-bottom: 6px;
+}
+.icon-profile {
+  margin-bottom: 10px;
+}
+.profile:hover {
+  background-color: #fde6ff;
+  width: 86px;
+  height: 40px;
+}
+.login-div {
+  font-weight: bold;
+  grid-column: 11;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin-top: 5px;
+}
+.btn-primary {
+  background: #8102ae;
+  border-radius: 66px;
+  margin-left: 50px;
+  --bs-btn-border-color: #8102ae;
+  --bs-btn-hover-border-color: #8102ae;
+  --bs-btn-active-bg: #8102ae;
+  width: 123px;
+  height: 40px;
+  color: white;
+}
+.img-logo-timisoara-2023 img {
+  width: 184.88px;
+  height: 74px;
+}
+.favorite {
+  cursor: pointer;
+  font-size: 16px;
+  margin-left: 5px;
+  font-weight: 600;
+}
+.favorite-active {
+  color: #8102ae;
+}
+.button1 {
+  font-size: 16px;
+  background: #fbfbfb;
+  width: 174px;
+  height: 40px;
+  margin-left: 15px;
+  grid-column: 5;
+  cursor: pointer;
+}
+.my-account {
+  font-size: 16px;
+  background: #fbfbfb;
+  width: 174px;
+  height: 40px;
+  margin-left: 10%;
+  grid-column: 5;
+  cursor: pointer;
+}
+.button2 {
+  font-size: 16px;
+  background: #fbfbfb;
+  width: 174px;
+  height: 40px;
+  grid-column: 5;
+  color: #8102ae;
+  margin-left: 15px;
+  cursor: pointer;
+}
+.button2-logout {
+  font-size: 16px;
+  background: #fbfbfb;
+  width: 174px;
+  height: 40px;
+  grid-column: 5;
+  color: #d45215;
+  margin-left: 20%;
+  cursor: pointer;
+  margin-left: 10%;
+}
+.input-search {
+  border: none;
+  background: none;
+  outline: none;
+  font-size: 16px;
+  color: #333;
+  margin-left: 10px;
+  width: 200px;
+  margin-bottom: 10px;
+}
+.mat-icon {
+  height: 30px;
+}
+.icon-favorite {
+  margin-top: 6px;
+  margin-left: 3px;
+}
+.profile-text {
+  cursor: pointer;
+  margin-top: 2%;
+  margin-left: 3px;
+  font-weight: 600;
+}
+.my-account-isAdmin {
+  font-size: 16px;
+  background: #fbfbfb;
+  width: 174px;
+  height: 40px;
+  grid-column: 4;
+  margin-left: 30%;
+  cursor: pointer;
+}
+.button2-logout-isAdmin {
+  font-size: 16px;
+  background: #fbfbfb;
+  width: 174px;
+  height: 40px;
+  grid-column: 4;
+  margin-left: 30%;
+  color: #d45215;
+  cursor: pointer;
+}
+.search-div-div-isAdmin {
+  grid-column: 12;
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 16px;
+}

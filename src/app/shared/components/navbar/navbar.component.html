@@ -1,0 +1,103 @@
+<mat-toolbar class="toolbar">
+  <div class="img-logo-timisoara-2023">
+    <img src="./assets/img/logo-timisoara-2023.png" />
+  </div>
+  <button
+    [disabled]="isAdmin"
+    class="home-div"
+    [ngClass]="{ 'favorite-active': !clickFavorite }"
+    (click)="onFavoriteHomeClick()"
+  >
+    <mat-icon
+      *ngIf="!clickFavorite"
+      class="icon-home"
+      svgIcon="home-selected"
+    ></mat-icon>
+    <mat-icon
+      *ngIf="clickFavorite"
+      class="icon-home"
+      svgIcon="home-unselected"
+    ></mat-icon>
+    <div class="home">Home</div>
+  </button>
+  <div
+    class="favorite-div"
+    [ngClass]="{ 'favorite-active': clickFavorite }"
+    *ngIf="!isAdmin"
+  >
+    <mat-icon class="favorite-icon" svgIcon="heart"></mat-icon>
+    <div class="favorite" (click)="onFavoriteHomeClick()">Favorite</div>
+  </div>
+  <div
+    [ngClass]="{
+      'profile profile-div': !isAdmin,
+      'profile profile-div-isAdmin': isAdmin
+    }"
+    (mouseenter)="mouseEnterProfile()"
+  >
+    <mat-icon svgIcon="user"></mat-icon>
+    <div>
+      <div class="profile-text">Profile</div>
+    </div>
+  </div>
+  <div
+    [ngClass]="{
+      'search-div': !isConfirmed,
+      'search-div-div-isAdmin': isConfirmed
+    }"
+  >
+    <mat-icon svgIcon="search"></mat-icon>
+    <input
+      type="text"
+      matInput
+      placeholder="Search for event..."
+      class="input-search"
+      [(ngModel)]="searchCards"
+      (input)="sendSearchCards()"
+    />
+  </div>
+  <div *ngIf="!isAdmin && !isConfirmed" class="login-div" (click)="login()">
+    LOGIN
+  </div>
+  <div>
+    <button
+      *ngIf="!isAdmin && !isConfirmed"
+      class="btn btn-primary"
+      (click)="register()"
+    >
+      REGISTER
+    </button>
+  </div>
+</mat-toolbar>
+<div class="toolbar" (mouseleave)="mouseLeaveProfile()">
+  <div class="button1" *ngIf="clickprofile && !isConfirmed" (click)="login()">
+    Login
+  </div>
+  <div
+    class="button2"
+    *ngIf="clickprofile && !isConfirmed"
+    (click)="register()"
+  >
+    Register
+  </div>
+  <div
+    *ngIf="clickprofile && isConfirmed"
+    (click)="openModal()"
+    [ngClass]="{
+      'my-account': !isAdmin,
+      'my-account-isAdmin': isAdmin
+    }"
+  >
+    My Account
+  </div>
+  <div
+    [ngClass]="{
+      'button2-logout': !isAdmin,
+      'button2-logout-isAdmin': isAdmin
+    }"
+    *ngIf="clickprofile && isConfirmed"
+    (click)="logout()"
+  >
+    Logout
+  </div>
+</div>
