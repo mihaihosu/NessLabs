@@ -1,0 +1,121 @@
+<div class="container">
+  <div class="login">
+    <form
+      class="needs-validation"
+      [formGroup]="loginForm"
+      (onsubmit)="onSubmit()"
+    >
+      <img
+        src="../assets/img/logo-timisoara-2023.png"
+        class="img-capitala-europeana"
+        alt="capitala-europeana"
+      />
+      <p class="text">Login</p>
+
+      <div class="Forms">
+        <div>
+          <mat-form-field>
+            <div class="div-label">
+              <mat-icon svgIcon="mail-icon"></mat-icon>
+              <label class="label">Email</label>
+            </div>
+            <input
+              [ngClass]="{
+                'error-input': loginForm.get('email').hasError('email')
+              }"
+              class="input-name"
+              matInput
+              formControlName="email"
+              type="email"
+              id="email"
+              [(ngModel)]="email"
+              required
+              (input)="hasInputChanged('email')"
+            />
+            <mat-error
+              class="mat-error"
+              *ngIf="loginForm.get('email').hasError('email')"
+            >
+              Email not found.
+              <a
+                routerLink="/recover-account"
+                href="#"
+                style="cursor: pointer; color: rgb(255, 84, 16)"
+                >Recover your account.</a
+              >
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field>
+            <div class="div-label">
+              <mat-icon svgIcon="password-icon"></mat-icon>
+              <label class="label">Password</label>
+            </div>
+            <input
+              matInput
+              [ngClass]="{
+                'error-input': loginForm.get('password').hasError('minlength')
+              }"
+              class="input-name"
+              type="{{ showPassword ? 'text' : 'password' }}"
+              name="password"
+              [(ngModel)]="password"
+              required
+              (input)="hasInputChanged('password')"
+              formControlName="password"
+            />
+            <mat-icon
+              class="password-icon"
+              (click)="clickShowPassword()"
+              *ngIf="!showPassword"
+              matSuffix
+              svgIcon="hide-password"
+            ></mat-icon>
+            <mat-icon
+              class="password-icon"
+              (click)="clickShowPassword()"
+              *ngIf="showPassword"
+              matSuffix
+              svgIcon="show-password"
+            ></mat-icon>
+            <mat-error
+              class="mat-error"
+              *ngIf="loginForm.get('password').hasError('minlength')"
+            >
+              Incorect password.
+              <a
+                routerLink="/recover-account"
+                href="#"
+                style="cursor: pointer; color: rgb(255, 84, 16)"
+                >Recover your account.</a
+              >
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <button
+        mat-raised-button
+        type="submit"
+        [disabled]="!buttonEnabled"
+        (click)="onSubmit()"
+      >
+        LOGIN
+      </button>
+      <p class="new-here">
+        New here?
+        <a
+          routerLink="/create-account"
+          href="#"
+          style="text-decoration: none; cursor: pointer"
+          >Create account.</a
+        >
+      </p>
+      <img
+        src="../../../assets/img/logo-ness.png"
+        alt="ness"
+        class="img-ness"
+      />
+    </form>
+  </div>
+</div>

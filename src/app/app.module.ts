@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { MatIconModule, MatIconRegistry } from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { EventCardsComponent } from './shared/components/event-cards/event-cards.component';
@@ -18,6 +18,17 @@ import { PleaseLoginDialogComponent } from './shared/components/please-login-dia
 import { DeletingEventDialogComponent } from './shared/components/deleting-event-dialog/deleting-event-dialog/deleting-event-dialog.component';
 import { EventPostedDialogComponent } from './shared/components/event-posted-dialog/event-posted-dialog/event-posted-dialog.component';
 import { DraftSavedDialogComponent } from './shared/components/draft-saved-dialog/draft-saved-dialog/draft-saved-dialog.component';
+import { LoginComponent } from './components/login/login.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CreateAccountComponent } from './components/create-account/create-account.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MyAccountDialogComponent } from './shared/components/my-account-dialog/my-account-dialog/my-account-dialog.component';
+import { RecoverAccountComponent } from './components/recover-account/recover-account.component';
+import { DatePipe } from '@angular/common';
+import { FormatDatePipe } from './shared/pipes/format-date.pipe';
 
 @NgModule({
   declarations: [
@@ -31,6 +42,11 @@ import { DraftSavedDialogComponent } from './shared/components/draft-saved-dialo
     EventPostedDialogComponent,
     DeletingEventDialogComponent,
     DraftSavedDialogComponent,
+    LoginComponent,
+    CreateAccountComponent,
+    MyAccountDialogComponent,
+    RecoverAccountComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -41,9 +57,18 @@ import { DraftSavedDialogComponent } from './shared/components/draft-saved-dialo
     IconModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    BrowserModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
+    FormsModule,
+    MatCardModule,
+    MatIconModule,
+    MatButtonModule,
+    MatInputModule,
+    MatFormFieldModule, 
   ],
 
-  providers: [],
+  providers: [DatePipe,FormatDatePipe],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

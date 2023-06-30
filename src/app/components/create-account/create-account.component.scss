@@ -1,0 +1,212 @@
+ul.requirement-list {
+  list-style: none;
+  transform: scale(0.9);
+  padding-left: 0;
+}
+
+ul.requirement-list li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+  transform: scale(0.9);
+  font-size: 80%;
+}
+
+ul.requirement-list li img {
+  margin-right: 5px;
+  padding-left: 5%;
+  transform: scale(0.9);
+}
+
+.password-requirement-title {
+  font-size: 75%;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  padding-left: 10%;
+  padding-bottom: 3px;
+  margin-top: 15px;
+  transform: scale(0.9);
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-image: url("../../../assets/img/background_login.jpg") !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+.login {
+  width: 420px;
+  height: 810px;
+  padding: 55px;
+  padding-top: 0.5%;
+  padding-bottom: 0.3%;
+  border-radius: 12px;
+  align-items: center;
+  justify-content: center;
+  background: white;
+}
+
+.login form {
+  font-size: 15px;
+}
+
+.needs-validation {
+  margin-bottom: 10%;
+}
+
+.img-capitala-europeana {
+  width: 55%;
+  margin-bottom: 10%;
+  margin-left: 24%;
+}
+
+.img-ness {
+  width: 45%;
+  margin-left: 25%;
+}
+.text {
+  display: flex;
+  font-size: 120%;
+  top: 50%;
+  margin-right: 5%;
+  margin-bottom: 10%;
+
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  justify-content: center;
+  transform: scale(0.8);
+}
+.mat-error {
+  font-size: 120%;
+  color: rgb(255, 84, 16);
+  margin-left: 4px;
+}
+
+.new-here {
+  font-weight: 300;
+  font-size: x-small;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bolder;
+  margin-left: 25%;
+  margin-top: 3%;
+  transform: scale(0.9);
+  margin-bottom: 3%;
+}
+button {
+  color: white;
+  font-size: 65%;
+  margin-left: 20%;
+  width: 55%;
+  margin-top: 10%;
+  height: 30px;
+  border-radius: 500px;
+  transform: scale(0.9);
+  background-color: #8102ae;
+  border-color: #8102ae;
+}
+
+.show-password {
+  cursor: pointer;
+}
+
+button:disabled {
+  background-color: rgb(148, 148, 148);
+  border-color: rgb(35, 35, 35);
+}
+
+button:not(:disabled) {
+  background-color: #8102ae;
+  border-color: #8102ae;
+}
+
+button:not(:disabled):hover {
+  background-color: #8102ae;
+  color: white;
+  cursor: pointer;
+}
+.password-requirements-text {
+  font-size: 120%;
+}
+
+// NEW ADDED
+
+.input {
+  border: 1px solid rgb(0, 0, 0); /* add border */
+  border-radius: 5px; /* round the corners */
+  height: 2rem;
+  width: 15rem;
+}
+
+.Forms {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 30px;
+}
+
+.password-icon {
+  position: absolute;
+  right: 3rem;
+  transform: translateY(40%);
+}
+.admin-account-div {
+  display: flex;
+  margin-left: 9rem;
+  margin-top: -15px;
+}
+.admin-account {
+  margin-left: 1em;
+  font-size: 10px;
+  margin-top: 1.2em;
+}
+.input-check-box {
+  font-size: 20px;
+}
+input[type="checkbox"] {
+  accent-color: #8102ae;
+}
+::ng-deep .mat-form-field-underline {
+  display: none;
+}
+::ng-deep .mat-form-field {
+  width: 20rem;
+  height: 6rem;
+}
+.div-label {
+  display: flex;
+  flex-direction: row;
+}
+.label {
+  font-size: 14px;
+  margin-top: 5px;
+  margin-left: 0.5em;
+  font-weight: bold;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+.input-name {
+  border: 1px solid rgb(0, 0, 0); /* add border */
+  border-radius: 5px; /* round the corners */
+  height: 2rem;
+  width: 17rem;
+  margin-top: 5px;
+  margin-bottom: 0.5rem;
+  margin-top: 6px;
+  margin-left: 5px;
+}
+::ng-deep .mat-form-field-appearance-legacy {
+  .mat-form-field-wrapper {
+    padding-bottom: 5px;
+  }
+}
