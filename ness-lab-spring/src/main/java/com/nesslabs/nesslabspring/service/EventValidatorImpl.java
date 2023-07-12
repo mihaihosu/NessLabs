@@ -50,7 +50,6 @@ public class EventValidatorImpl implements EventValidator{
         }
     }
 
-
     private void validateLinks(EventDto eventDto) throws InvalidInputException {
         if (!eventDto.getEventLink().matches(URL_PATTERN) && !eventDto.getEventLink().isEmpty()) {
             throw new InvalidInputException("Event link is not a valid URL.");

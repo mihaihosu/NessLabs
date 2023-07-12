@@ -131,4 +131,6 @@ public class EventServiceImpl implements EventService{
         event.setTagName(eventDto.getTagName());
         event.setEventStatus(eventDto.getEventStatus());
     }
+
+
 }

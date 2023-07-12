@@ -40,7 +40,6 @@ public class SecurityConfiguration implements WebMvcConfigurer {
                 .authorizeHttpRequests()
                 .requestMatchers("**").permitAll()
                 .requestMatchers("/api/v1/auth/**").permitAll()
-                .requestMatchers("/api/v1/events/**").permitAll()
                 .requestMatchers("/api/v1/pwdres/**").permitAll()
                 .requestMatchers("/swagger-ui/**"). permitAll()
                 .requestMatchers("/v3/api-docs/**").permitAll()
