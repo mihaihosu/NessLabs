@@ -40,13 +40,13 @@ public class EventDto {
     private String ticketLink;
 
     @JsonProperty("isFree")
-    private boolean isFree;
+    private Boolean isFree;
 
     @JsonProperty("isPetFriendly")
-    private boolean isPetFriendly;
+    private Boolean isPetFriendly;
 
     @JsonProperty("isKidFriendly")
-    private boolean isKidFriendly;
+    private Boolean isKidFriendly;
 
     private String adminEmail;
 

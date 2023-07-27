@@ -23,5 +23,5 @@ public interface EventService {
     );
 
     EventDto getEventById(Long id) throws EventNotFoundException;
-    void createEvent(EventDto eventDto, String token) throws InvalidInputException;
+    Event createEvent(EventDto eventDto, String token) throws InvalidInputException, IllegalAccessException;
 }

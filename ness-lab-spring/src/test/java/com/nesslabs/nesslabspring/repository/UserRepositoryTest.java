@@ -30,7 +30,7 @@ class UserRepositoryTest {
                 .username("Cristiana")
                 .email(email)
                 .password("dogs")
-                .admin(false)
+                .is_admin(false)
                 .build();
 
         User expected = underTest.save(user);

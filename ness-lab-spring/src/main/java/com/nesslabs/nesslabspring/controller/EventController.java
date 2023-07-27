@@ -6,18 +6,14 @@ import com.nesslabs.nesslabspring.exception.InvalidInputException;
 import com.nesslabs.nesslabspring.exception.UnauthorizedException;
 import com.nesslabs.nesslabspring.model.Event;
 import com.nesslabs.nesslabspring.service.EventService;
-import jakarta.servlet.http.HttpServletRequest;
-import lombok.RequiredArgsConstructor;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
-import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin
 @RequestMapping(path = "api/v1/events")
@@ -80,9 +76,9 @@ public class EventController {
     @PostMapping("/create")
     public ResponseEntity<Event> createEvent(@RequestBody EventDto eventDto, @RequestHeader("Authorization") String token) {
         try{
-            eventService.createEvent(eventDto, token);
-            return ResponseEntity.status(HttpStatus.CREATED).build();
-        }catch (UnauthorizedException e) {
+            Event createdEvent = eventService.createEvent(eventDto, token);
+            return ResponseEntity.status(HttpStatus.CREATED).body(createdEvent);
+        }catch (UnauthorizedException | IllegalAccessException e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }catch (InvalidInputException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();

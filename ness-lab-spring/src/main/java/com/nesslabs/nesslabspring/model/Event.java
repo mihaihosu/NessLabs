@@ -37,11 +37,11 @@ public class Event {
 
     private String ticketLink;
 
-    private boolean isFree;
+    private Boolean isFree;
 
-    private boolean isPetFriendly;
+    private Boolean isPetFriendly;
 
-    private boolean isKidFriendly;
+    private Boolean isKidFriendly;
 
     private String adminEmail;
 

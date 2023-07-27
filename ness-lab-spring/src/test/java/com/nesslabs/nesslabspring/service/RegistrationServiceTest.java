@@ -35,7 +35,7 @@ class RegistrationServiceTest {
                 .email("exemple@yahoo.com")
                 .password("Password123")
                 .username("Bob")
-                .admin(true)
+                .is_admin(true)
                 .build();
 
         when(emailValidatorService.test(request.getEmail())).thenReturn(true);
@@ -57,7 +57,7 @@ class RegistrationServiceTest {
                 .email("exemple")
                 .password("Password123")
                 .username("Bob")
-                .admin(true)
+                .is_admin(true)
                 .build();
         when(emailValidatorService.test(anyString())).thenReturn(false);
         assertThrows(InvalidCredentialException.class, () -> {
@@ -72,7 +72,7 @@ class RegistrationServiceTest {
                 .email("exemple@yahoo.com")
                 .password("Password")
                 .username("Bob")
-                .admin(true)
+                .is_admin(true)
                 .build();
         when(emailValidatorService.test(anyString())).thenReturn(true);
         when(passwordValidatorService.test(anyString())).thenReturn(false);
@@ -89,7 +89,7 @@ class RegistrationServiceTest {
                 .email("exemple@yahoo.com")
                 .password("Password123")
                 .username("")
-                .admin(true)
+                .is_admin(true)
                 .build();
         when(emailValidatorService.test(anyString())).thenReturn(true);
         when(passwordValidatorService.test(anyString())).thenReturn(true);

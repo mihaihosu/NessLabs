@@ -23,7 +23,6 @@ public class EventValidatorImpl implements EventValidator{
         validateRequiredFields(eventDto);
         validateDates(eventDto);
         validateLinks(eventDto);
-        validateDuration(eventDto);
     }
 
     private void validateRequiredFields(EventDto eventDto) throws InvalidInputException {
