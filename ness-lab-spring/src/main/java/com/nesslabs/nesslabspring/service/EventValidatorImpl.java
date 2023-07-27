@@ -6,49 +6,40 @@ import com.nesslabs.nesslabspring.exception.UnauthorizedException;
 import com.nesslabs.nesslabspring.model.Event;
 import com.nesslabs.nesslabspring.repository.EventRepository;
 import com.nesslabs.nesslabspring.security.JwtService;
-import io.micrometer.common.util.StringUtils;
-import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.time.Duration;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.regex.Pattern;
 
 @Service
 @RequiredArgsConstructor
 public class EventValidatorImpl implements EventValidator{
 
-
     private final JwtService jwtService;
-
     private final EventRepository eventRepository;
-
 
     private static final String URL_PATTERN = "^(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})([/\\w .-]*)*/?$";
 
     @Override
-    public void validate(EventDto eventDto) throws InvalidInputException {
+    public void validate(EventDto eventDto) throws InvalidInputException, UnauthorizedException {
         validateRequiredFields(eventDto);
         validateDates(eventDto);
         validateLinks(eventDto);
-
     }
 
     private void validateRequiredFields(EventDto eventDto) throws InvalidInputException {
-        if (eventDto.getPhoto() == null || eventDto.getPhoto().isEmpty()) {
+        if (eventDto.getPhoto().isEmpty()) {
             throw new InvalidInputException("Photo is required.");
         }
-        if (eventDto.getTitle() == null || eventDto.getTitle().isEmpty()) {
+        if (eventDto.getTitle().isEmpty()) {
             throw new InvalidInputException("Title field is required.");
         }
-        if (eventDto.getDescription() == null || eventDto.getDescription().isEmpty()) {
+        if (eventDto.getDescription().isEmpty()) {
             throw new InvalidInputException("Description field is required.");
         }
-        if (eventDto.getStartDate() == null || eventDto.getEndDate() == null || eventDto.getStartTime() == null) {
+        if (eventDto.getStartDate() == null || eventDto.getEndDate() == null || eventDto.getStartTime() == null || eventDto.getDuration() == null) {
             throw new InvalidInputException("Start date, end date, and time fields are required.");
+        }
+        if (eventDto.getAddress().isEmpty()) {
+            throw new InvalidInputException("Address is required");
         }
     }
 
@@ -57,7 +48,6 @@ public class EventValidatorImpl implements EventValidator{
             throw new InvalidInputException("End date cannot be before start date.");
         }
     }
-
 
     private void validateLinks(EventDto eventDto) throws InvalidInputException {
         if (!eventDto.getEventLink().matches(URL_PATTERN) && !eventDto.getEventLink().isEmpty()) {

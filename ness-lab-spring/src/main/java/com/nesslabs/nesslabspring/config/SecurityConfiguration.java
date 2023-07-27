@@ -11,7 +11,6 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 
@@ -41,12 +40,13 @@ public class SecurityConfiguration implements WebMvcConfigurer {
                 .authorizeHttpRequests()
                 .requestMatchers("**").permitAll()
                 .requestMatchers("/api/v1/auth/**").permitAll()
-                .requestMatchers("/api/v1/events/**").permitAll()
                 .requestMatchers("/api/v1/pwdres/**").permitAll()
                 .requestMatchers("/swagger-ui/**"). permitAll()
                 .requestMatchers("/v3/api-docs/**").permitAll()
                 .requestMatchers("/v3/api-docs.yaml").permitAll()
                 .requestMatchers("/swagger-ui.html").permitAll()
+                .requestMatchers("/api/events/**").permitAll()
+                .requestMatchers("/api/events/create/").hasAuthority("ROLE_ADMIN")
                 .anyRequest()
                 .authenticated()
                 .and()

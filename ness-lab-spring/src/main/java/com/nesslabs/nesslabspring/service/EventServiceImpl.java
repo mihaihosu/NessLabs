@@ -3,22 +3,25 @@ package com.nesslabs.nesslabspring.service;
 import com.nesslabs.nesslabspring.dto.EventDto;
 import com.nesslabs.nesslabspring.enums.EventStatus;
 import com.nesslabs.nesslabspring.exception.EventNotFoundException;
+import com.nesslabs.nesslabspring.exception.InvalidInputException;
+import com.nesslabs.nesslabspring.exception.JwtAuthenticationException;
+import com.nesslabs.nesslabspring.exception.UnauthorizedException;
 import com.nesslabs.nesslabspring.mappers.EventMapper;
 import com.nesslabs.nesslabspring.model.Event;
 import com.nesslabs.nesslabspring.repository.EventRepository;
 import com.nesslabs.nesslabspring.security.JwtService;
 import com.nesslabs.nesslabspring.utils.QueryParser;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
-import com.nesslabs.nesslabspring.exception.InvalidInputException;
-import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
+
+import java.lang.reflect.Field;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
-
 
 @Service
 @RequiredArgsConstructor
@@ -91,6 +94,31 @@ public class EventServiceImpl implements EventService{
 
     }
 
+    @Override
+    public Event createEvent(EventDto eventDto, String token) throws InvalidInputException, IllegalAccessException {
+        String adminEmail = jwtService.extractUsername(token);
+        if(jwtService.extractIsAdmin(token)) {
+            try{
+                jwtService.getAuthentication(token);
+                if(eventDto.getEventStatus()==EventStatus.DRAFT) {
+                    Event event = eventMapper.fromDto(eventDto);
+                    event.setAdminEmail(adminEmail);
+                    eventRepository.save(event);
+                    return event;
+                }
+                eventValidator.validate(eventDto);
+            }catch (InvalidInputException e) {
+                throw new InvalidInputException("Invalid input");
+            }catch (JwtAuthenticationException e) {
+                throw new JwtAuthenticationException("Invalid token");
+            }
+            Event event = eventMapper.fromDto(eventDto);
+            event.setAdminEmail(adminEmail);
+            eventRepository.save(event);
+            return event;
+        } else throw new UnauthorizedException("Unauthorized");
+    }
+
     public Event updateEvent(Long eventId, EventDto eventDto, String token) throws InvalidInputException {
         // Validate owner
         eventValidator.validateEventOwner(eventId, token);
@@ -108,7 +136,6 @@ public class EventServiceImpl implements EventService{
         return eventRepository.saveAndFlush(existingEvent);
     }
 
-
     private void eventFields(Event event, EventDto eventDto){
         event.setTitle(eventDto.getTitle());
         event.setDescription(eventDto.getDescription());
@@ -118,12 +145,10 @@ public class EventServiceImpl implements EventService{
         event.setEventLink(eventDto.getEventLink());
         event.setTicketLink(eventDto.getTicketLink());
         event.setPhoto(eventDto.getPhoto());
-        event.setFree(eventDto.isFree());
-        event.setPetFriendly(eventDto.isPetFriendly());
-        event.setKidFriendly(eventDto.isKidFriendly());
+        event.setIsFree(eventDto.getIsFree());
+        event.setIsPetFriendly(eventDto.getIsPetFriendly());
+        event.setIsKidFriendly(eventDto.getIsKidFriendly());
         event.setTagName(eventDto.getTagName());
         event.setEventStatus(eventDto.getEventStatus());
     }
-
-
 }

@@ -6,7 +6,6 @@ import com.nesslabs.nesslabspring.model.User;
 import com.nesslabs.nesslabspring.repository.UserRepository;
 import com.nesslabs.nesslabspring.security.JwtService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -26,6 +25,7 @@ public class AuthServiceImpl implements AuthService{
     }
     @Override
     public AuthResponseDto checkUserCredentials(AuthRequestDto loginRequestDto) {
+
 
         if (loginRequestDto.getEmail() == null || loginRequestDto.getEmail().isEmpty()) {
             throw new IllegalArgumentException("Email field is required");
@@ -50,9 +50,9 @@ public class AuthServiceImpl implements AuthService{
         public String createToken(AuthResponseDto loginResponseDto) {
             User user = getUserByEmail(loginResponseDto.getEmail());
 
-            if (!user.is_confirmed()) {
-                return null;
-            }
+//            if (!user.isConfirmed()) {
+//                return null;
+//            }
 
             Boolean isAdmin = loginResponseDto.getIsAdmin();
             String jwt = jwtTokenService.generateToken(loginResponseDto.getEmail(), isAdmin);

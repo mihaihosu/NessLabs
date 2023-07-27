@@ -1,5 +1,6 @@
 package com.nesslabs.nesslabspring.dto;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.nesslabs.nesslabspring.enums.EventStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -38,11 +39,14 @@ public class EventDto {
 
     private String ticketLink;
 
-    private boolean isFree;
+    @JsonProperty("isFree")
+    private Boolean isFree;
 
-    private boolean isPetFriendly;
+    @JsonProperty("isPetFriendly")
+    private Boolean isPetFriendly;
 
-    private boolean isKidFriendly;
+    @JsonProperty("isKidFriendly")
+    private Boolean isKidFriendly;
 
     private String adminEmail;
 
